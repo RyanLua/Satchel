@@ -1,0 +1,10 @@
+{
+  "name": "Satchel",
+  "tree": {
+    "$className": "DataModel",
+    "StarterCharacterScripts": {
+      "$className": "StarterCharacterScripts",
+      "$path": "src"
+    }
+  }
+}
