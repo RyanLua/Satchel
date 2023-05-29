@@ -17,17 +17,19 @@ local ICON_SIZE = 60
 local FONT_SIZE = Enum.FontSize.Size14
 local ICON_BUFFER = 5
 
-local BACKGROUND_FADE = 0.50
-local BACKGROUND_COLOR = Color3.new(31 / 255, 31 / 255, 31 / 255)
+local BACKGROUND_FADE = script:GetAttribute("BackgroundTransparency") or 0.30
+local BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
+local BACKGROUND_CORNER_RADIUS = 8
 
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
-local SLOT_DRAGGABLE_COLOR = Color3.new(49 / 255, 49 / 255, 49 / 255)
-local SLOT_EQUIP_COLOR = Color3.new(90 / 255, 142 / 255, 233 / 255)
+local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SLOT_EQUIP_COLOR = Color3.new(50 / 255, 181 / 255, 1)
 local SLOT_EQUIP_THICKNESS = 0.1 -- Relative
-local SLOT_FADE_LOCKED = 0.50 -- Locked means undraggable
+local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
+local SLOT_CORNER_RADIUS = 3
 
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_HEIGHT = 16
@@ -52,11 +54,29 @@ local INVENTORY_ARROWS_BUFFER_VR = 40
 
 local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
-local SEARCH_TEXT = "Search"
+local SEARCH_CORNER_RADIUS = 3
 
-local SEARCH_TEXT_OFFSET_FROMLEFT = 0
-local SEARCH_BACKGROUND_COLOR = Color3.new(0.37, 0.37, 0.37)
-local SEARCH_BACKGROUND_FADE = 0.15
+local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
+local SEARCH_ICON_SIZE = 16
+local SEARCH_ICON_COLOR = Color3.new(1, 1, 1)
+local SEARCH_ICON_FADE = 0.5
+local SEARCH_TEXT_OFFSET_FROMRIGHT = 8
+
+local SEARCH_PLACEHOLDER = "Search"
+local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
+
+local SEARCH_TEXT_COLOR = Color3.new(1, 1, 1)
+local SEARCH_TEXT_FADE = 0.5
+local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
+local SEARCH_TEXT_STROKE_FADE = 0.5
+
+local SEARCH_TEXT_OFFSET_FROMLEFT = 8
+local SEARCH_BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SEARCH_BACKGROUND_FADE = 0.20
+
+local SEARCH_BORDER_THICKNESS = 1
+local SEARCH_BORDER_FADE = 0.8
+local SEARCH_BORDER_COLOR = Color3.new(1, 1, 1)
 
 local DOUBLE_CLICK_TIME = 0.5
 local GetScreenResolution = function()
@@ -143,7 +163,7 @@ local Backpack = Player:WaitForChild("Backpack")
 local InventoryIcon = Icon.new()
 InventoryIcon:setImage(ARROW_IMAGE_CLOSE, "deselected")
 InventoryIcon:setImage(ARROW_IMAGE_OPEN, "selected")
-InventoryIcon:setTheme(Themes.BlueGradient)
+-- InventoryIcon:setTheme(Themes.BlueGradient)
 InventoryIcon:bindToggleKey(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
 InventoryIcon:setName("InventoryIcon")
 InventoryIcon:setImageYScale(1.12)
@@ -192,11 +212,11 @@ local function NewGui(className, objectName)
 	if className:match("Text") then
 		newGui.TextColor3 = Color3.new(1, 1, 1)
 		newGui.Text = ""
-		newGui.Font = Enum.Font.SourceSans
+		newGui.Font = Enum.Font.Gotham
 		newGui.FontSize = FONT_SIZE
 		newGui.TextWrapped = true
 		if className == "TextButton" then
-			newGui.Font = Enum.Font.SourceSansSemibold
+			newGui.Font = Enum.Font.GothamMedium
 			newGui.BorderSizePixel = 1
 		end
 	end
@@ -650,6 +670,10 @@ local function MakeSlot(parent, index)
 	SlotFrame.MouseButton1Click:connect(function()
 		changeSlot(slot)
 	end)
+	local searchFrameCorner = Instance.new("UICorner")
+	searchFrameCorner.Name = "Corner"
+	searchFrameCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+	searchFrameCorner.Parent = SlotFrame
 	slot.Frame = SlotFrame
 
 	do
@@ -1467,6 +1491,12 @@ InventoryFrame.Active = true
 InventoryFrame.Visible = false
 InventoryFrame.Parent = MainFrame
 
+-- Add corners to the InventoryFrame
+local corner = Instance.new("UICorner")
+corner.Name = "Corner"
+corner.CornerRadius = UDim.new(0, BACKGROUND_CORNER_RADIUS)
+corner.Parent = InventoryFrame
+
 VRInventorySelector = NewGui("TextButton", "VRInventorySelector")
 VRInventorySelector.Position = UDim2.new(0, 0, 0, 0)
 VRInventorySelector.Size = UDim2.new(1, 0, 1, 0)
@@ -1655,11 +1685,39 @@ do -- Search stuff
 	searchFrame.Position = UDim2.new(1, -searchFrame.Size.X.Offset - SEARCH_BUFFER, 0, SEARCH_BUFFER)
 	searchFrame.Parent = InventoryFrame
 
+	local searchFrameCorner = Instance.new("UICorner")
+	searchFrameCorner.Name = "Corner"
+	searchFrameCorner.CornerRadius = UDim.new(0, SEARCH_CORNER_RADIUS)
+	searchFrameCorner.Parent = searchFrame
+
+	local searchFrameBorder = Instance.new("UIStroke")
+	searchFrameBorder.Name = "Border"
+	searchFrameBorder.Color = SEARCH_BORDER_COLOR
+	searchFrameBorder.Thickness = SEARCH_BORDER_THICKNESS
+	searchFrameBorder.Transparency = SEARCH_BORDER_FADE
+	searchFrameBorder.Parent = searchFrame
+
+	-- TODO: Fix this broken code later
+	--
+	-- local searchIcon = NewGui("ImageLabel", "SearchIcon")
+	-- searchIcon.Image = SEARCH_ICON
+	-- searchIcon.BackgroundTransparency = 1
+	-- searchIcon.Size = UDim2.fromOffset(SEARCH_ICON_SIZE, SEARCH_ICON_SIZE)
+	-- searchIcon.AnchorPoint = Vector2.new(1, 0.5)
+	-- searchIcon.Position = UDim2.new(1, SEARCH_TEXT_OFFSET_FROMRIGHT, 0.5, -SEARCH_ICON_SIZE / 2)
+	-- searchIcon.Parent = searchFrame
+
 	local searchBox = NewGui("TextBox", "TextBox")
-	searchBox.PlaceholderText = SEARCH_TEXT
+	searchBox.PlaceholderText = SEARCH_PLACEHOLDER
+	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
+	searchBox.TextColor3 = SEARCH_TEXT_COLOR
+	searchBox.TextTransparency = SEARCH_TEXT_FADE
+	searchBox.TextStrokeColor3 = SEARCH_TEXT_STROKE_COLOR
+	searchBox.TextStrokeTransparency = SEARCH_TEXT_FADE
 	searchBox.ClearTextOnFocus = false
-	searchBox.FontSize = Enum.FontSize.Size24
+	searchBox.FontSize = Enum.FontSize.Size14
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
+	searchBox.TextYAlignment = Enum.TextYAlignment.Bottom
 	searchBox.Size = searchFrame.Size - UDim2.fromOffset(0, SEARCH_TEXT_OFFSET_FROMLEFT)
 	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET_FROMLEFT, 0, 0)
 	searchBox.Parent = searchFrame
