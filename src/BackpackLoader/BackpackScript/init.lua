@@ -25,7 +25,7 @@ local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
 local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SLOT_EQUIP_COLOR = Color3.new(50 / 255, 181 / 255, 1)
+local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
 local SLOT_EQUIP_THICKNESS = 0.1 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
@@ -33,7 +33,7 @@ local SLOT_CORNER_RADIUS = 3
 
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_HEIGHT = 16
-local TOOLTIP_OFFSET = -25 -- From top
+local TOOLTIP_OFFSET = -5 -- From top
 
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE = "rbxasset://textures/ui/TopBar/inventoryOff.png"
@@ -63,7 +63,7 @@ local SEARCH_PLACEHOLDER = "Search"
 local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
 
 local SEARCH_TEXT_COLOR = Color3.new(1, 1, 1)
-local SEARCH_TEXT_FADE = 0.5
+local TEXT_FADE = 0.5
 local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_FADE = 0.5
 
@@ -204,16 +204,15 @@ local function NewGui(className, objectName)
 	newGui.BackgroundColor3 = Color3.new(0, 0, 0)
 	newGui.BackgroundTransparency = 1
 	newGui.BorderColor3 = Color3.new(0, 0, 0)
-	newGui.BorderSizePixel = 0
 	newGui.Size = UDim2.new(1, 0, 1, 0)
 	if className:match("Text") then
 		newGui.TextColor3 = Color3.new(1, 1, 1)
 		newGui.Text = ""
-		newGui.Font = Enum.Font.Gotham
+		newGui.Font = Enum.Font.GothamMedium
 		newGui.FontSize = FONT_SIZE
 		newGui.TextWrapped = true
 		if className == "TextButton" then
-			newGui.Font = Enum.Font.GothamMedium
+			newGui.Font = Enum.Font.Gotham
 			newGui.BorderSizePixel = 1
 		end
 	end
@@ -703,11 +702,17 @@ local function MakeSlot(parent, index)
 		ToolTip = NewGui("TextLabel", "ToolTip")
 		ToolTip.ZIndex = 2
 		ToolTip.TextWrapped = false
-		ToolTip.TextYAlignment = Enum.TextYAlignment.Top
-		ToolTip.BackgroundColor3 = Color3.new(0.4, 0.4, 0.4)
-		ToolTip.BackgroundTransparency = 0
+		ToolTip.TextYAlignment = Enum.TextYAlignment.Center
+		ToolTip.BackgroundColor3 = BACKGROUND_COLOR
+		ToolTip.BackgroundTransparency = SLOT_FADE_LOCKED
+		ToolTip.AnchorPoint = Vector2.new(0, 1)
+		ToolTip.BorderSizePixel = 0
 		ToolTip.Visible = false
 		ToolTip.Parent = SlotFrame
+		local ToolTipCorner = Instance.new("UICorner")
+		ToolTipCorner.Name = "Corner"
+		ToolTipCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+		ToolTipCorner.Parent = ToolTip
 		SlotFrame.MouseEnter:connect(function()
 			if ToolTip.Text ~= "" then
 				ToolTip.Visible = true
@@ -739,7 +744,8 @@ local function MakeSlot(parent, index)
 			local slotNum = (index < 10) and index or 0
 			SlotNumber = NewGui("TextLabel", "Number")
 			SlotNumber.Text = slotNum
-			SlotNumber.Size = UDim2.new(0.15, 0, 0.15, 0)
+			SlotNumber.Font = Enum.Font.GothamBlack
+			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
 			SlotNumber.Parent = SlotFrame
 			HotkeyFns[ZERO_KEY_VALUE + slotNum] = slot.Select
@@ -1516,6 +1522,10 @@ end)
 -- Make the ScrollingFrame, which holds the rest of the Slots (however many)
 ScrollingFrame = NewGui("ScrollingFrame", "ScrollingFrame")
 ScrollingFrame.Selectable = false
+ScrollingFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+ScrollingFrame.ScrollBarThickness = 8
+ScrollingFrame.ScrollBarImageColor3 = Color3.new(1, 1, 1)
+ScrollingFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.Parent = InventoryFrame
 
@@ -1606,7 +1616,7 @@ local function addGamepadHint(hintImage, hintImageLarge, hintText)
 
 	local hintText = Utility:Create("TextLabel")({
 		Name = "HintText",
-		Position = UDim2.new(0, (IsTenFootInterface and 100 or 70), 0, 0),
+		Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0),
 		Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0),
 		Font = Enum.Font.SourceSansBold,
 		FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24),
@@ -1708,9 +1718,9 @@ do -- Search stuff
 	searchBox.PlaceholderText = SEARCH_PLACEHOLDER
 	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
 	searchBox.TextColor3 = SEARCH_TEXT_COLOR
-	searchBox.TextTransparency = SEARCH_TEXT_FADE
+	searchBox.TextTransparency = TEXT_FADE
 	searchBox.TextStrokeColor3 = SEARCH_TEXT_STROKE_COLOR
-	searchBox.TextStrokeTransparency = SEARCH_TEXT_FADE
+	searchBox.TextStrokeTransparency = TEXT_FADE
 	searchBox.ClearTextOnFocus = false
 	searchBox.FontSize = Enum.FontSize.Size14
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
@@ -1795,7 +1805,7 @@ do -- Search stuff
 		if property == "Text" then
 			local text = searchBox.Text
 			if text == "" then
-				searchBox.TextTransparency = SEARCH_TEXT_FADE
+				searchBox.TextTransparency = TEXT_FADE
 				clearResults()
 			elseif text ~= SEARCH_TEXT then
 				searchBox.TextTransparency = 0
