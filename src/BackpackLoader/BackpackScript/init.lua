@@ -1795,8 +1795,10 @@ do -- Search stuff
 		if property == "Text" then
 			local text = searchBox.Text
 			if text == "" then
+				searchBox.TextTransparency = SEARCH_TEXT_FADE
 				clearResults()
 			elseif text ~= SEARCH_TEXT then
+				searchBox.TextTransparency = 0
 				search()
 			end
 			xButton.Visible = text ~= "" and text ~= SEARCH_TEXT
