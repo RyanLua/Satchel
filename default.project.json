@@ -2,9 +2,14 @@
   "name": "Satchel",
   "tree": {
     "$className": "DataModel",
-    "StarterCharacterScripts": {
-      "$className": "StarterCharacterScripts",
-      "$path": "src"
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "$ignoreUnknownInstances": true,
+        "$path": "src/StarterPlayer/StarterPlayerScripts"
+      },
+      "$ignoreUnknownInstances": true
     }
   }
 }
