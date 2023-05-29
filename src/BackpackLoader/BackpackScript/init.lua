@@ -56,11 +56,8 @@ local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
 local SEARCH_CORNER_RADIUS = 3
 
+local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
-local SEARCH_ICON_SIZE = 16
-local SEARCH_ICON_COLOR = Color3.new(1, 1, 1)
-local SEARCH_ICON_FADE = 0.5
-local SEARCH_TEXT_OFFSET_FROMRIGHT = 8
 
 local SEARCH_PLACEHOLDER = "Search"
 local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
@@ -1722,19 +1719,15 @@ do -- Search stuff
 	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET_FROMLEFT, 0, 0)
 	searchBox.Parent = searchFrame
 
-	local xButton = NewGui("TextButton", "X")
-	xButton.Text = "x"
+	local xButton = NewGui("ImageButton", "X")
+	xButton.Image = SEARCH_ICON_X
 	xButton.ZIndex = 10
-	xButton.TextColor3 = SLOT_EQUIP_COLOR
-	xButton.FontSize = Enum.FontSize.Size24
-	xButton.TextYAlignment = Enum.TextYAlignment.Bottom
-	xButton.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
-	xButton.BackgroundTransparency = 0
+	xButton.BackgroundTransparency = 1
 	xButton.Size = UDim2.new(
 		0,
-		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 2),
+		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 4),
 		0,
-		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 2)
+		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 4)
 	)
 	xButton.Position = UDim2.new(1, -xButton.Size.X.Offset - (SEARCH_BUFFER * 2), 0.5, -xButton.Size.Y.Offset / 2)
 	xButton.Visible = false
