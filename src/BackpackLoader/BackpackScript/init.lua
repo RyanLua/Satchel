@@ -16,6 +16,7 @@ BackpackScript.VRClosesNonExclusive = true
 local ICON_SIZE = 60
 local FONT_SIZE = Enum.FontSize.Size14
 local ICON_BUFFER = 5
+local ICON_DEFAULT_PADDING = false
 
 local BACKGROUND_FADE = script:GetAttribute("BackgroundTransparency") or 0.30
 local BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
@@ -26,14 +27,14 @@ local VR_PANEL_RESOLUTION = 100
 
 local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS = 0.1 -- Relative
+local SLOT_EQUIP_THICKNESS = 2 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = 3
 
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_HEIGHT = 16
-local TOOLTIP_OFFSET = -5 -- From top
+local TOOLTIP_OFFSET = -5 -- From to
 
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE = "rbxasset://textures/ui/TopBar/inventoryOff.png"
@@ -533,27 +534,34 @@ local function MakeSlot(parent, index)
 			if not HighlightFrame then
 				HighlightFrame = NewGui("Frame", "Equipped")
 				HighlightFrame.ZIndex = SlotFrame.ZIndex
-				local t = SLOT_EQUIP_THICKNESS
-				local dataTable = { -- Relative sizes and positions
-					{ t, 1, 0, 0 },
-					{ 1 - 2 * t, t, t, 0 },
-					{ t, 1, 1 - t, 0 },
-					{ 1 - 2 * t, t, t, 1 - t },
-				}
-				for _, data in pairs(dataTable) do
-					local edgeFrame = NewGui("Frame", "Edge")
-					edgeFrame.BackgroundTransparency = 0
-					edgeFrame.BackgroundColor3 = SLOT_EQUIP_COLOR
-					edgeFrame.Size = UDim2.new(data[1], 0, data[2], 0)
-					edgeFrame.Position = UDim2.new(data[3], 0, data[4], 0)
-					edgeFrame.ZIndex = HighlightFrame.ZIndex
-					edgeFrame.Parent = HighlightFrame
-				end
+
+				edgeFrame = Instance.new("UIStroke")
+				edgeFrame.Name = "Border"
+				edgeFrame.Thickness = SLOT_EQUIP_THICKNESS
+				edgeFrame.Color = SLOT_EQUIP_COLOR
+				edgeFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+				edgeFrame.Parent = HighlightFrame
+				-- local t = SLOT_EQUIP_THICKNESS
+				-- local dataTable = { -- Relative sizes and positions
+				-- 	{ t, 1, 0, 0 },
+				-- 	{ 1 - 2 * t, t, t, 0 },
+				-- 	{ t, 1, 1 - t, 0 },
+				-- 	{ 1 - 2 * t, t, t, 1 - t },
+				-- }
+				-- for _, data in pairs(dataTable) do
+				-- 	local edgeFrame = NewGui("Frame", "Edge")
+				-- 	edgeFrame.BackgroundTransparency = 0
+				-- 	edgeFrame.BackgroundColor3 = SLOT_EQUIP_COLOR
+				-- 	edgeFrame.Size = UDim2.new(data[1], 0, data[2], 0)
+				-- 	edgeFrame.Position = UDim2.new(data[3], 0, data[4], 0)
+				-- 	edgeFrame.ZIndex = HighlightFrame.ZIndex
+				-- 	edgeFrame.Parent = HighlightFrame
+				-- end
 			end
-			HighlightFrame.Parent = SlotFrame
+			edgeFrame.Parent = SlotFrame
 		else -- In the Backpack
 			if HighlightFrame then
-				HighlightFrame.Parent = nil
+				edgeFrame.Parent = nil
 			end
 		end
 		UpdateSlotFading()
@@ -686,9 +694,18 @@ local function MakeSlot(parent, index)
 	end
 
 	ToolIcon = NewGui("ImageLabel", "Icon")
-	ToolIcon.Size = UDim2.new(0.8, 0, 0.8, 0)
-	ToolIcon.Position = UDim2.new(0.1, 0, 0.1, 0)
+	if ICON_DEFAULT_PADDING == true then
+		ToolIcon.Size = UDim2.new(0.8, 0, 0.8, 0)
+		ToolIcon.Position = UDim2.new(0.1, 0, 0.1, 0)
+	else
+		ToolIcon.Size = UDim2.new(1, 0, 1, 0)
+	end
 	ToolIcon.Parent = SlotFrame
+
+	ToolIconCorner = Instance.new("UICorner")
+	ToolIconCorner.Name = "Corner"
+	ToolIconCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+	ToolIconCorner.Parent = ToolIcon
 
 	ToolName = NewGui("TextLabel", "ToolName")
 	ToolName.Size = UDim2.new(1, -2, 1, -2)
@@ -747,6 +764,8 @@ local function MakeSlot(parent, index)
 			SlotNumber.Font = Enum.Font.GothamBlack
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
+
+			SlotNumber.TextStrokeTransparency = TEXT_FADE
 			SlotNumber.Parent = SlotFrame
 			HotkeyFns[ZERO_KEY_VALUE + slotNum] = slot.Select
 		end
@@ -774,12 +793,12 @@ local function MakeSlot(parent, index)
 			if SlotNumber then
 				SlotNumber.ZIndex = 2
 			end
-			if HighlightFrame then
-				HighlightFrame.ZIndex = 2
-				for _, child in pairs(HighlightFrame:GetChildren()) do
-					child.ZIndex = 2
-				end
-			end
+			-- if HighlightFrame then
+			-- 	HighlightFrame.ZIndex = 2
+			-- 	for _, child in pairs(HighlightFrame:GetChildren()) do
+			-- 		child.ZIndex = 2
+			-- 	end
+			-- end
 
 			-- Circumvent the ScrollingFrame's ClipsDescendants property
 			startParent = SlotFrame.Parent
@@ -824,12 +843,12 @@ local function MakeSlot(parent, index)
 			if SlotNumber then
 				SlotNumber.ZIndex = 1
 			end
-			if HighlightFrame then
-				HighlightFrame.ZIndex = 1
-				for _, child in pairs(HighlightFrame:GetChildren()) do
-					child.ZIndex = 1
-				end
-			end
+			-- if HighlightFrame then
+			-- 	HighlightFrame.ZIndex = 1
+			-- 	for _, child in pairs(HighlightFrame:GetChildren()) do
+			-- 		child.ZIndex = 1
+			-- 	end
+			-- end
 
 			Dragging[SlotFrame] = nil
 
