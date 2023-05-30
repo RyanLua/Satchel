@@ -55,7 +55,7 @@ local VR_PANEL_RESOLUTION = 100
 
 local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS = 2 -- Relative
+local SLOT_EQUIP_THICKNESS = 4 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = 8
