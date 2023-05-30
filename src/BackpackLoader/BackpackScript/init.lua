@@ -48,7 +48,7 @@ local ICON_MODULE = script.Icon
 
 local HOTBAR_SLOTS_FULL = 10
 local HOTBAR_SLOTS_VR = 6
-local HOTBAR_SLOTS_MINI = 3
+local HOTBAR_SLOTS_MINI = 6
 local HOTBAR_SLOTS_WIDTH_CUTOFF = 1024 -- Anything smaller is MINI
 local HOTBAR_OFFSET_FROMBOTTOM = -30 -- Offset to make room for the Health GUI
 
