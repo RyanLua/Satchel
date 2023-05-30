@@ -42,4 +42,4 @@ When you contribute to Satchel you will be accredited for your contribution for 
 
 ## License
 
-Shime is licensed under [GNU Affero General Public License v3.0](https://www.apache.org/licenses/LICENSE-2.0). See [LICENSE.txt](LICENSE.txt) for details.
+Shime is licensed under [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
