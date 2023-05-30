@@ -1,12 +1,35 @@
---[[
+--!strict
 
+--[[
+	Name: Satchel
+	Version: 0.0.0
+	Description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
+	By: @WinnersTakesAll on Roblox & @RyanLua on GitHub
+
+	Acknowledgements (@Roblox):
+		@OnlyTwentyCharacters, @SolarCrane -- For creating the CoreGui script
+		@thebrickplanetboy -- For allowing me to republish his fork of the backpack system.
+
+	GitHub: https://github.com/RyanLua/Satchel
 ]]
 
+--[[
+	Satchel, a modern open-source alternative to Roblox's default backpack.
+	Copyright (C) 2023  RyanLua
 
--- This backpack script doesn't support hopperbin because using :ToggleActive() will raise an error and its belong to corescript
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU Affero General Public License as published
+	by the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
--- Backpack Version 5.1
--- OnlyTwentyCharacters, SolarCrane
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU Affero General Public License for more details.
+
+	You should have received a copy of the GNU Affero General Public License
+	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+]]
 
 local BackpackScript = {}
 BackpackScript.OpenClose = nil -- Function to toggle open/close
