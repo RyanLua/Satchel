@@ -1,8 +1,16 @@
-# Satchel
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/SatchelWhite.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/SatchelBlack.svg">
+    <img src="assets/SatchelBlack.svg">
+  </picture>
+  
+  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=roblox&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
+  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](https://github.com/search?q=repo%3ARyanLua%2FShime++language%3ALua&type=code)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=pnu&color=00a2ff)](LICENSE.txt)
+</h1>
 
-[![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=roblox&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
-[![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](https://github.com/search?q=repo%3ARyanLua%2FShime++language%3ALua&type=code)
-[![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=pnu&color=00a2ff)](LICENSE.txt)
+> Satchel, a modern open-source alternative to Roblox's default backpack.
 
 ## About
 
