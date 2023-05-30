@@ -1,3 +1,8 @@
+--[[
+
+]]
+
+
 -- This backpack script doesn't support hopperbin because using :ToggleActive() will raise an error and its belong to corescript
 
 -- Backpack Version 5.1
@@ -30,7 +35,7 @@ local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
 local SLOT_EQUIP_THICKNESS = 2 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
-local SLOT_CORNER_RADIUS = 3
+local SLOT_CORNER_RADIUS = 8
 
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_HEIGHT = 16
