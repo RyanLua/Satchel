@@ -28,6 +28,8 @@ You can try out Stachel at [Satchel Playground](https://www.roblox.com/games/135
 
 ### Toolbox
 
+## Acknowledgements
+
 ## Support
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
