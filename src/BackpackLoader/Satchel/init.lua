@@ -151,7 +151,25 @@ RobloxGui.Name = "BackpackGui"
 local ContextActionService = game:GetService("ContextActionService")
 local RunService = game:GetService("RunService")
 local VRService = game:GetService("VRService")
-local Utility = require(script.Utility)
+function Create(instanceType)
+	return function(data)
+		local obj = Instance.new(instanceType)
+		local parent = nil
+		for k, v in pairs(data) do
+			if type(k) == "number" then
+				v.Parent = obj
+			elseif k == "Parent" then
+				parent = v
+			else
+				obj[k] = v
+			end
+		end
+		if parent then
+			obj.Parent = parent
+		end
+		return obj
+	end
+end
 local GameTranslator = require(script.GameTranslator)
 local Themes = require(ICON_MODULE.Themes)
 local Icon = require(ICON_MODULE)
@@ -1636,7 +1654,7 @@ end)
 UpdateBackpackLayout()
 
 --Make the gamepad hint frame
-local gamepadHintsFrame = Utility:Create("Frame")({
+local gamepadHintsFrame = Create("Frame")({
 	Name = "GamepadHintsFrame",
 	Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60)),
 	BackgroundTransparency = 1,
@@ -1645,7 +1663,7 @@ local gamepadHintsFrame = Utility:Create("Frame")({
 })
 
 local function addGamepadHint(hintImage, hintImageLarge, hintText)
-	local hintFrame = Utility:Create("Frame")({
+	local hintFrame = Create("Frame")({
 		Name = "HintFrame",
 		Size = UDim2.new(1, 0, 1, -5),
 		Position = UDim2.new(0, 0, 0, 0),
@@ -1653,7 +1671,7 @@ local function addGamepadHint(hintImage, hintImageLarge, hintText)
 		Parent = gamepadHintsFrame,
 	})
 
-	local hintImage = Utility:Create("ImageLabel")({
+	local hintImage = Create("ImageLabel")({
 		Name = "HintImage",
 		Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60)),
 		BackgroundTransparency = 1,
@@ -1661,7 +1679,7 @@ local function addGamepadHint(hintImage, hintImageLarge, hintText)
 		Parent = hintFrame,
 	})
 
-	local hintText = Utility:Create("TextLabel")({
+	local hintText = Create("TextLabel")({
 		Name = "HintText",
 		Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0),
 		Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0),
