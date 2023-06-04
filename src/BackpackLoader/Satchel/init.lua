@@ -44,21 +44,24 @@ BackpackScript.VRClosesNonExclusive = true
 local ICON_SIZE = 60
 local FONT_SIZE = Enum.FontSize.Size14
 local ICON_BUFFER = 5
-local ICON_DEFAULT_PADDING = false
+
+-- Legacy behavior for backpack.
+local LEGACY_PADDING = script:GetAttribute("UseLegacyPadding") or true -- Instead of the icon taking up the full slot, it will be padded on each side.
+local LEGACY_EDGE = script:GetAttribute("UseLegacyEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing 
 
 local BACKGROUND_FADE = script:GetAttribute("BackgroundTransparency") or 0.30
 local BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
-local BACKGROUND_CORNER_RADIUS = 8
+local BACKGROUND_CORNER_RADIUS = 5
 
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
 local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS = 4 -- Relative
+local SLOT_EQUIP_THICKNESS = script:GetAttribute("SlotEquipThickness") or 5 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
-local SLOT_CORNER_RADIUS = 8
+local SLOT_CORNER_RADIUS = script:GetAttribute("SlotCornerRadius") or 8
 
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
@@ -587,25 +590,12 @@ local function MakeSlot(parent, index)
 				edgeFrame.Thickness = SLOT_EQUIP_THICKNESS
 				edgeFrame.Color = SLOT_EQUIP_COLOR
 				edgeFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-				edgeFrame.Parent = HighlightFrame
-				-- local t = SLOT_EQUIP_THICKNESS
-				-- local dataTable = { -- Relative sizes and positions
-				-- 	{ t, 1, 0, 0 },
-				-- 	{ 1 - 2 * t, t, t, 0 },
-				-- 	{ t, 1, 1 - t, 0 },
-				-- 	{ 1 - 2 * t, t, t, 1 - t },
-				-- }
-				-- for _, data in pairs(dataTable) do
-				-- 	local edgeFrame = NewGui("Frame", "Edge")
-				-- 	edgeFrame.BackgroundTransparency = 0
-				-- 	edgeFrame.BackgroundColor3 = SLOT_EQUIP_COLOR
-				-- 	edgeFrame.Size = UDim2.new(data[1], 0, data[2], 0)
-				-- 	edgeFrame.Position = UDim2.new(data[3], 0, data[4], 0)
-				-- 	edgeFrame.ZIndex = HighlightFrame.ZIndex
-				-- 	edgeFrame.Parent = HighlightFrame
-				-- end
 			end
-			edgeFrame.Parent = SlotFrame
+			if LEGACY_EDGE == true then
+				edgeFrame.Parent = ToolIcon
+			else
+				edgeFrame.Parent = SlotFrame
+			end
 		else -- In the Backpack
 			if HighlightFrame then
 				edgeFrame.Parent = nil
@@ -741,9 +731,10 @@ local function MakeSlot(parent, index)
 	end
 
 	ToolIcon = NewGui("ImageLabel", "Icon")
-	if ICON_DEFAULT_PADDING == true then
-		ToolIcon.Size = UDim2.new(0.8, 0, 0.8, 0)
-		ToolIcon.Position = UDim2.new(0.1, 0, 0.1, 0)
+	ToolIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
+	ToolIcon.AnchorPoint = Vector2.new(0.5, 0.5)
+	if LEGACY_PADDING == true then
+		ToolIcon.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	else
 		ToolIcon.Size = UDim2.new(1, 0, 1, 0)
 	end
@@ -751,7 +742,11 @@ local function MakeSlot(parent, index)
 
 	ToolIconCorner = Instance.new("UICorner")
 	ToolIconCorner.Name = "Corner"
-	ToolIconCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+	if LEGACY_PADDING == true then
+		ToolIconCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS - SLOT_EQUIP_THICKNESS)
+	else
+		ToolIconCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+	end
 	ToolIconCorner.Parent = ToolIcon
 
 	ToolName = NewGui("TextLabel", "ToolName")
