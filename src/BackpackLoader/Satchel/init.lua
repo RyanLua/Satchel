@@ -61,6 +61,7 @@ local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = 8
 
 local TOOLTIP_BUFFER = 6
+local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
 
@@ -473,8 +474,8 @@ local function MakeSlot(parent, index)
 				if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
 					ToolTip.Text = tool.ToolTip
 					local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
-					ToolTip.Size = UDim2.new(0, width, 0, TOOLTIP_HEIGHT)
-					ToolTip.Position = UDim2.new(0.5, -width / 2, 0, TOOLTIP_OFFSET)
+					ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
+					ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
 				end
 			else
 				LocalizedName = tool.Name
@@ -491,8 +492,8 @@ local function MakeSlot(parent, index)
 					LocalizedToolTip = GameTranslator:TranslateGameText(tool, tool.ToolTip)
 					ToolTip.Text = tool.ToolTip
 					local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
-					ToolTip.Size = UDim2.new(0, width, 0, TOOLTIP_HEIGHT)
-					ToolTip.Position = UDim2.new(0.5, -width / 2, 0, TOOLTIP_OFFSET)
+					ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
+					ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
 				end
 			end
 		end
@@ -768,14 +769,21 @@ local function MakeSlot(parent, index)
 		ToolTip.TextYAlignment = Enum.TextYAlignment.Center
 		ToolTip.BackgroundColor3 = BACKGROUND_COLOR
 		ToolTip.BackgroundTransparency = SLOT_FADE_LOCKED
-		ToolTip.AnchorPoint = Vector2.new(0, 1)
+		ToolTip.AnchorPoint = Vector2.new(0.5, 1)
 		ToolTip.BorderSizePixel = 0
 		ToolTip.Visible = false
+		ToolTip.AutomaticSize = Enum.AutomaticSize.X
 		ToolTip.Parent = SlotFrame
 		local ToolTipCorner = Instance.new("UICorner")
 		ToolTipCorner.Name = "Corner"
 		ToolTipCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
 		ToolTipCorner.Parent = ToolTip
+		local ToolTipPadding = Instance.new("UIPadding")
+		ToolTipPadding.PaddingLeft = UDim.new(0, TOOLTIP_PADDING)
+		ToolTipPadding.PaddingRight = UDim.new(0, TOOLTIP_PADDING)
+		ToolTipPadding.PaddingTop = UDim.new(0, TOOLTIP_PADDING)
+		ToolTipPadding.PaddingBottom = UDim.new(0, TOOLTIP_PADDING)
+		ToolTipPadding.Parent = ToolTip
 		SlotFrame.MouseEnter:connect(function()
 			if ToolTip.Text ~= "" then
 				ToolTip.Visible = true
