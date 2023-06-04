@@ -97,7 +97,7 @@ local TEXT_FADE = 0.5
 local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_FADE = 0.5
 
-local SEARCH_TEXT_OFFSET_FROMLEFT = 8
+local SEARCH_TEXT_OFFSET = 8
 local SEARCH_BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SEARCH_BACKGROUND_FADE = 0.20
 
@@ -1777,16 +1777,6 @@ do -- Search stuff
 	searchFrameBorder.Transparency = SEARCH_BORDER_FADE
 	searchFrameBorder.Parent = searchFrame
 
-	-- TODO: Fix this broken code later
-	--
-	-- local searchIcon = NewGui("ImageLabel", "SearchIcon")
-	-- searchIcon.Image = SEARCH_ICON
-	-- searchIcon.BackgroundTransparency = 1
-	-- searchIcon.Size = UDim2.fromOffset(SEARCH_ICON_SIZE, SEARCH_ICON_SIZE)
-	-- searchIcon.AnchorPoint = Vector2.new(1, 0.5)
-	-- searchIcon.Position = UDim2.new(1, SEARCH_TEXT_OFFSET_FROMRIGHT, 0.5, -SEARCH_ICON_SIZE / 2)
-	-- searchIcon.Parent = searchFrame
-
 	local searchBox = NewGui("TextBox", "TextBox")
 	searchBox.PlaceholderText = SEARCH_PLACEHOLDER
 	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
@@ -1798,8 +1788,8 @@ do -- Search stuff
 	searchBox.FontSize = Enum.FontSize.Size14
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
 	searchBox.TextYAlignment = Enum.TextYAlignment.Bottom
-	searchBox.Size = searchFrame.Size - UDim2.fromOffset(0, SEARCH_TEXT_OFFSET_FROMLEFT)
-	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET_FROMLEFT, 0, 0)
+	searchBox.Size = searchFrame.Size - UDim2.fromOffset(0, SEARCH_TEXT_OFFSET)
+	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET, 0, 0)
 	searchBox.Parent = searchFrame
 
 	local xButton = NewGui("ImageButton", "X")
