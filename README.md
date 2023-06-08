@@ -20,13 +20,13 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 You can try out Stachel at [Satchel Playground](https://www.roblox.com/games/13592168150).
 
+Note that the place is open-sourced and you can download a copy of it for your own usage by clicking the ellipsis on PC. 
+
 ## Installation
 
 ### GitHub
 
 ### Creator Marketplace
-
-### Toolbox
 
 ## Acknowledgements
 
