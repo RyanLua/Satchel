@@ -5,7 +5,7 @@
     <img src="assets/SatchelBlack.svg">
   </picture>
   
-  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=robloxstudio&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
+  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=robloxstudio&iconColor=fffff&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](https://github.com/search?q=repo%3ARyanLua%2FShime++language%3ALua&type=code)
   [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=gnu&color=00a2ff)](LICENSE.txt)
 </h1>
