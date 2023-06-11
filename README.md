@@ -24,6 +24,8 @@ Note that the place is open-sourced and you can download a copy of it for your o
 
 ## Installation
 
+Installation of Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with easy customization. Below are different ways to get you to download and install Satchel. 
+
 ### GitHub
 
 ### Creator Marketplace
