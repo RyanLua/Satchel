@@ -31,7 +31,18 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
+local ContextActionService = game:GetService("ContextActionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
+local StarterGui = game:GetService("StarterGui")
+local GuiService = game:GetService("GuiService")
+local RunService = game:GetService("RunService")
+local VRService = game:GetService("VRService")
+local Players = game:GetService("Players")
+local PlayerGui = Players.LocalPlayer.PlayerGui
+
 local BackpackScript = {}
+
 BackpackScript.OpenClose = nil -- Function to toggle open/close
 BackpackScript.IsOpen = false
 BackpackScript.StateChanged = Instance.new("BindableEvent") -- Fires after any open/close, passes IsNowOpen
@@ -41,14 +52,15 @@ BackpackScript.KeepVRTopbarOpen = true
 BackpackScript.VRIsExclusive = true
 BackpackScript.VRClosesNonExclusive = true
 
-local ICON_SIZE = 60
+local ICON_SIZE = 60 -- Pixels
 local FONT_SIZE = Enum.FontSize.Size14
 local ICON_BUFFER = 5
 
 -- Legacy behavior for backpack.
 local LEGACY_PADDING = script:GetAttribute("UseLegacyPadding") or true -- Instead of the icon taking up the full slot, it will be padded on each side.
-local LEGACY_EDGE = script:GetAttribute("UseLegacyEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing 
+local LEGACY_EDGE = script:GetAttribute("UseLegacyEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 
+-- Inventory
 local BACKGROUND_FADE = script:GetAttribute("BackgroundTransparency") or 0.30
 local BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
 local BACKGROUND_CORNER_RADIUS = 5
@@ -56,6 +68,7 @@ local BACKGROUND_CORNER_RADIUS = 5
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
+-- Slot colors, thickness, etc.
 local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
 local SLOT_EQUIP_THICKNESS = script:GetAttribute("SlotEquipThickness") or 5 -- Relative
@@ -63,19 +76,22 @@ local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = script:GetAttribute("SlotCornerRadius") or 8
 
+-- Tooltip sizing
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
 
+--
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE = "rbxasset://textures/ui/TopBar/inventoryOff.png"
 local ARROW_HOTKEY = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 local ICON_MODULE = script.Icon
 
-local HOTBAR_SLOTS_FULL = 10
+-- Hotbar slots
+local HOTBAR_SLOTS_FULL = 10 -- 10 is the max
 local HOTBAR_SLOTS_VR = 6
-local HOTBAR_SLOTS_MINI = 6
+local HOTBAR_SLOTS_MINI = 6 -- Mobile gets 6 slots instead of default 3 it had before
 local HOTBAR_SLOTS_WIDTH_CUTOFF = 1024 -- Anything smaller is MINI
 local HOTBAR_OFFSET_FROMBOTTOM = -30 -- Offset to make room for the Health GUI
 
@@ -85,13 +101,12 @@ local INVENTORY_ROWS_MINI = 2
 local INVENTORY_HEADER_SIZE = 40
 local INVENTORY_ARROWS_BUFFER_VR = 40
 
+-- Search
 local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
 local SEARCH_CORNER_RADIUS = 3
-
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
-
 local SEARCH_PLACEHOLDER = "Search"
 local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
 
@@ -109,19 +124,10 @@ local SEARCH_BORDER_FADE = 0.8
 local SEARCH_BORDER_COLOR = Color3.new(1, 1, 1)
 
 local DOUBLE_CLICK_TIME = 0.5
-local GetScreenResolution = function()
-	local I = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
-	local Frame = Instance.new("Frame", I)
-	Frame.BackgroundTransparency = 1
-	Frame.Size = UDim2.new(1, 0, 1, 0)
-	local AbsoluteSize = Frame.AbsoluteSize
-	I:Destroy()
-	return AbsoluteSize
-end
 local ZERO_KEY_VALUE = Enum.KeyCode.Zero.Value
 local DROP_HOTKEY_VALUE = Enum.KeyCode.Backspace.Value
 
-local GAMEPAD_INPUT_TYPES = {
+local GAMEPAD_INPUT_TYPES = { -- These are the input types that will be used for gamepad
 	[Enum.UserInputType.Gamepad1] = true,
 	[Enum.UserInputType.Gamepad2] = true,
 	[Enum.UserInputType.Gamepad3] = true,
@@ -132,13 +138,7 @@ local GAMEPAD_INPUT_TYPES = {
 	[Enum.UserInputType.Gamepad8] = true,
 }
 
-local UserInputService = game:GetService("UserInputService")
-local PlayersService = game:GetService("Players")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local StarterGui = game:GetService("StarterGui")
-local GuiService = game:GetService("GuiService")
-local CoreGui = PlayersService.LocalPlayer.PlayerGui
-
+-- Topbar logic
 local TopbarPlusReference = ReplicatedStorage:FindFirstChild("TopbarPlusReference")
 local BackpackEnabled = true
 
@@ -146,15 +146,12 @@ if TopbarPlusReference then
 	ICON_MODULE = TopbarPlusReference.Value
 end
 
-local RobloxGui = Instance.new("ScreenGui", CoreGui)
-RobloxGui.DisplayOrder = 120
-RobloxGui.IgnoreGuiInset = true
-RobloxGui.ResetOnSpawn = false
-RobloxGui.Name = "BackpackGui"
+local BackpackGui = Instance.new("ScreenGui", PlayerGui)
+BackpackGui.DisplayOrder = 120
+BackpackGui.IgnoreGuiInset = true
+BackpackGui.ResetOnSpawn = false
+BackpackGui.Name = "BackpackGui"
 
-local ContextActionService = game:GetService("ContextActionService")
-local RunService = game:GetService("RunService")
-local VRService = game:GetService("VRService")
 function Create(instanceType)
 	return function(data)
 		local obj = Instance.new(instanceType)
@@ -174,13 +171,11 @@ function Create(instanceType)
 		return obj
 	end
 end
+
 local GameTranslator = require(script.GameTranslator)
 local Themes = require(ICON_MODULE.Themes)
 local Icon = require(ICON_MODULE)
 
-local FFlagBackpackScriptUseFormatByKey = true
-local FFlagCoreScriptTranslateGameText2 = true
-local FFlagRobloxGuiSiblingZindexs = true
 local IsTenFootInterface = GuiService:IsTenFootInterface()
 
 if IsTenFootInterface then
@@ -190,9 +185,19 @@ end
 
 local GamepadActionsBound = false
 
+local GetScreenResolution = function()
+	local ScreenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+	local Frame = Instance.new("Frame", ScreenGui)
+	Frame.BackgroundTransparency = 1
+	Frame.Size = UDim2.new(1, 0, 1, 0)
+	local AbsoluteSize = Frame.AbsoluteSize
+	ScreenGui:Destroy()
+	return AbsoluteSize
+end
+
 local IS_PHONE = UserInputService.TouchEnabled and GetScreenResolution().X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
-local Player = PlayersService.LocalPlayer
+local Player = Players.LocalPlayer
 
 local MainFrame = nil
 local HotbarFrame = nil
@@ -464,40 +469,20 @@ local function MakeSlot(parent, index)
 		self.Tool = tool
 
 		local function assignToolData()
-			if FFlagCoreScriptTranslateGameText2 then
-				local icon = tool.TextureId
-				ToolIcon.Image = icon
+			local icon = tool.TextureId
+			ToolIcon.Image = icon
 
-				if icon ~= "" then
-					ToolName.Visible = false
-				end
+			if icon ~= "" then
+				ToolName.Visible = false
+			end
 
-				ToolName.Text = tool.Name
+			ToolName.Text = tool.Name
 
-				if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
-					ToolTip.Text = tool.ToolTip
-					local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
-					ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
-					ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
-				end
-			else
-				LocalizedName = tool.Name
-				LocalizedToolTip = nil
-
-				local icon = tool.TextureId
-				ToolIcon.Image = icon
-				if icon ~= "" then
-					ToolName.Text = LocalizedName
-				else
-					ToolName.Text = ""
-				end -- (Only show name if no icon)
-				if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
-					LocalizedToolTip = GameTranslator:TranslateGameText(tool, tool.ToolTip)
-					ToolTip.Text = tool.ToolTip
-					local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
-					ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
-					ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
-				end
+			if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
+				ToolTip.Text = tool.ToolTip
+				local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
+				ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
+				ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
 			end
 		end
 		assignToolData()
@@ -667,17 +652,10 @@ local function MakeSlot(parent, index)
 		local tool = self.Tool
 		if tool then
 			for term in pairs(terms) do
-				if FFlagCoreScriptTranslateGameText2 then
-					checkEm(ToolName.Text, term)
-					if tool:IsA("Tool") then --NOTE: HopperBin
-						local toolTipText = ToolTip and ToolTip.Text or ""
-						checkEm(toolTipText, term)
-					end
-				else
-					checkEm(LocalizedName, term)
-					if tool:IsA("Tool") then --NOTE: HopperBin
-						checkEm(LocalizedToolTip, term)
-					end
+				checkEm(ToolName.Text, term)
+				if tool:IsA("Tool") then --NOTE: HopperBin
+					local toolTipText = ToolTip and ToolTip.Text or ""
+					checkEm(toolTipText, term)
 				end
 			end
 		end
@@ -836,9 +814,7 @@ local function MakeSlot(parent, index)
 			SlotFrame.ZIndex = 2
 			ToolIcon.ZIndex = 2
 			ToolName.ZIndex = 2
-			if FFlagRobloxGuiSiblingZindexs then
-				SlotFrame.Parent.ZIndex = 2
-			end
+			SlotFrame.Parent.ZIndex = 2
 			if SlotNumber then
 				SlotNumber.ZIndex = 2
 			end
@@ -886,9 +862,8 @@ local function MakeSlot(parent, index)
 			SlotFrame.ZIndex = 1
 			ToolIcon.ZIndex = 1
 			ToolName.ZIndex = 1
-			if FFlagRobloxGuiSiblingZindexs then
 				startParent.ZIndex = 1
-			end
+			
 			if SlotNumber then
 				SlotNumber.ZIndex = 1
 			end
@@ -1519,7 +1494,7 @@ end
 -- Make the main frame, which (mostly) covers the screen
 MainFrame = NewGui("Frame", "Backpack")
 MainFrame.Visible = false
-MainFrame.Parent = RobloxGui
+MainFrame.Parent = BackpackGui
 
 -- Make the HotbarFrame, which holds only the Hotbar Slots
 HotbarFrame = NewGui("Frame", "Hotbar")
@@ -1982,7 +1957,7 @@ end
 -- Wait for the player if LocalPlayer wasn't ready earlier
 while not Player do
 	wait()
-	Player = PlayersService.LocalPlayer
+	Player = Players.LocalPlayer
 end
 
 -- Listen to current and all future characters of our player
