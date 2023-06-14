@@ -5,9 +5,9 @@
     <img src="assets/SatchelBlack.svg">
   </picture>
   
-  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=roblox&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
+  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=robloxstudio&iconColor=fffff&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](https://github.com/search?q=repo%3ARyanLua%2FShime++language%3ALua&type=code)
-  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=pnu&color=00a2ff)](LICENSE.txt)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=gnu&color=00a2ff)](LICENSE.txt)
 </h1>
 
 > Satchel, a modern open-source alternative to Roblox's default backpack.
@@ -20,13 +20,15 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 You can try out Stachel at [Satchel Playground](https://www.roblox.com/games/13592168150).
 
+Note that the place is open-sourced and you can download a copy of it for your own usage by clicking the ellipsis on PC. 
+
 ## Installation
+
+Installation of Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with easy customization. Below are different ways to get you to download and install Satchel. 
 
 ### GitHub
 
 ### Creator Marketplace
-
-### Toolbox
 
 ## Acknowledgements
 
