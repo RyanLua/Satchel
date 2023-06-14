@@ -862,8 +862,8 @@ local function MakeSlot(parent, index)
 			SlotFrame.ZIndex = 1
 			ToolIcon.ZIndex = 1
 			ToolName.ZIndex = 1
-				startParent.ZIndex = 1
-			
+			startParent.ZIndex = 1
+
 			if SlotNumber then
 				SlotNumber.ZIndex = 1
 			end
@@ -1885,9 +1885,21 @@ do -- Search stuff
 	UserInputService.LastInputTypeChanged:Connect(detectGamepad)
 end
 
+local menuClosed = false
+
 GuiService.MenuOpened:Connect(function()
+	BackpackGui.Enabled = false
 	if InventoryFrame.Visible then
 		InventoryIcon:deselect()
+		menuClosed = true
+	end
+end)
+
+GuiService.MenuClosed:Connect(function()
+	BackpackGui.Enabled = true
+	if menuClosed then
+		InventoryIcon:select()
+		menuClosed = false
 	end
 end)
 
