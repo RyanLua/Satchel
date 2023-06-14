@@ -172,7 +172,6 @@ function Create(instanceType)
 	end
 end
 
-local GameTranslator = require(script.GameTranslator)
 local Themes = require(ICON_MODULE.Themes)
 local Icon = require(ICON_MODULE)
 
