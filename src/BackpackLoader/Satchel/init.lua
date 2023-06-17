@@ -78,11 +78,12 @@ local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = targetScript:GetAttribute("SlotCornerRadius") or 8
 
--- Tooltip sizing
+-- Tooltip
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
+local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
 
 --
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
@@ -741,7 +742,7 @@ local function MakeSlot(parent, index)
 		ToolTip.ZIndex = 2
 		ToolTip.TextWrapped = false
 		ToolTip.TextYAlignment = Enum.TextYAlignment.Center
-		ToolTip.BackgroundColor3 = BACKGROUND_COLOR
+		ToolTip.BackgroundColor3 = TOOLTIP_BACKGROUND_COLOR
 		ToolTip.BackgroundTransparency = SLOT_FADE_LOCKED
 		ToolTip.AnchorPoint = Vector2.new(0.5, 1)
 		ToolTip.BorderSizePixel = 0
