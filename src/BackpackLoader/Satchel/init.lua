@@ -52,29 +52,31 @@ BackpackScript.KeepVRTopbarOpen = true
 BackpackScript.VRIsExclusive = true
 BackpackScript.VRClosesNonExclusive = true
 
+local targetScript = script.Parent
+
 local ICON_SIZE = 60 -- Pixels
 local FONT_SIZE = Enum.FontSize.Size14
 local ICON_BUFFER = 5
 
 -- Legacy behavior for backpack.
-local LEGACY_PADDING = script:GetAttribute("UseLegacyPadding") or true -- Instead of the icon taking up the full slot, it will be padded on each side.
-local LEGACY_EDGE = script:GetAttribute("UseLegacyEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
+local LEGACY_PADDING = targetScript:GetAttribute("InsetIconPadding") or true -- Instead of the icon taking up the full slot, it will be padded on each side.
+local LEGACY_EDGE = targetScript:GetAttribute("InsetEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 
 -- Inventory
-local BACKGROUND_FADE = script:GetAttribute("BackgroundTransparency") or 0.30
-local BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
+local BACKGROUND_FADE = targetScript:GetAttribute("BackgroundTransparency") or 0.30
+local BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
 local BACKGROUND_CORNER_RADIUS = 5
 
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
 -- Slot colors, thickness, etc.
-local SLOT_DRAGGABLE_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS = script:GetAttribute("SlotEquipThickness") or 5 -- Relative
+local SLOT_EQUIP_THICKNESS = targetScript:GetAttribute("SlotEquipThickness") or 5 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
-local SLOT_CORNER_RADIUS = script:GetAttribute("SlotCornerRadius") or 8
+local SLOT_CORNER_RADIUS = targetScript:GetAttribute("SlotCornerRadius") or 8
 
 -- Tooltip sizing
 local TOOLTIP_BUFFER = 6
@@ -116,7 +118,7 @@ local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_FADE = 0.5
 
 local SEARCH_TEXT_OFFSET = 8
-local SEARCH_BACKGROUND_COLOR = script:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SEARCH_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SEARCH_BACKGROUND_FADE = 0.20
 
 local SEARCH_BORDER_THICKNESS = 1
