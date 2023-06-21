@@ -1473,7 +1473,7 @@ local function OnIconChanged(enabled: boolean): ()
 	end
 end
 
-local function MakeVRRoundButton(name: string, image: string): (GuiObject, GuiObject, GuiObject)
+local function MakeVRRoundButton(name: string, image: Content): (GuiObject, GuiObject, GuiObject)
 	local newButton = NewGui("ImageButton", name)
 	newButton.Size = UDim2.new(0, 40, 0, 40)
 	newButton.Image = "rbxasset://textures/ui/Keyboard/close_button_background.png"
@@ -1642,7 +1642,7 @@ local gamepadHintsFrame = Create("Frame")({
 	Parent = MainFrame,
 })
 
-local function addGamepadHint(hintImage: string, hintImageLarge: string, hintText: string): ()
+local function addGamepadHint(hintImage: Content, hintImageLarge: Content, hintText: string): ()
 	local hintFrame = Create("Frame")({
 		Name = "HintFrame",
 		Size = UDim2.new(1, 0, 1, -5),
