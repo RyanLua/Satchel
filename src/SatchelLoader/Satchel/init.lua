@@ -381,7 +381,7 @@ end
 
 local function GetOffset(guiObject: GuiObject, point: Vector2): number
 	local centerPoint = guiObject.AbsolutePosition + (guiObject.AbsoluteSize / 2)
-	return (centerPoint - point).magnitude
+	return (centerPoint - point).Magnitude
 end
 
 local function UnequipAllTools(): () --NOTE: HopperBin
@@ -1137,23 +1137,23 @@ local function getInputDirection(inputObject: InputObject): Vector2
 	end
 
 	if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
-		local magnitude = inputObject.Position.magnitude
+		local Magnitude = inputObject.Position.Magnitude
 
-		if magnitude > 0.98 then
+		if Magnitude > 0.98 then
 			local normalizedVector =
-				Vector2.new(inputObject.Position.x / magnitude, -inputObject.Position.y / magnitude)
+				Vector2.new(inputObject.Position.X / Magnitude, -inputObject.Position.Y / Magnitude)
 			selectDirection = normalizedVector
 		else
 			selectDirection = Vector2.new(0, 0)
 		end
 	elseif inputObject.KeyCode == Enum.KeyCode.DPadLeft then
-		selectDirection = Vector2.new(selectDirection.x - 1 * buttonModifier, selectDirection.y)
+		selectDirection = Vector2.new(selectDirection.X - 1 * buttonModifier, selectDirection.Y)
 	elseif inputObject.KeyCode == Enum.KeyCode.DPadRight then
-		selectDirection = Vector2.new(selectDirection.x + 1 * buttonModifier, selectDirection.y)
+		selectDirection = Vector2.new(selectDirection.X + 1 * buttonModifier, selectDirection.Y)
 	elseif inputObject.KeyCode == Enum.KeyCode.DPadUp then
-		selectDirection = Vector2.new(selectDirection.x, selectDirection.y - 1 * buttonModifier)
+		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y - 1 * buttonModifier)
 	elseif inputObject.KeyCode == Enum.KeyCode.DPadDown then
-		selectDirection = Vector2.new(selectDirection.x, selectDirection.y + 1 * buttonModifier)
+		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y + 1 * buttonModifier)
 	else
 		selectDirection = Vector2.new(0, 0)
 	end
@@ -1168,7 +1168,7 @@ local selectToolExperiment = function(actionName: string, inputState: Enum.UserI
 		return
 	end
 
-	local angle = math.atan2(inputDirection.y, inputDirection.x) - math.atan2(-1, 0)
+	local angle = math.atan2(inputDirection.Y, inputDirection.X) - math.atan2(-1, 0)
 	if angle < 0 then
 		angle = angle + (math.pi * 2)
 	end
@@ -1970,7 +1970,7 @@ end
 
 -- Wait for the player if LocalPlayer wasn't ready earlier
 while not Player do
-	wait()
+	task.wait()
 	Player = Players.LocalPlayer
 end
 
