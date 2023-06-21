@@ -1,8 +1,8 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/SatchelWhite.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/SatchelBlack.svg">
-    <img src="assets/SatchelBlack.svg">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/SatchelWhite.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/SatchelBlack.png">
+    <img src="assets/SatchelBlack.png">
   </picture>
   
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?logo=robloxstudio&logoColor=white&color=00a2ff)](https://github.com/RyanLua/Shime/releases)
