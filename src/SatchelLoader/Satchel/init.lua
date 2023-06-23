@@ -63,15 +63,15 @@ local LEGACY_PADDING = targetScript:GetAttribute("InsetIconPadding") or true -- 
 local LEGACY_EDGE = targetScript:GetAttribute("InsetEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 
 -- Inventory
-local BACKGROUND_FADE = targetScript:GetAttribute("BackgroundTransparency") or 0.30
-local BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
-local BACKGROUND_CORNER_RADIUS = 5
+local BACKGROUND_FADE = targetScript:GetAttribute("InventoryTransparency") or 0.30
+local BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.fromRGB(25, 27, 29)
+local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("InventoryCornerRadius") or 5
 
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
 -- Slot colors, thickness, etc.
-local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
 local SLOT_EQUIP_THICKNESS = targetScript:GetAttribute("SlotEquipThickness") or 5 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
@@ -83,7 +83,7 @@ local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
-local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.fromRGB(25, 27, 29)
+local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.fromRGB(25, 27, 29)
 
 --
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
@@ -107,7 +107,7 @@ local INVENTORY_ARROWS_BUFFER_VR = 40
 -- Search
 local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
-local SEARCH_CORNER_RADIUS = 3
+local SEARCH_CORNER_RADIUS = targetScript:GetAttribute("InventoryCornerRadius") or 3
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
 local SEARCH_PLACEHOLDER = "Search"
@@ -119,8 +119,7 @@ local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_FADE = 0.5
 
 local SEARCH_TEXT_OFFSET = 8
-local SEARCH_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3")
-	or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SEARCH_BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SEARCH_BACKGROUND_FADE = 0.20
 
 local SEARCH_BORDER_THICKNESS = 1
@@ -266,6 +265,7 @@ local function NewGui(className: string, objectName: string): any
 	if className:match("Text") then
 		newGui.TextColor3 = Color3.new(1, 1, 1)
 		newGui.Text = ""
+		newGui.TextStrokeTransparency = TEXT_FADE
 		newGui.Font = Enum.Font.GothamMedium
 		newGui.FontSize = FONT_SIZE
 		newGui.TextWrapped = true
@@ -793,8 +793,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			SlotNumber.Font = Enum.Font.GothamBlack
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
-
-			SlotNumber.TextStrokeTransparency = TEXT_FADE
 			SlotNumber.Parent = SlotFrame
 			HotkeyFns[ZERO_KEY_VALUE + slotNum] = slot.Select
 		end
@@ -1755,7 +1753,6 @@ do -- Search stuff
 	searchBox.TextColor3 = SEARCH_TEXT_COLOR
 	searchBox.TextTransparency = TEXT_FADE
 	searchBox.TextStrokeColor3 = SEARCH_TEXT_STROKE_COLOR
-	searchBox.TextStrokeTransparency = TEXT_FADE
 	searchBox.ClearTextOnFocus = false
 	searchBox.FontSize = Enum.FontSize.Size14
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
