@@ -658,7 +658,10 @@ function Icon.new()
 		},
 		toggleable = {
 			["iconBackgroundColor"] = { instanceNames = { "iconButton" }, propertyName = "BackgroundColor3" },
-			["iconBackgroundTransparency"] = { instanceNames = { "iconButton" }, propertyName = "BackgroundTransparency" },
+			["iconBackgroundTransparency"] = {
+				instanceNames = { "iconButton" },
+				propertyName = "BackgroundTransparency",
+			},
 			["iconCornerRadius"] = {
 				instanceNames = { "iconCorner", "iconOverlayCorner" },
 				propertyName = "CornerRadius",
@@ -765,7 +768,11 @@ function Icon.new()
 				group = "tip",
 			},
 			["tipTextColor"] = { instanceNames = { "tipLabel" }, propertyName = "TextColor3" },
-			["tipTextTransparency"] = { instanceNames = { "tipLabel" }, propertyName = "TextTransparency", group = "tip" },
+			["tipTextTransparency"] = {
+				instanceNames = { "tipLabel" },
+				propertyName = "TextTransparency",
+				group = "tip",
+			},
 			["tipFont"] = { instanceNames = { "tipLabel" }, propertyName = "Font" },
 			["tipCornerRadius"] = { instanceNames = { "tipCorner" }, propertyName = "CornerRadius" },
 			["dropdownSize"] = { instanceNames = { "dropdownContainer" }, propertyName = "Size", unique = "dropdown" },
@@ -789,7 +796,10 @@ function Icon.new()
 				instanceNames = { "dropdownFrame" },
 				propertyName = "ScrollBarImageTransparency",
 			},
-			["dropdownScrollBarThickness"] = { instanceNames = { "dropdownFrame" }, propertyName = "ScrollBarThickness" },
+			["dropdownScrollBarThickness"] = {
+				instanceNames = { "dropdownFrame" },
+				propertyName = "ScrollBarThickness",
+			},
 			["dropdownIgnoreClipping"] = { callMethods = { self._dropdownIgnoreClipping } },
 			["menuSize"] = { instanceNames = { "menuContainer" }, propertyName = "Size", unique = "menu" },
 			["menuCanvasSize"] = { instanceNames = { "menuFrame" }, propertyName = "CanvasSize" },
