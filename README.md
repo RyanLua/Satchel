@@ -32,6 +32,13 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 ## Acknowledgements
 
+A special thanks to the following people for their contributions to Satchel.
+
+| Roblox Username | Contribution |
+| --- | --- |
+| [@OnlyTwentyCharacters](https://www.roblox.com/users/28969907/profile), [@SolarCrane](https://www.roblox.com/users/29373363/profile) | Creating the original CoreGui script |
+| [@thebrickplanetboy](https://www.roblox.com/users/525495863/profile) | Allowing me to republish & modify his fork of the backpack system |
+
 ## Support
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
