@@ -33,7 +33,7 @@ local iconButton = Instance.new("TextButton")
 iconButton.Name = "IconButton"
 iconButton.Visible = true
 iconButton.Text = ""
-iconButton.ZIndex = 10--2
+iconButton.ZIndex = 10 --2
 iconButton.BorderSizePixel = 0
 iconButton.AutoButtonColor = false
 iconButton.Parent = iconContainer
@@ -44,7 +44,7 @@ iconImage.BackgroundTransparency = 1
 iconImage.Name = "IconImage"
 iconImage.AnchorPoint = Vector2.new(0, 0.5)
 iconImage.Visible = true
-iconImage.ZIndex = 11--3
+iconImage.ZIndex = 11 --3
 iconImage.ScaleType = Enum.ScaleType.Fit
 iconImage.Parent = iconButton
 iconImage.Active = false
@@ -58,7 +58,7 @@ iconLabel.Text = ""
 iconLabel.RichText = true
 iconLabel.TextScaled = false
 iconLabel.ClipsDescendants = true
-iconLabel.ZIndex = 11--3
+iconLabel.ZIndex = 11 --3
 iconLabel.Parent = iconButton
 iconLabel.Active = false
 
@@ -86,7 +86,6 @@ local iconOverlayCorner = iconCorner:Clone()
 iconOverlayCorner.Name = "IconOverlayCorner"
 iconOverlayCorner.Parent = iconOverlay
 
-
 -- Notice prompts
 local noticeFrame = Instance.new("ImageLabel")
 noticeFrame.BackgroundTransparency = 1
@@ -94,7 +93,7 @@ noticeFrame.Name = "NoticeFrame"
 noticeFrame.Position = UDim2.new(0.45, 0, 0, -2)
 noticeFrame.Size = UDim2.new(1, 0, 0.7, 0)
 noticeFrame.Visible = true
-noticeFrame.ZIndex = 12--4
+noticeFrame.ZIndex = 12 --4
 noticeFrame.ImageTransparency = 1
 noticeFrame.ScaleType = Enum.ScaleType.Fit
 noticeFrame.Parent = iconButton
@@ -106,14 +105,13 @@ noticeLabel.BackgroundTransparency = 1
 noticeLabel.Position = UDim2.new(0.25, 0, 0.15, 0)
 noticeLabel.Size = UDim2.new(0.5, 0, 0.7, 0)
 noticeLabel.Visible = true
-noticeLabel.ZIndex = 13--5
+noticeLabel.ZIndex = 13 --5
 noticeLabel.Font = Enum.Font.Arial
 noticeLabel.Text = "0"
 noticeLabel.TextTransparency = 1
 noticeLabel.TextScaled = true
 noticeLabel.Parent = noticeFrame
 noticeLabel.Active = false
-
 
 -- Captions
 local captionContainer = Instance.new("Frame")
@@ -129,9 +127,9 @@ captionContainer.Active = false
 local captionFrame = Instance.new("Frame")
 captionFrame.Name = "CaptionFrame"
 captionFrame.BorderSizePixel = 0
-captionFrame.AnchorPoint = Vector2.new(0.5,0.5)
-captionFrame.Position = UDim2.new(0.5,0,0.5,0)
-captionFrame.Size = UDim2.new(1,0,1,0)
+captionFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+captionFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+captionFrame.Size = UDim2.new(1, 0, 1, 0)
 captionFrame.ZIndex = 31
 captionFrame.Parent = captionContainer
 captionFrame.Active = false
@@ -139,8 +137,8 @@ captionFrame.Active = false
 local captionLabel = Instance.new("TextLabel")
 captionLabel.Name = "CaptionLabel"
 captionLabel.BackgroundTransparency = 1
-captionLabel.AnchorPoint = Vector2.new(0.5,0.5)
-captionLabel.Position = UDim2.new(0.5,0,0.56,0)
+captionLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+captionLabel.Position = UDim2.new(0.5, 0, 0.56, 0)
 captionLabel.TextXAlignment = Enum.TextXAlignment.Center
 captionLabel.RichText = true
 captionLabel.ZIndex = 32
@@ -154,9 +152,9 @@ captionCorner.Parent = captionFrame
 local captionOverlineContainer = Instance.new("Frame")
 captionOverlineContainer.Name = "CaptionOverlineContainer"
 captionOverlineContainer.BackgroundTransparency = 1
-captionOverlineContainer.AnchorPoint = Vector2.new(0.5,0.5)
-captionOverlineContainer.Position = UDim2.new(0.5,0,-0.5,3)
-captionOverlineContainer.Size = UDim2.new(1,0,1,0)
+captionOverlineContainer.AnchorPoint = Vector2.new(0.5, 0.5)
+captionOverlineContainer.Position = UDim2.new(0.5, 0, -0.5, 3)
+captionOverlineContainer.Size = UDim2.new(1, 0, 1, 0)
 captionOverlineContainer.ZIndex = 33
 captionOverlineContainer.ClipsDescendants = true
 captionOverlineContainer.Parent = captionContainer
@@ -164,9 +162,9 @@ captionOverlineContainer.Active = false
 
 local captionOverline = Instance.new("Frame")
 captionOverline.Name = "CaptionOverline"
-captionOverline.AnchorPoint = Vector2.new(0.5,0.5)
-captionOverline.Position = UDim2.new(0.5,0,1.5,-3)
-captionOverline.Size = UDim2.new(1,0,1,0)
+captionOverline.AnchorPoint = Vector2.new(0.5, 0.5)
+captionOverline.Position = UDim2.new(0.5, 0, 1.5, -3)
+captionOverline.Size = UDim2.new(1, 0, 1, 0)
 captionOverline.ZIndex = 34
 captionOverline.Parent = captionOverlineContainer
 captionOverline.Active = false
@@ -186,21 +184,20 @@ captionVisibilityBlocker.Active = false
 local captionVisibilityCorner = captionVisibilityBlocker.CaptionCorner
 captionVisibilityCorner.Name = "CaptionVisibilityCorner"
 
-
 -- Tips
 local tipFrame = Instance.new("Frame")
 tipFrame.Name = "TipFrame"
 tipFrame.BorderSizePixel = 0
 tipFrame.AnchorPoint = Vector2.new(0, 0)
-tipFrame.Position = UDim2.new(0,50,0,50)
-tipFrame.Size = UDim2.new(1,0,1,-8)
+tipFrame.Position = UDim2.new(0, 50, 0, 50)
+tipFrame.Size = UDim2.new(1, 0, 1, -8)
 tipFrame.ZIndex = 40
 tipFrame.Parent = iconContainer
 tipFrame.Active = false
 
 local tipCorner = Instance.new("UICorner")
 tipCorner.Name = "TipCorner"
-tipCorner.CornerRadius = UDim.new(0.25,0)
+tipCorner.CornerRadius = UDim.new(0.25, 0)
 tipCorner.Parent = tipFrame
 
 local tipLabel = Instance.new("TextLabel")
@@ -208,12 +205,11 @@ tipLabel.Name = "TipLabel"
 tipLabel.BackgroundTransparency = 1
 tipLabel.TextScaled = false
 tipLabel.TextSize = 12
-tipLabel.Position = UDim2.new(0,3,0,3)
-tipLabel.Size = UDim2.new(1,-6,1,-6)
+tipLabel.Position = UDim2.new(0, 3, 0, 3)
+tipLabel.Size = UDim2.new(1, -6, 1, -6)
 tipLabel.ZIndex = 41
 tipLabel.Parent = tipFrame
 tipLabel.Active = false
-
 
 -- Dropdowns
 local dropdownContainer = Instance.new("Frame")
@@ -255,7 +251,6 @@ dropdownPadding.Name = "DropdownPadding"
 dropdownPadding.PaddingRight = UDim.new(0, 2)
 dropdownPadding.Parent = dropdownFrame
 
-
 -- Menus
 local menuContainer = Instance.new("Frame")
 menuContainer.Active = true
@@ -283,8 +278,8 @@ menuFrame.Size = UDim2.new(1, 0, 1, 0)
 menuFrame.ZIndex = -1 + 10
 menuFrame.ClipsDescendants = false
 menuFrame.Visible = true
-menuFrame.TopImage = ""--menuFrame.MidImage
-menuFrame.BottomImage = ""--menuFrame.MidImage
+menuFrame.TopImage = "" --menuFrame.MidImage
+menuFrame.BottomImage = "" --menuFrame.MidImage
 menuFrame.HorizontalScrollBarInset = Enum.ScrollBarInset.Always
 menuFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 menuFrame.Parent = menuContainer
@@ -306,35 +301,29 @@ menuInvisBlocker.LayoutOrder = 999999999
 menuInvisBlocker.Parent = menuFrame
 menuInvisBlocker.Active = false
 
-
 -- Click Sound
 local clickSound = Instance.new("Sound")
 clickSound.Name = "ClickSound"
 clickSound.Volume = 0
 clickSound.Parent = iconContainer
 
-
 -- Other
 local indicator = Instance.new("ImageLabel")
 indicator.Name = "Indicator"
 indicator.BackgroundTransparency = 1
 indicator.Image = "rbxassetid://5278151556"
-indicator.Size = UDim2.new(0,32,0,32)
-indicator.AnchorPoint = Vector2.new(0.5,0)
-indicator.Position = UDim2.new(0.5,0,0,5)
+indicator.Size = UDim2.new(0, 32, 0, 32)
+indicator.AnchorPoint = Vector2.new(0.5, 0)
+indicator.Position = UDim2.new(0.5, 0, 0, 5)
 indicator.ScaleType = Enum.ScaleType.Fit
 indicator.Visible = false
 indicator.Active = true
 indicator.Parent = topbarPlusGui
 indicator.Active = false
 
-
-
 -- PARENT
 local localPlayer = game:GetService("Players").LocalPlayer
 local playerGui = localPlayer.PlayerGui
 topbarPlusGui.Parent = playerGui
-
-
 
 return topbarPlusGui

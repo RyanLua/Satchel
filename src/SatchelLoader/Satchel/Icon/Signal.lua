@@ -6,12 +6,10 @@ Signal.__index = Signal
 Signal.ClassName = "Signal"
 Signal.totalConnections = 0
 
-
-
 -- CONSTRUCTOR
 function Signal.new(createConnectionsChangedSignal)
 	local self = setmetatable({}, Signal)
-	
+
 	if createConnectionsChangedSignal then
 		self.connectionsChanged = Signal.new()
 	end
@@ -23,8 +21,6 @@ function Signal.new(createConnectionsChangedSignal)
 
 	return self
 end
-
-
 
 -- METHODS
 function Signal:Fire(...)
@@ -44,7 +40,7 @@ function Signal:Connect(handler)
 	if not (type(handler) == "function") then
 		error(("connect(%s)"):format(typeof(handler)), 2)
 	end
-	
+
 	local signal = self
 	local connectionId = HttpService:GenerateGUID(false)
 	local connection = {}
@@ -77,7 +73,9 @@ function Signal:Wait()
 	local waitingId = HttpService:GenerateGUID(false)
 	self.waiting[waitingId] = true
 	self.totalWaiting += 1
-	repeat heartbeat:Wait() until self.waiting[waitingId] ~= true
+	repeat
+		heartbeat:Wait()
+	until self.waiting[waitingId] ~= true
 	self.totalWaiting -= 1
 	local args = self.waiting[waitingId]
 	self.waiting[waitingId] = nil
@@ -103,7 +101,5 @@ end
 Signal.destroy = Signal.Destroy
 Signal.Disconnect = Signal.Destroy
 Signal.disconnect = Signal.Destroy
-
-
 
 return Signal
