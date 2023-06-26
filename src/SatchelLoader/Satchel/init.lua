@@ -1756,26 +1756,40 @@ do -- Search stuff
 	searchBox.ClearTextOnFocus = false
 	searchBox.FontSize = Enum.FontSize.Size14
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
-	searchBox.TextYAlignment = Enum.TextYAlignment.Bottom
-	searchBox.Size = searchFrame.Size - UDim2.fromOffset(0, SEARCH_TEXT_OFFSET)
+	searchBox.TextYAlignment = Enum.TextYAlignment.Center
+	searchBox.Size = UDim2.new(
+		0,
+		(SEARCH_WIDTH - (SEARCH_BUFFER * 2)) - SEARCH_TEXT_OFFSET - 30,
+		0,
+		INVENTORY_HEADER_SIZE - (SEARCH_BUFFER * 2)
+	)
 	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET, 0, 0)
+	searchBox.ZIndex = 2
 	searchBox.Parent = searchFrame
 
-	local xButton = NewGui("ImageButton", "X")
-	xButton.Image = SEARCH_ICON_X
-	xButton.ZIndex = 10
+	local xButton = NewGui("TextButton", "X")
+	xButton.Text = ""
+	xButton.Size = UDim2.new(0, 30, 0, 30)
+	xButton.Position = UDim2.new(1, -xButton.Size.X.Offset, 0.5, -xButton.Size.Y.Offset / 2)
+	xButton.ZIndex = 4
+	xButton.Visible = false
 	xButton.BackgroundTransparency = 1
-	xButton.Size = UDim2.new(
+	xButton.Parent = searchFrame
+
+	local xImage = NewGui("ImageButton", "X")
+	xImage.Image = SEARCH_ICON_X
+	xImage.BackgroundTransparency = 1
+	xImage.Size = UDim2.new(
 		0,
 		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 4),
 		0,
 		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 4)
 	)
-	xButton.Position = UDim2.new(1, -xButton.Size.X.Offset - (SEARCH_BUFFER * 2), 0.5, -xButton.Size.Y.Offset / 2)
-	xButton.Visible = false
-	xButton.ZIndex = 0
-	xButton.BorderSizePixel = 0
-	xButton.Parent = searchFrame
+	xImage.AnchorPoint = Vector2.new(0.5, 0.5)
+	xImage.Position = UDim2.new(0.5, 0, 0.5, 0)
+	xImage.ZIndex = 1
+	xImage.BorderSizePixel = 0
+	xImage.Parent = xButton
 
 	local function search(): ()
 		local terms = {}
