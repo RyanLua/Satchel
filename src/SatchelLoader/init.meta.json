@@ -11,9 +11,6 @@
             "InventoryTransparency": {
                 "Float32": 0.3
             },
-            "InventoryCornerRadius": {
-                "Float32": 5
-            },
             "SlotEquipColor3": {
                 "Color3": [
                     0,
@@ -24,7 +21,7 @@
             "SlotEquipThickness": {
                 "Float32": 5
             },
-            "SlotCornerRadius": {
+            "CornerRadius": {
                 "Float32": 8
             },
             "TextColor3": {

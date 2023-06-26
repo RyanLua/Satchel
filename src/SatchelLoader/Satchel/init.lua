@@ -65,7 +65,7 @@ local LEGACY_EDGE = targetScript:GetAttribute("InsetEdge") or false -- Instead o
 -- Inventory
 local BACKGROUND_FADE = targetScript:GetAttribute("InventoryTransparency") or 0.30
 local BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.fromRGB(25, 27, 29)
-local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("InventoryCornerRadius") or 5
+local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or 5
 
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
@@ -76,7 +76,7 @@ local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
 local SLOT_EQUIP_THICKNESS = targetScript:GetAttribute("SlotEquipThickness") or 5 -- Relative
 local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
-local SLOT_CORNER_RADIUS = targetScript:GetAttribute("SlotCornerRadius") or 8
+local SLOT_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or 8
 
 -- Tooltip
 local TOOLTIP_BUFFER = 6
@@ -107,7 +107,7 @@ local INVENTORY_ARROWS_BUFFER_VR = 40
 -- Search
 local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
-local SEARCH_CORNER_RADIUS = targetScript:GetAttribute("InventoryCornerRadius") or 3
+local SEARCH_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") - 5 or 3
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
 local SEARCH_PLACEHOLDER = "Search"
