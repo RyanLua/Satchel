@@ -117,6 +117,7 @@ local SEARCH_TEXT_COLOR = Color3.new(1, 1, 1)
 local TEXT_FADE = 0.5
 local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_FADE = 0.5
+local SEARCH_TEXT = ""
 
 local SEARCH_TEXT_OFFSET = 8
 local SEARCH_BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
@@ -204,9 +205,9 @@ local MainFrame = nil
 local HotbarFrame = nil
 local InventoryFrame = nil
 local VRInventorySelector = nil
-local ScrollingFrame = nil
-local UIGridFrame = nil
-local UIGridLayout = nil
+local ScrollingFrame: ScrollingFrame = nil
+local UIGridFrame: Frame = nil
+local UIGridLayout: UIGridLayout = nil
 local ScrollUpInventoryButton = nil
 local ScrollDownInventoryButton = nil
 
@@ -256,7 +257,7 @@ local function ShowVRBackpackPopup(): ()
 end
 
 local function NewGui(className: string, objectName: string): any
-	local newGui = Instance.new(className)
+	local newGui: TextLabel = Instance.new(className)
 	newGui.Name = objectName
 	newGui.BackgroundColor3 = Color3.new(0, 0, 0)
 	newGui.BackgroundTransparency = 1
@@ -414,23 +415,23 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	local LocalizedToolTip = nil --remove with FFlagCoreScriptTranslateGameText2
 
 	local SlotFrameParent = nil
-	local SlotFrame = nil
+	local SlotFrame: Frame = nil
 	local FakeSlotFrame = nil
-	local ToolIcon = nil
-	local ToolName = nil
+	local ToolIcon: ImageLabel = nil
+	local ToolName: TextLabel = nil
 	local ToolChangeConn = nil
-	local HighlightFrame = nil
+	local HighlightFrame: Frame = nil
 	local SelectionObj = nil
 
 	--NOTE: The following are only defined for Hotbar Slots
-	local ToolTip = nil
-	local SlotNumber = nil
+	local ToolTip: TextLabel = nil
+	local SlotNumber: TextLabel = nil
 
 	-- Slot Functions --
 
 	local function UpdateSlotFading(): ()
 		if VRService.VREnabled and BackpackPanel then
-			local panelTransparency = BackpackPanel.transparency
+			local panelTransparency: number = BackpackPanel.transparency
 			local slotTransparency = SLOT_FADE_LOCKED
 
 			-- This equation multiplies the two transparencies together.
@@ -490,11 +491,11 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		assignToolData()
 
 		if ToolChangeConn then
-			ToolChangeConn:disconnect()
+			ToolChangeConn:Disconnect()
 			ToolChangeConn = nil
 		end
 
-		ToolChangeConn = tool.Changed:connect(function(property: string)
+		ToolChangeConn = tool.Changed:Connect(function(property: string)
 			if property == "TextureId" or property == "Name" or property == "ToolTip" then
 				assignToolData()
 			end
@@ -537,7 +538,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		end
 
 		if ToolChangeConn then
-			ToolChangeConn:disconnect()
+			ToolChangeConn:Disconnect()
 			ToolChangeConn = nil
 		end
 
@@ -608,7 +609,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		UpdateScrollingFrameCanvasSize()
 	end
 
-	function slot:Swap(targetSlot: Instance): () --NOTE: This slot (self) must not be empty!
+	function slot:Swap(targetSlot: any): () --NOTE: This slot (self) must not be empty!
 		local myTool, otherTool = self.Tool, targetSlot.Tool
 		self:Clear()
 		if otherTool then -- (Target slot might be empty)
@@ -688,7 +689,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.Active = true
 	SlotFrame.Draggable = false
 	SlotFrame.BackgroundTransparency = SLOT_FADE_LOCKED
-	SlotFrame.MouseButton1Click:connect(function(): ()
+	SlotFrame.MouseButton1Click:Connect(function(): ()
 		changeSlot(slot)
 	end)
 	local searchFrameCorner = Instance.new("UICorner")
@@ -759,12 +760,12 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		ToolTipPadding.PaddingTop = UDim.new(0, TOOLTIP_PADDING)
 		ToolTipPadding.PaddingBottom = UDim.new(0, TOOLTIP_PADDING)
 		ToolTipPadding.Parent = ToolTip
-		SlotFrame.MouseEnter:connect(function(): ()
+		SlotFrame.MouseEnter:Connect(function(): ()
 			if ToolTip.Text ~= "" then
 				ToolTip.Visible = true
 			end
 		end)
-		SlotFrame.MouseLeave:connect(function(): ()
+		SlotFrame.MouseLeave:Connect(function(): ()
 			ToolTip.Visible = false
 		end)
 
@@ -803,7 +804,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		local lastUpTime = 0
 		local startParent = nil
 
-		SlotFrame.DragBegin:connect(function(dragPoint: Vector2)
+		SlotFrame.DragBegin:Connect(function(dragPoint: UDim2)
 			Dragging[SlotFrame] = true
 			startPoint = dragPoint
 
@@ -846,7 +847,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			end
 		end)
 
-		SlotFrame.DragStopped:connect(function(x: number, y: number): ()
+		SlotFrame.DragStopped:Connect(function(x: number, y: number): ()
 			if FakeSlotFrame then
 				FakeSlotFrame:Destroy()
 			end
@@ -1284,7 +1285,7 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 	end)
 end
 
-function getGamepadSwapSlot(): number
+function getGamepadSwapSlot(): any
 	for i = 1, #Slots do
 		if Slots[i].Frame.BorderSizePixel > 0 then
 			return Slots[i]
@@ -1292,11 +1293,11 @@ function getGamepadSwapSlot(): number
 	end
 end
 
-function changeSlot(slot: Instance): ()
+function changeSlot(slot: any): ()
 	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
 
 	if slot.Frame == GuiService.SelectedObject and swapInVr then
-		local currentlySelectedSlot = getGamepadSwapSlot()
+		local currentlySelectedSlot: any = getGamepadSwapSlot()
 
 		if currentlySelectedSlot then
 			currentlySelectedSlot.Frame.BorderSizePixel = 0
@@ -1471,7 +1472,7 @@ local function OnIconChanged(enabled: boolean): ()
 	end
 end
 
-local function MakeVRRoundButton(name: string, image: Content): (GuiObject, GuiObject, GuiObject)
+local function MakeVRRoundButton(name: string, image: string): (GuiObject, GuiObject, GuiObject)
 	local newButton = NewGui("ImageButton", name)
 	newButton.Size = UDim2.new(0, 40, 0, 40)
 	newButton.Image = "rbxasset://textures/ui/Keyboard/close_button_background.png"
@@ -1640,7 +1641,7 @@ local gamepadHintsFrame = Create("Frame")({
 	Parent = MainFrame,
 })
 
-local function addGamepadHint(hintImage: Content, hintImageLarge: Content, hintText: string): ()
+local function addGamepadHint(hintImage: string, hintImageLarge: string, hintText: string): ()
 	local hintFrame = Create("Frame")({
 		Name = "HintFrame",
 		Size = UDim2.new(1, 0, 1, -5),
@@ -1880,7 +1881,7 @@ do -- Search stuff
 		end
 	end)
 
-	HotkeyFns[Enum.KeyCode.Escape.Value] = function(isProcessed: boolean): ()
+	HotkeyFns[Enum.KeyCode.Escape.Value] = function(isProcessed: any): ()
 		if isProcessed then -- Pressed from within a TextBox
 			reset()
 		elseif InventoryFrame.Visible then
@@ -2040,9 +2041,11 @@ function BackpackScript:GetBackpackEnabled(): boolean
 	return BackpackEnabled
 end
 
-function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
-	return Backpack.StateChanged
-end
+-- Broken for now
+--
+-- function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
+-- 	return Backpack.StateChanged
+-- end
 
 RunService.Heartbeat:Connect(function(): ()
 	OnIconChanged(BackpackEnabled)
