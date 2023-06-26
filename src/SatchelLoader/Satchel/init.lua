@@ -1755,16 +1755,18 @@ do -- Search stuff
 	searchBox.TextTransparency = TEXT_FADE
 	searchBox.TextStrokeColor3 = SEARCH_TEXT_STROKE_COLOR
 	searchBox.ClearTextOnFocus = false
+	searchBox.TextTruncate = Enum.TextTruncate.AtEnd
 	searchBox.FontSize = Enum.FontSize.Size14
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
 	searchBox.TextYAlignment = Enum.TextYAlignment.Center
 	searchBox.Size = UDim2.new(
 		0,
-		(SEARCH_WIDTH - (SEARCH_BUFFER * 2)) - SEARCH_TEXT_OFFSET - 30,
+		(SEARCH_WIDTH - (SEARCH_BUFFER * 2)) - (SEARCH_TEXT_OFFSET * 2) - 20,
 		0,
-		INVENTORY_HEADER_SIZE - (SEARCH_BUFFER * 2)
+		INVENTORY_HEADER_SIZE - (SEARCH_BUFFER * 2) - (SEARCH_TEXT_OFFSET * 2)
 	)
-	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET, 0, 0)
+	searchBox.AnchorPoint = Vector2.new(0, 0.5)
+	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET, 0.5, 0)
 	searchBox.ZIndex = 2
 	searchBox.Parent = searchFrame
 
