@@ -1,4 +1,4 @@
-name: Lint
+name: CI
 
 on:
   # Trigger the workflow on push or pull request,
@@ -18,20 +18,34 @@ permissions:
   contents: write
 
 jobs:
-  run-linters:
-    name: Run linters
+  run-linter:
+    name: Run linter
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      # Install your linters here
+      - name: Install aftman
+        uses: ok-nick/setup-aftman@v0.3.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run linters
+      - name: Run selene
+        run: |
+          selene ./src
+
+  run-styler:
+    name: Run styler
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Run stylua
         uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          version: latest # NOTE: we recommend pinning to a specific version in case of formatting changes
-          # CLI arguments
-          args: --check .
+          version: latest
+          args: --check ./src
