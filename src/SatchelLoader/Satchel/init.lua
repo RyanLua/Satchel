@@ -55,35 +55,36 @@ BackpackScript.VRClosesNonExclusive = true
 local targetScript = script.Parent
 
 local ICON_SIZE = 60 -- Pixels
-local FONT_SIZE = Enum.FontSize.Size14
+local FONT_SIZE = targetScript:GetAttribute("TextSize") or 14
 local ICON_BUFFER = 5
 
 -- Legacy behavior for backpack.
-local LEGACY_PADDING = targetScript:GetAttribute("InsetIconPadding") or true -- Instead of the icon taking up the full slot, it will be padded on each side.
-local LEGACY_EDGE = targetScript:GetAttribute("InsetEdge") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
+local LEGACY_PADDING = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
+local LEGACY_EDGE = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 
 -- Inventory
-local BACKGROUND_FADE = targetScript:GetAttribute("InventoryTransparency") or 0.30
-local BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.fromRGB(25, 27, 29)
-local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or 5
+local BACKGROUND_FADE = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
 local VR_FADE_TIME = 1
 local VR_PANEL_RESOLUTION = 100
 
 -- Slot colors, thickness, etc.
-local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS = targetScript:GetAttribute("SlotEquipThickness") or 5 -- Relative
-local SLOT_FADE_LOCKED = 0.3 -- Locked means undraggable
+local SLOT_EQUIP_THICKNESS = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
+local SLOT_FADE_LOCKED = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
-local SLOT_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or 8
+local SLOT_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
 -- Tooltip
 local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
-local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.fromRGB(25, 27, 29)
+local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3")
+	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 
 --
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
@@ -107,20 +108,22 @@ local INVENTORY_ARROWS_BUFFER_VR = 40
 -- Search
 local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
-local SEARCH_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") - 5 or 3
+local SEARCH_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
 local SEARCH_PLACEHOLDER = "Search"
 local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
 
-local SEARCH_TEXT_COLOR = Color3.new(1, 1, 1)
-local TEXT_FADE = 0.5
-local SEARCH_TEXT_STROKE_COLOR = Color3.new(0, 0, 0)
+local SEARCH_TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
+local TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
+local TEXT_FADE = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
+local TEXT_FADE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
+local SEARCH_TEXT_STROKE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_FADE = 0.5
 local SEARCH_TEXT = ""
 
 local SEARCH_TEXT_OFFSET = 8
-local SEARCH_BACKGROUND_COLOR = targetScript:GetAttribute("InventoryColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SEARCH_BACKGROUND_COLOR = Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SEARCH_BACKGROUND_FADE = 0.20
 
 local SEARCH_BORDER_THICKNESS = 1
@@ -182,7 +185,7 @@ local IsTenFootInterface = GuiService:IsTenFootInterface()
 
 if IsTenFootInterface then
 	ICON_SIZE = 100
-	FONT_SIZE = Enum.FontSize.Size24
+	FONT_SIZE = 24
 end
 
 local GamepadActionsBound = false
@@ -260,11 +263,12 @@ local function NewGui(className: string, objectName: string): any
 	newGui.BorderColor3 = Color3.new(0, 0, 0)
 	newGui.Size = UDim2.new(1, 0, 1, 0)
 	if className:match("Text") then
-		newGui.TextColor3 = Color3.new(1, 1, 1)
+		newGui.TextColor3 = TEXT_COLOR
 		newGui.Text = ""
 		newGui.TextStrokeTransparency = TEXT_FADE
+		newGui.TextStrokeColor3 = TEXT_FADE_COLOR
 		newGui.Font = Enum.Font.GothamMedium
-		newGui.FontSize = FONT_SIZE
+		newGui.TextSize = FONT_SIZE
 		newGui.TextWrapped = true
 		if className == "TextButton" then
 			newGui.Font = Enum.Font.Gotham
@@ -433,14 +437,14 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			-- This equation multiplies the two transparencies together.
 			local finalTransparency = panelTransparency + slotTransparency - panelTransparency * slotTransparency
 
-			SlotFrame.BackgroundTransparency = finalTransparency
-			SlotFrame.TextTransparency = finalTransparency
+			SlotFrame.BackgroundTransparency = panelTransparency
+			SlotFrame.TextTransparency = panelTransparency
 			if ToolIcon then
 				ToolIcon.ImageTransparency = InventoryFrame.Visible and 0 or panelTransparency
 			end
 			if HighlightFrame then
 				for _, child in pairs(HighlightFrame:GetChildren()) do
-					child.BackgroundTransparency = finalTransparency
+					child.BackgroundTransparency = panelTransparency
 				end
 			end
 
@@ -690,7 +694,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	end)
 	local searchFrameCorner = Instance.new("UICorner")
 	searchFrameCorner.Name = "Corner"
-	searchFrameCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+	searchFrameCorner.CornerRadius = SLOT_CORNER_RADIUS
 	searchFrameCorner.Parent = SlotFrame
 	slot.Frame = SlotFrame
 
@@ -717,12 +721,12 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	end
 	ToolIcon.Parent = SlotFrame
 
-	ToolIconCorner = Instance.new("UICorner")
+	local ToolIconCorner = Instance.new("UICorner")
 	ToolIconCorner.Name = "Corner"
 	if LEGACY_PADDING == true then
-		ToolIconCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS - SLOT_EQUIP_THICKNESS)
+		ToolIconCorner.CornerRadius = SLOT_CORNER_RADIUS - UDim.new(0, SLOT_EQUIP_THICKNESS)
 	else
-		ToolIconCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+		ToolIconCorner.CornerRadius = SLOT_CORNER_RADIUS
 	end
 	ToolIconCorner.Parent = ToolIcon
 
@@ -746,10 +750,12 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		ToolTip.Visible = false
 		ToolTip.AutomaticSize = Enum.AutomaticSize.X
 		ToolTip.Parent = SlotFrame
+
 		local ToolTipCorner = Instance.new("UICorner")
 		ToolTipCorner.Name = "Corner"
-		ToolTipCorner.CornerRadius = UDim.new(0, SLOT_CORNER_RADIUS)
+		ToolTipCorner.CornerRadius = SLOT_CORNER_RADIUS
 		ToolTipCorner.Parent = ToolTip
+
 		local ToolTipPadding = Instance.new("UIPadding")
 		ToolTipPadding.PaddingLeft = UDim.new(0, TOOLTIP_PADDING)
 		ToolTipPadding.PaddingRight = UDim.new(0, TOOLTIP_PADDING)
@@ -1537,7 +1543,7 @@ InventoryFrame.Parent = MainFrame
 -- Add corners to the InventoryFrame
 local corner = Instance.new("UICorner")
 corner.Name = "Corner"
-corner.CornerRadius = UDim.new(0, BACKGROUND_CORNER_RADIUS)
+corner.CornerRadius = BACKGROUND_CORNER_RADIUS
 corner.Parent = InventoryFrame
 
 VRInventorySelector = NewGui("TextButton", "VRInventorySelector")
@@ -1734,7 +1740,7 @@ do -- Search stuff
 
 	local searchFrameCorner = Instance.new("UICorner")
 	searchFrameCorner.Name = "Corner"
-	searchFrameCorner.CornerRadius = UDim.new(0, SEARCH_CORNER_RADIUS)
+	searchFrameCorner.CornerRadius = SEARCH_CORNER_RADIUS
 	searchFrameCorner.Parent = searchFrame
 
 	local searchFrameBorder = Instance.new("UIStroke")
