@@ -18,9 +18,15 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 ## Playground
 
-You can try out Stachel at [Satchel Playground](https://www.roblox.com/games/13592168150).
+> **Note**
+>
+> [Satchel Playground](https://www.roblox.com/games/13592168150) has Content Sharing enabled. You can download the demo from the Roblox website by clicking the ellipsis (`...`)and selecting `Edit`.
 
-Note that the place is open-sourced and you can download a copy of it for your own usage by clicking the ellipsis on PC. 
+We provide an open-source demo of Satchel, you can [view the demo](https://www.roblox.com/games/13592168150) on Roblox.
+
+[![Satchel Playground Thumbnail 1](https://github.com/RyanLua/Satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669)](https://www.roblox.com/games/13592168150)
+
+Feel free to use the demo as a reference for how to use Satchel. Please download and modify towards your liking.
 
 ## Installation
 
@@ -53,4 +59,4 @@ When you contribute to Satchel you will be accredited for your contribution for 
 
 ## License
 
-Shime is licensed under [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
+Shime is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
