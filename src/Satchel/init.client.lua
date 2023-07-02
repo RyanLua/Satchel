@@ -1,5 +1,5 @@
 --[[
-	Name: Satchel Loader
+	Name: Satchel
 	Description: Loads the Satchel backpack system.
 	GitHub: https://github.com/RyanLua/Satchel
 ]]
@@ -22,4 +22,4 @@
 	along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ]]
 
-require(script:WaitForChild("Satchel")) -- Initialize Satchel
+require(script:WaitForChild("SatchelScript")) -- Initialize Satchel
