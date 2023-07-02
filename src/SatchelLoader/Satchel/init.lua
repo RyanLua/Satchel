@@ -188,13 +188,9 @@ end
 local GamepadActionsBound = false
 
 local GetScreenResolution = function(): Vector2
-	local ScreenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
-	local Frame = Instance.new("Frame", ScreenGui)
-	Frame.BackgroundTransparency = 1
-	Frame.Size = UDim2.new(1, 0, 1, 0)
-	local AbsoluteSize = Frame.AbsoluteSize
-	ScreenGui:Destroy()
-	return AbsoluteSize
+	local CurrentCamera = workspace.CurrentCamera
+	local ViewportSize = CurrentCamera.ViewportSize
+	return ViewportSize
 end
 
 local IS_PHONE = UserInputService.TouchEnabled and GetScreenResolution().X < HOTBAR_SLOTS_WIDTH_CUTOFF
