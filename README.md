@@ -27,17 +27,33 @@ Satchel comes packed with much needed features and changes which the default bac
 
 Satchel completely remakes the backpacks UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
 
-### High & Easy Customizability
+<div align="center">
+  <img src="https://github.com/RyanLua/Satchel/assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
+</div>
 
-Satchel is highly customizable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
+### Highly Customizable & Versitile
+
+Satchel is highly customizable & adjustable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
+
+<div align="center">
+  <img src="https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
+</div>
 
 ### Improved Mobile Experiance
 
 Satchel expands on the mobile experiance doubling the amount of slots allowing players on mobile to not be at a disadvantage.
 
+<div align="center">
+  <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
+</div>
+
 ### Topbar Plus Support
 
 Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/TopbarPlus) to allow users to easily and more quickly open the inventory.
+
+<div align="center">
+  <img src="https://github.com/RyanLua/Satchel/assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
+</div>
 
 ## Playground
 
