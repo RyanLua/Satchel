@@ -59,13 +59,11 @@ Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/Topba
 
 > **Note**
 >
-> [Satchel Playground](https://www.roblox.com/games/13592168150) has Content Sharing enabled. You can download the demo from the Roblox website by clicking the ellipsis (`...`)and selecting `Edit`.
+> [Satchel Playground](https://www.roblox.com/games/13592168150) has place copying enabled, allowing you to edit your own copy from the Roblox website by clicking the ellipsis (`...`) and selecting `Edit`.
 
-We provide an open-source demo of Satchel, you can [view the demo](https://www.roblox.com/games/13592168150) on Roblox.
+We provide an open-source playground of Satchel where you can test and play with Satchel before deciding to use it. See [Satchel Playground](https://www.roblox.com/games/13592168150) on Roblox. Feel free to use the playground as a reference for how to use Satchel. Please download and modify towards your liking.
 
 [![Satchel Playground Thumbnail 1](https://github.com/RyanLua/Satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669)](https://www.roblox.com/games/13592168150)
-
-Feel free to use the demo as a reference for how to use Satchel. Please download and modify towards your liking.
 
 ## 🔽 Installation
 
