@@ -69,7 +69,9 @@ We provide an open-source playground of Satchel where you can test and play with
 
 Installation of Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with easy customization. Below are different ways to get you to download and install Satchel.
 
-### Install from Roblox
+<details>
+
+<summary><h3>Install from Creator Marketplace</h3></summary>
 
 1. Get the Satchel module from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401).
 
@@ -93,9 +95,11 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
 
-### Install from GitHub
+</details>
 
-You can install Shime from GitHub, this is intended if you want to use a modified version of Shime.
+<details>
+
+<summary><h3>Install from GitHub Releases</h3></summary>
 
 1. Download the `Shime.rbxmx` file from [Releases](https://github.com/RyanLua/Shime/releases).
 
@@ -117,9 +121,7 @@ You can install Shime from GitHub, this is intended if you want to use a modifie
 
 ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
 
-### GitHub
-
-### Creator Marketplace
+</details>
 
 ## 👤 Acknowledgements
 
