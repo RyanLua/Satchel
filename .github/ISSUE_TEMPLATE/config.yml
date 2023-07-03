@@ -1,8 +1,5 @@
 blank_issues_enabled: true
 contact_links:
   - name: Community Support
-    url: https://github.com/RyanLua/Shime/discussions
-    about: Shime discussions for community support/help.
-  - name: Official Documentation
-    url: https://github.com/RyanLua/Shime/wiki/Documentation
-    about: Documentation for how to use Shime.
+    url: https://github.com/RyanLua/Satchel/discussions
+    about: GitHub Discussions for community support/help.
