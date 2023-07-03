@@ -19,6 +19,26 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 <img src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img src="assets/SatchelThumbnail2.png" style="width: 49%;">
 <img src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
 
+## Features
+
+Satchel comes packed with much needed features and changes which the default backpack doesn't have.
+
+### Modernized Familiar Feel
+
+Satchel completely remakes the backpacks UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
+
+### High & Easy Customizability
+
+Satchel is highly customizable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
+
+### Improved Mobile Experiance
+
+Satchel expands on the mobile experiance doubling the amount of slots allowing players on mobile to not be at a disadvantage.
+
+### Topbar Plus Support
+
+Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/TopbarPlus) to allow users to easily and more quickly open the inventory.
+
 ## Playground
 
 > **Note**
