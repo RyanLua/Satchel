@@ -83,9 +83,13 @@ A special thanks to the following people for their contributions to Satchel.
 | [@thebrickplanetboy](https://www.roblox.com/users/525495863/profile) | Allowing me to republish & modify his fork of the backpack system |
 | [@ForeverHD](https://www.roblox.com/users/82347291/profile) | Making Topbar Plus and open-sourcing it for everyone to use |
 
-## 🆘 Support
+## 💖 Support
 
-Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
+> **Note**
+>
+> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
+
+Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR.
 
 You can support Satchel by starring this repository, sharing it with others, and contributing to it. Learn about contributing to Satchel below at [Contributing](#contributing).
 
