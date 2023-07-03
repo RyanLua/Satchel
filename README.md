@@ -83,6 +83,7 @@ A special thanks to the following people for their contributions to Satchel.
 | --- | --- |
 | [@OnlyTwentyCharacters](https://www.roblox.com/users/28969907/profile), [@SolarCrane](https://www.roblox.com/users/29373363/profile) | Creating the original CoreGui script |
 | [@thebrickplanetboy](https://www.roblox.com/users/525495863/profile) | Allowing me to republish & modify his fork of the backpack system |
+| [@ForeverHD](https://www.roblox.com/users/82347291/profile) | Making Topbar Plus and open-sourcing it for everyone to use |
 
 ## 🆘 Support
 
