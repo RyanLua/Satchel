@@ -83,6 +83,7 @@ local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
+local TOOLTIP_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 
@@ -753,7 +754,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 		local ToolTipCorner = Instance.new("UICorner")
 		ToolTipCorner.Name = "Corner"
-		ToolTipCorner.CornerRadius = SLOT_CORNER_RADIUS
+		ToolTipCorner.CornerRadius = TOOLTIP_CORNER_RADIUS
 		ToolTipCorner.Parent = ToolTip
 
 		local ToolTipPadding = Instance.new("UIPadding")
