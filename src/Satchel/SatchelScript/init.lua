@@ -732,7 +732,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	ToolIconCorner.Parent = ToolIcon
 
 	ToolName = NewGui("TextLabel", "ToolName")
-	ToolName.Size = UDim2.new(1, -2, 1, -2)
+	ToolName.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	ToolName.Position = UDim2.new(0, 1, 0, 1)
 	ToolName.Parent = SlotFrame
 
