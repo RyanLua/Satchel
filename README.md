@@ -101,7 +101,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 <summary><h3>Install from GitHub Releases</h3></summary>
 
-1. Download the `Shime.rbxmx` file from [Releases](https://github.com/RyanLua/Shime/releases).
+1. Download the `Satchel.rbxmx` file from [Releases](https://github.com/RyanLua/Satchel/releases).
 
 ![GitHubRelease](assets/GitHubReleases.png)
 
@@ -115,9 +115,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 ![UploadFile](assets/SelectFile.png)
 
-5. Require the Shime module in your script like below when you want to use Shime.
-
-6. Ensure that `Satchel`is in [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
+5. Ensure that `Satchel`is in [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
 
 ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
 
@@ -178,4 +176,4 @@ When you contribute to Satchel you will be accredited for your contribution for 
 
 ## 📃 License
 
-Shime is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
+Satchel is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
