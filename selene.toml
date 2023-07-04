@@ -1,2 +1,2 @@
 std = "roblox"
-exclude = "src/Satchel/SatchelScript/Icon"
+exclude = ["src/Satchel/SatchelScript/Icon/*"]
