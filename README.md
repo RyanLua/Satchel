@@ -21,17 +21,17 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 ## ⭐ Features
 
-Satchel comes packed with much needed features and changes which the default backpack doesn't have.
+Satchel comes packed with much-needed features and changes that the default backpack doesn't have.
 
 ### Modernized Familiar Feel
 
-Satchel completely remakes the backpacks UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
+Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
 
 <div align="center">
   <img src="https://github.com/RyanLua/Satchel/assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
 </div>
 
-### Highly Customizable & Versitile
+### Highly Customizable & Versatile
 
 Satchel is highly customizable & adjustable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
 
@@ -39,9 +39,9 @@ Satchel is highly customizable & adjustable with instance attributes support all
   <img src="https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
 </div>
 
-### Improved Mobile Experiance
+### Improved Mobile Experience
 
-Satchel expands on the mobile experiance doubling the amount of slots allowing players on mobile to not be at a disadvantage.
+Satchel expands on the mobile experience doubling the number of slots allowing players on mobile to not be at a disadvantage.
 
 <div align="center">
   <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
@@ -61,7 +61,7 @@ Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/Topba
 >
 > [Satchel Playground](https://www.roblox.com/games/13592168150) has place copying enabled, allowing you to edit your own copy from the Roblox website by clicking the ellipsis (`...`) and selecting `Edit`.
 
-We provide an open-source playground of Satchel where you can test and play with Satchel before deciding to use it. See [Satchel Playground](https://www.roblox.com/games/13592168150) on Roblox. Feel free to use the playground as a reference for how to use Satchel. Please download and modify towards your liking.
+We provide an open-source playground of Satchel where you can test and play with Satchel before deciding to use it. See [Satchel Playground](https://www.roblox.com/games/13592168150) on Roblox. Feel free to use the playground as a reference for how to use Satchel. Please download and modify it to your liking.
 
 [![Satchel Playground Thumbnail 1](https://github.com/RyanLua/Satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669)](https://www.roblox.com/games/13592168150)
 
@@ -91,7 +91,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 ![Toolbox](assets/MarketplaceCard.png)
 
-6. Insert `Satchel` into the [Explorer](https://create.roblox.com/docs/studio/explorer) and drag into [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
+6. Insert `Satchel` into the [Explorer](https://create.roblox.com/docs/studio/explorer) and drag it into [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
 
 ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
 
@@ -107,7 +107,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 2. Open Roblox Studio and create a new place or open an existing place.
 
-3. Go to the [Explorer](https://create.roblox.com/docs/studio/explorer) and right click on [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts) and click on `Insert from file...`.
+3. Go to [Explorer](https://create.roblox.com/docs/studio/explorer) and right click on [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts) and click on `Insert from file...`.
 
 ![InsertFromFile](assets/InsertFromFile.png)
 
