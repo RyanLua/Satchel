@@ -9,6 +9,7 @@
 	Acknowledgements (@Roblox):
 		@OnlyTwentyCharacters, @SolarCrane -- For creating the CoreGui script
 		@thebrickplanetboy -- For allowing me to republish his fork of the backpack system.
+		@ForeverHD -- Making Topbar Plus and open-sourcing it for everyone to use
 
 	GitHub: https://github.com/RyanLua/Satchel
 ]]
