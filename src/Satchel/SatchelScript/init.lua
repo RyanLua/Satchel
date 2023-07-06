@@ -12,6 +12,7 @@
 		@ForeverHD -- Making Topbar Plus and open-sourcing it for everyone to use
 
 	GitHub: https://github.com/RyanLua/Satchel
+	DevForum: https://devforum.roblox.com/t/2451549
 ]]
 
 --[[
