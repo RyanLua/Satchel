@@ -6,15 +6,11 @@ We offer support from both the developers and the community.
 
 We support the following platforms:
 
-| Version   | Supported          |
-| --------- | ------------------ |
-| Computers | :white_check_mark: |
-| Tablets   | :white_check_mark: |
-| Phones    | :white_check_mark: |
-| Consoles  | :white_check_mark: |
-| VR        | :white_check_mark: |
-| Watches   | :x:                |
-
+- [x] Computers
+- [x] Tablets
+- [x] Phones
+- [x] Consoles
+- [x] VR
 
 ## Reporting Issues
 
