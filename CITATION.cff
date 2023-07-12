@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: When crediting source, please use this metadata.
+title: Satchel
+abstract: Satchel is a modern open-source alternative to Roblox’s default backpack. “vanilla” feel.
+authors:
+  - family-names: Luu
+    given-names: Ryan
+    orcid: https://orcid.org/0009-0004-0813-879X
+version: 0.1.0
+date-released: "2023-7-3"
+keywords:
+  - github
+  - open-source
+  - gui
+  - ui
+  - lua
+  - roblox
+  - inventory
+  - lua-script
+  - backpack
+  - luau
+  - roblox-scripts
+  - roblox-script
+license: "GPL-3.0"
+repository-code: "https://github.com/RyanLua/Satchel"
