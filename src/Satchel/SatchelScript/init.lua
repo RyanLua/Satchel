@@ -2049,11 +2049,9 @@ function BackpackScript:GetBackpackEnabled(): boolean
 	return BackpackEnabled
 end
 
--- Broken for now
---
--- function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
--- 	return Backpack.StateChanged
--- end
+function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
+	return Backpack.StateChanged
+end
 
 RunService.Heartbeat:Connect(function(): ()
 	OnIconChanged(BackpackEnabled)
