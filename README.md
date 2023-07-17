@@ -161,13 +161,27 @@ Satchel supports instance attributes allowing you to change and customize many a
 | TextStrokeColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text stroke of text in default inventory window and slots. | `[0, 0, 0]` |
 | TextStrokeTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the transparency of the text stroke of text in default chat window and slots. | 0.5 |
 
+### Methods
 
+| IsOpened(): [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) |
+| :--- |
+| Returns whether the inventory is opened or not. |
+
+| SetBackpackEnabled(enabled: boolean): `void` |
+| :--- |
+| Sets whether the backpack gui is enabled or disabled. |
+
+| GetBackpackEnabled(): [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) |
+| :--- |
+| Returns whether the backpack gui is enabled or disabled. |
+
+| GetStateChangedEvent(): [`RBXScriptSignal`](https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal) |
+| :--- |
+| Returns a signal that fires when the inventory is opened or closed. |
 
 <!-- Enums aren't supported by Rojo so this is commented out for now until a fix is available.
-
 | EquipBorderMode: [`BorderMode`](https://create.roblox.com/docs/reference/engine/enums/BorderMode) | Determines in what manner the equip border is laid out relative to its dimensions when a slot is equipped. |
 | FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. |
-
 -->
 
 ## 🙏 Contributing
