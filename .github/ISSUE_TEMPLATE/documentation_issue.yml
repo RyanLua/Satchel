@@ -1,7 +1,7 @@
 name: "Documentation Issue"
 description: Report issues in our documentation
 title: "Documentation: "
-labels: ["enhancement"]
+labels: ["documentation"]
 body:
   - type: textarea
     attributes:
