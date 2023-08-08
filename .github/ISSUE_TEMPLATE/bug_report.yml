@@ -6,7 +6,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this issue!
+        Thanks for taking the time to fill out this issue! Please agree to the below before submitting your issue.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: This project has a Code of Conduct that all participants are expected to understand and follow.
+      options:
+        - label: I have read and agree to the project's [Code of Conduct](../CODE_OF_CONDUCT.md)
+          required: true
   - type: textarea
     id: description
     attributes:
