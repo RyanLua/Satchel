@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this issue! Please agree to the below before submitting your issue.
+        Thanks for taking the time to fill out this issue!
   - type: checkboxes
     id: terms
     attributes:
@@ -59,3 +59,11 @@ body:
         (screenshots, links, videos, etc.)
       placeholder: |
         Any other details you would like to add? You can attach files here, this includes screenshots, videos, etc.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: This project has a Code of Conduct that all participants are expected to understand and follow.
+      options:
+        - label: I have read and agree to the project's [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
+          required: true

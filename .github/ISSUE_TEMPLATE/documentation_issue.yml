@@ -6,7 +6,11 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this issue! Please agree to the below before submitting your issue.
+        Thanks for taking the time to fill out this issue!
+  - type: textarea
+    attributes:
+      label: Provide a description of requested docs changes
+      placeholder: Briefly describe which document needs to be corrected and why.
   - type: checkboxes
     id: terms
     attributes:
@@ -15,7 +19,3 @@ body:
       options:
         - label: I have read and agree to the project's [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
           required: true
-  - type: textarea
-    attributes:
-      label: Provide a description of requested docs changes
-      placeholder: Briefly describe which document needs to be corrected and why.
