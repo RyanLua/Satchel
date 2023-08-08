@@ -13,7 +13,7 @@ body:
       label: Code of Conduct
       description: This project has a Code of Conduct that all participants are expected to understand and follow.
       options:
-        - label: I have read and agree to the project's [Code of Conduct](../CODE_OF_CONDUCT.md)
+        - label: I have read and agree to the project's [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
           required: true
   - type: textarea
     id: description
