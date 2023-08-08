@@ -8,14 +8,24 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report!
   - type: textarea
-    id: what-happened
+    id: description
     attributes:
-      label: What happened?
-      description: Also tell us, what did you expect to happen?
-      placeholder: Tell us what you see!
-      value: "A bug happened!"
-    validations:
-      required: true
+      label: Description
+      description: A clear and concise description of what the bug is.
+      placeholder: I was trying to do '...', and '...' happened instead.
+      value: When I do '...', I expect '...' to happen, but instead '...' happens.
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: What was expected?
+      description: What did you expect to happen?
+      placeholder: Tell us what you expected to see!
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: What actually happened?
+      description: What happened instead?
+      placeholder: Tell us what actually happened!
   - type: textarea
     id: repro-steps
     attributes:
@@ -23,16 +33,18 @@ body:
       description: How can we reproduce the issue?
       placeholder: |
         1. Go to '...'
-        2. Click on '....'
-        3. Scroll down to '....'
+        2. Click on '...'
+        3. Scroll down to '...'
         4. See error
-      render: shell
+      value: |
+        1. Click on '...'
   - type: textarea
     id: logs
     attributes:
       label: Relevant log output
       description: Please copy and paste any relevant log output.
-      render: shell
+      placeholder: |
+        Any relevant log output goes here. This includes any errors or warnings.
   - type: textarea
     id: other-details
     attributes:
