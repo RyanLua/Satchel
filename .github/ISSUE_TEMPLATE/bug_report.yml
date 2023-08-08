@@ -13,7 +13,6 @@ body:
       label: Description
       description: A clear and concise description of what the bug is.
       placeholder: I was trying to do '...', and '...' happened instead.
-      value: When I do '...', I expect '...' to happen, but instead '...' happens.
   - type: textarea
     id: expected-behavior
     attributes:
@@ -36,8 +35,6 @@ body:
         2. Click on '...'
         3. Scroll down to '...'
         4. See error
-      value: |
-        1. Click on '...'
   - type: textarea
     id: logs
     attributes:
@@ -51,7 +48,9 @@ body:
       label: Other details
       description: |
         Anything else you would like to add?
-        (screenshots, links, etc.)
+        (screenshots, links, videos, etc.)
+      placeholder: |
+        You can attach files here, or add links to videos, screenshots, etc.
   - type: checkboxes
     id: terms
     attributes:
