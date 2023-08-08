@@ -7,14 +7,6 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this issue!
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Code of Conduct
-      description: This project has a Code of Conduct that all participants are expected to understand and follow.
-      options:
-        - label: I have read and agree to the project's [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
-          required: true
   - type: textarea
     id: problem-related
     attributes:
