@@ -4,7 +4,7 @@ We welcome contributions from the community. If you would like to contribute, pl
 
 ## Coding Style
 
-If you are planning to contribute, all code written in C# must follow Microsoft's [Common C# code conventions](https://roblox.github.io/lua-style-guide/) when applicable.
+If you are planning to contribute, all code written in Lua must follow the [Roblox Lua Style Guide](https://roblox.github.io/lua-style-guide/) when applicable.
 
 ## Pull Requests
 
