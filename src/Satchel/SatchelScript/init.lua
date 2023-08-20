@@ -71,9 +71,6 @@ local BACKGROUND_FADE = targetScript:GetAttribute("BackgroundTransparency") or 0
 local BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
-local VR_FADE_TIME = 1
-local VR_PANEL_RESOLUTION = 100
-
 -- Slot colors, thickness, etc.
 local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = Color3.new(0 / 255, 162 / 255, 1)
@@ -83,7 +80,6 @@ local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
 -- Tooltip
-local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
@@ -102,7 +98,6 @@ local HOTBAR_SLOTS_FULL = 10 -- 10 is the max
 local HOTBAR_SLOTS_VR = 6
 local HOTBAR_SLOTS_MINI = 6 -- Mobile gets 6 slots instead of default 3 it had before
 local HOTBAR_SLOTS_WIDTH_CUTOFF = 1024 -- Anything smaller is MINI
-local HOTBAR_OFFSET_FROMBOTTOM = -30 -- Offset to make room for the Health GUI
 
 local INVENTORY_ROWS_FULL = 4
 local INVENTORY_ROWS_VR = 3
@@ -115,16 +110,14 @@ local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
 local SEARCH_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
-local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
 local SEARCH_PLACEHOLDER = "Search"
-local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
+-- local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
 
 local SEARCH_TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
 local TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
 local TEXT_FADE = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
 local TEXT_FADE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
-local SEARCH_TEXT_STROKE_FADE = 0.5
 local SEARCH_TEXT = ""
 
 local SEARCH_TEXT_OFFSET = 8
@@ -163,27 +156,6 @@ BackpackGui.IgnoreGuiInset = true
 BackpackGui.ResetOnSpawn = false
 BackpackGui.Name = "BackpackGui"
 
-function Create(instanceType: string): any
-	return function(data)
-		local obj = Instance.new(instanceType)
-		local parent = nil
-		for k, v in pairs(data) do
-			if type(k) == "number" then
-				v.Parent = obj
-			elseif k == "Parent" then
-				parent = v
-			else
-				obj[k] = v
-			end
-		end
-		if parent then
-			obj.Parent = parent
-		end
-		return obj
-	end
-end
-
-local Themes = require(ICON_MODULE.Themes)
 local Icon = require(ICON_MODULE)
 
 local IsTenFootInterface = GuiService:IsTenFootInterface()
@@ -242,7 +214,6 @@ local ViewingSearchResults = false -- If the results of a search are currently b
 local HotkeyStrings = {} -- Used for eating/releasing hotkeys
 local CharConns = {} -- Holds character Connections to be cleared later
 local GamepadEnabled = false -- determines if our gui needs to be gamepad friendly
-local TimeOfLastToolChange = 0
 
 local IsVR = VRService.VREnabled -- Are we currently using a VR device?
 local NumberOfHotbarSlots = IsVR and HOTBAR_SLOTS_VR or (IS_PHONE and HOTBAR_SLOTS_MINI or HOTBAR_SLOTS_FULL) -- Number of slots shown at the bottom
@@ -293,15 +264,15 @@ local function FindLowestEmpty(): number?
 	return nil
 end
 
-local function isInventoryEmpty(): boolean
-	for i = NumberOfHotbarSlots + 1, #Slots do
-		local slot = Slots[i]
-		if slot and slot.Tool then
-			return false
-		end
-	end
-	return true
-end
+-- local function isInventoryEmpty(): boolean
+-- 	for i = NumberOfHotbarSlots + 1, #Slots do
+-- 		local slot = Slots[i]
+-- 		if slot and slot.Tool then
+-- 			return false
+-- 		end
+-- 	end
+-- 	return true
+-- end
 
 local function UseGazeSelection(): ()
 	return UserInputService.VREnabled
@@ -311,7 +282,6 @@ local function AdjustHotbarFrames(): ()
 	local inventoryOpen = InventoryFrame.Visible -- (Show all)
 	local visualTotal = inventoryOpen and NumberOfHotbarSlots or FullHotbarSlots
 	local visualIndex = 0
-	local hotbarIsVisible = (visualTotal >= 1)
 
 	for i = 1, NumberOfHotbarSlots do
 		local slot = Slots[i]
@@ -416,10 +386,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	slot.Index = index
 	slot.Frame = nil
 
-	local LocalizedName = nil --remove with FFlagCoreScriptTranslateGameText2
-	local LocalizedToolTip = nil --remove with FFlagCoreScriptTranslateGameText2
-
-	local SlotFrameParent = nil
 	local SlotFrame: Frame = nil
 	local FakeSlotFrame = nil
 	local ToolIcon: ImageLabel = nil
@@ -437,10 +403,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	local function UpdateSlotFading(): ()
 		if VRService.VREnabled and BackpackPanel then
 			local panelTransparency: number = BackpackPanel.transparency
-			local slotTransparency = SLOT_FADE_LOCKED
-
-			-- This equation multiplies the two transparencies together.
-			local finalTransparency = panelTransparency + slotTransparency - panelTransparency * slotTransparency
 
 			SlotFrame.BackgroundTransparency = panelTransparency
 			SlotFrame.TextTransparency = panelTransparency
@@ -488,7 +450,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 			if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
 				ToolTip.Text = tool.ToolTip
-				local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
 				ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
 				ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
 			end
@@ -837,7 +798,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			-- Circumvent the ScrollingFrame's ClipsDescendants property
 			startParent = SlotFrame.Parent
 			if startParent == UIGridFrame then
-				local oldAbsolutPos = SlotFrame.AbsolutePosition
 				local newPosition = UDim2.new(
 					0,
 					SlotFrame.AbsolutePosition.X - InventoryFrame.AbsolutePosition.X,
@@ -975,7 +935,6 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 
 	if tool.Parent == Character then
 		ShowVRBackpackPopup()
-		TimeOfLastToolChange = tick()
 	end
 
 	--TODO: Optimize / refactor / do something else
@@ -1027,7 +986,6 @@ local function OnChildRemoved(child: Instance): () -- From Character or Backpack
 	local tool = child
 
 	ShowVRBackpackPopup()
-	TimeOfLastToolChange = tick()
 
 	-- Ignore this event if we're just moving between the two
 	local newParent = tool.Parent
@@ -1120,85 +1078,85 @@ local lastChangeToolInputObject = nil
 local lastChangeToolInputTime = nil
 local maxEquipDeltaTime = 0.06
 local noOpFunc = function() end
-local selectDirection = Vector2.new(0, 0)
-local hotbarVisible = false
+-- local selectDirection = Vector2.new(0, 0)
+-- local hotbarVisible = false
 
 function unbindAllGamepadEquipActions(): ()
 	ContextActionService:UnbindAction("RBXBackpackHasGamepadFocus")
 	ContextActionService:UnbindAction("RBXCloseInventory")
 end
 
-local function setHotbarVisibility(visible: boolean, isInventoryScreen: boolean): ()
-	for i = 1, NumberOfHotbarSlots do
-		local hotbarSlot = Slots[i]
-		if hotbarSlot and hotbarSlot.Frame and (isInventoryScreen or hotbarSlot.Tool) then
-			hotbarSlot.Frame.Visible = visible
-		end
-	end
-end
+-- local function setHotbarVisibility(visible: boolean, isInventoryScreen: boolean): ()
+-- 	for i = 1, NumberOfHotbarSlots do
+-- 		local hotbarSlot = Slots[i]
+-- 		if hotbarSlot and hotbarSlot.Frame and (isInventoryScreen or hotbarSlot.Tool) then
+-- 			hotbarSlot.Frame.Visible = visible
+-- 		end
+-- 	end
+-- end
 
-local function getInputDirection(inputObject: InputObject): Vector2
-	local buttonModifier = 1
-	if inputObject.UserInputState == Enum.UserInputState.End then
-		buttonModifier = -1
-	end
+-- local function getInputDirection(inputObject: InputObject): Vector2
+-- 	local buttonModifier = 1
+-- 	if inputObject.UserInputState == Enum.UserInputState.End then
+-- 		buttonModifier = -1
+-- 	end
 
-	if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
-		local Magnitude = inputObject.Position.Magnitude
+-- 	if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
+-- 		local Magnitude = inputObject.Position.Magnitude
 
-		if Magnitude > 0.98 then
-			local normalizedVector =
-				Vector2.new(inputObject.Position.X / Magnitude, -inputObject.Position.Y / Magnitude)
-			selectDirection = normalizedVector
-		else
-			selectDirection = Vector2.new(0, 0)
-		end
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadLeft then
-		selectDirection = Vector2.new(selectDirection.X - 1 * buttonModifier, selectDirection.Y)
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadRight then
-		selectDirection = Vector2.new(selectDirection.X + 1 * buttonModifier, selectDirection.Y)
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadUp then
-		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y - 1 * buttonModifier)
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadDown then
-		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y + 1 * buttonModifier)
-	else
-		selectDirection = Vector2.new(0, 0)
-	end
+-- 		if Magnitude > 0.98 then
+-- 			local normalizedVector =
+-- 				Vector2.new(inputObject.Position.X / Magnitude, -inputObject.Position.Y / Magnitude)
+-- 			selectDirection = normalizedVector
+-- 		else
+-- 			selectDirection = Vector2.new(0, 0)
+-- 		end
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadLeft then
+-- 		selectDirection = Vector2.new(selectDirection.X - 1 * buttonModifier, selectDirection.Y)
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadRight then
+-- 		selectDirection = Vector2.new(selectDirection.X + 1 * buttonModifier, selectDirection.Y)
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadUp then
+-- 		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y - 1 * buttonModifier)
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadDown then
+-- 		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y + 1 * buttonModifier)
+-- 	else
+-- 		selectDirection = Vector2.new(0, 0)
+-- 	end
 
-	return selectDirection
-end
+-- 	return selectDirection
+-- end
 
-local selectToolExperiment = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
-	local inputDirection = getInputDirection(inputObject)
+-- local selectToolExperiment = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
+-- 	local inputDirection = getInputDirection(inputObject)
 
-	if inputDirection == Vector2.new(0, 0) then
-		return
-	end
+-- 	if inputDirection == Vector2.new(0, 0) then
+-- 		return
+-- 	end
 
-	local angle = math.atan2(inputDirection.Y, inputDirection.X) - math.atan2(-1, 0)
-	if angle < 0 then
-		angle = angle + (math.pi * 2)
-	end
+-- 	local angle = math.atan2(inputDirection.Y, inputDirection.X) - math.atan2(-1, 0)
+-- 	if angle < 0 then
+-- 		angle = angle + (math.pi * 2)
+-- 	end
 
-	local quarterPi = (math.pi * 0.25)
+-- 	local quarterPi = (math.pi * 0.25)
 
-	local index = (angle / quarterPi) + 1
-	index = math.floor(index + 0.5) -- round index to whole number
-	if index > NumberOfHotbarSlots then
-		index = 1
-	end
+-- 	local index = (angle / quarterPi) + 1
+-- 	index = math.floor(index + 0.5) -- round index to whole number
+-- 	if index > NumberOfHotbarSlots then
+-- 		index = 1
+-- 	end
 
-	if index > 0 then
-		local selectedSlot = Slots[index]
-		if selectedSlot and selectedSlot.Tool and not selectedSlot:IsEquipped() then
-			selectedSlot:Select()
-		end
-	else
-		UnequipAllTools()
-	end
-end
+-- 	if index > 0 then
+-- 		local selectedSlot = Slots[index]
+-- 		if selectedSlot and selectedSlot.Tool and not selectedSlot:IsEquipped() then
+-- 			selectedSlot:Select()
+-- 		end
+-- 	else
+-- 		UnequipAllTools()
+-- 	end
+-- end
 
-changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
+changeToolFunc = function(inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
 	end
@@ -1371,7 +1329,7 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(actionName, inputState, inputObject)
+	local goBackOneLevel = function(inputState)
 		if inputState ~= Enum.UserInputState.Begin then
 			return
 		end
@@ -1463,13 +1421,13 @@ local function OnIconChanged(enabled: boolean): ()
 	MainFrame.Visible = enabled
 
 	-- Eat/Release hotkeys (Doesn't affect UserInputService)
-	for _, keyString in pairs(HotkeyStrings) do
-		if enabled then
-			--GuiService:AddKey(keyString)
-		else
-			--GuiService:RemoveKey(keyString)
-		end
-	end
+	-- for _, keyString in pairs(HotkeyStrings) do
+	-- 	if enabled then
+	-- 		GuiService:AddKey(keyString)
+	-- 	else
+	-- 		GuiService:RemoveKey(keyString)
+	-- 	end
+	-- end
 
 	if enabled then
 		if FullHotbarSlots >= 1 then
@@ -1641,44 +1599,41 @@ end)
 UpdateBackpackLayout()
 
 --Make the gamepad hint frame
-local gamepadHintsFrame = Create("Frame")({
-	Name = "GamepadHintsFrame",
-	Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60)),
-	BackgroundTransparency = 1,
-	Visible = false,
-	Parent = MainFrame,
-})
+local gamepadHintsFrame = Instance.new("Frame")
+gamepadHintsFrame.Name = "GamepadHintsFrame"
+gamepadHintsFrame.Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
+gamepadHintsFrame.BackgroundTransparency = 1
+gamepadHintsFrame.Visible = false
+gamepadHintsFrame.Parent = MainFrame
 
-local function addGamepadHint(hintImage: string, hintImageLarge: string, hintText: string): ()
-	local hintFrame = Create("Frame")({
-		Name = "HintFrame",
-		Size = UDim2.new(1, 0, 1, -5),
-		Position = UDim2.new(0, 0, 0, 0),
-		BackgroundTransparency = 1,
-		Parent = gamepadHintsFrame,
-	})
+local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hintTextString: string): ()
+	local hintFrame = Instance.new("Frame")
+	hintFrame.Name = "HintFrame"
+	hintFrame.Size = UDim2.new(1, 0, 1, -5)
+	hintFrame.Position = UDim2.new(0, 0, 0, 0)
+	hintFrame.BackgroundTransparency = 1
+	hintFrame.Parent = gamepadHintsFrame
 
-	local hintImage = Create("ImageLabel")({
-		Name = "HintImage",
-		Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60)),
-		BackgroundTransparency = 1,
-		Image = (IsTenFootInterface and hintImageLarge or hintImage),
-		Parent = hintFrame,
-	})
+	local hintImage = Instance.new("ImageLabel")
+	hintImage.Name = "HintImage"
+	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60))
+	hintImage.BackgroundTransparency = 1
+	hintImage.Image = (IsTenFootInterface and hintImageLarge or hintImageSmall)
+	hintImage.Parent = hintFrame
 
-	local hintText = Create("TextLabel")({
-		Name = "HintText",
-		Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0),
-		Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0),
-		Font = Enum.Font.SourceSansBold,
-		FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24),
-		BackgroundTransparency = 1,
-		Text = hintText,
-		TextColor3 = Color3.new(1, 1, 1),
-		TextXAlignment = Enum.TextXAlignment.Left,
-		TextWrapped = true,
-		Parent = hintFrame,
-	})
+	local hintText = Instance.new("TextLabel")
+	hintText.Name = "HintText"
+	hintText.Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0)
+	hintText.Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0)
+	hintText.Font = Enum.Font.SourceSansBold
+	hintText.FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24)
+	hintText.BackgroundTransparency = 1
+	hintText.Text = hintTextString
+	hintText.TextColor3 = Color3.new(1, 1, 1)
+	hintText.TextXAlignment = Enum.TextXAlignment.Left
+	hintText.TextWrapped = true
+	hintText.Parent = hintFrame
+
 	local textSizeConstraint = Instance.new("UITextSizeConstraint", hintText)
 	textSizeConstraint.MaxTextSize = hintText.TextSize
 end
@@ -1720,7 +1675,7 @@ local function resizeGamepadHintsFrame(): ()
 	end
 end
 
-if GetFFlagUseDesignSystemGamepadIcons() then
+if GetFFlagUseDesignSystemGamepadIcons then
 	addGamepadHint(
 		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX.png",
 		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX@2x.png",
@@ -1841,7 +1796,7 @@ do -- Search stuff
 		ViewingSearchResults = true
 
 		local hitCount = 0
-		for i, data in ipairs(hitTable) do
+		for _, data in ipairs(hitTable) do
 			local slot, hits = data[1], data[2]
 			if hits > 0 then
 				slot.Frame.Visible = true
@@ -1946,7 +1901,7 @@ GuiService.MenuClosed:Connect(function(): ()
 end)
 
 do -- Make the Inventory expand/collapse arrow (unless TopBar)
-	local removeHotBarSlot = function(name: string, state: Enum.UserInputState, input: InputObject): ()
+	local removeHotBarSlot = function(state: Enum.UserInputState): ()
 		if state ~= Enum.UserInputState.Begin then
 			return
 		end
