@@ -392,7 +392,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	local ToolIcon: ImageLabel = nil
 	local ToolName: TextLabel = nil
 	local ToolChangeConn = nil
-	local HighlightFrame: Frame = nil
+	local HighlightFrame: UIStroke = nil
 	local SelectionObj = nil
 
 	--NOTE: The following are only defined for Hotbar Slots
@@ -537,23 +537,20 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		if not unequippedOverride and IsEquipped(self.Tool) then -- Equipped
 			lastEquippedSlot = slot
 			if not HighlightFrame then
-				HighlightFrame = NewGui("Frame", "Equipped")
-				HighlightFrame.ZIndex = SlotFrame.ZIndex
-
-				edgeFrame = Instance.new("UIStroke")
-				edgeFrame.Name = "Border"
-				edgeFrame.Thickness = SLOT_EQUIP_THICKNESS
-				edgeFrame.Color = SLOT_EQUIP_COLOR
-				edgeFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+				HighlightFrame = Instance.new("UIStroke")
+				HighlightFrame.Name = "Border"
+				HighlightFrame.Thickness = SLOT_EQUIP_THICKNESS
+				HighlightFrame.Color = SLOT_EQUIP_COLOR
+				HighlightFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 			end
 			if LEGACY_EDGE == true then
-				edgeFrame.Parent = ToolIcon
+				HighlightFrame.Parent = ToolIcon
 			else
-				edgeFrame.Parent = SlotFrame
+				HighlightFrame.Parent = SlotFrame
 			end
 		else -- In the Backpack
 			if HighlightFrame then
-				edgeFrame.Parent = nil
+				HighlightFrame.Parent = nil
 			end
 		end
 		UpdateSlotFading()
@@ -1157,7 +1154,7 @@ end
 -- 	end
 -- end
 
-local changeToolFunc = function(inputState: Enum.UserInputState, inputObject: InputObject): ()
+changeToolFunc = function(inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
 	end
@@ -1337,11 +1334,8 @@ function enableGamepadInventoryControl(): ()
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
-			local selectedSlot = getGamepadSwapSlot()
-			if selectedSlot then
-				selectedSlot.Frame.BorderSizePixel = 0
-				return
-			end
+			selectedSlot.Frame.BorderSizePixel = 0
+			return
 		elseif InventoryFrame.Visible then
 			InventoryIcon:deselect()
 		end
