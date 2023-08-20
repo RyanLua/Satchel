@@ -657,7 +657,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.Draggable = false
 	SlotFrame.BackgroundTransparency = SLOT_FADE_LOCKED
 	SlotFrame.MouseButton1Click:Connect(function(): ()
-		changeSlot(slot)
+		slot:Select()
 	end)
 	local searchFrameCorner = Instance.new("UICorner")
 	searchFrameCorner.Name = "Corner"
@@ -956,9 +956,9 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 					end
 				end
 				-- Have to manually unequip a possibly equipped tool
-				for _, child in pairs(Character:GetChildren()) do
-					if child:IsA("Tool") and child ~= tool then
-						child.Parent = Backpack
+				for _, children in pairs(Character:GetChildren()) do
+					if children:IsA("Tool") and children ~= tool then
+						children.Parent = Backpack
 					end
 				end
 				AdjustHotbarFrames()
@@ -1157,7 +1157,7 @@ end
 -- 	end
 -- end
 
-changeToolFunc = function(inputState: Enum.UserInputState, inputObject: InputObject): ()
+local changeToolFunc = function(inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
 	end
@@ -1260,61 +1260,61 @@ function getGamepadSwapSlot(): any
 	end
 end
 
-function changeSlot(slot: any): ()
-	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
+-- function changeSlot(slot: any): ()
+-- 	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
 
-	if slot.Frame == GuiService.SelectedObject and swapInVr then
-		local currentlySelectedSlot: any = getGamepadSwapSlot()
+-- 	if slot.Frame == GuiService.SelectedObject and swapInVr then
+-- 		local currentlySelectedSlot: any = getGamepadSwapSlot()
 
-		if currentlySelectedSlot then
-			currentlySelectedSlot.Frame.BorderSizePixel = 0
-			if currentlySelectedSlot ~= slot then
-				slot:Swap(currentlySelectedSlot)
-				VRInventorySelector.SelectionImageObject.Visible = false
+-- 		if currentlySelectedSlot then
+-- 			currentlySelectedSlot.Frame.BorderSizePixel = 0
+-- 			if currentlySelectedSlot ~= slot then
+-- 				slot:Swap(currentlySelectedSlot)
+-- 				VRInventorySelector.SelectionImageObject.Visible = false
 
-				if slot.Index > NumberOfHotbarSlots and not slot.Tool then
-					if GuiService.SelectedObject == slot.Frame then
-						GuiService.SelectedObject = currentlySelectedSlot.Frame
-					end
-					slot:Delete()
-				end
+-- 				if slot.Index > NumberOfHotbarSlots and not slot.Tool then
+-- 					if GuiService.SelectedObject == slot.Frame then
+-- 						GuiService.SelectedObject = currentlySelectedSlot.Frame
+-- 					end
+-- 					slot:Delete()
+-- 				end
 
-				if currentlySelectedSlot.Index > NumberOfHotbarSlots and not currentlySelectedSlot.Tool then
-					if GuiService.SelectedObject == currentlySelectedSlot.Frame then
-						GuiService.SelectedObject = slot.Frame
-					end
-					currentlySelectedSlot:Delete()
-				end
-			end
-		else
-			local startSize = slot.Frame.Size
-			local startPosition = slot.Frame.Position
-			slot.Frame:TweenSizeAndPosition(
-				startSize + UDim2.new(0, 10, 0, 10),
-				startPosition - UDim2.new(0, 5, 0, 5),
-				Enum.EasingDirection.Out,
-				Enum.EasingStyle.Quad,
-				0.1,
-				true,
-				function(): ()
-					slot.Frame:TweenSizeAndPosition(
-						startSize,
-						startPosition,
-						Enum.EasingDirection.In,
-						Enum.EasingStyle.Quad,
-						0.1,
-						true
-					)
-				end
-			)
-			slot.Frame.BorderSizePixel = 3
-			VRInventorySelector.SelectionImageObject.Visible = true
-		end
-	else
-		slot:Select()
-		VRInventorySelector.SelectionImageObject.Visible = false
-	end
-end
+-- 				if currentlySelectedSlot.Index > NumberOfHotbarSlots and not currentlySelectedSlot.Tool then
+-- 					if GuiService.SelectedObject == currentlySelectedSlot.Frame then
+-- 						GuiService.SelectedObject = slot.Frame
+-- 					end
+-- 					currentlySelectedSlot:Delete()
+-- 				end
+-- 			end
+-- 		else
+-- 			local startSize = slot.Frame.Size
+-- 			local startPosition = slot.Frame.Position
+-- 			slot.Frame:TweenSizeAndPosition(
+-- 				startSize + UDim2.new(0, 10, 0, 10),
+-- 				startPosition - UDim2.new(0, 5, 0, 5),
+-- 				Enum.EasingDirection.Out,
+-- 				Enum.EasingStyle.Quad,
+-- 				0.1,
+-- 				true,
+-- 				function(): ()
+-- 					slot.Frame:TweenSizeAndPosition(
+-- 						startSize,
+-- 						startPosition,
+-- 						Enum.EasingDirection.In,
+-- 						Enum.EasingStyle.Quad,
+-- 						0.1,
+-- 						true
+-- 					)
+-- 				end
+-- 			)
+-- 			slot.Frame.BorderSizePixel = 3
+-- 			VRInventorySelector.SelectionImageObject.Visible = true
+-- 		end
+-- 	else
+-- 		slot:Select()
+-- 		VRInventorySelector.SelectionImageObject.Visible = false
+-- 	end
+-- end
 
 function vrMoveSlotToInventory(): ()
 	if not VRService.VREnabled then
@@ -1335,6 +1335,7 @@ function enableGamepadInventoryControl(): ()
 			return
 		end
 
+		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
 			local selectedSlot = getGamepadSwapSlot()
 			if selectedSlot then
