@@ -150,11 +150,12 @@ local BackpackEnabled = true
 if TopbarPlusReference then
 	ICON_MODULE = TopbarPlusReference.Value
 end
-local BackpackGui = Instance.new("ScreenGui", PlayerGui)
+local BackpackGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
 BackpackGui.IgnoreGuiInset = true
 BackpackGui.ResetOnSpawn = false
 BackpackGui.Name = "BackpackGui"
+BackpackGui.Parent = PlayerGui
 
 local Icon = require(ICON_MODULE)
 
@@ -211,7 +212,7 @@ local StarterToolFound = false -- Special handling is required for the gear curr
 local WholeThingEnabled = false
 local TextBoxFocused = false -- ANY TextBox, not just the search box
 local ViewingSearchResults = false -- If the results of a search are currently being viewed
-local HotkeyStrings = {} -- Used for eating/releasing hotkeys
+-- local HotkeyStrings = {} -- Used for eating/releasing hotkeys
 local CharConns = {} -- Holds character Connections to be cleared later
 local GamepadEnabled = false -- determines if our gui needs to be gamepad friendly
 
@@ -1334,7 +1335,6 @@ function enableGamepadInventoryControl(): ()
 			return
 		end
 
-		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
 			local selectedSlot = getGamepadSwapSlot()
 			if selectedSlot then
@@ -1488,11 +1488,11 @@ InventoryIcon.deselected:Connect(function(): ()
 	end
 end)
 
-LeftBumperButton = NewGui("ImageLabel", "LeftBumper")
+local LeftBumperButton = NewGui("ImageLabel", "LeftBumper")
 LeftBumperButton.Size = UDim2.new(0, 40, 0, 40)
 LeftBumperButton.Position = UDim2.new(0, -LeftBumperButton.Size.X.Offset, 0.5, -LeftBumperButton.Size.Y.Offset / 2)
 
-RightBumperButton = NewGui("ImageLabel", "RightBumper")
+local RightBumperButton = NewGui("ImageLabel", "RightBumper")
 RightBumperButton.Size = UDim2.new(0, 40, 0, 40)
 RightBumperButton.Position = UDim2.new(1, 0, 0.5, -RightBumperButton.Size.Y.Offset / 2)
 
@@ -1634,8 +1634,9 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 	hintText.TextWrapped = true
 	hintText.Parent = hintFrame
 
-	local textSizeConstraint = Instance.new("UITextSizeConstraint", hintText)
+	local textSizeConstraint = Instance.new("UITextSizeConstraint")
 	textSizeConstraint.MaxTextSize = hintText.TextSize
+	textSizeConstraint.Parent = hintText
 end
 
 local function resizeGamepadHintsFrame(): ()
