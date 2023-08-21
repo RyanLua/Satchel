@@ -1154,7 +1154,7 @@ end
 -- 	end
 -- end
 
-changeToolFunc = function(inputState: Enum.UserInputState, inputObject: InputObject): ()
+local function changeToolFunc(inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
 	end
