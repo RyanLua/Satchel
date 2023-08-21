@@ -34,6 +34,7 @@
 ]]
 
 local ContextActionService = game:GetService("ContextActionService")
+local TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
@@ -1041,10 +1042,12 @@ local function OnCharacterAdded(character: Model): ()
 end
 
 local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
+	local ChatInputBarConfiguration = TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration")
 	-- Pass through keyboard hotkeys when not typing into a TextBox and not disabled (except for the Drop key)
 	if
 		input.UserInputType == Enum.UserInputType.Keyboard
 		and not TextBoxFocused
+		and not ChatInputBarConfiguration.IsFocused
 		and (WholeThingEnabled or input.KeyCode.Value == DROP_HOTKEY_VALUE)
 	then
 		local hotkeyBehavior = HotkeyFns[input.KeyCode.Value]
@@ -1057,7 +1060,7 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 	if not isProcessed then
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
-				InventoryIcon:deselect()
+				BackpackScript.OpenClose()
 			end
 		end
 	end
