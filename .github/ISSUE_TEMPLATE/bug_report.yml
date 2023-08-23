@@ -33,8 +33,6 @@ body:
         - Phones
         - Consoles
         - VR
-    validations:
-      required: true
   - type: textarea
     id: expected-behavior
     attributes:
