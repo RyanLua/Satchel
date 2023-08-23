@@ -995,9 +995,9 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 					end
 				end
 				-- Have to manually unequip a possibly equipped tool
-				for _, child in pairs(Character:GetChildren()) do
-					if child:IsA("Tool") and child ~= tool then
-						child.Parent = Backpack
+				for _, children in pairs(Character:GetChildren()) do
+					if children:IsA("Tool") and children ~= tool then
+						children.Parent = Backpack
 					end
 				end
 				AdjustHotbarFrames()
@@ -1464,13 +1464,13 @@ local function OnIconChanged(enabled: boolean): ()
 	MainFrame.Visible = enabled
 
 	-- Eat/Release hotkeys (Doesn't affect UserInputService)
-	for _, keyString in pairs(HotkeyStrings) do
-		if enabled then
-			--GuiService:AddKey(keyString)
-		else
-			--GuiService:RemoveKey(keyString)
-		end
-	end
+	-- for _, keyString in pairs(HotkeyStrings) do
+	-- 	if enabled then
+	-- 		--GuiService:AddKey(keyString)
+	-- 	else
+	-- 		--GuiService:RemoveKey(keyString)
+	-- 	end
+	-- end
 
 	if enabled then
 		if FullHotbarSlots >= 1 then
@@ -1650,7 +1650,7 @@ local gamepadHintsFrame = Create("Frame")({
 	Parent = MainFrame,
 })
 
-local function addGamepadHint(hintImage: string, hintImageLarge: string, hintText: string): ()
+local function addGamepadHint(hintImage: string, hintImageLarge: string, hintTextString: string): ()
 	local hintFrame = Create("Frame")({
 		Name = "HintFrame",
 		Size = UDim2.new(1, 0, 1, -5),
@@ -1680,7 +1680,7 @@ local function addGamepadHint(hintImage: string, hintImageLarge: string, hintTex
 	hintText.TextWrapped = true
 	hintText.Parent = hintFrame
 
-	local textSizeConstraint = Instance.new("UITextSizeConstraint", hintText)
+	local textSizeConstraint = Instance.new("UITextSizeConstraint")
 	textSizeConstraint.MaxTextSize = hintText.TextSize
 	textSizeConstraint.Parent = hintText
 end
@@ -1722,7 +1722,7 @@ local function resizeGamepadHintsFrame(): ()
 	end
 end
 
-if GetFFlagUseDesignSystemGamepadIcons() then
+if GetFFlagUseDesignSystemGamepadIcons then
 	addGamepadHint(
 		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX.png",
 		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX@2x.png",
