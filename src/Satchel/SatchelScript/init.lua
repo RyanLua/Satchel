@@ -72,9 +72,6 @@ local BACKGROUND_FADE = targetScript:GetAttribute("BackgroundTransparency") or 0
 local BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
-local VR_FADE_TIME = 1
-local VR_PANEL_RESOLUTION = 100
-
 -- Slot colors, thickness, etc.
 local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
@@ -84,7 +81,6 @@ local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
 -- Tooltip
-local TOOLTIP_BUFFER = 6
 local TOOLTIP_PADDING = 4
 local TOOLTIP_HEIGHT = 16
 local TOOLTIP_OFFSET = -5 -- From to
@@ -103,7 +99,6 @@ local HOTBAR_SLOTS_FULL = 10 -- 10 is the max
 local HOTBAR_SLOTS_VR = 6
 local HOTBAR_SLOTS_MINI = 6 -- Mobile gets 6 slots instead of default 3 it had before
 local HOTBAR_SLOTS_WIDTH_CUTOFF = 1024 -- Anything smaller is MINI
-local HOTBAR_OFFSET_FROMBOTTOM = -30 -- Offset to make room for the Health GUI
 
 local INVENTORY_ROWS_FULL = 4
 local INVENTORY_ROWS_VR = 3
@@ -116,16 +111,13 @@ local SEARCH_BUFFER = 5
 local SEARCH_WIDTH = 200
 local SEARCH_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
-local SEARCH_ICON = "rbxasset://textures/ui/TopBar/search.png"
 local SEARCH_PLACEHOLDER = "Search"
-local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
 
 local SEARCH_TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
 local TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
 local TEXT_FADE = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
 local TEXT_FADE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
-local SEARCH_TEXT_STROKE_FADE = 0.5
 local SEARCH_TEXT = ""
 
 local SEARCH_TEXT_OFFSET = 8
@@ -244,7 +236,6 @@ local ViewingSearchResults = false -- If the results of a search are currently b
 -- local HotkeyStrings = {} -- Used for eating/releasing hotkeys
 local CharConns = {} -- Holds character Connections to be cleared later
 local GamepadEnabled = false -- determines if our gui needs to be gamepad friendly
-local TimeOfLastToolChange = 0
 
 local IsVR = VRService.VREnabled -- Are we currently using a VR device?
 local NumberOfHotbarSlots = IsVR and HOTBAR_SLOTS_VR or (IS_PHONE and HOTBAR_SLOTS_MINI or HOTBAR_SLOTS_FULL) -- Number of slots shown at the bottom
@@ -313,7 +304,6 @@ local function AdjustHotbarFrames(): ()
 	local inventoryOpen = InventoryFrame.Visible -- (Show all)
 	local visualTotal = inventoryOpen and NumberOfHotbarSlots or FullHotbarSlots
 	local visualIndex = 0
-	local hotbarIsVisible = (visualTotal >= 1)
 
 	for i = 1, NumberOfHotbarSlots do
 		local slot = Slots[i]
@@ -418,10 +408,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	slot.Index = index
 	slot.Frame = nil
 
-	local LocalizedName = nil --remove with FFlagCoreScriptTranslateGameText2
-	local LocalizedToolTip = nil --remove with FFlagCoreScriptTranslateGameText2
-
-	local SlotFrameParent = nil
 	local SlotFrame: Frame = nil
 	local FakeSlotFrame = nil
 	local ToolIcon: ImageLabel = nil
@@ -439,10 +425,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	local function UpdateSlotFading(): ()
 		if VRService.VREnabled and BackpackPanel then
 			local panelTransparency: number = BackpackPanel.transparency
-			local slotTransparency = SLOT_FADE_LOCKED
-
-			-- This equation multiplies the two transparencies together.
-			local finalTransparency = panelTransparency + slotTransparency - panelTransparency * slotTransparency
 
 			SlotFrame.BackgroundTransparency = panelTransparency
 			SlotFrame.TextTransparency = panelTransparency
@@ -490,7 +472,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 			if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
 				ToolTip.Text = tool.ToolTip
-				local width = ToolTip.TextBounds.X + TOOLTIP_BUFFER
 				ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
 				ToolTip.Position = UDim2.new(0.5, 0, 0, TOOLTIP_OFFSET)
 			end
@@ -836,7 +817,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			-- Circumvent the ScrollingFrame's ClipsDescendants property
 			startParent = SlotFrame.Parent
 			if startParent == UIGridFrame then
-				local oldAbsolutPos = SlotFrame.AbsolutePosition
 				local newPosition = UDim2.new(
 					0,
 					SlotFrame.AbsolutePosition.X - InventoryFrame.AbsolutePosition.X,
@@ -974,7 +954,6 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 
 	if tool.Parent == Character then
 		ShowVRBackpackPopup()
-		TimeOfLastToolChange = tick()
 	end
 
 	--TODO: Optimize / refactor / do something else
@@ -1026,7 +1005,6 @@ local function OnChildRemoved(child: Instance): () -- From Character or Backpack
 	local tool = child
 
 	ShowVRBackpackPopup()
-	TimeOfLastToolChange = tick()
 
 	-- Ignore this event if we're just moving between the two
 	local newParent = tool.Parent
@@ -1122,7 +1100,6 @@ local lastChangeToolInputTime = nil
 local maxEquipDeltaTime = 0.06
 local noOpFunc = function() end
 local selectDirection = Vector2.new(0, 0)
-local hotbarVisible = false
 
 function unbindAllGamepadEquipActions(): ()
 	ContextActionService:UnbindAction("RBXBackpackHasGamepadFocus")
