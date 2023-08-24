@@ -157,26 +157,6 @@ BackpackGui.ResetOnSpawn = false
 BackpackGui.Name = "BackpackGui"
 BackpackGui.Parent = PlayerGui
 
-function Create(instanceType: string): any
-	return function(data)
-		local obj = Instance.new(instanceType)
-		local parent = nil
-		for k, v in pairs(data) do
-			if type(k) == "number" then
-				v.Parent = obj
-			elseif k == "Parent" then
-				parent = v
-			else
-				obj[k] = v
-			end
-		end
-		if parent then
-			obj.Parent = parent
-		end
-		return obj
-	end
-end
-
 local Themes = require(ICON_MODULE.Themes)
 local Icon = require(ICON_MODULE)
 
@@ -1619,30 +1599,27 @@ end)
 UpdateBackpackLayout()
 
 --Make the gamepad hint frame
-local gamepadHintsFrame = Create("Frame")({
-	Name = "GamepadHintsFrame",
-	Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60)),
-	BackgroundTransparency = 1,
-	Visible = false,
-	Parent = MainFrame,
-})
+local gamepadHintsFrame = Instance.new("Frame")
+gamepadHintsFrame.Name = "GamepadHintsFrame"
+gamepadHintsFrame.Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
+gamepadHintsFrame.BackgroundTransparency = 1
+gamepadHintsFrame.Visible = false
+gamepadHintsFrame.Parent = MainFrame
 
-local function addGamepadHint(hintImage: string, hintImageLarge: string, hintTextString: string): ()
-	local hintFrame = Create("Frame")({
-		Name = "HintFrame",
-		Size = UDim2.new(1, 0, 1, -5),
-		Position = UDim2.new(0, 0, 0, 0),
-		BackgroundTransparency = 1,
-		Parent = gamepadHintsFrame,
-	})
+local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hintTextString: string): ()
+	local hintFrame = Instance.new("Frame")
+	hintFrame.Name = "HintFrame"
+	hintFrame.Size = UDim2.new(1, 0, 1, -5)
+	hintFrame.Position = UDim2.new(0, 0, 0, 0)
+	hintFrame.BackgroundTransparency = 1
+	hintFrame.Parent = gamepadHintsFrame
 
-	local hintImage = Create("ImageLabel")({
-		Name = "HintImage",
-		Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60)),
-		BackgroundTransparency = 1,
-		Image = (IsTenFootInterface and hintImageLarge or hintImage),
-		Parent = hintFrame,
-	})
+	local hintImage = Instance.new("ImageLabel")
+	hintImage.Name = "HintImage"
+	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60))
+	hintImage.BackgroundTransparency = 1
+	hintImage.Image = (IsTenFootInterface and hintImageLarge or hintImageSmall)
+	hintImage.Parent = hintFrame
 
 	local hintText = Instance.new("TextLabel")
 	hintText.Name = "HintText"
