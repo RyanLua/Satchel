@@ -13,6 +13,26 @@ body:
       label: Description
       description: A clear and concise description of what the bug is.
       placeholder: Describe the bug
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Moderate
+        - High
+        - Critical
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Platforms affected
+      multiple: true
+      options:
+        - Computers
+        - Tablets
+        - Phones
+        - Consoles
+        - VR
   - type: textarea
     id: expected-behavior
     attributes:
