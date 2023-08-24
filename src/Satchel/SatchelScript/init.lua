@@ -1443,9 +1443,9 @@ local function OnIconChanged(enabled: boolean): ()
 	-- Eat/Release hotkeys (Doesn't affect UserInputService)
 	-- for _, keyString in pairs(HotkeyStrings) do
 	-- 	if enabled then
-	-- 		--GuiService:AddKey(keyString)
+	-- 		GuiService:AddKey(keyString)
 	-- 	else
-	-- 		--GuiService:RemoveKey(keyString)
+	-- 		GuiService:RemoveKey(keyString)
 	-- 	end
 	-- end
 
