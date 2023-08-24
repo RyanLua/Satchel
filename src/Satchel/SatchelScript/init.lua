@@ -266,15 +266,15 @@ local function FindLowestEmpty(): number?
 	return nil
 end
 
-local function isInventoryEmpty(): boolean
-	for i = NumberOfHotbarSlots + 1, #Slots do
-		local slot = Slots[i]
-		if slot and slot.Tool then
-			return false
-		end
-	end
-	return true
-end
+-- local function isInventoryEmpty(): boolean
+-- 	for i = NumberOfHotbarSlots + 1, #Slots do
+-- 		local slot = Slots[i]
+-- 		if slot and slot.Tool then
+-- 			return false
+-- 		end
+-- 	end
+-- 	return true
+-- end
 
 local function UseGazeSelection(): ()
 	return UserInputService.VREnabled
@@ -1079,82 +1079,82 @@ local lastChangeToolInputObject = nil
 local lastChangeToolInputTime = nil
 local maxEquipDeltaTime = 0.06
 local noOpFunc = function() end
-local selectDirection = Vector2.new(0, 0)
+-- local selectDirection = Vector2.new(0, 0)
 
 function unbindAllGamepadEquipActions(): ()
 	ContextActionService:UnbindAction("RBXBackpackHasGamepadFocus")
 	ContextActionService:UnbindAction("RBXCloseInventory")
 end
 
-local function setHotbarVisibility(visible: boolean, isInventoryScreen: boolean): ()
-	for i = 1, NumberOfHotbarSlots do
-		local hotbarSlot = Slots[i]
-		if hotbarSlot and hotbarSlot.Frame and (isInventoryScreen or hotbarSlot.Tool) then
-			hotbarSlot.Frame.Visible = visible
-		end
-	end
-end
+-- local function setHotbarVisibility(visible: boolean, isInventoryScreen: boolean): ()
+-- 	for i = 1, NumberOfHotbarSlots do
+-- 		local hotbarSlot = Slots[i]
+-- 		if hotbarSlot and hotbarSlot.Frame and (isInventoryScreen or hotbarSlot.Tool) then
+-- 			hotbarSlot.Frame.Visible = visible
+-- 		end
+-- 	end
+-- end
 
-local function getInputDirection(inputObject: InputObject): Vector2
-	local buttonModifier = 1
-	if inputObject.UserInputState == Enum.UserInputState.End then
-		buttonModifier = -1
-	end
+-- local function getInputDirection(inputObject: InputObject): Vector2
+-- 	local buttonModifier = 1
+-- 	if inputObject.UserInputState == Enum.UserInputState.End then
+-- 		buttonModifier = -1
+-- 	end
 
-	if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
-		local Magnitude = inputObject.Position.Magnitude
+-- 	if inputObject.KeyCode == Enum.KeyCode.Thumbstick1 then
+-- 		local Magnitude = inputObject.Position.Magnitude
 
-		if Magnitude > 0.98 then
-			local normalizedVector =
-				Vector2.new(inputObject.Position.X / Magnitude, -inputObject.Position.Y / Magnitude)
-			selectDirection = normalizedVector
-		else
-			selectDirection = Vector2.new(0, 0)
-		end
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadLeft then
-		selectDirection = Vector2.new(selectDirection.X - 1 * buttonModifier, selectDirection.Y)
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadRight then
-		selectDirection = Vector2.new(selectDirection.X + 1 * buttonModifier, selectDirection.Y)
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadUp then
-		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y - 1 * buttonModifier)
-	elseif inputObject.KeyCode == Enum.KeyCode.DPadDown then
-		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y + 1 * buttonModifier)
-	else
-		selectDirection = Vector2.new(0, 0)
-	end
+-- 		if Magnitude > 0.98 then
+-- 			local normalizedVector =
+-- 				Vector2.new(inputObject.Position.X / Magnitude, -inputObject.Position.Y / Magnitude)
+-- 			selectDirection = normalizedVector
+-- 		else
+-- 			selectDirection = Vector2.new(0, 0)
+-- 		end
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadLeft then
+-- 		selectDirection = Vector2.new(selectDirection.X - 1 * buttonModifier, selectDirection.Y)
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadRight then
+-- 		selectDirection = Vector2.new(selectDirection.X + 1 * buttonModifier, selectDirection.Y)
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadUp then
+-- 		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y - 1 * buttonModifier)
+-- 	elseif inputObject.KeyCode == Enum.KeyCode.DPadDown then
+-- 		selectDirection = Vector2.new(selectDirection.X, selectDirection.Y + 1 * buttonModifier)
+-- 	else
+-- 		selectDirection = Vector2.new(0, 0)
+-- 	end
 
-	return selectDirection
-end
+-- 	return selectDirection
+-- end
 
-local selectToolExperiment = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
-	local inputDirection = getInputDirection(inputObject)
+-- local selectToolExperiment = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
+-- 	local inputDirection = getInputDirection(inputObject)
 
-	if inputDirection == Vector2.new(0, 0) then
-		return
-	end
+-- 	if inputDirection == Vector2.new(0, 0) then
+-- 		return
+-- 	end
 
-	local angle = math.atan2(inputDirection.Y, inputDirection.X) - math.atan2(-1, 0)
-	if angle < 0 then
-		angle = angle + (math.pi * 2)
-	end
+-- 	local angle = math.atan2(inputDirection.Y, inputDirection.X) - math.atan2(-1, 0)
+-- 	if angle < 0 then
+-- 		angle = angle + (math.pi * 2)
+-- 	end
 
-	local quarterPi = (math.pi * 0.25)
+-- 	local quarterPi = (math.pi * 0.25)
 
-	local index = (angle / quarterPi) + 1
-	index = math.floor(index + 0.5) -- round index to whole number
-	if index > NumberOfHotbarSlots then
-		index = 1
-	end
+-- 	local index = (angle / quarterPi) + 1
+-- 	index = math.floor(index + 0.5) -- round index to whole number
+-- 	if index > NumberOfHotbarSlots then
+-- 		index = 1
+-- 	end
 
-	if index > 0 then
-		local selectedSlot = Slots[index]
-		if selectedSlot and selectedSlot.Tool and not selectedSlot:IsEquipped() then
-			selectedSlot:Select()
-		end
-	else
-		UnequipAllTools()
-	end
-end
+-- 	if index > 0 then
+-- 		local selectedSlot = Slots[index]
+-- 		if selectedSlot and selectedSlot.Tool and not selectedSlot:IsEquipped() then
+-- 			selectedSlot:Select()
+-- 		end
+-- 	else
+-- 		UnequipAllTools()
+-- 	end
+-- end
 
 changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
