@@ -1820,7 +1820,7 @@ do -- Search stuff
 		ViewingSearchResults = true
 
 		local hitCount = 0
-		for i, data in ipairs(hitTable) do
+		for _, data in ipairs(hitTable) do
 			local slot, hits = data[1], data[2]
 			if hits > 0 then
 				slot.Frame.Visible = true
