@@ -92,7 +92,6 @@ local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3")
 local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE = "rbxasset://textures/ui/TopBar/inventoryOff.png"
 local ARROW_HOTKEY = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
-local ICON_MODULE = script.Icon
 
 -- Hotbar slots
 local HOTBAR_SLOTS_FULL = 10 -- 10 is the max
@@ -145,20 +144,28 @@ local GAMEPAD_INPUT_TYPES = { -- These are the input types that will be used for
 }
 
 -- Topbar logic
-local TopbarPlusReference = ReplicatedStorage:FindFirstChild("TopbarPlusReference")
-local BackpackEnabled = true
+local BackpackEnabled: boolean = true
 
-if TopbarPlusReference then
-	ICON_MODULE = TopbarPlusReference.Value
+local function GetIconModule(): ModuleScript
+	local ReplicatedIconModule: ModuleScript = ReplicatedStorage:FindFirstChild("Icon")
+	local LocalIconModule: ModuleScript = script.Icon
+
+	if ReplicatedIconModule and ReplicatedIconModule:IsA("ModuleScript") then
+		LocalIconModule:Destroy()
+		return ReplicatedIconModule
+	else
+		return LocalIconModule
+	end
 end
+
+local Icon: table = require(GetIconModule())
+
 local BackpackGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
 BackpackGui.IgnoreGuiInset = true
 BackpackGui.ResetOnSpawn = false
 BackpackGui.Name = "BackpackGui"
 BackpackGui.Parent = PlayerGui
-
-local Icon = require(ICON_MODULE)
 
 local IsTenFootInterface = GuiService:IsTenFootInterface()
 
