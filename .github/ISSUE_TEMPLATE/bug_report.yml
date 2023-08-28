@@ -39,8 +39,8 @@ body:
         3. Scroll down to '...'
         4. See error
       value: |
-      1. __Show the steps to reproduce the issue__
-      2. __Make sure they are numbered__
+        1. __Show the steps to reproduce the issue__
+        2. __Make sure they are numbered__
   - type: textarea
     id: logs
     attributes:
