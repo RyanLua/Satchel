@@ -46,9 +46,9 @@ body:
     attributes:
       label: Relevant log output
       description: Please copy and paste any relevant log output.
-      placeholder: |
-        Add any relevant log output here. This includes any errors or warnings.
-      value: _Any outputs or logs of when the bug occurred?_
+      placeholder: Add any relevant log output here. This includes any errors or warnings.
+      value: Any outputs or logs of when the bug occurred? Put only the logs here.
+      render: lua
   - type: textarea
     id: other-details
     attributes:
