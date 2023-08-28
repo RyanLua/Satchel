@@ -13,26 +13,6 @@ body:
       label: Description
       description: A clear and concise description of what the bug is.
       placeholder: Describe the bug
-  - type: dropdown
-    id: severity
-    attributes:
-      label: Severity
-      options:
-        - Low
-        - Moderate
-        - High
-        - Critical
-  - type: dropdown
-    id: platforms
-    attributes:
-      label: Platforms affected
-      multiple: true
-      options:
-        - Computers
-        - Tablets
-        - Phones
-        - Consoles
-        - VR
   - type: textarea
     id: expected-behavior
     attributes:
@@ -71,6 +51,26 @@ body:
         (screenshots, links, videos, etc.)
       placeholder: |
         Any other details you would like to add? You can attach files here, this includes screenshots, videos, etc.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Low
+        - Moderate
+        - High
+        - Critical
+  - type: dropdown
+    id: platforms
+    attributes:
+      label: Platforms affected
+      multiple: true
+      options:
+        - Computers
+        - Tablets
+        - Phones
+        - Consoles
+        - VR
   - type: checkboxes
     id: terms
     attributes:
