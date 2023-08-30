@@ -1192,7 +1192,7 @@ function changeToolFunc(inputState: Enum.UserInputState, inputObject: InputObjec
 	lastChangeToolInputObject = inputObject
 	lastChangeToolInputTime = tick()
 
-	delay(maxEquipDeltaTime, function(): ()
+	task.delay(maxEquipDeltaTime, function(): ()
 		if lastChangeToolInputObject ~= inputObject then
 			return
 		end
