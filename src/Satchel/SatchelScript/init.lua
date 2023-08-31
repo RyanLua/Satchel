@@ -1335,11 +1335,8 @@ function enableGamepadInventoryControl(): ()
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
-			local selectedSlot = getGamepadSwapSlot()
-			if selectedSlot then
-				selectedSlot.Frame.BorderSizePixel = 0
-				return
-			end
+			selectedSlot.Frame.BorderSizePixel = 0
+			return
 		elseif InventoryFrame.Visible then
 			InventoryIcon:deselect()
 		end
