@@ -1,29 +1,28 @@
----
-name: Pull request
-about: Pull request template
-title: "[PR] Pull request title"
-labels: enhancement
-assignees: ''
-
----
-
 ## Description
 
-Please provide a brief description of the changes being made in this pull request.
+<!-- Provide a brief description of the changes being made in this pull request. -->
 
 ## Related Issues
 
-Please list any related issues or pull requests that are being resolved or addressed by this pull request.
+<!-- List any related issues or pull requests that are being resolved or addressed by this pull request.
 
+Example:
 Closes #issue_number
+
+Replace issue_number with the issue number to mark it-->
 
 ## Changes Made
 
-Please describe the changes that were made in this pull request. Be as detailed as possible.
+<!-- Describe the changes that were made in this pull request. Be as detailed as possible. -->
 
 ## Checklist
 
-Please check off the following items before submitting your pull request:
+<!-- Please check off the following items before submitting your pull request: 
+
+Example:
+- [x] I have checked this box
+
+Simply put an "x" between the brackets like here to check it-->
 
 - [ ] I have tested these changes thoroughly.
 - [ ] I have reviewed my code for any potential errors or issues.
@@ -31,7 +30,7 @@ Please check off the following items before submitting your pull request:
 
 ## Additional Notes
 
-Please provide any additional information or notes that may be helpful in reviewing this pull request.
+<!-- Provide any additional information or notes that may be helpful in reviewing this pull request. -->
 
 ## Code of Conduct
 
