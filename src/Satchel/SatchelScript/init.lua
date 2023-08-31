@@ -157,7 +157,6 @@ BackpackGui.ResetOnSpawn = false
 BackpackGui.Name = "BackpackGui"
 BackpackGui.Parent = PlayerGui
 
-local Themes = require(ICON_MODULE.Themes)
 local Icon = require(ICON_MODULE)
 
 local IsTenFootInterface = GuiService:IsTenFootInterface()
@@ -1329,7 +1328,7 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(actionName, inputState, inputObject)
+	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
 		if inputState ~= Enum.UserInputState.Begin then
 			return
 		end
