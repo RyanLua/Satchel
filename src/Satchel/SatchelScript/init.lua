@@ -111,7 +111,6 @@ local SEARCH_WIDTH = 200
 local SEARCH_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_PLACEHOLDER = "Search"
--- local SEARCH_PLACEHOLDER_COLOR = Color3.fromRGB(1, 1, 1)
 
 local SEARCH_TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
 local TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
@@ -1087,7 +1086,6 @@ local lastChangeToolInputTime = nil
 local maxEquipDeltaTime = 0.06
 local noOpFunc = function() end
 -- local selectDirection = Vector2.new(0, 0)
--- local hotbarVisible = false
 
 function unbindAllGamepadEquipActions(): ()
 	ContextActionService:UnbindAction("RBXBackpackHasGamepadFocus")
@@ -1164,7 +1162,9 @@ end
 -- 	end
 -- end
 
-function changeToolFunc(inputState: Enum.UserInputState, inputObject: InputObject): ()
+-- selene: allow(unused_variable)
+-- selene: allow(unscoped_variables)
+changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
 	end
@@ -1267,62 +1267,6 @@ function getGamepadSwapSlot(): any
 	end
 end
 
--- function changeSlot(slot: any): ()
--- 	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
-
--- 	if slot.Frame == GuiService.SelectedObject and swapInVr then
--- 		local currentlySelectedSlot: any = getGamepadSwapSlot()
-
--- 		if currentlySelectedSlot then
--- 			currentlySelectedSlot.Frame.BorderSizePixel = 0
--- 			if currentlySelectedSlot ~= slot then
--- 				slot:Swap(currentlySelectedSlot)
--- 				VRInventorySelector.SelectionImageObject.Visible = false
-
--- 				if slot.Index > NumberOfHotbarSlots and not slot.Tool then
--- 					if GuiService.SelectedObject == slot.Frame then
--- 						GuiService.SelectedObject = currentlySelectedSlot.Frame
--- 					end
--- 					slot:Delete()
--- 				end
-
--- 				if currentlySelectedSlot.Index > NumberOfHotbarSlots and not currentlySelectedSlot.Tool then
--- 					if GuiService.SelectedObject == currentlySelectedSlot.Frame then
--- 						GuiService.SelectedObject = slot.Frame
--- 					end
--- 					currentlySelectedSlot:Delete()
--- 				end
--- 			end
--- 		else
--- 			local startSize = slot.Frame.Size
--- 			local startPosition = slot.Frame.Position
--- 			slot.Frame:TweenSizeAndPosition(
--- 				startSize + UDim2.new(0, 10, 0, 10),
--- 				startPosition - UDim2.new(0, 5, 0, 5),
--- 				Enum.EasingDirection.Out,
--- 				Enum.EasingStyle.Quad,
--- 				0.1,
--- 				true,
--- 				function(): ()
--- 					slot.Frame:TweenSizeAndPosition(
--- 						startSize,
--- 						startPosition,
--- 						Enum.EasingDirection.In,
--- 						Enum.EasingStyle.Quad,
--- 						0.1,
--- 						true
--- 					)
--- 				end
--- 			)
--- 			slot.Frame.BorderSizePixel = 3
--- 			VRInventorySelector.SelectionImageObject.Visible = true
--- 		end
--- 	else
--- 		slot:Select()
--- 		VRInventorySelector.SelectionImageObject.Visible = false
--- 	end
--- end
-
 function vrMoveSlotToInventory(): ()
 	if not VRService.VREnabled then
 		return
@@ -1337,7 +1281,7 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(inputState)
+	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
 		if inputState ~= Enum.UserInputState.Begin then
 			return
 		end
@@ -1907,7 +1851,8 @@ GuiService.MenuClosed:Connect(function(): ()
 end)
 
 do -- Make the Inventory expand/collapse arrow (unless TopBar)
-	local removeHotBarSlot = function(state: Enum.UserInputState): ()
+	-- selene: allow(unused_variable)
+	local removeHotBarSlot = function(name: string, state: Enum.UserInputState, input: InputObject): ()
 		if state ~= Enum.UserInputState.Begin then
 			return
 		end
