@@ -1155,6 +1155,8 @@ end
 -- 	end
 -- end
 
+-- selene: allow(unused_variable)
+-- selene: allow(unscoped_variables)
 changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
@@ -1842,6 +1844,7 @@ GuiService.MenuClosed:Connect(function(): ()
 end)
 
 do -- Make the Inventory expand/collapse arrow (unless TopBar)
+	-- selene: allow(unused_variable)
 	local removeHotBarSlot = function(name: string, state: Enum.UserInputState, input: InputObject): ()
 		if state ~= Enum.UserInputState.Begin then
 			return
