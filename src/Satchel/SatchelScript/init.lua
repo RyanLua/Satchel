@@ -654,7 +654,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.Draggable = false
 	SlotFrame.BackgroundTransparency = SLOT_FADE_LOCKED
 	SlotFrame.MouseButton1Click:Connect(function(): ()
-		changeSlot(slot)
+		slot:Select()
 	end)
 	local searchFrameCorner = Instance.new("UICorner")
 	searchFrameCorner.Name = "Corner"
