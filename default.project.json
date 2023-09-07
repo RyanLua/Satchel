@@ -1,16 +1,13 @@
-{
-  "name": "Satchel",
-  "tree": {
-    "$className": "DataModel",
-    "StarterPlayer": {
-      "$className": "StarterPlayer",
-      "StarterPlayerScripts": {
-        "$className": "StarterPlayerScripts",
-        "$path": "src",
-        "Icon": {
-          "$path": "modules/TopbarPlus/src"
+  {
+    "name": "Satchel",
+    "tree": {
+      "$className": "DataModel",
+      "StarterPlayer": {
+        "$className": "StarterPlayer",
+        "StarterPlayerScripts": {
+          "$className": "StarterPlayerScripts",
+          "$path": "src"
         }
       }
     }
   }
-}
