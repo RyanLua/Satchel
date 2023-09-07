@@ -31,7 +31,7 @@
                 "Bool": true
             },
             "OutlineEquipBorder": {
-                "Bool": false
+                "Bool": true
             },
             "TextColor3": {
                 "Color3": [
