@@ -6,7 +6,10 @@
       "$className": "StarterPlayer",
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
-        "$path": "src"
+        "$path": "src",
+        "Icon": {
+          "$path": "modules/TopbarPlus/src"
+        }
       }
     }
   }
