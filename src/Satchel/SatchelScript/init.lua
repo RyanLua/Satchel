@@ -1067,6 +1067,7 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
 				BackpackScript.OpenClose()
+				InventoryIcon:deselect()
 			end
 		end
 	end
