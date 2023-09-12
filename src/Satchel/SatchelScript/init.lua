@@ -59,38 +59,34 @@ local targetScript: LocalScript = script.Parent
 
 local GetFFlagUseDesignSystemGamepadIcons: boolean = true
 
-local ICON_SIZE_PIXELS: number = 60
-local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
-local ICON_BUFFER_PIXELS: number = 5
-
--- Legacy behavior for backpack.
-local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
+-- Legacy behavior for backpack
 local LEGACY_EDGE_ENABLED: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
+local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
 
--- Inventory
+-- Background
 local BACKGROUND_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
-local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
--- Slot colors, thickness, etc.
+-- Slots
+local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
+local SLOT_LOCKED_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
 local SLOT_DRAGGABLE_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
-local SLOT_LOCKED_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
-local SLOT_BORDER_COLOR: Color3 = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
+local SLOT_BORDER_COLOR: Color3 = Color3.new(1, 1, 1) -- Appears when dragging
 
--- Tooltip
-local TOOLTIP_PADDING: number = 4
-local TOOLTIP_HEIGHT: number = 16
-local TOOLTIP_OFFSET: number = -5 -- From to
+-- Tooltips
 local TOOLTIP_CORNER_RADIUS: UDim = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local TOOLTIP_BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local TOOLTIP_PADDING: number = 4
+local TOOLTIP_HEIGHT: number = 16
+local TOOLTIP_OFFSET: number = -5 -- From to
 
---
+-- Topbar icons
 local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
 local ARROW_HOTKEY: table = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
@@ -107,31 +103,32 @@ local INVENTORY_ROWS_MINI: number = 2
 local INVENTORY_HEADER_SIZE: number = 40
 local INVENTORY_ARROWS_BUFFER_VR: number = 40
 
+-- Text
+local TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
+local TEXT_STROKE_TRANSPARENCY: number = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
+local TEXT_STROKE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
+
 -- Search
-local SEARCH_BUFFER_PIXELS: number = 5
-local SEARCH_WIDTH_PIXELS: number = 200
+local SEARCH_BACKGROUND_COLOR: Color3 = Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SEARCH_BACKGROUND_TRANSPARENCY: number = 0.2
+local SEARCH_BORDER_COLOR: Color3 = Color3.new(1, 1, 1)
+local SEARCH_BORDER_TRANSPARENCY: number = 0.8
+local SEARCH_BORDER_THICKNESS: number = 1
+local SEARCH_TEXT_PLACEHOLDER: string = "Search"
+local SEARCH_TEXT_OFFSET: number = 8
+local SEARCH_TEXT: string = ""
 local SEARCH_CORNER_RADIUS: UDim = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
 local SEARCH_IMAGE_X: string = "rbxasset://textures/ui/InspectMenu/x.png"
-local SEARCH_PLACEHOLDER_TEXT: string = "Search"
+local SEARCH_BUFFER_PIXELS: number = 5
+local SEARCH_WIDTH_PIXELS: number = 200
 
-local SEARCH_TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
-local TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
-local TEXT_TRANSPARENCY: number = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
-local TEXT_TRANSPARENCY_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
-local SEARCH_TEXT_STROKE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
-local SEARCH_TEXT: string = ""
-
-local SEARCH_TEXT_OFFSET: number = 8
-local SEARCH_BACKGROUND_COLOR: Color3 = Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SEARCH_BACKGROUND_TRANSPARENCY: number = 0.20
-
-local SEARCH_BORDER_THICKNESS: number = 1
-local SEARCH_BORDER_TRANSPARENCY: number = 0.8
-local SEARCH_BORDER_COLOR: Color3 = Color3.new(1, 1, 1)
-
-local DOUBLE_CLICK_TIME: number = 0.5
-local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
+-- Misc
+local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
 local DROP_HOTKEY_VALUE: number = Enum.KeyCode.Backspace.Value
+local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
+local DOUBLE_CLICK_TIME: number = 0.5
+local ICON_BUFFER_PIXELS: number = 5
+local ICON_SIZE_PIXELS: number = 60
 
 local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be used for gamepad
 	[Enum.UserInputType.Gamepad1] = true,
@@ -251,8 +248,8 @@ local function NewGui(className: string, objectName: string): any
 	if className:match("Text") then
 		newGui.TextColor3 = TEXT_COLOR
 		newGui.Text = ""
-		newGui.TextStrokeTransparency = TEXT_TRANSPARENCY
-		newGui.TextStrokeColor3 = TEXT_TRANSPARENCY_COLOR
+		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
+		newGui.TextStrokeColor3 = TEXT_STROKE_COLOR
 		newGui.Font = Enum.Font.GothamMedium
 		newGui.TextSize = FONT_SIZE
 		newGui.TextWrapped = true
@@ -438,7 +435,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		local sizePlus = ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS
 		local midpointish = (visualTotal / 2) + 0.5
 		local factor = visualIndex - midpointish
-		SlotFrame.Position = UDim2.new(0, centered - (ICON_SIZE_PIXELS / 2) + (sizePlus * factor), 0, ICON_BUFFER_PIXELS)
+		SlotFrame.Position =
+			UDim2.new(0, centered - (ICON_SIZE_PIXELS / 2) + (sizePlus * factor), 0, ICON_BUFFER_PIXELS)
 	end
 
 	function slot:Fill(tool: Tool)
@@ -1666,7 +1664,12 @@ do -- Search stuff
 	local searchFrame = NewGui("Frame", "Search")
 	searchFrame.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
-	searchFrame.Size = UDim2.new(0, SEARCH_WIDTH_PIXELS - (SEARCH_BUFFER_PIXELS * 2), 0, INVENTORY_HEADER_SIZE - (SEARCH_BUFFER_PIXELS * 2))
+	searchFrame.Size = UDim2.new(
+		0,
+		SEARCH_WIDTH_PIXELS - (SEARCH_BUFFER_PIXELS * 2),
+		0,
+		INVENTORY_HEADER_SIZE - (SEARCH_BUFFER_PIXELS * 2)
+	)
 	searchFrame.Position = UDim2.new(1, -searchFrame.Size.X.Offset - SEARCH_BUFFER_PIXELS, 0, SEARCH_BUFFER_PIXELS)
 	searchFrame.Parent = InventoryFrame
 
@@ -1683,11 +1686,11 @@ do -- Search stuff
 	searchFrameBorder.Parent = searchFrame
 
 	local searchBox = NewGui("TextBox", "TextBox")
-	searchBox.PlaceholderText = SEARCH_PLACEHOLDER_TEXT
+	searchBox.PlaceholderText = SEARCH_TEXT_PLACEHOLDER
 	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
-	searchBox.TextColor3 = SEARCH_TEXT_COLOR
-	searchBox.TextTransparency = TEXT_TRANSPARENCY
-	searchBox.TextStrokeColor3 = SEARCH_TEXT_STROKE_COLOR
+	searchBox.TextColor3 = TEXT_COLOR
+	searchBox.TextTransparency = TEXT_STROKE_TRANSPARENCY
+	searchBox.TextStrokeColor3 = TEXT_STROKE_COLOR
 	searchBox.ClearTextOnFocus = false
 	searchBox.TextTruncate = Enum.TextTruncate.AtEnd
 	searchBox.FontSize = Enum.FontSize.Size14
@@ -1788,7 +1791,7 @@ do -- Search stuff
 		if property == "Text" then
 			local text = searchBox.Text
 			if text == "" then
-				searchBox.TextTransparency = TEXT_TRANSPARENCY
+				searchBox.TextTransparency = TEXT_STROKE_TRANSPARENCY
 				clearResults()
 			elseif text ~= SEARCH_TEXT then
 				searchBox.TextTransparency = 0
