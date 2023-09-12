@@ -55,83 +55,85 @@ BackpackScript.KeepVRTopbarOpen = true
 BackpackScript.VRIsExclusive = true
 BackpackScript.VRClosesNonExclusive = true
 
-local targetScript = script.Parent
+local targetScript: LocalScript = script.Parent
 
-local GetFFlagUseDesignSystemGamepadIcons = true
+local GetFFlagUseDesignSystemGamepadIcons: boolean = true
 
-local ICON_SIZE = 60 -- Pixels
-local FONT_SIZE = targetScript:GetAttribute("TextSize") or 14
-local ICON_BUFFER = 5
+local ICON_SIZE: number = 60 -- Pixels
+local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
+local ICON_BUFFER: number = 5
 
 -- Legacy behavior for backpack.
-local LEGACY_PADDING = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
-local LEGACY_EDGE = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
+local LEGACY_PADDING: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
+local LEGACY_EDGE: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 
 -- Inventory
-local BACKGROUND_FADE = targetScript:GetAttribute("BackgroundTransparency") or 0.3
-local BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
-local BACKGROUND_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
+local BACKGROUND_FADE: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
+	or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
 -- Slot colors, thickness, etc.
-local SLOT_DRAGGABLE_COLOR = targetScript:GetAttribute("BackgroundColor3") or Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SLOT_EQUIP_COLOR = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_EQUIP_THICKNESS = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
-local SLOT_FADE_LOCKED = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
-local SLOT_BORDER_COLOR = Color3.new(1, 1, 1) -- Appears when dragging
-local SLOT_CORNER_RADIUS = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
+local SLOT_DRAGGABLE_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
+	or Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
+local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
+local SLOT_FADE_LOCKED: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_BORDER_COLOR: Color3 = Color3.new(1, 1, 1) -- Appears when dragging
+local SLOT_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
 -- Tooltip
-local TOOLTIP_PADDING = 4
-local TOOLTIP_HEIGHT = 16
-local TOOLTIP_OFFSET = -5 -- From to
-local TOOLTIP_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
-local TOOLTIP_BACKGROUND_COLOR = targetScript:GetAttribute("BackgroundColor3")
+local TOOLTIP_PADDING: number = 4
+local TOOLTIP_HEIGHT: number = 16
+local TOOLTIP_OFFSET: number = -5 -- From to
+local TOOLTIP_CORNER_RADIUS: UDim = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
+local TOOLTIP_BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 
 --
-local ARROW_IMAGE_OPEN = "rbxasset://textures/ui/TopBar/inventoryOn.png"
-local ARROW_IMAGE_CLOSE = "rbxasset://textures/ui/TopBar/inventoryOff.png"
-local ARROW_HOTKEY = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
+local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
+local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
+local ARROW_HOTKEY: table = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 
 -- Hotbar slots
-local HOTBAR_SLOTS_FULL = 10 -- 10 is the max
-local HOTBAR_SLOTS_VR = 6
-local HOTBAR_SLOTS_MINI = 6 -- Mobile gets 6 slots instead of default 3 it had before
-local HOTBAR_SLOTS_WIDTH_CUTOFF = 1024 -- Anything smaller is MINI
+local HOTBAR_SLOTS_FULL: number = 10 -- 10 is the max
+local HOTBAR_SLOTS_VR: number = 6
+local HOTBAR_SLOTS_MINI: number = 6 -- Mobile gets 6 slots instead of default 3 it had before
+local HOTBAR_SLOTS_WIDTH_CUTOFF: number = 1024 -- Anything smaller is MINI
 
-local INVENTORY_ROWS_FULL = 4
-local INVENTORY_ROWS_VR = 3
-local INVENTORY_ROWS_MINI = 2
-local INVENTORY_HEADER_SIZE = 40
-local INVENTORY_ARROWS_BUFFER_VR = 40
+local INVENTORY_ROWS_FULL: number = 4
+local INVENTORY_ROWS_VR: number = 3
+local INVENTORY_ROWS_MINI: number = 2
+local INVENTORY_HEADER_SIZE: number = 40
+local INVENTORY_ARROWS_BUFFER_VR: number = 40
 
 -- Search
-local SEARCH_BUFFER = 5
-local SEARCH_WIDTH = 200
-local SEARCH_CORNER_RADIUS = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
-local SEARCH_ICON_X = "rbxasset://textures/ui/InspectMenu/x.png"
-local SEARCH_PLACEHOLDER = "Search"
+local SEARCH_BUFFER: number = 5
+local SEARCH_WIDTH: number = 200
+local SEARCH_CORNER_RADIUS: UDim = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
+local SEARCH_ICON_X: string = "rbxasset://textures/ui/InspectMenu/x.png"
+local SEARCH_PLACEHOLDER: string = "Search"
 
-local SEARCH_TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
-local TEXT_COLOR = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
-local TEXT_FADE = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
-local TEXT_FADE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
-local SEARCH_TEXT_STROKE_COLOR = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
-local SEARCH_TEXT = ""
+local SEARCH_TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
+local TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
+local TEXT_FADE: number = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
+local TEXT_FADE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
+local SEARCH_TEXT_STROKE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
+local SEARCH_TEXT: string = ""
 
-local SEARCH_TEXT_OFFSET = 8
-local SEARCH_BACKGROUND_COLOR = Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SEARCH_BACKGROUND_FADE = 0.20
+local SEARCH_TEXT_OFFSET: number = 8
+local SEARCH_BACKGROUND_COLOR: Color3 = Color3.new(25 / 255, 27 / 255, 29 / 255)
+local SEARCH_BACKGROUND_FADE: number = 0.20
 
-local SEARCH_BORDER_THICKNESS = 1
-local SEARCH_BORDER_FADE = 0.8
-local SEARCH_BORDER_COLOR = Color3.new(1, 1, 1)
+local SEARCH_BORDER_THICKNESS: number = 1
+local SEARCH_BORDER_FADE: number = 0.8
+local SEARCH_BORDER_COLOR: Color3 = Color3.new(1, 1, 1)
 
-local DOUBLE_CLICK_TIME = 0.5
-local ZERO_KEY_VALUE = Enum.KeyCode.Zero.Value
-local DROP_HOTKEY_VALUE = Enum.KeyCode.Backspace.Value
+local DOUBLE_CLICK_TIME: number = 0.5
+local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
+local DROP_HOTKEY_VALUE: number = Enum.KeyCode.Backspace.Value
 
-local GAMEPAD_INPUT_TYPES = { -- These are the input types that will be used for gamepad
+local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be used for gamepad
 	[Enum.UserInputType.Gamepad1] = true,
 	[Enum.UserInputType.Gamepad2] = true,
 	[Enum.UserInputType.Gamepad3] = true,
