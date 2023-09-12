@@ -59,16 +59,16 @@ local targetScript: LocalScript = script.Parent
 
 local GetFFlagUseDesignSystemGamepadIcons: boolean = true
 
-local ICON_SIZE: number = 60 -- Pixels
+local ICON_SIZE_PIXELS: number = 60
 local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
-local ICON_BUFFER: number = 5
+local ICON_BUFFER_PIXELS: number = 5
 
 -- Legacy behavior for backpack.
-local LEGACY_PADDING: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
-local LEGACY_EDGE: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
+local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
+local LEGACY_EDGE_ENABLED: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 
 -- Inventory
-local BACKGROUND_FADE: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
 local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
@@ -78,7 +78,7 @@ local SLOT_DRAGGABLE_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
 local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
-local SLOT_FADE_LOCKED: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_LOCKED_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
 local SLOT_BORDER_COLOR: Color3 = Color3.new(1, 1, 1) -- Appears when dragging
 local SLOT_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 
@@ -108,25 +108,25 @@ local INVENTORY_HEADER_SIZE: number = 40
 local INVENTORY_ARROWS_BUFFER_VR: number = 40
 
 -- Search
-local SEARCH_BUFFER: number = 5
-local SEARCH_WIDTH: number = 200
+local SEARCH_BUFFER_PIXELS: number = 5
+local SEARCH_WIDTH_PIXELS: number = 200
 local SEARCH_CORNER_RADIUS: UDim = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
-local SEARCH_ICON_X: string = "rbxasset://textures/ui/InspectMenu/x.png"
-local SEARCH_PLACEHOLDER: string = "Search"
+local SEARCH_IMAGE_X: string = "rbxasset://textures/ui/InspectMenu/x.png"
+local SEARCH_PLACEHOLDER_TEXT: string = "Search"
 
 local SEARCH_TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
 local TEXT_COLOR: Color3 = targetScript:GetAttribute("TextColor3") or Color3.new(1, 1, 1)
-local TEXT_FADE: number = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
-local TEXT_FADE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
+local TEXT_TRANSPARENCY: number = targetScript:GetAttribute("TextStrokeTransparency") or 0.5
+local TEXT_TRANSPARENCY_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
 local SEARCH_TEXT_STROKE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") or Color3.new(0, 0, 0)
 local SEARCH_TEXT: string = ""
 
 local SEARCH_TEXT_OFFSET: number = 8
 local SEARCH_BACKGROUND_COLOR: Color3 = Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SEARCH_BACKGROUND_FADE: number = 0.20
+local SEARCH_BACKGROUND_TRANSPARENCY: number = 0.20
 
 local SEARCH_BORDER_THICKNESS: number = 1
-local SEARCH_BORDER_FADE: number = 0.8
+local SEARCH_BORDER_TRANSPARENCY: number = 0.8
 local SEARCH_BORDER_COLOR: Color3 = Color3.new(1, 1, 1)
 
 local DOUBLE_CLICK_TIME: number = 0.5
@@ -171,7 +171,7 @@ BackpackGui.Parent = PlayerGui
 local IsTenFootInterface = GuiService:IsTenFootInterface()
 
 if IsTenFootInterface then
-	ICON_SIZE = 100
+	ICON_SIZE_PIXELS = 100
 	FONT_SIZE = 24
 end
 
@@ -251,8 +251,8 @@ local function NewGui(className: string, objectName: string): any
 	if className:match("Text") then
 		newGui.TextColor3 = TEXT_COLOR
 		newGui.Text = ""
-		newGui.TextStrokeTransparency = TEXT_FADE
-		newGui.TextStrokeColor3 = TEXT_FADE_COLOR
+		newGui.TextStrokeTransparency = TEXT_TRANSPARENCY
+		newGui.TextStrokeColor3 = TEXT_TRANSPARENCY_COLOR
 		newGui.Font = Enum.Font.GothamMedium
 		newGui.TextSize = FONT_SIZE
 		newGui.TextWrapped = true
@@ -306,9 +306,9 @@ local function AdjustHotbarFrames(): ()
 end
 
 local function UpdateScrollingFrameCanvasSize(): ()
-	local countX = math.floor(ScrollingFrame.AbsoluteSize.X / (ICON_SIZE + ICON_BUFFER))
+	local countX = math.floor(ScrollingFrame.AbsoluteSize.X / (ICON_SIZE_PIXELS + ICON_BUFFER_PIXELS))
 	local maxRow = math.ceil((#UIGridFrame:GetChildren() - 1) / countX)
-	local canvasSizeY = maxRow * (ICON_SIZE + ICON_BUFFER) + ICON_BUFFER
+	local canvasSizeY = maxRow * (ICON_SIZE_PIXELS + ICON_BUFFER_PIXELS) + ICON_BUFFER_PIXELS
 	ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, canvasSizeY)
 end
 
@@ -324,9 +324,9 @@ end
 local function UpdateBackpackLayout(): ()
 	HotbarFrame.Size = UDim2.new(
 		0,
-		ICON_BUFFER + (NumberOfHotbarSlots * (ICON_SIZE + ICON_BUFFER)),
+		ICON_BUFFER_PIXELS + (NumberOfHotbarSlots * (ICON_SIZE_PIXELS + ICON_BUFFER_PIXELS)),
 		0,
-		ICON_BUFFER + ICON_SIZE + ICON_BUFFER
+		ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS + ICON_BUFFER_PIXELS
 	)
 	HotbarFrame.Position = UDim2.new(0.5, -HotbarFrame.Size.X.Offset / 2, 1, -HotbarFrame.Size.Y.Offset)
 	InventoryFrame.Size = UDim2.new(
@@ -428,17 +428,17 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			SlotFrame.SelectionImageObject = SelectionObj
 		else
 			SlotFrame.SelectionImageObject = nil
-			SlotFrame.BackgroundTransparency = SlotFrame.Draggable and 0 or SLOT_FADE_LOCKED
+			SlotFrame.BackgroundTransparency = SlotFrame.Draggable and 0 or SLOT_LOCKED_TRANSPARENCY
 		end
 		SlotFrame.BackgroundColor3 = SlotFrame.Draggable and SLOT_DRAGGABLE_COLOR or BACKGROUND_COLOR
 	end
 
 	function slot:Readjust(visualIndex: number, visualTotal: number): () --NOTE: Only used for Hotbar slots
 		local centered = HotbarFrame.Size.X.Offset / 2
-		local sizePlus = ICON_BUFFER + ICON_SIZE
+		local sizePlus = ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS
 		local midpointish = (visualTotal / 2) + 0.5
 		local factor = visualIndex - midpointish
-		SlotFrame.Position = UDim2.new(0, centered - (ICON_SIZE / 2) + (sizePlus * factor), 0, ICON_BUFFER)
+		SlotFrame.Position = UDim2.new(0, centered - (ICON_SIZE_PIXELS / 2) + (sizePlus * factor), 0, ICON_BUFFER_PIXELS)
 	end
 
 	function slot:Fill(tool: Tool)
@@ -552,7 +552,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 				HighlightFrame.Color = SLOT_EQUIP_COLOR
 				HighlightFrame.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
 			end
-			if LEGACY_EDGE == true then
+			if LEGACY_EDGE_ENABLED == true then
 				HighlightFrame.Parent = ToolIcon
 			else
 				HighlightFrame.Parent = SlotFrame
@@ -658,10 +658,10 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.Text = ""
 	SlotFrame.AutoButtonColor = false
 	SlotFrame.BorderSizePixel = 0
-	SlotFrame.Size = UDim2.new(0, ICON_SIZE, 0, ICON_SIZE)
+	SlotFrame.Size = UDim2.new(0, ICON_SIZE_PIXELS, 0, ICON_SIZE_PIXELS)
 	SlotFrame.Active = true
 	SlotFrame.Draggable = false
-	SlotFrame.BackgroundTransparency = SLOT_FADE_LOCKED
+	SlotFrame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
 	SlotFrame.MouseButton1Click:Connect(function(): ()
 		slot:Select()
 	end)
@@ -687,7 +687,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	ToolIcon = NewGui("ImageLabel", "Icon")
 	ToolIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolIcon.AnchorPoint = Vector2.new(0.5, 0.5)
-	if LEGACY_PADDING == true then
+	if LEGACY_PADDING_ENABLED == true then
 		ToolIcon.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	else
 		ToolIcon.Size = UDim2.new(1, 0, 1, 0)
@@ -696,7 +696,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	local ToolIconCorner = Instance.new("UICorner")
 	ToolIconCorner.Name = "Corner"
-	if LEGACY_PADDING == true then
+	if LEGACY_PADDING_ENABLED == true then
 		ToolIconCorner.CornerRadius = SLOT_CORNER_RADIUS - UDim.new(0, SLOT_EQUIP_THICKNESS)
 	else
 		ToolIconCorner.CornerRadius = SLOT_CORNER_RADIUS
@@ -718,7 +718,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		ToolTip.TextWrapped = false
 		ToolTip.TextYAlignment = Enum.TextYAlignment.Center
 		ToolTip.BackgroundColor3 = TOOLTIP_BACKGROUND_COLOR
-		ToolTip.BackgroundTransparency = SLOT_FADE_LOCKED
+		ToolTip.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
 		ToolTip.AnchorPoint = Vector2.new(0.5, 1)
 		ToolTip.BorderSizePixel = 0
 		ToolTip.Visible = false
@@ -1450,7 +1450,7 @@ RightBumperButton.Position = UDim2.new(1, 0, 0.5, -RightBumperButton.Size.Y.Offs
 
 -- Make the Inventory, which holds the ScrollingFrame, the header, and the search box
 InventoryFrame = NewGui("Frame", "Inventory")
-InventoryFrame.BackgroundTransparency = BACKGROUND_FADE
+InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
 InventoryFrame.BackgroundColor3 = BACKGROUND_COLOR
 InventoryFrame.Active = true
 InventoryFrame.Visible = false
@@ -1493,14 +1493,14 @@ ScrollingFrame.Parent = InventoryFrame
 
 UIGridFrame = NewGui("Frame", "UIGridFrame")
 UIGridFrame.Selectable = false
-UIGridFrame.Size = UDim2.new(1, -(ICON_BUFFER * 2), 1, 0)
-UIGridFrame.Position = UDim2.new(0, ICON_BUFFER, 0, 0)
+UIGridFrame.Size = UDim2.new(1, -(ICON_BUFFER_PIXELS * 2), 1, 0)
+UIGridFrame.Position = UDim2.new(0, ICON_BUFFER_PIXELS, 0, 0)
 UIGridFrame.Parent = ScrollingFrame
 
 UIGridLayout = Instance.new("UIGridLayout")
 UIGridLayout.SortOrder = Enum.SortOrder.LayoutOrder
-UIGridLayout.CellSize = UDim2.new(0, ICON_SIZE, 0, ICON_SIZE)
-UIGridLayout.CellPadding = UDim2.new(0, ICON_BUFFER, 0, ICON_BUFFER)
+UIGridLayout.CellSize = UDim2.new(0, ICON_SIZE_PIXELS, 0, ICON_SIZE_PIXELS)
+UIGridLayout.CellPadding = UDim2.new(0, ICON_BUFFER_PIXELS, 0, ICON_BUFFER_PIXELS)
 UIGridLayout.Parent = UIGridFrame
 
 ScrollUpInventoryButton = MakeVRRoundButton("ScrollUpButton", "rbxasset://textures/ui/Backpack/ScrollUpArrow.png")
@@ -1514,7 +1514,7 @@ ScrollUpInventoryButton.MouseButton1Click:Connect(function(): ()
 		Clamp(
 			0,
 			ScrollingFrame.CanvasSize.Y.Offset - ScrollingFrame.AbsoluteWindowSize.Y,
-			ScrollingFrame.CanvasPosition.Y - (ICON_BUFFER + ICON_SIZE)
+			ScrollingFrame.CanvasPosition.Y - (ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS)
 		)
 	)
 end)
@@ -1531,7 +1531,7 @@ ScrollDownInventoryButton.MouseButton1Click:Connect(function(): ()
 		Clamp(
 			0,
 			ScrollingFrame.CanvasSize.Y.Offset - ScrollingFrame.AbsoluteWindowSize.Y,
-			ScrollingFrame.CanvasPosition.Y + (ICON_BUFFER + ICON_SIZE)
+			ScrollingFrame.CanvasPosition.Y + (ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS)
 		)
 	)
 end)
@@ -1665,9 +1665,9 @@ end
 do -- Search stuff
 	local searchFrame = NewGui("Frame", "Search")
 	searchFrame.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
-	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_FADE
-	searchFrame.Size = UDim2.new(0, SEARCH_WIDTH - (SEARCH_BUFFER * 2), 0, INVENTORY_HEADER_SIZE - (SEARCH_BUFFER * 2))
-	searchFrame.Position = UDim2.new(1, -searchFrame.Size.X.Offset - SEARCH_BUFFER, 0, SEARCH_BUFFER)
+	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
+	searchFrame.Size = UDim2.new(0, SEARCH_WIDTH_PIXELS - (SEARCH_BUFFER_PIXELS * 2), 0, INVENTORY_HEADER_SIZE - (SEARCH_BUFFER_PIXELS * 2))
+	searchFrame.Position = UDim2.new(1, -searchFrame.Size.X.Offset - SEARCH_BUFFER_PIXELS, 0, SEARCH_BUFFER_PIXELS)
 	searchFrame.Parent = InventoryFrame
 
 	local searchFrameCorner = Instance.new("UICorner")
@@ -1679,14 +1679,14 @@ do -- Search stuff
 	searchFrameBorder.Name = "Border"
 	searchFrameBorder.Color = SEARCH_BORDER_COLOR
 	searchFrameBorder.Thickness = SEARCH_BORDER_THICKNESS
-	searchFrameBorder.Transparency = SEARCH_BORDER_FADE
+	searchFrameBorder.Transparency = SEARCH_BORDER_TRANSPARENCY
 	searchFrameBorder.Parent = searchFrame
 
 	local searchBox = NewGui("TextBox", "TextBox")
-	searchBox.PlaceholderText = SEARCH_PLACEHOLDER
+	searchBox.PlaceholderText = SEARCH_PLACEHOLDER_TEXT
 	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
 	searchBox.TextColor3 = SEARCH_TEXT_COLOR
-	searchBox.TextTransparency = TEXT_FADE
+	searchBox.TextTransparency = TEXT_TRANSPARENCY
 	searchBox.TextStrokeColor3 = SEARCH_TEXT_STROKE_COLOR
 	searchBox.ClearTextOnFocus = false
 	searchBox.TextTruncate = Enum.TextTruncate.AtEnd
@@ -1695,9 +1695,9 @@ do -- Search stuff
 	searchBox.TextYAlignment = Enum.TextYAlignment.Center
 	searchBox.Size = UDim2.new(
 		0,
-		(SEARCH_WIDTH - (SEARCH_BUFFER * 2)) - (SEARCH_TEXT_OFFSET * 2) - 20,
+		(SEARCH_WIDTH_PIXELS - (SEARCH_BUFFER_PIXELS * 2)) - (SEARCH_TEXT_OFFSET * 2) - 20,
 		0,
-		INVENTORY_HEADER_SIZE - (SEARCH_BUFFER * 2) - (SEARCH_TEXT_OFFSET * 2)
+		INVENTORY_HEADER_SIZE - (SEARCH_BUFFER_PIXELS * 2) - (SEARCH_TEXT_OFFSET * 2)
 	)
 	searchBox.AnchorPoint = Vector2.new(0, 0.5)
 	searchBox.Position = UDim2.new(0, SEARCH_TEXT_OFFSET, 0.5, 0)
@@ -1714,13 +1714,13 @@ do -- Search stuff
 	xButton.Parent = searchFrame
 
 	local xImage = NewGui("ImageButton", "X")
-	xImage.Image = SEARCH_ICON_X
+	xImage.Image = SEARCH_IMAGE_X
 	xImage.BackgroundTransparency = 1
 	xImage.Size = UDim2.new(
 		0,
-		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 4),
+		searchFrame.Size.Y.Offset - (SEARCH_BUFFER_PIXELS * 4),
 		0,
-		searchFrame.Size.Y.Offset - (SEARCH_BUFFER * 4)
+		searchFrame.Size.Y.Offset - (SEARCH_BUFFER_PIXELS * 4)
 	)
 	xImage.AnchorPoint = Vector2.new(0.5, 0.5)
 	xImage.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -1788,7 +1788,7 @@ do -- Search stuff
 		if property == "Text" then
 			local text = searchBox.Text
 			if text == "" then
-				searchBox.TextTransparency = TEXT_FADE
+				searchBox.TextTransparency = TEXT_TRANSPARENCY
 				clearResults()
 			elseif text ~= SEARCH_TEXT then
 				searchBox.TextTransparency = 0
