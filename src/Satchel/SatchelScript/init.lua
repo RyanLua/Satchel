@@ -123,6 +123,7 @@ local SEARCH_BUFFER_PIXELS: number = 5
 local SEARCH_WIDTH_PIXELS: number = 200
 
 -- Misc
+local FONT_FAMILY: Enum.Font = Enum.Font.Gotham
 local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
 local DROP_HOTKEY_VALUE: number = Enum.KeyCode.Backspace.Value
 local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
@@ -250,11 +251,11 @@ local function NewGui(className: string, objectName: string): any
 		newGui.Text = ""
 		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
 		newGui.TextStrokeColor3 = TEXT_STROKE_COLOR
-		newGui.Font = Enum.Font.GothamMedium
+		newGui.Font = FONT_FAMILY
 		newGui.TextSize = FONT_SIZE
 		newGui.TextWrapped = true
 		if className == "TextButton" then
-			newGui.Font = Enum.Font.Gotham
+			newGui.Font = FONT_FAMILY
 			newGui.BorderSizePixel = 1
 		end
 	end
@@ -765,7 +766,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			local slotNum = (index < 10) and index or 0
 			SlotNumber = NewGui("TextLabel", "Number")
 			SlotNumber.Text = slotNum
-			SlotNumber.Font = Enum.Font.GothamBlack
+			SlotNumber.Font = FONT_FAMILY
+			SlotNumber.FontFace.Bold = true
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
 			SlotNumber.Parent = SlotFrame
@@ -1575,7 +1577,8 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 	hintText.Name = "HintText"
 	hintText.Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0)
 	hintText.Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0)
-	hintText.Font = Enum.Font.SourceSansBold
+	hintText.Font = FONT_FAMILY
+	hintText.FontFace.Bold = true
 	hintText.FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24)
 	hintText.BackgroundTransparency = 1
 	hintText.Text = hintTextString
