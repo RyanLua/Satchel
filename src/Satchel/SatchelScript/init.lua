@@ -281,8 +281,8 @@ end
 -- 	return true
 -- end
 
-local function UseGazeSelection(): ()
-	return UserInputService.VREnabled
+local function UseGazeSelection(): boolean
+	return false -- disabled in new VR system
 end
 
 local function AdjustHotbarFrames(): ()
