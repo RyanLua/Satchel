@@ -174,13 +174,7 @@ end
 
 local GamepadActionsBound = false
 
-local GetScreenResolution = function(): Vector2
-	local CurrentCamera = workspace.CurrentCamera
-	local ViewportSize = CurrentCamera.ViewportSize
-	return ViewportSize
-end
-
-local IS_PHONE = UserInputService.TouchEnabled and GetScreenResolution().X < HOTBAR_SLOTS_WIDTH_CUTOFF
+local IS_PHONE = UserInputService.TouchEnabled and GuiService:GetScreenResolution().X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
 local Player = Players.LocalPlayer
 
