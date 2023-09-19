@@ -446,6 +446,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 			if icon ~= "" then
 				ToolName.Visible = false
+			else
+				ToolName.Visible = true
 			end
 
 			ToolName.Text = tool.Name
