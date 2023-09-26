@@ -1,0 +1,60 @@
+[package]
+# Package names are always "SCOPE/NAME"
+# They can include lowercase letters, numbers, and dashes.
+name = "ryanlua/satchel"
+
+# Descriptions are free-form. These will be used as part of package listings
+# and search results.
+description = "A modern open-source alternative to Roblox's default backpack."
+
+# Versions follow Semantic Versioning.
+# https://semver.org/
+version = "1.1.0"
+
+# Contains an SPDX License Expression.
+# Licenses are required for publishing code to public registries.
+license = "GPL-3.0"
+
+# The author list is a free-form list, but conventionally contains names and
+# email addresses.
+authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
+
+# Packages belong to a "realm", which helps prevent using code in the wrong
+# context. For now, we have "server" and "shared" realms.
+# The server realm should only be used for packages which shouldn't be replicated.
+realm = "shared"
+
+# Wally supports multiple registries.
+# This feature can be used to have split public/private registries to
+# keep internal code private and isolated.
+registry = "https://github.com/upliftgames/wally-index"
+
+# You can also specify files to include or exclude from the package
+# By default gitignore files are respected and Wally won't include hidden
+# files/directories or packages downloaded by Wally.
+# include = []
+# exclude = ["node_modules"]
+
+# Packages can be marked as private to prevent them from being published.
+private = false
+
+[dependencies]
+# Most dependencies will look like this.
+#
+# The name on the left is an alias. It defines what name we would like to
+# use to refer to this package.
+#
+# The value on the right will usually be a string of the form
+#   "SCOPE/NAME@VERSION_REQ"
+# Versions are SemVer version requirements. The default behavior matches
+# Cargo, or npm with the `^` version specifier.
+# Roact = "roblox/roact@1.2.0"
+# Promise = "evaera/promise@2.0.1"
+
+[server-dependencies]
+# Dependencies in the server realm can be required here as shown above.
+# These are dependencies which should only ever exist on the server.
+
+[dev-dependencies]
+# Dev dependencies can be server or shared but are only needed during development.
+# TestEZ = "roblox/testez@0.4.1"
