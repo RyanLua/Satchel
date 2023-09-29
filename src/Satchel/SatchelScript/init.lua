@@ -174,7 +174,7 @@ end
 
 local GamepadActionsBound = false
 
-local IS_PHONE = UserInputService.TouchEnabled and GuiService:GetScreenResolution().X < HOTBAR_SLOTS_WIDTH_CUTOFF
+local IS_PHONE = UserInputService.TouchEnabled and workspace.CurrentCamera.ViewportSize.X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
 local Player = Players.LocalPlayer
 
