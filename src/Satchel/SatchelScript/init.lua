@@ -130,6 +130,14 @@ local DOUBLE_CLICK_TIME: number = 0.5
 local ICON_BUFFER_PIXELS: number = 5
 local ICON_SIZE_PIXELS: number = 60
 
+local MOUSE_INPUT_TYPES: table = { -- These are the input types that will be used for mouse -- [[ADDED]], Optional
+	[Enum.UserInputType.MouseButton1] = true,
+	[Enum.UserInputType.MouseButton2] = true,
+	[Enum.UserInputType.MouseButton3] = true,
+	[Enum.UserInputType.MouseMovement] = true,
+	[Enum.UserInputType.MouseWheel] = true,
+}
+
 local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be used for gamepad
 	[Enum.UserInputType.Gamepad1] = true,
 	[Enum.UserInputType.Gamepad2] = true,
@@ -1070,11 +1078,40 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 	end
 end
 
-local function OnUISChanged(property: string): ()
-	if property == "KeyboardEnabled" or property == "VREnabled" then
-		local on = UserInputService.KeyboardEnabled and not UserInputService.VREnabled
+local function OnUISChanged(): ()
+	-- Detect if player is using Touch
+	if UserInputService:GetLastInputType() == Enum.UserInputType.Touch then
 		for i = 1, NumberOfHotbarSlots do
-			Slots[i]:TurnNumber(on)
+			Slots[i]:TurnNumber(false)
+		end
+		return
+	end
+
+	-- Detect if player is using Keyboard
+	if UserInputService:GetLastInputType() == Enum.UserInputType.Keyboard then
+		for i = 1, NumberOfHotbarSlots do
+			Slots[i]:TurnNumber(true)
+		end
+		return
+	end
+
+	-- Detect if player is using Mouse
+	for _, mouse in pairs(MOUSE_INPUT_TYPES) do
+		if UserInputService:GetLastInputType() == mouse then
+			for i = 1, NumberOfHotbarSlots do
+				Slots[i]:TurnNumber(true)
+			end
+			return
+		end
+	end
+
+	-- Detect if player is using Controller
+	for _, gamepad in pairs(GAMEPAD_INPUT_TYPES) do
+		if UserInputService:GetLastInputType() == gamepad then
+			for i = 1, NumberOfHotbarSlots do
+				Slots[i]:TurnNumber(false)
+			end
+			return
 		end
 	end
 end
@@ -1947,8 +1984,8 @@ do -- Hotkey stuff
 	end
 
 	-- Listen to keyboard status, for showing/hiding hotkey labels
-	UserInputService.Changed:Connect(OnUISChanged)
-	OnUISChanged("KeyboardEnabled")
+	UserInputService.LastInputTypeChanged:Connect(OnUISChanged)
+	OnUISChanged()
 
 	-- Listen to gamepad status, for allowing gamepad style selection/equip
 	if UserInputService:GetGamepadConnected(Enum.UserInputType.Gamepad1) then
