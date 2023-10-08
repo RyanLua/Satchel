@@ -1517,6 +1517,7 @@ end)
 ScrollingFrame = NewGui("ScrollingFrame", "ScrollingFrame")
 ScrollingFrame.Selectable = false
 ScrollingFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.ScrollBarThickness = 8
 ScrollingFrame.ScrollBarImageColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
