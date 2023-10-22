@@ -49,6 +49,15 @@ body:
       placeholder: Add any relevant log output here. This includes any errors or warnings.
       value: Any outputs or logs of when the bug occurred? Put only the logs here.
       render: lua
+  - type: input
+    id: version
+    attributes:
+      label: Satchel version
+      description: What version does your bug occur on?
+      placeholder: 1.0.0
+      value: Add the version the issue occurs on.
+    validations:
+      required: true
   - type: textarea
     id: other-details
     attributes:
