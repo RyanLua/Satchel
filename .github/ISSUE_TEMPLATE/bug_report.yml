@@ -5,29 +5,25 @@ labels: ["bug"]
 body:
   - type: markdown
     attributes:
-      value: |
-        Thanks for taking the time to fill out this issue!
+      value: Thanks for taking the time to fill out this issue!
   - type: textarea
     id: description
     attributes:
       label: Description
       description: A clear and concise description of what the bug is.
       placeholder: Write a brief sentence about the bug
-      value: _What is the bug and what does it do?_
   - type: textarea
     id: expected-behavior
     attributes:
       label: What was expected?
       description: What did you expect to happen?
       placeholder: When I do this, that is supposed to happen
-      value: _What do you expect to see?_
   - type: textarea
     id: actual-behavior
     attributes:
       label: What actually happened?
       description: What happened instead?
       placeholder: When I do this, it instead does that.
-      value: _What actually happened?_
   - type: textarea
     id: repro-steps
     attributes:
@@ -38,40 +34,30 @@ body:
         2. Click on '...'
         3. Scroll down to '...'
         4. See error
-      value: |
-        1. What are the steps to reproduce the bug?
-        2. Make sure they are numbered
   - type: textarea
     id: logs
     attributes:
       label: Relevant log output
       description: Please copy and paste any relevant log output.
       placeholder: Add any relevant log output here. This includes any errors or warnings.
-      value: Any outputs or logs of when the bug occurred? Put only the logs here.
       render: lua
+  - type: textarea
+    id: other-details
+    attributes:
+      label: Other details
+      description: Is there anything else we should know or have? (screenshots, links, videos, etc.)
+      placeholder: Any other details you would like to add? You can attach files here, this includes screenshots, videos, etc.
   - type: input
     id: version
     attributes:
       label: Satchel version
       description: What version does your bug occur on?
       placeholder: 1.0.0
-      value: Add the version the issue occurs on.
-    validations:
-      required: true
-  - type: textarea
-    id: other-details
-    attributes:
-      label: Other details
-      description: |
-        Anything else you would like to add?
-        (screenshots, links, videos, etc.)
-      placeholder: |
-        Any other details you would like to add? You can attach files here, this includes screenshots, videos, etc.
-      value: _Do you have any pictures or videos of the bug? If so, provide them._
   - type: dropdown
     id: severity
     attributes:
       label: Severity
+      description: How severe is this bug?
       options:
         - Low
         - Moderate
@@ -81,6 +67,7 @@ body:
     id: platforms
     attributes:
       label: Platforms affected
+      description: What platforms does this bug happen on?
       multiple: true
       options:
         - Computer
