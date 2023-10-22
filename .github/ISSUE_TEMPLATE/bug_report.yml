@@ -15,15 +15,15 @@ body:
   - type: textarea
     id: expected-behavior
     attributes:
-      label: What was expected?
+      label: Expected behavior
       description: What did you expect to happen?
       placeholder: When I do this, that is supposed to happen
   - type: textarea
     id: actual-behavior
     attributes:
-      label: What actually happened?
-      description: What happened instead?
-      placeholder: When I do this, it instead does that.
+      label: Actual behavior
+      description: What actually happened instead? If you have a screenshot or video, attach them.
+      placeholder: When I do this, it instead does that
   - type: textarea
     id: repro-steps
     attributes:
@@ -45,8 +45,8 @@ body:
     id: other-details
     attributes:
       label: Other details
-      description: Is there anything else we should know or have? (screenshots, links, videos, etc.)
-      placeholder: Any other details you would like to add? You can attach files here, this includes screenshots, videos, etc.
+      description: Is there anything else we should know or have?
+      placeholder: The bug is able to be only reproduced able this percent of the time
   - type: input
     id: version
     attributes:
