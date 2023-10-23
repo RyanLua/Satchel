@@ -57,8 +57,6 @@ BackpackScript.VRClosesNonExclusive = true
 
 local targetScript: LocalScript = script.Parent
 
-local GetFFlagUseDesignSystemGamepadIcons: boolean = true
-
 -- Legacy behavior for backpack
 local LEGACY_EDGE_ENABLED: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
@@ -1605,7 +1603,7 @@ gamepadHintsFrameCorner.Name = "Corner"
 gamepadHintsFrameCorner.CornerRadius = BACKGROUND_CORNER_RADIUS
 gamepadHintsFrameCorner.Parent = gamepadHintsFrame
 
-local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hintTextString: string): ()
+local function addGamepadHint(hintImageString: string, hintTextString: string): ()
 	local hintFrame = Instance.new("Frame")
 	hintFrame.Name = "HintFrame"
 	hintFrame.AutomaticSize = Enum.AutomaticSize.XY
@@ -1614,7 +1612,7 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 
 	local hintLayout = Instance.new("UIListLayout")
 	hintLayout.Name = "Layout"
-	hintLayout.Padding = UDim.new(0, 8)
+	hintLayout.Padding = (IsTenFootInterface and UDim.new(0, 20) or UDim.new(0, 12))
 	hintLayout.FillDirection = Enum.FillDirection.Horizontal
 	hintLayout.SortOrder = Enum.SortOrder.LayoutOrder
 	hintLayout.VerticalAlignment = Enum.VerticalAlignment.Center
@@ -1622,9 +1620,9 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 
 	local hintImage = Instance.new("ImageLabel")
 	hintImage.Name = "HintImage"
-	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 72, 0, 72) or UDim2.new(0, 36, 0, 36))
+	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 60, 0, 60) or UDim2.new(0, 30, 0, 30))
 	hintImage.BackgroundTransparency = 1
-	hintImage.Image = (IsTenFootInterface and hintImageLarge or hintImageSmall)
+	hintImage.Image = hintImageString
 	hintImage.Parent = hintFrame
 
 	local hintText = Instance.new("TextLabel")
@@ -1644,6 +1642,10 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 	textSizeConstraint.MaxTextSize = hintText.TextSize
 	textSizeConstraint.Parent = hintText
 end
+
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonX), "Remove From Hotbar")
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonA), "Select/Swap")
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonB), "Close Backpack")
 
 local function resizeGamepadHintsFrame(): ()
 	gamepadHintsFrame.Size =
@@ -1700,40 +1702,6 @@ local function resizeGamepadHintsFrame(): ()
 			-5
 		)
 	end
-end
-
-if GetFFlagUseDesignSystemGamepadIcons then
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX@2x.png",
-		"Remove From Hotbar"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonA.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonA@2x.png",
-		"Select/Swap"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonB.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonB@2x.png",
-		"Close Backpack"
-	)
-else
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/XButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/XButtonDark@2x.png",
-		"Remove From Hotbar"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/AButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/AButtonDark@2x.png",
-		"Select/Swap"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/BButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/BButtonDark@2x.png",
-		"Close Backpack"
-	)
 end
 
 do -- Search stuff
