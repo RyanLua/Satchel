@@ -1587,35 +1587,56 @@ UpdateBackpackLayout()
 local gamepadHintsFrame = Instance.new("Frame")
 gamepadHintsFrame.Name = "GamepadHintsFrame"
 gamepadHintsFrame.Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
-gamepadHintsFrame.BackgroundTransparency = 1
+gamepadHintsFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
+gamepadHintsFrame.BackgroundColor3 = BACKGROUND_COLOR
 gamepadHintsFrame.Visible = false
 gamepadHintsFrame.Parent = MainFrame
+
+local gamepadHintsFrameLayout = Instance.new("UIListLayout")
+gamepadHintsFrameLayout.Name = "Layout"
+gamepadHintsFrameLayout.Padding = UDim.new(0, 25)
+gamepadHintsFrameLayout.FillDirection = Enum.FillDirection.Horizontal
+gamepadHintsFrameLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+gamepadHintsFrameLayout.SortOrder = Enum.SortOrder.LayoutOrder
+gamepadHintsFrameLayout.Parent = gamepadHintsFrame
+
+local gamepadHintsFrameCorner = Instance.new("UICorner")
+gamepadHintsFrameCorner.Name = "Corner"
+gamepadHintsFrameCorner.CornerRadius = BACKGROUND_CORNER_RADIUS
+gamepadHintsFrameCorner.Parent = gamepadHintsFrame
 
 local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hintTextString: string): ()
 	local hintFrame = Instance.new("Frame")
 	hintFrame.Name = "HintFrame"
-	hintFrame.Size = UDim2.new(1, 0, 1, -5)
-	hintFrame.Position = UDim2.new(0, 0, 0, 0)
+	hintFrame.AutomaticSize = Enum.AutomaticSize.XY
 	hintFrame.BackgroundTransparency = 1
 	hintFrame.Parent = gamepadHintsFrame
 
+	local hintLayout = Instance.new("UIListLayout")
+	hintLayout.Name = "Layout"
+	hintLayout.Padding = UDim.new(0, 8)
+	hintLayout.FillDirection = Enum.FillDirection.Horizontal
+	hintLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	hintLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	hintLayout.Parent = hintFrame
+
 	local hintImage = Instance.new("ImageLabel")
 	hintImage.Name = "HintImage"
-	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60))
+	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 72, 0, 72) or UDim2.new(0, 36, 0, 36))
 	hintImage.BackgroundTransparency = 1
 	hintImage.Image = (IsTenFootInterface and hintImageLarge or hintImageSmall)
 	hintImage.Parent = hintFrame
 
 	local hintText = Instance.new("TextLabel")
 	hintText.Name = "HintText"
-	hintText.Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0)
-	hintText.Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0)
-	hintText.Font = Enum.Font.SourceSansBold
-	hintText.FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24)
+	hintText.AutomaticSize = Enum.AutomaticSize.XY
+	hintText.Font = Enum.Font.GothamMedium
+	hintText.TextSize = (IsTenFootInterface and 32 or 19)
 	hintText.BackgroundTransparency = 1
 	hintText.Text = hintTextString
 	hintText.TextColor3 = Color3.new(1, 1, 1)
 	hintText.TextXAlignment = Enum.TextXAlignment.Left
+	hintText.TextYAlignment = Enum.TextYAlignment.Center
 	hintText.TextWrapped = true
 	hintText.Parent = hintFrame
 
@@ -1631,33 +1652,53 @@ local function resizeGamepadHintsFrame(): ()
 		HotbarFrame.Position.X.Scale,
 		HotbarFrame.Position.X.Offset,
 		InventoryFrame.Position.Y.Scale,
-		InventoryFrame.Position.Y.Offset - gamepadHintsFrame.Size.Y.Offset
+		InventoryFrame.Position.Y.Offset - gamepadHintsFrame.Size.Y.Offset - ICON_BUFFER_PIXELS
 	)
 
-	local spaceTaken = 0
+	local spaceTaken: number = 0
 
-	local gamepadHints = gamepadHintsFrame:GetChildren()
+	local gamepadHints: table = gamepadHintsFrame:GetChildren()
+	local filteredGamepadHints: table = {}
+
+	for _, child in pairs(gamepadHints) do
+		if child:IsA("GuiObject") then
+			table.insert(filteredGamepadHints, child)
+		end
+	end
+
 	--First get the total space taken by all the hints
-	for i = 1, #gamepadHints do
-		gamepadHints[i].Size = UDim2.new(1, 0, 1, -5)
-		gamepadHints[i].Position = UDim2.new(0, 0, 0, 0)
-		spaceTaken = spaceTaken + (gamepadHints[i].HintText.Position.X.Offset + gamepadHints[i].HintText.TextBounds.X)
+	for guiObjects = 1, #filteredGamepadHints do
+		if filteredGamepadHints[guiObjects]:IsA("GuiObject") then
+			filteredGamepadHints[guiObjects].Size = UDim2.new(1, 0, 1, -5)
+			filteredGamepadHints[guiObjects].Position = UDim2.new(0, 0, 0, 0)
+			spaceTaken = spaceTaken
+				+ (
+					filteredGamepadHints[guiObjects].HintText.Position.X.Offset
+					+ filteredGamepadHints[guiObjects].HintText.TextBounds.X
+				)
+		end
 	end
 
 	--The space between all the frames should be equal
-	local spaceBetweenElements = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#gamepadHints - 1)
-	for i = 1, #gamepadHints do
-		gamepadHints[i].Position = (
+	local spaceBetweenElements: number = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#filteredGamepadHints - 1)
+	for i = 1, #filteredGamepadHints do
+		filteredGamepadHints[i].Position = (
 			i == 1 and UDim2.new(0, 0, 0, 0)
 			or UDim2.new(
 				0,
-				gamepadHints[i - 1].Position.X.Offset + gamepadHints[i - 1].Size.X.Offset + spaceBetweenElements,
+				filteredGamepadHints[i - 1].Position.X.Offset
+					+ filteredGamepadHints[i - 1].Size.X.Offset
+					+ spaceBetweenElements,
 				0,
 				0
 			)
 		)
-		gamepadHints[i].Size =
-			UDim2.new(0, (gamepadHints[i].HintText.Position.X.Offset + gamepadHints[i].HintText.TextBounds.X), 1, -5)
+		filteredGamepadHints[i].Size = UDim2.new(
+			0,
+			(filteredGamepadHints[i].HintText.Position.X.Offset + filteredGamepadHints[i].HintText.TextBounds.X),
+			1,
+			-5
+		)
 	end
 end
 
