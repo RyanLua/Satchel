@@ -658,7 +658,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.BackgroundColor3 = BACKGROUND_COLOR
 	SlotFrame.BorderColor3 = SLOT_BORDER_COLOR
 	SlotFrame.Text = ""
-	SlotFrame.AutoButtonColor = false
 	SlotFrame.BorderSizePixel = 0
 	SlotFrame.Size = UDim2.new(0, ICON_SIZE_PIXELS, 0, ICON_SIZE_PIXELS)
 	SlotFrame.Active = true
