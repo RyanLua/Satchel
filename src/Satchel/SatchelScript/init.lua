@@ -38,7 +38,6 @@ local TextChatService = game:GetService("TextChatService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
-local GamepadService = game:GetService("GamepadService")
 local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
 local VRService = game:GetService("VRService")
@@ -1301,6 +1300,7 @@ function getGamepadSwapSlot(): any
 	end
 end
 
+-- selene: allow(unused_variable)
 function changeSlot(slot)
 	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
 
@@ -1371,6 +1371,7 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl()
+	-- selene: allow(unused_variable)
 	local goBackOneLevel = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)
 		if inputState ~= Enum.UserInputState.Begin then
 			return
@@ -1378,6 +1379,7 @@ function enableGamepadInventoryControl()
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
+			-- selene: allow(shadowing)
 			local selectedSlot = getGamepadSwapSlot()
 			if selectedSlot then
 				selectedSlot.Frame.BorderSizePixel = 0
