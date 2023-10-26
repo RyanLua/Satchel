@@ -7,7 +7,7 @@
   
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](https://github.com/RyanLua/Satchel/releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](https://github.com/RyanLua/Satchel/search?l=lua)
-  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=gnu&color=00a2ff)](LICENSE.txt)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff)](LICENSE.txt)
 </h1>
 
 > Satchel, a modern open-source alternative to Roblox's default backpack. 💼
