@@ -1,13 +1,13 @@
 <h1 align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="/RyanLua/Satchel/assets/SatchelWhite.png">
-    <source media="(prefers-color-scheme: light)" srcset="/RyanLua/Satchel/assets/SatchelBlack.png">
-    <img src="/RyanLua/Satchel/assets/SatchelBlack.png">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/SatchelWhite.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/SatchelBlack.png">
+    <img src="assets/SatchelBlack.png">
   </picture>
   
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](/RyanLua/Satchel/releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](/RyanLua/Satchel/search?l=lua)
-  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff)](/RyanLua/Satchel/blob/main/LICENSE.txt)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff)](LICENSE.txt)
 </h1>
 
 > Satchel, a modern open-source alternative to Roblox's default backpack. 💼
@@ -16,8 +16,8 @@
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
 
-<img src="/RyanLua/Satchel/assets/SatchelThumbnail1.png" style="width: 49%;"> <img src="/RyanLua/Satchel/assets/SatchelThumbnail2.png" style="width: 49%;">
-<img src="/RyanLua/Satchel/assets/SatchelThumbnail3.png" style="width: 49%;"> <img src="/RyanLua/Satchel/assets/SatchelThumbnail4.png" style="width: 49%;">
+<img src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img src="assets/SatchelThumbnail2.png" style="width: 49%;">
+<img src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
 
 ## ⭐ Features
 
@@ -28,7 +28,7 @@ Satchel comes packed with much-needed features and changes that the default back
 Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
 
 <div align="center">
-  <img src="/RyanLua/Satchel/assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
+  <img src="assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
 </div>
 
 ### Highly Customizable & Versatile
@@ -36,7 +36,7 @@ Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI
 Satchel is highly customizable & adjustable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
 
 <div align="center">
-  <img src="/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
+  <img src="assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
 </div>
 
 ### Improved Mobile Experience
@@ -44,7 +44,7 @@ Satchel is highly customizable & adjustable with instance attributes support all
 Satchel expands on the mobile experience doubling the number of slots allowing players on mobile to not be at a disadvantage.
 
 <div align="center">
-  <img src="/RyanLua/Satchel/assets/SatchelThumbnail4.png" style="width: 49%;">
+  <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
 </div>
 
 ### Topbar Plus Support
@@ -52,7 +52,7 @@ Satchel expands on the mobile experience doubling the number of slots allowing p
 Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/TopbarPlus) to allow users to easily and more quickly open the inventory.
 
 <div align="center">
-  <img src="/RyanLua/Satchel/assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
+  <img src="assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
 </div>
 
 ## 🛝 Playground
@@ -135,7 +135,7 @@ A special thanks to the following people for their contributions to Satchel.
 
 > **Note**
 >
-> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](/RyanLua/Satchel/blob/main/SUPPORT.md) for additional information.
+> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
@@ -190,10 +190,10 @@ Satchel offers access to some of its internal methods and events for scripting p
 
 ## 🙏 Contributing
 
-We welcome all contributions from the community. If you would like to contribute, please see [CONTRIBUTING.md](/RyanLua/Satchel/blob/main/CONTRIBUTING.md) to get started on how to contribute to Satchel.
+We welcome all contributions from the community. If you would like to contribute, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started on how to contribute to Satchel.
 
 When you contribute to Satchel you will be accredited for your contribution for everyone to see on this repository along with supporting the open-source community.
 
 ## 📃 License
 
-Satchel is licensed under [Mozilla Public License 2.0](http://mozilla.org/MPL/2.0/). See [LICENSE.txt](/RyanLua/Satchel/blob/main/LICENSE.txt) for details.
+Satchel is licensed under [Mozilla Public License 2.0](http://mozilla.org/MPL/2.0/). See [LICENSE.txt](LICENSE.txt) for details.
