@@ -192,4 +192,4 @@ When you contribute to Satchel you will be accredited for your contribution for 
 
 ## 📃 License
 
-Satchel is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
+Satchel is licensed under [Mozilla Public License 2.0](http://mozilla.org/MPL/2.0/). See [LICENSE.txt](LICENSE.txt) for details.
