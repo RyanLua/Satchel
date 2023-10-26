@@ -135,7 +135,7 @@ A special thanks to the following people for their contributions to Satchel.
 
 > **Note**
 >
-> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
+> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](Satchel/blob/main/SUPPORT.md) for additional information.
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
