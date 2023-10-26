@@ -135,17 +135,19 @@ A special thanks to the following people for their contributions to Satchel.
 
 > **Note**
 >
-> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
+> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](blob/main/SUPPORT.md) for additional information.
 
-Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR.
+Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
-You can support Satchel by starring this repository, sharing it with others, and contributing to it. Learn about contributing to Satchel below at [Contributing](#contributing).
+## 📖 Wiki
 
-## 📖 Documentation
-
-Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
+> **Note**
+>
+> Satchel has [it's very own wiki](wiki) you can visit. Find guides on how to get started and documentation.
 
 ### Attributes
+
+Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
 
 | Attribute | Description | Default |
 | :--- | :--- | :--- |
@@ -162,6 +164,8 @@ Satchel supports instance attributes allowing you to change and customize many a
 | TextStrokeTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the transparency of the text stroke of text in default chat window and slots. | 0.5 |
 
 ### Methods
+
+Satchel offers access to some of its internal methods and events for scripting purposes. Below see a table with all the methods available.
 
 | IsOpened(): [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) |
 | :--- |
