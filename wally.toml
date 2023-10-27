@@ -1,8 +1,8 @@
 [package]
 name = "ryanlua/satchel"
 description = "A modern open-source alternative to Roblox's default backpack."
-version = "1.1.0"
-license = "GPL-3.0"
+version = "1.2.0"
+license = "MPL-2.0"
 authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"

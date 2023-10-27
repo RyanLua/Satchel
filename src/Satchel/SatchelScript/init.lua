@@ -2,7 +2,7 @@
 
 --[[
 	Name: SatchelScript
-	Version: 1.1.0
+	Version: 1.2.0
 	Description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
 	By: @WinnersTakesAll on Roblox & @RyanLua on GitHub
 
@@ -16,21 +16,9 @@
 ]]
 
 --[[
-	Satchel, a modern open-source alternative to Roblox's default backpack.
-	Copyright (C) 2023 RyanLua
-
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU Affero General Public License as published
-	by the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU Affero General Public License for more details.
-
-	You should have received a copy of the GNU Affero General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	This Source Code Form is subject to the terms of the Mozilla Public
+	License, v. 2.0. If a copy of the MPL was not distributed with this
+	file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ]]
 
 local ContextActionService = game:GetService("ContextActionService")
@@ -656,7 +644,6 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.BackgroundColor3 = BACKGROUND_COLOR
 	SlotFrame.BorderColor3 = SLOT_BORDER_COLOR
 	SlotFrame.Text = ""
-	SlotFrame.AutoButtonColor = false
 	SlotFrame.BorderSizePixel = 0
 	SlotFrame.Size = UDim2.new(0, ICON_SIZE_PIXELS, 0, ICON_SIZE_PIXELS)
 	SlotFrame.Active = true
