@@ -143,7 +143,7 @@ Satchel fully supports all platforms which includes computer, tablet, phone, con
 
 > **Note**
 >
-> Satchel has [it's very own wiki](wiki) you can visit. Find guides on how to get started and documentation.
+> Satchel has it's very own [Satchel/wiki](wiki) you can visit. Find guides on how to get started and documentation.
 
 ### Attributes
 
