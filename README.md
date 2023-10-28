@@ -101,7 +101,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 <summary><h3>Install from GitHub Releases</h3></summary>
 
-1. Download the `Satchel.rbxmx` file from [Releases](releases).
+1. Download the `Satchel.rbxmx` file from [Releases](../../releases).
 
 ![GitHubRelease](assets/GitHubReleases.png)
 
