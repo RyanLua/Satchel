@@ -45,8 +45,6 @@ BackpackScript.VRClosesNonExclusive = true
 
 local targetScript: LocalScript = script.Parent
 
-local GetFFlagUseDesignSystemGamepadIcons: boolean = true
-
 -- Legacy behavior for backpack
 local LEGACY_EDGE_ENABLED: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
@@ -651,8 +649,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.Active = true
 	SlotFrame.Draggable = false
 	SlotFrame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
-	SlotFrame.MouseButton1Click:Connect(function(): ()
-		slot:Select()
+	SlotFrame.MouseButton1Click:Connect(function()
+		changeSlot(slot)
 	end)
 	local searchFrameCorner = Instance.new("UICorner")
 	searchFrameCorner.Name = "Corner"
@@ -1289,6 +1287,63 @@ function getGamepadSwapSlot(): any
 	end
 end
 
+-- selene: allow(unused_variable)
+function changeSlot(slot)
+	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
+
+	if slot.Frame == GuiService.SelectedObject and swapInVr then
+		local currentlySelectedSlot = getGamepadSwapSlot()
+
+		if currentlySelectedSlot then
+			currentlySelectedSlot.Frame.BorderSizePixel = 0
+			if currentlySelectedSlot ~= slot then
+				slot:Swap(currentlySelectedSlot)
+				VRInventorySelector.SelectionImageObject.Visible = false
+
+				if slot.Index > NumberOfHotbarSlots and not slot.Tool then
+					if GuiService.SelectedObject == slot.Frame then
+						GuiService.SelectedObject = currentlySelectedSlot.Frame
+					end
+					slot:Delete()
+				end
+
+				if currentlySelectedSlot.Index > NumberOfHotbarSlots and not currentlySelectedSlot.Tool then
+					if GuiService.SelectedObject == currentlySelectedSlot.Frame then
+						GuiService.SelectedObject = slot.Frame
+					end
+					currentlySelectedSlot:Delete()
+				end
+			end
+		else
+			local startSize = slot.Frame.Size
+			local startPosition = slot.Frame.Position
+			slot.Frame:TweenSizeAndPosition(
+				startSize + UDim2.new(0, 10, 0, 10),
+				startPosition - UDim2.new(0, 5, 0, 5),
+				Enum.EasingDirection.Out,
+				Enum.EasingStyle.Quad,
+				0.1,
+				true,
+				function()
+					slot.Frame:TweenSizeAndPosition(
+						startSize,
+						startPosition,
+						Enum.EasingDirection.In,
+						Enum.EasingStyle.Quad,
+						0.1,
+						true
+					)
+				end
+			)
+			slot.Frame.BorderSizePixel = 3
+			VRInventorySelector.SelectionImageObject.Visible = true
+		end
+	else
+		slot:Select()
+		VRInventorySelector.SelectionImageObject.Visible = false
+	end
+end
+
 function vrMoveSlotToInventory(): ()
 	if not VRService.VREnabled then
 		return
@@ -1302,16 +1357,21 @@ function vrMoveSlotToInventory(): ()
 	end
 end
 
-function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
+function enableGamepadInventoryControl()
+	-- selene: allow(unused_variable)
+	local goBackOneLevel = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)
 		if inputState ~= Enum.UserInputState.Begin then
 			return
 		end
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
-			selectedSlot.Frame.BorderSizePixel = 0
-			return
+			-- selene: allow(shadowing)
+			local selectedSlot = getGamepadSwapSlot()
+			if selectedSlot then
+				selectedSlot.Frame.BorderSizePixel = 0
+				return
+			end
 		elseif InventoryFrame.Visible then
 			InventoryIcon:deselect()
 		end
@@ -1574,35 +1634,56 @@ UpdateBackpackLayout()
 local gamepadHintsFrame = Instance.new("Frame")
 gamepadHintsFrame.Name = "GamepadHintsFrame"
 gamepadHintsFrame.Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
-gamepadHintsFrame.BackgroundTransparency = 1
+gamepadHintsFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
+gamepadHintsFrame.BackgroundColor3 = BACKGROUND_COLOR
 gamepadHintsFrame.Visible = false
 gamepadHintsFrame.Parent = MainFrame
 
-local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hintTextString: string): ()
+local gamepadHintsFrameLayout = Instance.new("UIListLayout")
+gamepadHintsFrameLayout.Name = "Layout"
+gamepadHintsFrameLayout.Padding = UDim.new(0, 25)
+gamepadHintsFrameLayout.FillDirection = Enum.FillDirection.Horizontal
+gamepadHintsFrameLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+gamepadHintsFrameLayout.SortOrder = Enum.SortOrder.LayoutOrder
+gamepadHintsFrameLayout.Parent = gamepadHintsFrame
+
+local gamepadHintsFrameCorner = Instance.new("UICorner")
+gamepadHintsFrameCorner.Name = "Corner"
+gamepadHintsFrameCorner.CornerRadius = BACKGROUND_CORNER_RADIUS
+gamepadHintsFrameCorner.Parent = gamepadHintsFrame
+
+local function addGamepadHint(hintImageString: string, hintTextString: string): ()
 	local hintFrame = Instance.new("Frame")
 	hintFrame.Name = "HintFrame"
-	hintFrame.Size = UDim2.new(1, 0, 1, -5)
-	hintFrame.Position = UDim2.new(0, 0, 0, 0)
+	hintFrame.AutomaticSize = Enum.AutomaticSize.XY
 	hintFrame.BackgroundTransparency = 1
 	hintFrame.Parent = gamepadHintsFrame
 
+	local hintLayout = Instance.new("UIListLayout")
+	hintLayout.Name = "Layout"
+	hintLayout.Padding = (IsTenFootInterface and UDim.new(0, 20) or UDim.new(0, 12))
+	hintLayout.FillDirection = Enum.FillDirection.Horizontal
+	hintLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	hintLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	hintLayout.Parent = hintFrame
+
 	local hintImage = Instance.new("ImageLabel")
 	hintImage.Name = "HintImage"
-	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60))
+	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 60, 0, 60) or UDim2.new(0, 30, 0, 30))
 	hintImage.BackgroundTransparency = 1
-	hintImage.Image = (IsTenFootInterface and hintImageLarge or hintImageSmall)
+	hintImage.Image = hintImageString
 	hintImage.Parent = hintFrame
 
 	local hintText = Instance.new("TextLabel")
 	hintText.Name = "HintText"
-	hintText.Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0)
-	hintText.Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0)
-	hintText.Font = Enum.Font.SourceSansBold
-	hintText.FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24)
+	hintText.AutomaticSize = Enum.AutomaticSize.XY
+	hintText.Font = Enum.Font.GothamMedium
+	hintText.TextSize = (IsTenFootInterface and 32 or 19)
 	hintText.BackgroundTransparency = 1
 	hintText.Text = hintTextString
 	hintText.TextColor3 = Color3.new(1, 1, 1)
 	hintText.TextXAlignment = Enum.TextXAlignment.Left
+	hintText.TextYAlignment = Enum.TextYAlignment.Center
 	hintText.TextWrapped = true
 	hintText.Parent = hintFrame
 
@@ -1611,6 +1692,10 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 	textSizeConstraint.Parent = hintText
 end
 
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonX), "Remove From Hotbar")
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonA), "Select/Swap")
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonB), "Close Backpack")
+
 local function resizeGamepadHintsFrame(): ()
 	gamepadHintsFrame.Size =
 		UDim2.new(HotbarFrame.Size.X.Scale, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
@@ -1618,68 +1703,54 @@ local function resizeGamepadHintsFrame(): ()
 		HotbarFrame.Position.X.Scale,
 		HotbarFrame.Position.X.Offset,
 		InventoryFrame.Position.Y.Scale,
-		InventoryFrame.Position.Y.Offset - gamepadHintsFrame.Size.Y.Offset
+		InventoryFrame.Position.Y.Offset - gamepadHintsFrame.Size.Y.Offset - ICON_BUFFER_PIXELS
 	)
 
-	local spaceTaken = 0
+	local spaceTaken: number = 0
 
-	local gamepadHints = gamepadHintsFrame:GetChildren()
+	local gamepadHints: table = gamepadHintsFrame:GetChildren()
+	local filteredGamepadHints: table = {}
+
+	for _, child in pairs(gamepadHints) do
+		if child:IsA("GuiObject") then
+			table.insert(filteredGamepadHints, child)
+		end
+	end
+
 	--First get the total space taken by all the hints
-	for i = 1, #gamepadHints do
-		gamepadHints[i].Size = UDim2.new(1, 0, 1, -5)
-		gamepadHints[i].Position = UDim2.new(0, 0, 0, 0)
-		spaceTaken = spaceTaken + (gamepadHints[i].HintText.Position.X.Offset + gamepadHints[i].HintText.TextBounds.X)
+	for guiObjects = 1, #filteredGamepadHints do
+		if filteredGamepadHints[guiObjects]:IsA("GuiObject") then
+			filteredGamepadHints[guiObjects].Size = UDim2.new(1, 0, 1, -5)
+			filteredGamepadHints[guiObjects].Position = UDim2.new(0, 0, 0, 0)
+			spaceTaken = spaceTaken
+				+ (
+					filteredGamepadHints[guiObjects].HintText.Position.X.Offset
+					+ filteredGamepadHints[guiObjects].HintText.TextBounds.X
+				)
+		end
 	end
 
 	--The space between all the frames should be equal
-	local spaceBetweenElements = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#gamepadHints - 1)
-	for i = 1, #gamepadHints do
-		gamepadHints[i].Position = (
+	local spaceBetweenElements: number = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#filteredGamepadHints - 1)
+	for i = 1, #filteredGamepadHints do
+		filteredGamepadHints[i].Position = (
 			i == 1 and UDim2.new(0, 0, 0, 0)
 			or UDim2.new(
 				0,
-				gamepadHints[i - 1].Position.X.Offset + gamepadHints[i - 1].Size.X.Offset + spaceBetweenElements,
+				filteredGamepadHints[i - 1].Position.X.Offset
+					+ filteredGamepadHints[i - 1].Size.X.Offset
+					+ spaceBetweenElements,
 				0,
 				0
 			)
 		)
-		gamepadHints[i].Size =
-			UDim2.new(0, (gamepadHints[i].HintText.Position.X.Offset + gamepadHints[i].HintText.TextBounds.X), 1, -5)
+		filteredGamepadHints[i].Size = UDim2.new(
+			0,
+			(filteredGamepadHints[i].HintText.Position.X.Offset + filteredGamepadHints[i].HintText.TextBounds.X),
+			1,
+			-5
+		)
 	end
-end
-
-if GetFFlagUseDesignSystemGamepadIcons then
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX@2x.png",
-		"Remove From Hotbar"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonA.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonA@2x.png",
-		"Select/Swap"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonB.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonB@2x.png",
-		"Close Backpack"
-	)
-else
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/XButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/XButtonDark@2x.png",
-		"Remove From Hotbar"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/AButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/AButtonDark@2x.png",
-		"Select/Swap"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/BButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/BButtonDark@2x.png",
-		"Close Backpack"
-	)
 end
 
 do -- Search stuff
