@@ -10,7 +10,6 @@ jobs:
     - uses: ok-nick/setup-aftman@v0.3.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        version: latest
     - run: selene ./src
   style:
     runs-on: ubuntu-latest
