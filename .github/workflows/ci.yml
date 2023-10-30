@@ -18,8 +18,7 @@ permissions:
   contents: write
 
 jobs:
-  run-linter:
-    name: Run linter
+  lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,8 +34,7 @@ jobs:
         run: |
           selene ./src
 
-  run-styler:
-    name: Run styler
+  style:
     runs-on: ubuntu-latest
 
     steps:
