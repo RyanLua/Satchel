@@ -96,12 +96,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 <summary><h3>Install from GitHub Releases</h3></summary>
 
-<<<<<<< Updated upstream
 1. Download the `Satchel.rbxmx` file from [Releases](../../releases).
-
-=======
-1. Download the `Satchel.rbxmx` file from [Releases](releases).
->>>>>>> Stashed changes
 ![GitHubRelease](assets/GitHubReleases.png)
 
 2. Open Roblox Studio and create a new place or open an existing place.
