@@ -45,19 +45,23 @@ BackpackScript.VRClosesNonExclusive = true
 
 local targetScript: LocalScript = script.Parent
 
+local PREFERRED_TRANSPARENCY: number = GuiService.PreferredTransparency or 1
+
 -- Legacy behavior for backpack
 local LEGACY_EDGE_ENABLED: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
 
 -- Background
-local BACKGROUND_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 
 -- Slots
 local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_LOCKED_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_LOCKED_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_LOCKED_TRANSPARENCY: number = SLOT_LOCKED_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
 local SLOT_DRAGGABLE_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
@@ -96,7 +100,8 @@ local TEXT_STROKE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") 
 
 -- Search
 local SEARCH_BACKGROUND_COLOR: Color3 = Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SEARCH_BACKGROUND_TRANSPARENCY: number = 0.2
+local SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT: number = 0.2
+local SEARCH_BACKGROUND_TRANSPARENCY: number = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local SEARCH_BORDER_COLOR: Color3 = Color3.new(1, 1, 1)
 local SEARCH_BORDER_TRANSPARENCY: number = 0.8
 local SEARCH_BORDER_THICKNESS: number = 1
@@ -1753,8 +1758,8 @@ local function resizeGamepadHintsFrame(): ()
 	end
 end
 
+local searchFrame = NewGui("Frame", "Search")
 do -- Search stuff
-	local searchFrame = NewGui("Frame", "Search")
 	searchFrame.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
 	searchFrame.Size = UDim2.new(
@@ -2081,5 +2086,21 @@ end
 RunService.Heartbeat:Connect(function(): ()
 	OnIconChanged(BackpackEnabled)
 end)
+
+local function OnPreferredTransparencyChanged()
+	local preferredTransparency = PREFERRED_TRANSPARENCY
+
+	BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
+
+	SLOT_LOCKED_TRANSPARENCY = SLOT_LOCKED_TRANSPARENCY_DEFAULT * preferredTransparency
+	for _, slot in ipairs(Slots) do
+		slot.Frame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
+	end
+
+	SEARCH_BACKGROUND_TRANSPARENCY = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
+end
+GuiService:GetPropertyChangedSignal("PreferredTransparency"):Connect(OnPreferredTransparencyChanged)
 
 return BackpackScript
