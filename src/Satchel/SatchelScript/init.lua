@@ -123,7 +123,7 @@ local SEARCH_BUFFER_PIXELS: number = 5
 local SEARCH_WIDTH_PIXELS: number = 200
 
 -- Misc
-local FONT_FAMILY: Enum.Font = Enum.Font.Gotham
+local FONT_FAMILY: Font = targetScript:GetAttribute("FontFace") or Font.new("rbxasset://fonts/families/GothamSSm.json")
 local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
 local DROP_HOTKEY_VALUE: number = Enum.KeyCode.Backspace.Value
 local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
@@ -251,11 +251,11 @@ local function NewGui(className: string, objectName: string): any
 		newGui.Text = ""
 		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
 		newGui.TextStrokeColor3 = TEXT_STROKE_COLOR
-		newGui.Font = FONT_FAMILY
+		newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 		newGui.TextSize = FONT_SIZE
 		newGui.TextWrapped = true
 		if className == "TextButton" then
-			newGui.Font = FONT_FAMILY
+			newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 			newGui.BorderSizePixel = 1
 		end
 	end
@@ -766,8 +766,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			local slotNum = (index < 10) and index or 0
 			SlotNumber = NewGui("TextLabel", "Number")
 			SlotNumber.Text = slotNum
-			SlotNumber.Font = FONT_FAMILY
-			SlotNumber.FontFace.Bold = true
+			SlotNumber.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
 			SlotNumber.Parent = SlotFrame
@@ -1577,8 +1576,7 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 	hintText.Name = "HintText"
 	hintText.Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0)
 	hintText.Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0)
-	hintText.Font = FONT_FAMILY
-	hintText.FontFace.Bold = true
+	hintText.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 	hintText.FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24)
 	hintText.BackgroundTransparency = 1
 	hintText.Text = hintTextString
