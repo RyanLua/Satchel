@@ -1,8 +1,8 @@
---!strict
+--!nocheck
 
 --[[
 	Name: SatchelScript
-	Version: 1.1.0
+	Version: 1.2.0
 	Description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
 	By: @WinnersTakesAll on Roblox & @RyanLua on GitHub
 
@@ -16,21 +16,9 @@
 ]]
 
 --[[
-	Satchel, a modern open-source alternative to Roblox's default backpack.
-	Copyright (C) 2023 RyanLua
-
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU Affero General Public License as published
-	by the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU Affero General Public License for more details.
-
-	You should have received a copy of the GNU Affero General Public License
-	along with this program.  If not, see <https://www.gnu.org/licenses/>.
+	This Source Code Form is subject to the terms of the Mozilla Public
+	License, v. 2.0. If a copy of the MPL was not distributed with this
+	file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ]]
 
 local ContextActionService = game:GetService("ContextActionService")
@@ -57,21 +45,23 @@ BackpackScript.VRClosesNonExclusive = true
 
 local targetScript: LocalScript = script.Parent
 
-local GetFFlagUseDesignSystemGamepadIcons: boolean = true
+local PREFERRED_TRANSPARENCY: number = GuiService.PreferredTransparency or 1
 
 -- Legacy behavior for backpack
 local LEGACY_EDGE_ENABLED: boolean = not targetScript:GetAttribute("OutlineEquipBorder") or false -- Instead of the edge selection being inset, it will be on the outlined.  LEGACY_PADDING must be enabled for this to work or this will do nothing
 local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadding") -- Instead of the icon taking up the full slot, it will be padded on each side.
 
 -- Background
-local BACKGROUND_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
+local BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 
 -- Slots
 local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") or Color3.new(0 / 255, 162 / 255, 1)
-local SLOT_LOCKED_TRANSPARENCY: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_LOCKED_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
+local SLOT_LOCKED_TRANSPARENCY: number = SLOT_LOCKED_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
 local SLOT_DRAGGABLE_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
@@ -110,7 +100,8 @@ local TEXT_STROKE_COLOR: Color3 = targetScript:GetAttribute("TextStrokeColor3") 
 
 -- Search
 local SEARCH_BACKGROUND_COLOR: Color3 = Color3.new(25 / 255, 27 / 255, 29 / 255)
-local SEARCH_BACKGROUND_TRANSPARENCY: number = 0.2
+local SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT: number = 0.2
+local SEARCH_BACKGROUND_TRANSPARENCY: number = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local SEARCH_BORDER_COLOR: Color3 = Color3.new(1, 1, 1)
 local SEARCH_BORDER_TRANSPARENCY: number = 0.8
 local SEARCH_BORDER_THICKNESS: number = 1
@@ -130,6 +121,14 @@ local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
 local DOUBLE_CLICK_TIME: number = 0.5
 local ICON_BUFFER_PIXELS: number = 5
 local ICON_SIZE_PIXELS: number = 60
+
+local MOUSE_INPUT_TYPES: table = { -- These are the input types that will be used for mouse -- [[ADDED]], Optional
+	[Enum.UserInputType.MouseButton1] = true,
+	[Enum.UserInputType.MouseButton2] = true,
+	[Enum.UserInputType.MouseButton3] = true,
+	[Enum.UserInputType.MouseMovement] = true,
+	[Enum.UserInputType.MouseWheel] = true,
+}
 
 local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be used for gamepad
 	[Enum.UserInputType.Gamepad1] = true,
@@ -175,13 +174,7 @@ end
 
 local GamepadActionsBound = false
 
-local GetScreenResolution = function(): Vector2
-	local CurrentCamera = workspace.CurrentCamera
-	local ViewportSize = CurrentCamera.ViewportSize
-	return ViewportSize
-end
-
-local IS_PHONE = UserInputService.TouchEnabled and GetScreenResolution().X < HOTBAR_SLOTS_WIDTH_CUTOFF
+local IS_PHONE = UserInputService.TouchEnabled and workspace.CurrentCamera.ViewportSize.X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
 local Player = Players.LocalPlayer
 
@@ -282,8 +275,8 @@ end
 -- 	return true
 -- end
 
-local function UseGazeSelection(): ()
-	return UserInputService.VREnabled
+local function UseGazeSelection(): boolean
+	return false -- disabled in new VR system
 end
 
 local function AdjustHotbarFrames(): ()
@@ -453,6 +446,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 			if icon ~= "" then
 				ToolName.Visible = false
+			else
+				ToolName.Visible = true
 			end
 
 			ToolName.Text = tool.Name
@@ -655,14 +650,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	SlotFrame.BackgroundColor3 = BACKGROUND_COLOR
 	SlotFrame.BorderColor3 = SLOT_BORDER_COLOR
 	SlotFrame.Text = ""
-	SlotFrame.AutoButtonColor = false
 	SlotFrame.BorderSizePixel = 0
 	SlotFrame.Size = UDim2.new(0, ICON_SIZE_PIXELS, 0, ICON_SIZE_PIXELS)
 	SlotFrame.Active = true
 	SlotFrame.Draggable = false
 	SlotFrame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
-	SlotFrame.MouseButton1Click:Connect(function(): ()
-		slot:Select()
+	SlotFrame.MouseButton1Click:Connect(function()
+		changeSlot(slot)
 	end)
 	local searchFrameCorner = Instance.new("UICorner")
 	searchFrameCorner.Name = "Corner"
@@ -706,6 +700,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	ToolName.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	ToolName.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolName.AnchorPoint = Vector2.new(0.5, 0.5)
+	ToolName.TextTruncate = Enum.TextTruncate.AtEnd
 	ToolName.Parent = SlotFrame
 
 	slot.Frame.LayoutOrder = slot.Index
@@ -1074,11 +1069,40 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 	end
 end
 
-local function OnUISChanged(property: string): ()
-	if property == "KeyboardEnabled" or property == "VREnabled" then
-		local on = UserInputService.KeyboardEnabled and not UserInputService.VREnabled
+local function OnUISChanged(): ()
+	-- Detect if player is using Touch
+	if UserInputService:GetLastInputType() == Enum.UserInputType.Touch then
 		for i = 1, NumberOfHotbarSlots do
-			Slots[i]:TurnNumber(on)
+			Slots[i]:TurnNumber(false)
+		end
+		return
+	end
+
+	-- Detect if player is using Keyboard
+	if UserInputService:GetLastInputType() == Enum.UserInputType.Keyboard then
+		for i = 1, NumberOfHotbarSlots do
+			Slots[i]:TurnNumber(true)
+		end
+		return
+	end
+
+	-- Detect if player is using Mouse
+	for _, mouse in pairs(MOUSE_INPUT_TYPES) do
+		if UserInputService:GetLastInputType() == mouse then
+			for i = 1, NumberOfHotbarSlots do
+				Slots[i]:TurnNumber(true)
+			end
+			return
+		end
+	end
+
+	-- Detect if player is using Controller
+	for _, gamepad in pairs(GAMEPAD_INPUT_TYPES) do
+		if UserInputService:GetLastInputType() == gamepad then
+			for i = 1, NumberOfHotbarSlots do
+				Slots[i]:TurnNumber(false)
+			end
+			return
 		end
 	end
 end
@@ -1269,6 +1293,63 @@ function getGamepadSwapSlot(): any
 	end
 end
 
+-- selene: allow(unused_variable)
+function changeSlot(slot)
+	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
+
+	if slot.Frame == GuiService.SelectedObject and swapInVr then
+		local currentlySelectedSlot = getGamepadSwapSlot()
+
+		if currentlySelectedSlot then
+			currentlySelectedSlot.Frame.BorderSizePixel = 0
+			if currentlySelectedSlot ~= slot then
+				slot:Swap(currentlySelectedSlot)
+				VRInventorySelector.SelectionImageObject.Visible = false
+
+				if slot.Index > NumberOfHotbarSlots and not slot.Tool then
+					if GuiService.SelectedObject == slot.Frame then
+						GuiService.SelectedObject = currentlySelectedSlot.Frame
+					end
+					slot:Delete()
+				end
+
+				if currentlySelectedSlot.Index > NumberOfHotbarSlots and not currentlySelectedSlot.Tool then
+					if GuiService.SelectedObject == currentlySelectedSlot.Frame then
+						GuiService.SelectedObject = slot.Frame
+					end
+					currentlySelectedSlot:Delete()
+				end
+			end
+		else
+			local startSize = slot.Frame.Size
+			local startPosition = slot.Frame.Position
+			slot.Frame:TweenSizeAndPosition(
+				startSize + UDim2.new(0, 10, 0, 10),
+				startPosition - UDim2.new(0, 5, 0, 5),
+				Enum.EasingDirection.Out,
+				Enum.EasingStyle.Quad,
+				0.1,
+				true,
+				function()
+					slot.Frame:TweenSizeAndPosition(
+						startSize,
+						startPosition,
+						Enum.EasingDirection.In,
+						Enum.EasingStyle.Quad,
+						0.1,
+						true
+					)
+				end
+			)
+			slot.Frame.BorderSizePixel = 3
+			VRInventorySelector.SelectionImageObject.Visible = true
+		end
+	else
+		slot:Select()
+		VRInventorySelector.SelectionImageObject.Visible = false
+	end
+end
+
 function vrMoveSlotToInventory(): ()
 	if not VRService.VREnabled then
 		return
@@ -1282,16 +1363,21 @@ function vrMoveSlotToInventory(): ()
 	end
 end
 
-function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
+function enableGamepadInventoryControl()
+	-- selene: allow(unused_variable)
+	local goBackOneLevel = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)
 		if inputState ~= Enum.UserInputState.Begin then
 			return
 		end
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
-			selectedSlot.Frame.BorderSizePixel = 0
-			return
+			-- selene: allow(shadowing)
+			local selectedSlot = getGamepadSwapSlot()
+			if selectedSlot then
+				selectedSlot.Frame.BorderSizePixel = 0
+				return
+			end
 		elseif InventoryFrame.Visible then
 			InventoryIcon:deselect()
 		end
@@ -1484,6 +1570,7 @@ end)
 ScrollingFrame = NewGui("ScrollingFrame", "ScrollingFrame")
 ScrollingFrame.Selectable = false
 ScrollingFrame.ScrollingDirection = Enum.ScrollingDirection.Y
+ScrollingFrame.BorderSizePixel = 0
 ScrollingFrame.ScrollBarThickness = 8
 ScrollingFrame.ScrollBarImageColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
@@ -1553,35 +1640,56 @@ UpdateBackpackLayout()
 local gamepadHintsFrame = Instance.new("Frame")
 gamepadHintsFrame.Name = "GamepadHintsFrame"
 gamepadHintsFrame.Size = UDim2.new(0, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
-gamepadHintsFrame.BackgroundTransparency = 1
+gamepadHintsFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
+gamepadHintsFrame.BackgroundColor3 = BACKGROUND_COLOR
 gamepadHintsFrame.Visible = false
 gamepadHintsFrame.Parent = MainFrame
 
-local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hintTextString: string): ()
+local gamepadHintsFrameLayout = Instance.new("UIListLayout")
+gamepadHintsFrameLayout.Name = "Layout"
+gamepadHintsFrameLayout.Padding = UDim.new(0, 25)
+gamepadHintsFrameLayout.FillDirection = Enum.FillDirection.Horizontal
+gamepadHintsFrameLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+gamepadHintsFrameLayout.SortOrder = Enum.SortOrder.LayoutOrder
+gamepadHintsFrameLayout.Parent = gamepadHintsFrame
+
+local gamepadHintsFrameCorner = Instance.new("UICorner")
+gamepadHintsFrameCorner.Name = "Corner"
+gamepadHintsFrameCorner.CornerRadius = BACKGROUND_CORNER_RADIUS
+gamepadHintsFrameCorner.Parent = gamepadHintsFrame
+
+local function addGamepadHint(hintImageString: string, hintTextString: string): ()
 	local hintFrame = Instance.new("Frame")
 	hintFrame.Name = "HintFrame"
-	hintFrame.Size = UDim2.new(1, 0, 1, -5)
-	hintFrame.Position = UDim2.new(0, 0, 0, 0)
+	hintFrame.AutomaticSize = Enum.AutomaticSize.XY
 	hintFrame.BackgroundTransparency = 1
 	hintFrame.Parent = gamepadHintsFrame
 
+	local hintLayout = Instance.new("UIListLayout")
+	hintLayout.Name = "Layout"
+	hintLayout.Padding = (IsTenFootInterface and UDim.new(0, 20) or UDim.new(0, 12))
+	hintLayout.FillDirection = Enum.FillDirection.Horizontal
+	hintLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	hintLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	hintLayout.Parent = hintFrame
+
 	local hintImage = Instance.new("ImageLabel")
 	hintImage.Name = "HintImage"
-	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 90, 0, 90) or UDim2.new(0, 60, 0, 60))
+	hintImage.Size = (IsTenFootInterface and UDim2.new(0, 60, 0, 60) or UDim2.new(0, 30, 0, 30))
 	hintImage.BackgroundTransparency = 1
-	hintImage.Image = (IsTenFootInterface and hintImageLarge or hintImageSmall)
+	hintImage.Image = hintImageString
 	hintImage.Parent = hintFrame
 
 	local hintText = Instance.new("TextLabel")
 	hintText.Name = "HintText"
-	hintText.Position = UDim2.new(0.1, (IsTenFootInterface and 100 or 70), 0.1, 0)
-	hintText.Size = UDim2.new(1, -(IsTenFootInterface and 100 or 70), 1, 0)
+	hintText.AutomaticSize = Enum.AutomaticSize.XY
 	hintText.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
-	hintText.FontSize = (IsTenFootInterface and Enum.FontSize.Size36 or Enum.FontSize.Size24)
+	hintText.TextSize = (IsTenFootInterface and 32 or 19)
 	hintText.BackgroundTransparency = 1
 	hintText.Text = hintTextString
 	hintText.TextColor3 = Color3.new(1, 1, 1)
 	hintText.TextXAlignment = Enum.TextXAlignment.Left
+	hintText.TextYAlignment = Enum.TextYAlignment.Center
 	hintText.TextWrapped = true
 	hintText.Parent = hintFrame
 
@@ -1590,6 +1698,10 @@ local function addGamepadHint(hintImageSmall: string, hintImageLarge: string, hi
 	textSizeConstraint.Parent = hintText
 end
 
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonX), "Remove From Hotbar")
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonA), "Select/Swap")
+addGamepadHint(UserInputService:GetImageForKeyCode(Enum.KeyCode.ButtonB), "Close Backpack")
+
 local function resizeGamepadHintsFrame(): ()
 	gamepadHintsFrame.Size =
 		UDim2.new(HotbarFrame.Size.X.Scale, HotbarFrame.Size.X.Offset, 0, (IsTenFootInterface and 95 or 60))
@@ -1597,72 +1709,58 @@ local function resizeGamepadHintsFrame(): ()
 		HotbarFrame.Position.X.Scale,
 		HotbarFrame.Position.X.Offset,
 		InventoryFrame.Position.Y.Scale,
-		InventoryFrame.Position.Y.Offset - gamepadHintsFrame.Size.Y.Offset
+		InventoryFrame.Position.Y.Offset - gamepadHintsFrame.Size.Y.Offset - ICON_BUFFER_PIXELS
 	)
 
-	local spaceTaken = 0
+	local spaceTaken: number = 0
 
-	local gamepadHints = gamepadHintsFrame:GetChildren()
+	local gamepadHints: table = gamepadHintsFrame:GetChildren()
+	local filteredGamepadHints: table = {}
+
+	for _, child in pairs(gamepadHints) do
+		if child:IsA("GuiObject") then
+			table.insert(filteredGamepadHints, child)
+		end
+	end
+
 	--First get the total space taken by all the hints
-	for i = 1, #gamepadHints do
-		gamepadHints[i].Size = UDim2.new(1, 0, 1, -5)
-		gamepadHints[i].Position = UDim2.new(0, 0, 0, 0)
-		spaceTaken = spaceTaken + (gamepadHints[i].HintText.Position.X.Offset + gamepadHints[i].HintText.TextBounds.X)
+	for guiObjects = 1, #filteredGamepadHints do
+		if filteredGamepadHints[guiObjects]:IsA("GuiObject") then
+			filteredGamepadHints[guiObjects].Size = UDim2.new(1, 0, 1, -5)
+			filteredGamepadHints[guiObjects].Position = UDim2.new(0, 0, 0, 0)
+			spaceTaken = spaceTaken
+				+ (
+					filteredGamepadHints[guiObjects].HintText.Position.X.Offset
+					+ filteredGamepadHints[guiObjects].HintText.TextBounds.X
+				)
+		end
 	end
 
 	--The space between all the frames should be equal
-	local spaceBetweenElements = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#gamepadHints - 1)
-	for i = 1, #gamepadHints do
-		gamepadHints[i].Position = (
+	local spaceBetweenElements: number = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#filteredGamepadHints - 1)
+	for i = 1, #filteredGamepadHints do
+		filteredGamepadHints[i].Position = (
 			i == 1 and UDim2.new(0, 0, 0, 0)
 			or UDim2.new(
 				0,
-				gamepadHints[i - 1].Position.X.Offset + gamepadHints[i - 1].Size.X.Offset + spaceBetweenElements,
+				filteredGamepadHints[i - 1].Position.X.Offset
+					+ filteredGamepadHints[i - 1].Size.X.Offset
+					+ spaceBetweenElements,
 				0,
 				0
 			)
 		)
-		gamepadHints[i].Size =
-			UDim2.new(0, (gamepadHints[i].HintText.Position.X.Offset + gamepadHints[i].HintText.TextBounds.X), 1, -5)
+		filteredGamepadHints[i].Size = UDim2.new(
+			0,
+			(filteredGamepadHints[i].HintText.Position.X.Offset + filteredGamepadHints[i].HintText.TextBounds.X),
+			1,
+			-5
+		)
 	end
 end
 
-if GetFFlagUseDesignSystemGamepadIcons then
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonX@2x.png",
-		"Remove From Hotbar"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonA.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonA@2x.png",
-		"Select/Swap"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonB.png",
-		"rbxasset://textures/ui/Controls/DesignSystem/ButtonB@2x.png",
-		"Close Backpack"
-	)
-else
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/XButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/XButtonDark@2x.png",
-		"Remove From Hotbar"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/AButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/AButtonDark@2x.png",
-		"Select/Swap"
-	)
-	addGamepadHint(
-		"rbxasset://textures/ui/Settings/Help/BButtonDark.png",
-		"rbxasset://textures/ui/Settings/Help/BButtonDark@2x.png",
-		"Close Backpack"
-	)
-end
-
+local searchFrame = NewGui("Frame", "Search")
 do -- Search stuff
-	local searchFrame = NewGui("Frame", "Search")
 	searchFrame.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
 	searchFrame.Size = UDim2.new(
@@ -1951,8 +2049,8 @@ do -- Hotkey stuff
 	end
 
 	-- Listen to keyboard status, for showing/hiding hotkey labels
-	UserInputService.Changed:Connect(OnUISChanged)
-	OnUISChanged("KeyboardEnabled")
+	UserInputService.LastInputTypeChanged:Connect(OnUISChanged)
+	OnUISChanged()
 
 	-- Listen to gamepad status, for allowing gamepad style selection/equip
 	if UserInputService:GetGamepadConnected(Enum.UserInputType.Gamepad1) then
@@ -1983,11 +2081,27 @@ function BackpackScript:GetBackpackEnabled(): boolean
 end
 
 function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
-	return Backpack.StateChanged
+	return BackpackScript.StateChanged
 end
 
 RunService.Heartbeat:Connect(function(): ()
 	OnIconChanged(BackpackEnabled)
 end)
+
+local function OnPreferredTransparencyChanged()
+	local preferredTransparency = PREFERRED_TRANSPARENCY
+
+	BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
+
+	SLOT_LOCKED_TRANSPARENCY = SLOT_LOCKED_TRANSPARENCY_DEFAULT * preferredTransparency
+	for _, slot in ipairs(Slots) do
+		slot.Frame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
+	end
+
+	SEARCH_BACKGROUND_TRANSPARENCY = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
+end
+GuiService:GetPropertyChangedSignal("PreferredTransparency"):Connect(OnPreferredTransparencyChanged)
 
 return BackpackScript

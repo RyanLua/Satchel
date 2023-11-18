@@ -1,0 +1,22 @@
+name: lua
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ok-nick/setup-aftman@v0.3.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - run: selene ./src
+  style:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: JohnnyMorganz/stylua-action@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        version: latest
+        args: --check ./src

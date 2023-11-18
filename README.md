@@ -5,9 +5,9 @@
     <img src="assets/SatchelBlack.png">
   </picture>
   
-  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](https://github.com/RyanLua/Satchel/releases)
-  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](https://github.com/RyanLua/Satchel/search?l=lua)
-  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=gnu&color=00a2ff)](LICENSE.txt)
+  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](../../releases)
+  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](../../search?l=lua)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff)](LICENSE.txt)
 </h1>
 
 > Satchel, a modern open-source alternative to Roblox's default backpack. 💼
@@ -28,7 +28,7 @@ Satchel comes packed with much-needed features and changes that the default back
 Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
 
 <div align="center">
-  <img src="https://github.com/RyanLua/Satchel/assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
+  <img src="../../assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
 </div>
 
 ### Highly Customizable & Versatile
@@ -36,7 +36,7 @@ Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI
 Satchel is highly customizable & adjustable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
 
 <div align="center">
-  <img src="https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
+  <img src="../../assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
 </div>
 
 ### Improved Mobile Experience
@@ -52,7 +52,7 @@ Satchel expands on the mobile experience doubling the number of slots allowing p
 Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/TopbarPlus) to allow users to easily and more quickly open the inventory.
 
 <div align="center">
-  <img src="https://github.com/RyanLua/Satchel/assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
+  <img src="../../assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
 </div>
 
 ## 🛝 Playground
@@ -63,7 +63,7 @@ Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/Topba
 
 We provide an open-source playground of Satchel where you can test and play with Satchel before deciding to use it. See [Satchel Playground](https://www.roblox.com/games/13592168150) on Roblox. Feel free to use the playground as a reference for how to use Satchel. Please download and modify it to your liking.
 
-[![Satchel Playground Thumbnail 1](https://github.com/RyanLua/Satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669)](https://www.roblox.com/games/13592168150)
+[![Satchel Playground Thumbnail 1](../../assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669)](https://www.roblox.com/games/13592168150)
 
 ## 🔽 Installation
 
@@ -74,26 +74,21 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 <summary><h3>Install from Creator Marketplace</h3></summary>
 
 1. Get the Satchel module from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401).
-
 ![CreatorMarketplace](assets/CreatorMarketplace.png)
 
 2. Open Roblox Studio and create a new place or open an existing place.
 
 3. Open or locate the [Toolbox](https://create.roblox.com/docs/studio/toolbox).
-
 ![View Tab Toolbox](https://prod.docsiteassets.roblox.com/assets/studio/general/View-Tab-Toolbox.png)
 
 4. Open your [Inventory](https://create.roblox.com/docs/studio/toolbox#inventory) from the [Toolbox](https://create.roblox.com/docs/studio/toolbox).
-
 ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png)
 
 5. Search for `Satchel` created by `WinnersTakesAll` and click on it.
-
 ![Toolbox](assets/MarketplaceCard.png)
 
 6. Insert `Satchel` into the [Explorer](https://create.roblox.com/docs/studio/explorer) and drag it into [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
-
-![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
+![Explorer](../../assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
 
 </details>
 
@@ -101,23 +96,19 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 <summary><h3>Install from GitHub Releases</h3></summary>
 
-1. Download the `Satchel.rbxmx` file from [Releases](https://github.com/RyanLua/Satchel/releases).
-
+1. Download the `Satchel.rbxmx` file from [Releases](../../releases).
 ![GitHubRelease](assets/GitHubReleases.png)
 
 2. Open Roblox Studio and create a new place or open an existing place.
 
 3. Go to [Explorer](https://create.roblox.com/docs/studio/explorer) and right click on [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts) and click on `Insert from file...`.
-
 ![InsertFromFile](assets/InsertFromFile.png)
 
 4. Select the `Satchel.rbxmx` you downloaded from GitHub and click `Open`.
-
 ![UploadFile](assets/SelectFile.png)
 
 5. Ensure that `Satchel`is in [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
-
-![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
+![Explorer](../../assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
 
 </details>
 
@@ -127,25 +118,27 @@ A special thanks to the following people for their contributions to Satchel.
 
 | Roblox Username | Contribution |
 | --- | --- |
-| [@OnlyTwentyCharacters](https://www.roblox.com/users/28969907/profile), [@SolarCrane](https://www.roblox.com/users/29373363/profile) | Creating the original CoreGui script |
-| [@thebrickplanetboy](https://www.roblox.com/users/525495863/profile) | Allowing me to republish & modify his fork of the backpack system |
-| [@ForeverHD](https://www.roblox.com/users/82347291/profile) | Making Topbar Plus and open-sourcing it for everyone to use |
+| [@OnlyTwentyCharacters](https://www.roblox.com/users/28969907), [@SolarCrane](https://www.roblox.com/users/29373363) | Creating the original CoreGui script |
+| [@thebrickplanetboy](https://www.roblox.com/users/525495863) | Allowing me to republish & modify his fork of the backpack system |
+| [@ForeverHD](https://www.roblox.com/users/82347291) | Making Topbar Plus and open-sourcing it for everyone to use |
 
 ## 💖 Support
 
 > **Note**
 >
-> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](SUPPORT.md) for additional information.
+> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](Satchel/blob/main/SUPPORT.md) for additional information.
 
-Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR.
+Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
-You can support Satchel by starring this repository, sharing it with others, and contributing to it. Learn about contributing to Satchel below at [Contributing](#contributing).
+## 📖 Wiki
 
-## 📖 Documentation
-
-Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
+> **Note**
+>
+> Satchel has it's very own [wiki](Satchel/wiki) you can visit. Find guides on how to get started and documentation.
 
 ### Attributes
+
+Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
 
 | Attribute | Description | Default |
 | :--- | :--- | :--- |
@@ -162,6 +155,8 @@ Satchel supports instance attributes allowing you to change and customize many a
 | TextStrokeTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the transparency of the text stroke of text in default chat window and slots. | 0.5 |
 
 ### Methods
+
+Satchel offers access to some of its internal methods and events for scripting purposes. Below see a table with all the methods available.
 
 | IsOpened(): [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) |
 | :--- |
@@ -192,4 +187,4 @@ When you contribute to Satchel you will be accredited for your contribution for 
 
 ## 📃 License
 
-Satchel is licensed under [GNU General Public License v3.0](https://www.gnu.org/licenses/). See [LICENSE.txt](LICENSE.txt) for details.
+Satchel is licensed under [Mozilla Public License 2.0](http://mozilla.org/MPL/2.0/). See [LICENSE.txt](LICENSE.txt) for details.

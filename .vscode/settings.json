@@ -1,0 +1,14 @@
+{
+	"[lua]": {
+		"editor.defaultFormatter": "JohnnyMorganz.stylua",
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+	},
+	"markdownlint.config": {
+		"MD013": false,
+		"MD033": false
+	},
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true
+}
