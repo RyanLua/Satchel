@@ -1,0 +1,19 @@
+{
+  "emitLegacyScripts": false,
+  "name": "uishelf-dev",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "Packages": {
+        "$path": "Packages",
+        "UIShelf": {
+          "$path": "src"
+        }
+      },
+      "Tests": {
+        "$path": "tests/client"
+      }
+    }
+  }
+}

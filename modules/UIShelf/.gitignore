@@ -1,0 +1,7 @@
+docs/.vitepress/cache
+docs/doc_api.md
+node_modules
+local
+Packages
+sourcemap.json
+wally.lock
