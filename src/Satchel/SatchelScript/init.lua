@@ -2080,7 +2080,7 @@ function BackpackScript:GetBackpackEnabled(): boolean
 end
 
 function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
-	return Backpack.StateChanged
+	return BackpackScript.StateChanged
 end
 
 RunService.Heartbeat:Connect(function(): ()
