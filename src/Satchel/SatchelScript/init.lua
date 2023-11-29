@@ -2089,9 +2089,9 @@ RunService.Heartbeat:Connect(function(): ()
 end)
 
 local function OnPreferredTransparencyChanged()
-	local preferredTransparency = PREFERRED_TRANSPARENCY
+	local preferredTransparency = GuiService.PreferredTransparency
 
-	BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * preferredTransparency
 	InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
 
 	SLOT_LOCKED_TRANSPARENCY = SLOT_LOCKED_TRANSPARENCY_DEFAULT * preferredTransparency
@@ -2099,7 +2099,7 @@ local function OnPreferredTransparencyChanged()
 		slot.Frame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
 	end
 
-	SEARCH_BACKGROUND_TRANSPARENCY = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	SEARCH_BACKGROUND_TRANSPARENCY = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * preferredTransparency
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
 end
 GuiService:GetPropertyChangedSignal("PreferredTransparency"):Connect(OnPreferredTransparencyChanged)
