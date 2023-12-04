@@ -1,4 +1,4 @@
-name: lua
+name: C
 
 on: [push, pull_request]
 
