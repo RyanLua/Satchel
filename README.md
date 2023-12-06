@@ -57,8 +57,7 @@ Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/Topba
 
 ## 🛝 Playground
 
-> **Note**
->
+> [!TIP]
 > [Satchel Playground](https://www.roblox.com/games/13592168150) has place copying enabled, allowing you to edit your own copy from the Roblox website by clicking the ellipsis (`...`) and selecting `Edit`.
 
 We provide an open-source playground of Satchel where you can test and play with Satchel before deciding to use it. See [Satchel Playground](https://www.roblox.com/games/13592168150) on Roblox. Feel free to use the playground as a reference for how to use Satchel. Please download and modify it to your liking.
@@ -124,16 +123,14 @@ A special thanks to the following people for their contributions to Satchel.
 
 ## 💖 Support
 
-> **Note**
->
+> [!NOTE]
 > If you see an issue with Satchel and would like to report it, see [SUPPORT.md](Satchel/blob/main/SUPPORT.md) for additional information.
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
 ## 📖 Wiki
 
-> **Note**
->
+> [!NOTE]
 > Satchel has it's very own [wiki](Satchel/wiki) you can visit. Find guides on how to get started and documentation.
 
 ### Attributes
