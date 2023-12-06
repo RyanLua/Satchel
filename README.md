@@ -130,10 +130,12 @@ Satchel fully supports all platforms which includes computer, tablet, phone, con
 
 ## 📖 Wiki
 
-> [!NOTE]
-> Satchel has it's very own [wiki](Satchel/wiki) you can visit. Find guides on how to get started and documentation.
+Satchel has it's very own [wiki](Satchel/wiki) you can visit. Find guides on how to get started and documentation. Below see a summary of Satchel.
 
 ### Attributes
+
+> [!WARNING]
+> Rojo does not support the FontFace instance attribute so the FontFace attribute will not be synced. You may add the attribute manually if you wish to adjust the font.
 
 Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
 
@@ -144,6 +146,7 @@ Satchel supports instance attributes allowing you to change and customize many a
 | CornerRadius: [`UDim`](https://create.roblox.com/docs/reference/engine/datatypes/UDim) | Determines the radius, in pixels, of the default inventory window and slots. | `0, 8` |
 | EquipBorderColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the equip border when a slot is equipped. | `[255, 255, 255]` |
 | EquipBorderSizePixel: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the pixel width of the equip border when a slot is equipped. | `5` |
+| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. |
 | InsetIconPadding: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the tool icon is padded in the default inventory window and slots. | True |
 | OutlineEquipBorder: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the equip border is outline or inset when a slot is equipped. | True |
 | TextColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text in default inventory window and slots. | `[255, 255, 255]` |
@@ -171,9 +174,8 @@ Satchel offers access to some of its internal methods and events for scripting p
 | :--- |
 | Returns a signal that fires when the inventory is opened or closed. |
 
-<!-- Enums aren't supported by Rojo so this is commented out for now until a fix is available.
+<!--
 | EquipBorderMode: [`BorderMode`](https://create.roblox.com/docs/reference/engine/enums/BorderMode) | Determines in what manner the equip border is laid out relative to its dimensions when a slot is equipped. |
-| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. |
 -->
 
 ## 🙏 Contributing
