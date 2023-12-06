@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - uses: ok-nick/setup-aftman@v0.3.0
+    - uses: ok-nick/setup-aftman@v0.4.2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
     - run: selene ./src
