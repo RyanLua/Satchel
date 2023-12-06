@@ -6,7 +6,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: ok-nick/setup-aftman@v0.3.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -14,7 +14,7 @@ jobs:
   style:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: JohnnyMorganz/stylua-action@v3
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
