@@ -2,7 +2,7 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/SatchelWhite.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/SatchelBlack.png">
-    <img src="assets/SatchelBlack.png">
+    <img alt="Satchel" src="assets/SatchelBlack.png">
   </picture>
   
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](../../releases)
@@ -16,8 +16,8 @@
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
 
-<img src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img src="assets/SatchelThumbnail2.png" style="width: 49%;">
-<img src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
+<img alt="Satchel on computer" src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img alt="Satchel on computer with inventory open" src="assets/SatchelThumbnail2.png" style="width: 49%;">
+<img alt="Satchel on mobile" src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img alt="Satchel on mobile with inventory open" src="assets/SatchelThumbnail4.png" style="width: 49%;">
 
 ## ⭐ Features
 
@@ -28,7 +28,7 @@ Satchel comes packed with much-needed features and changes that the default back
 Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
 
 <div align="center">
-  <img src="../../assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
+  <img alt="Satchel on computer matching Roblox's UI design" src="../../assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
 </div>
 
 ### Highly Customizable & Versatile
@@ -36,7 +36,7 @@ Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI
 Satchel is highly customizable & adjustable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
 
 <div align="center">
-  <img src="../../assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
+  <img alt="Satchel with a customized UI to have a red tint" src="../../assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
 </div>
 
 ### Improved Mobile Experience
@@ -44,7 +44,7 @@ Satchel is highly customizable & adjustable with instance attributes support all
 Satchel expands on the mobile experience doubling the number of slots allowing players on mobile to not be at a disadvantage.
 
 <div align="center">
-  <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
+  <img alt="Satchel on mobile with 6 hotbar slots" src="assets/SatchelThumbnail4.png" style="width: 49%;">
 </div>
 
 ### Topbar Plus Support
@@ -52,7 +52,7 @@ Satchel expands on the mobile experience doubling the number of slots allowing p
 Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/TopbarPlus) to allow users to easily and more quickly open the inventory.
 
 <div align="center">
-  <img src="../../assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
+  <img alt="Satchel inventory topbar button along with Roblox's topbar" src="../../assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
 </div>
 
 ## 🛝 Playground
