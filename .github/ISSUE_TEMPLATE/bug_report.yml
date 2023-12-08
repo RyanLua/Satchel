@@ -81,6 +81,7 @@ body:
       label: Distribution variant
       description: Where did you get Satchel from?
       options:
+        - Roblox Developer Forum
         - Creator Marketplace
         - Satchel Playground
         - ToolBlocks
