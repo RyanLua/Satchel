@@ -75,6 +75,18 @@ body:
         - Phone
         - Console
         - VR
+  - type: dropdown
+    id: distribution
+    attributes:
+      label: Distribution variant
+      description: Where did you get Satchel from?
+      options:
+        - Creator Marketplace
+        - Satchel Playground
+        - ToolBlocks
+        - GitHub
+        - Wally
+        - Other
   - type: checkboxes
     id: terms
     attributes:
