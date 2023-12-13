@@ -180,22 +180,14 @@ local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 local Backpack = Player:WaitForChild("Backpack")
 
 local InventoryIcon = UIShelf.CreateIcon({
-	Name = "MyFavoriteIcon",
-	Image = "ARROW_IMAGE_OPEN",
+	Name = "Backpack",
+	Image = ARROW_IMAGE_CLOSE,
 	Order = 1,
 	Area = UIShelf.HorizontalAlignment.Left,
 })
 InventoryIcon:BindKeyCode(ARROW_HOTKEY)
 InventoryIcon:SetTooltip("Backpack")
-
--- InventoryIcon:setImage(ARROW_IMAGE_CLOSE, "deselected")
--- InventoryIcon:setImage(ARROW_IMAGE_OPEN, "selected")
--- InventoryIcon:setTheme(Themes.BlueGradient)
--- InventoryIcon:bindToggleKey(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
--- InventoryIcon:setName("InventoryIcon")
--- InventoryIcon:setImageYScale(1.12)
--- InventoryIcon:setOrder(-5)
--- InventoryIcon.deselectWhenOtherIconSelected = false
+InventoryIcon:SetImageSize(Vector2.new(40, 40))
 
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot = nil
