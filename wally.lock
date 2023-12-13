@@ -25,4 +25,4 @@ dependencies = []
 [[package]]
 name = "ryanlua/satchel"
 version = "1.2.0"
-dependencies = [["uishelf", "canary-development/uishelf@1.1.5"]]
+dependencies = [["UIShelf", "canary-development/uishelf@1.1.5"]]
