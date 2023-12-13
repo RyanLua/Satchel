@@ -19,7 +19,7 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 <img alt="Satchel on computer" src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img alt="Satchel on computer with inventory open" src="assets/SatchelThumbnail2.png" style="width: 49%;">
 <img alt="Satchel on mobile" src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img alt="Satchel on mobile with inventory open" src="assets/SatchelThumbnail4.png" style="width: 49%;">
 
-![Satchel Demo Video](https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5)
+<https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5>
 
 ## ⭐ Features
 
