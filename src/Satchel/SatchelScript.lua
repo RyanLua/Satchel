@@ -185,9 +185,21 @@ local InventoryIcon = UIShelf.CreateIcon({
 	Order = 1,
 	Area = UIShelf.HorizontalAlignment.Left,
 })
-InventoryIcon:BindKeyCode(ARROW_HOTKEY)
+InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
 InventoryIcon:SetTooltip("Backpack")
 InventoryIcon:SetImageSize(Vector2.new(40, 40))
+
+local iconEnabled = false
+
+local function setIconEnabled(state: boolean)
+	if state == true then
+		InventoryIcon.Image = ARROW_IMAGE_OPEN
+
+	else
+		InventoryIcon.Image = ARROW_IMAGE_CLOSE
+	end
+	iconEnabled = state
+end
 
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot = nil
@@ -1050,7 +1062,7 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
 				BackpackScript.OpenClose()
-				InventoryIcon:SetIconEnabled(false)
+				setIconEnabled(false)
 			end
 		end
 	end
@@ -1366,7 +1378,7 @@ function enableGamepadInventoryControl()
 				return
 			end
 		elseif InventoryFrame.Visible then
-			InventoryIcon:SetIconEnabled(false)
+			setIconEnabled(false)
 		end
 	end
 
@@ -1440,7 +1452,7 @@ end
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
 	enabled = enabled and StarterGui:GetCore("TopbarEnabled")
-	InventoryIcon:SetIconEnabled(enabled and not GuiService.MenuIsOpen)
+	setIconEnabled(enabled and not GuiService.MenuIsOpen)
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
 
@@ -1501,16 +1513,11 @@ for i = 1, NumberOfHotbarSlots do
 	end
 end
 
--- InventoryIcon.selected:Connect(function(): ()
--- 	if not GuiService.MenuIsOpen then
--- 		BackpackScript.OpenClose()
--- 	end
--- end)
--- InventoryIcon.deselected:Connect(function(): ()
--- 	if InventoryFrame.Visible then
--- 		BackpackScript.OpenClose()
--- 	end
--- end)
+InventoryIcon.Activated:Connect(function()
+	if not GuiService.MenuIsOpen then
+		BackpackScript.OpenClose()
+	end
+end)
 
 local LeftBumperButton = NewGui("ImageLabel", "LeftBumper")
 LeftBumperButton.Size = UDim2.new(0, 40, 0, 40)
@@ -1910,7 +1917,7 @@ do -- Search stuff
 		if isProcessed then -- Pressed from within a TextBox
 			reset()
 		elseif InventoryFrame.Visible then
-			InventoryIcon:SetIconEnabled(false)
+			setIconEnabled(false)
 		end
 	end
 
@@ -1929,7 +1936,7 @@ local menuClosed = false
 GuiService.MenuOpened:Connect(function(): ()
 	BackpackGui.Enabled = false
 	if InventoryFrame.Visible then
-		InventoryIcon:SetIconEnabled(false)
+		setIconEnabled(false)
 		menuClosed = true
 	end
 end)
@@ -1937,7 +1944,7 @@ end)
 GuiService.MenuClosed:Connect(function(): ()
 	BackpackGui.Enabled = true
 	if menuClosed then
-		InventoryIcon:SetIconEnabled(true)
+		setIconEnabled(true)
 		menuClosed = false
 	end
 end)
