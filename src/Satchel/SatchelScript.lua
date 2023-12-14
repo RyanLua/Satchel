@@ -23,7 +23,6 @@
 
 local ContextActionService = game:GetService("ContextActionService")
 local TextChatService = game:GetService("TextChatService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
 local GuiService = game:GetService("GuiService")
@@ -144,19 +143,7 @@ local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be u
 -- Topbar logic
 local BackpackEnabled: boolean = true
 
-local function GetIconModule(): ModuleScript
-	local ReplicatedIconModule: ModuleScript = ReplicatedStorage:FindFirstChild("Icon")
-	local LocalIconModule: ModuleScript = script.Icon
-
-	if ReplicatedIconModule and ReplicatedIconModule:IsA("ModuleScript") then
-		LocalIconModule:Destroy()
-		return ReplicatedIconModule
-	else
-		return LocalIconModule
-	end
-end
-
-local Icon: table = require(GetIconModule())
+local UIShelf: any = require(script.Parent.Packages.UIShelf)
 
 local BackpackGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
@@ -192,15 +179,16 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 local Backpack = Player:WaitForChild("Backpack")
 
-local InventoryIcon = Icon.new()
-InventoryIcon:setImage(ARROW_IMAGE_CLOSE, "deselected")
-InventoryIcon:setImage(ARROW_IMAGE_OPEN, "selected")
--- InventoryIcon:setTheme(Themes.BlueGradient)
-InventoryIcon:bindToggleKey(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
-InventoryIcon:setName("InventoryIcon")
-InventoryIcon:setImageYScale(1.12)
-InventoryIcon:setOrder(-5)
-InventoryIcon.deselectWhenOtherIconSelected = false
+local InventoryIcon: any = UIShelf.CreateIcon({
+	Name = "Backpack",
+	Image = ARROW_IMAGE_CLOSE,
+	Order = 1,
+	Area = UIShelf.HorizontalAlignment.Left,
+})
+InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
+InventoryIcon:SetTooltip("Backpack")
+InventoryIcon:SetImageSize(Vector2.new(40, 40))
+InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
 
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot = nil
@@ -779,7 +767,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			startPoint = dragPoint
 
 			SlotFrame.BorderSizePixel = 2
-			InventoryIcon:lock()
+			-- InventoryIcon:lock()
 
 			-- Raise above other slots
 			SlotFrame.ZIndex = 2
@@ -826,7 +814,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			SlotFrame.Parent = startParent
 
 			SlotFrame.BorderSizePixel = 0
-			InventoryIcon:unlock()
+			-- InventoryIcon:unlock()
 
 			-- Restore height
 			SlotFrame.ZIndex = 1
@@ -1063,7 +1051,6 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
 				BackpackScript.OpenClose()
-				InventoryIcon:deselect()
 			end
 		end
 	end
@@ -1378,8 +1365,6 @@ function enableGamepadInventoryControl()
 				selectedSlot.Frame.BorderSizePixel = 0
 				return
 			end
-		elseif InventoryFrame.Visible then
-			InventoryIcon:deselect()
 		end
 	end
 
@@ -1453,7 +1438,11 @@ end
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
 	enabled = enabled and StarterGui:GetCore("TopbarEnabled")
-	InventoryIcon:setEnabled(enabled and not GuiService.MenuIsOpen)
+	if InventoryFrame.Visible then
+		InventoryIcon:SetImage(ARROW_IMAGE_OPEN)
+	else
+		InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
+	end
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
 
@@ -1514,13 +1503,8 @@ for i = 1, NumberOfHotbarSlots do
 	end
 end
 
-InventoryIcon.selected:Connect(function(): ()
+InventoryIcon.Activated:Connect(function()
 	if not GuiService.MenuIsOpen then
-		BackpackScript.OpenClose()
-	end
-end)
-InventoryIcon.deselected:Connect(function(): ()
-	if InventoryFrame.Visible then
 		BackpackScript.OpenClose()
 	end
 end)
@@ -1912,7 +1896,7 @@ do -- Search stuff
 	searchBox.FocusLost:Connect(focusLost)
 
 	BackpackScript.StateChanged.Event:Connect(function(isNowOpen: boolean): ()
-		InventoryIcon:getInstance("iconButton").Modal = isNowOpen -- Allows free mouse movement even in first person
+		-- InventoryIcon:getInstance("iconButton").Modal = isNowOpen -- Allows free mouse movement even in first person
 
 		if not isNowOpen then
 			reset()
@@ -1922,11 +1906,8 @@ do -- Search stuff
 	HotkeyFns[Enum.KeyCode.Escape.Value] = function(isProcessed: any): ()
 		if isProcessed then -- Pressed from within a TextBox
 			reset()
-		elseif InventoryFrame.Visible then
-			InventoryIcon:deselect()
 		end
 	end
-
 	local function detectGamepad(lastInputType: Enum.UserInputType): ()
 		if lastInputType == Enum.UserInputType.Gamepad1 and not UserInputService.VREnabled then
 			searchFrame.Visible = false
@@ -1942,7 +1923,6 @@ local menuClosed = false
 GuiService.MenuOpened:Connect(function(): ()
 	BackpackGui.Enabled = false
 	if InventoryFrame.Visible then
-		InventoryIcon:deselect()
 		menuClosed = true
 	end
 end)
@@ -1950,7 +1930,6 @@ end)
 GuiService.MenuClosed:Connect(function(): ()
 	BackpackGui.Enabled = true
 	if menuClosed then
-		InventoryIcon:select()
 		menuClosed = false
 	end
 end)
