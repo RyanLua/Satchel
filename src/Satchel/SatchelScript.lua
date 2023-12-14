@@ -113,6 +113,7 @@ local SEARCH_BUFFER_PIXELS: number = 5
 local SEARCH_WIDTH_PIXELS: number = 200
 
 -- Misc
+local FONT_FAMILY: Font = targetScript:GetAttribute("FontFace") or Font.new("rbxasset://fonts/families/GothamSSm.json")
 local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
 local DROP_HOTKEY_VALUE: number = Enum.KeyCode.Backspace.Value
 local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
@@ -231,11 +232,11 @@ local function NewGui(className: string, objectName: string): any
 		newGui.Text = ""
 		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
 		newGui.TextStrokeColor3 = TEXT_STROKE_COLOR
-		newGui.Font = Enum.Font.GothamMedium
+		newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 		newGui.TextSize = FONT_SIZE
 		newGui.TextWrapped = true
 		if className == "TextButton" then
-			newGui.Font = Enum.Font.Gotham
+			newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 			newGui.BorderSizePixel = 1
 		end
 	end
@@ -748,7 +749,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			local slotNum = (index < 10) and index or 0
 			SlotNumber = NewGui("TextLabel", "Number")
 			SlotNumber.Text = slotNum
-			SlotNumber.Font = Enum.Font.GothamBlack
+			SlotNumber.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
 			SlotNumber.Parent = SlotFrame
@@ -1666,7 +1667,7 @@ local function addGamepadHint(hintImageString: string, hintTextString: string): 
 	local hintText = Instance.new("TextLabel")
 	hintText.Name = "HintText"
 	hintText.AutomaticSize = Enum.AutomaticSize.XY
-	hintText.Font = Enum.Font.GothamMedium
+	hintText.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 	hintText.TextSize = (IsTenFootInterface and 32 or 19)
 	hintText.BackgroundTransparency = 1
 	hintText.Text = hintTextString
@@ -2067,9 +2068,9 @@ RunService.Heartbeat:Connect(function(): ()
 end)
 
 local function OnPreferredTransparencyChanged()
-	local preferredTransparency = PREFERRED_TRANSPARENCY
+	local preferredTransparency = GuiService.PreferredTransparency
 
-	BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * preferredTransparency
 	InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
 
 	SLOT_LOCKED_TRANSPARENCY = SLOT_LOCKED_TRANSPARENCY_DEFAULT * preferredTransparency
@@ -2077,7 +2078,7 @@ local function OnPreferredTransparencyChanged()
 		slot.Frame.BackgroundTransparency = SLOT_LOCKED_TRANSPARENCY
 	end
 
-	SEARCH_BACKGROUND_TRANSPARENCY = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+	SEARCH_BACKGROUND_TRANSPARENCY = SEARCH_BACKGROUND_TRANSPARENCY_DEFAULT * preferredTransparency
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
 end
 GuiService:GetPropertyChangedSignal("PreferredTransparency"):Connect(OnPreferredTransparencyChanged)

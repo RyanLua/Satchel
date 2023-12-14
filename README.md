@@ -2,12 +2,12 @@
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/SatchelWhite.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/SatchelBlack.png">
-    <img src="assets/SatchelBlack.png">
+    <img alt="Satchel" src="assets/SatchelBlack.png">
   </picture>
   
-  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](../../releases)
-  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](../../search?l=lua)
-  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff)](LICENSE.txt)
+  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff&style=for-the-badge)](../../releases)
+  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff&style=for-the-badge)](../../search?l=lua)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff&style=for-the-badge)](LICENSE.txt)
 </h1>
 
 > Satchel, a modern open-source alternative to Roblox's default backpack. 💼
@@ -16,8 +16,10 @@
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
 
-<img src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img src="assets/SatchelThumbnail2.png" style="width: 49%;">
-<img src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
+<img alt="Satchel on computer" src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img alt="Satchel on computer with inventory open" src="assets/SatchelThumbnail2.png" style="width: 49%;">
+<img alt="Satchel on mobile" src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img alt="Satchel on mobile with inventory open" src="assets/SatchelThumbnail4.png" style="width: 49%;">
+
+<https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5>
 
 ## ⭐ Features
 
@@ -28,7 +30,7 @@ Satchel comes packed with much-needed features and changes that the default back
 Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI, blending in with other elements designed by Roblox.
 
 <div align="center">
-  <img src="../../assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
+  <img alt="Satchel on computer matching Roblox's UI design" src="../../assets/80087248/2bbe27e8-2f8e-4305-b968-635316551395" style="width: 49%;">
 </div>
 
 ### Highly Customizable & Versatile
@@ -36,7 +38,7 @@ Satchel completely remakes the backpack's UI to a uniform and vanilla feeling UI
 Satchel is highly customizable & adjustable with instance attributes support allowing you to customize the behavior and appearance of over 10+ attributes. Change the color, transparency, behavior, and more of it's elegantly designed UI.
 
 <div align="center">
-  <img src="../../assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
+  <img alt="Satchel with a customized UI to have a red tint" src="../../assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" style="width: 49%;">
 </div>
 
 ### Improved Mobile Experience
@@ -44,7 +46,7 @@ Satchel is highly customizable & adjustable with instance attributes support all
 Satchel expands on the mobile experience doubling the number of slots allowing players on mobile to not be at a disadvantage.
 
 <div align="center">
-  <img src="assets/SatchelThumbnail4.png" style="width: 49%;">
+  <img alt="Satchel on mobile with 6 hotbar slots" src="assets/SatchelThumbnail4.png" style="width: 49%;">
 </div>
 
 ### Topbar Plus Support
@@ -52,13 +54,12 @@ Satchel expands on the mobile experience doubling the number of slots allowing p
 Satchel supports [Topbar Plus by 1ForeverHD](https://github.com/1ForeverHD/TopbarPlus) to allow users to easily and more quickly open the inventory.
 
 <div align="center">
-  <img src="../../assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
+  <img alt="Satchel inventory topbar button along with Roblox's topbar" src="../../assets/80087248/95d22c15-0eec-4862-8f1c-8407fd325729" style="width: 49%;">
 </div>
 
 ## 🛝 Playground
 
-> **Note**
->
+> [!TIP]
 > [Satchel Playground](https://www.roblox.com/games/13592168150) has place copying enabled, allowing you to edit your own copy from the Roblox website by clicking the ellipsis (`...`) and selecting `Edit`.
 
 We provide an open-source playground of Satchel where you can test and play with Satchel before deciding to use it. See [Satchel Playground](https://www.roblox.com/games/13592168150) on Roblox. Feel free to use the playground as a reference for how to use Satchel. Please download and modify it to your liking.
@@ -124,19 +125,19 @@ A special thanks to the following people for their contributions to Satchel.
 
 ## 💖 Support
 
-> **Note**
->
+> [!NOTE]
 > If you see an issue with Satchel and would like to report it, see [SUPPORT.md](Satchel/blob/main/SUPPORT.md) for additional information.
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
 ## 📖 Wiki
 
-> **Note**
->
-> Satchel has it's very own [wiki](Satchel/wiki) you can visit. Find guides on how to get started and documentation.
+Satchel has it's very own [wiki](https://github.com/RyanLua/Satchel/wiki) you can visit. Find guides on how to get started and documentation. Below see a summary of Satchel.
 
 ### Attributes
+
+> [!WARNING]
+> Rojo does not support the FontFace instance attribute so the FontFace attribute will not be synced. You may add the attribute manually if you wish to adjust the font.
 
 Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
 
@@ -147,6 +148,7 @@ Satchel supports instance attributes allowing you to change and customize many a
 | CornerRadius: [`UDim`](https://create.roblox.com/docs/reference/engine/datatypes/UDim) | Determines the radius, in pixels, of the default inventory window and slots. | `0, 8` |
 | EquipBorderColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the equip border when a slot is equipped. | `[255, 255, 255]` |
 | EquipBorderSizePixel: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the pixel width of the equip border when a slot is equipped. | `5` |
+| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. |
 | InsetIconPadding: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the tool icon is padded in the default inventory window and slots. | True |
 | OutlineEquipBorder: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the equip border is outline or inset when a slot is equipped. | True |
 | TextColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text in default inventory window and slots. | `[255, 255, 255]` |
@@ -174,9 +176,8 @@ Satchel offers access to some of its internal methods and events for scripting p
 | :--- |
 | Returns a signal that fires when the inventory is opened or closed. |
 
-<!-- Enums aren't supported by Rojo so this is commented out for now until a fix is available.
+<!--
 | EquipBorderMode: [`BorderMode`](https://create.roblox.com/docs/reference/engine/enums/BorderMode) | Determines in what manner the equip border is laid out relative to its dimensions when a slot is equipped. |
-| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. |
 -->
 
 ## 🙏 Contributing
