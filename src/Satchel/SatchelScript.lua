@@ -357,8 +357,8 @@ end
 
 local function EquipNewTool(tool: Tool): () --NOTE: HopperBin
 	UnequipAllTools()
-	--Humanoid:EquipTool(tool) --NOTE: This would also unequip current Tool
-	tool.Parent = Character --TODO: Switch back to above line after EquipTool is fixed!
+	Humanoid:EquipTool(tool) --NOTE: This would also unequip current Tool
+	--tool.Parent = Character --TODO: Switch back to above line after EquipTool is fixed!
 end
 
 local function IsEquipped(tool: Tool): boolean
