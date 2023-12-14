@@ -23,7 +23,6 @@
 
 local ContextActionService = game:GetService("ContextActionService")
 local TextChatService = game:GetService("TextChatService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
 local GuiService = game:GetService("GuiService")
@@ -179,7 +178,7 @@ local Character = Player.Character or Player.CharacterAdded:Wait()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
 local Backpack = Player:WaitForChild("Backpack")
 
-local InventoryIcon = UIShelf.CreateIcon({
+local InventoryIcon: any = UIShelf.CreateIcon({
 	Name = "Backpack",
 	Image = ARROW_IMAGE_CLOSE,
 	Order = 1,
@@ -189,8 +188,6 @@ InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
 InventoryIcon:SetTooltip("Backpack")
 InventoryIcon:SetImageSize(Vector2.new(40, 40))
 InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
-
-local iconEnabled: boolean = false
 
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot = nil
@@ -1053,7 +1050,6 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
 				BackpackScript.OpenClose()
-				iconEnabled = false
 			end
 		end
 	end
@@ -1368,8 +1364,6 @@ function enableGamepadInventoryControl()
 				selectedSlot.Frame.BorderSizePixel = 0
 				return
 			end
-		elseif InventoryFrame.Visible then
-			iconEnabled = false
 		end
 	end
 
@@ -1911,11 +1905,8 @@ do -- Search stuff
 	HotkeyFns[Enum.KeyCode.Escape.Value] = function(isProcessed: any): ()
 		if isProcessed then -- Pressed from within a TextBox
 			reset()
-		elseif InventoryFrame.Visible then
-			iconEnabled = false
 		end
 	end
-
 	local function detectGamepad(lastInputType: Enum.UserInputType): ()
 		if lastInputType == Enum.UserInputType.Gamepad1 and not UserInputService.VREnabled then
 			searchFrame.Visible = false
@@ -1931,7 +1922,6 @@ local menuClosed = false
 GuiService.MenuOpened:Connect(function(): ()
 	BackpackGui.Enabled = false
 	if InventoryFrame.Visible then
-		iconEnabled = false
 		menuClosed = true
 	end
 end)
@@ -1939,7 +1929,6 @@ end)
 GuiService.MenuClosed:Connect(function(): ()
 	BackpackGui.Enabled = true
 	if menuClosed then
-		iconEnabled = true
 		menuClosed = false
 	end
 end)
