@@ -189,12 +189,11 @@ InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
 InventoryIcon:SetTooltip("Backpack")
 InventoryIcon:SetImageSize(Vector2.new(40, 40))
 
-local iconEnabled = false
+local iconEnabled: boolean = false
 
 local function setIconEnabled(state: boolean)
 	if state == true then
 		InventoryIcon.Image = ARROW_IMAGE_OPEN
-
 	else
 		InventoryIcon.Image = ARROW_IMAGE_CLOSE
 	end
