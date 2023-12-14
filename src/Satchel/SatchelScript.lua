@@ -188,17 +188,9 @@ local InventoryIcon = UIShelf.CreateIcon({
 InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
 InventoryIcon:SetTooltip("Backpack")
 InventoryIcon:SetImageSize(Vector2.new(40, 40))
+InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
 
 local iconEnabled: boolean = false
-
-local function setIconEnabled(state: boolean)
-	if state == true then
-		InventoryIcon.Image = ARROW_IMAGE_OPEN
-	else
-		InventoryIcon.Image = ARROW_IMAGE_CLOSE
-	end
-	iconEnabled = state
-end
 
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot = nil
@@ -1061,7 +1053,7 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
 				BackpackScript.OpenClose()
-				setIconEnabled(false)
+				iconEnabled = false
 			end
 		end
 	end
@@ -1377,7 +1369,7 @@ function enableGamepadInventoryControl()
 				return
 			end
 		elseif InventoryFrame.Visible then
-			setIconEnabled(false)
+			iconEnabled = false
 		end
 	end
 
@@ -1451,7 +1443,11 @@ end
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
 	enabled = enabled and StarterGui:GetCore("TopbarEnabled")
-	setIconEnabled(enabled and not GuiService.MenuIsOpen)
+	if InventoryFrame.Visible then
+		InventoryIcon:SetImage(ARROW_IMAGE_OPEN)
+	else
+		InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
+	end
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
 
@@ -1916,7 +1912,7 @@ do -- Search stuff
 		if isProcessed then -- Pressed from within a TextBox
 			reset()
 		elseif InventoryFrame.Visible then
-			setIconEnabled(false)
+			iconEnabled = false
 		end
 	end
 
@@ -1935,7 +1931,7 @@ local menuClosed = false
 GuiService.MenuOpened:Connect(function(): ()
 	BackpackGui.Enabled = false
 	if InventoryFrame.Visible then
-		setIconEnabled(false)
+		iconEnabled = false
 		menuClosed = true
 	end
 end)
@@ -1943,7 +1939,7 @@ end)
 GuiService.MenuClosed:Connect(function(): ()
 	BackpackGui.Enabled = true
 	if menuClosed then
-		setIconEnabled(true)
+		iconEnabled = true
 		menuClosed = false
 	end
 end)
