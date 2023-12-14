@@ -5,9 +5,9 @@
     <img alt="Satchel" src="assets/SatchelBlack.png">
   </picture>
   
-  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff)](../../releases)
-  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff)](../../search?l=lua)
-  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff)](LICENSE.txt)
+  [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff&style=for-the-badge)](../../releases)
+  [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff&style=for-the-badge)](../../search?l=lua)
+  [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff&style=for-the-badge)](LICENSE.txt)
 </h1>
 
 > Satchel, a modern open-source alternative to Roblox's default backpack. 💼
@@ -18,6 +18,8 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 <img alt="Satchel on computer" src="assets/SatchelThumbnail1.png" style="width: 49%;"> <img alt="Satchel on computer with inventory open" src="assets/SatchelThumbnail2.png" style="width: 49%;">
 <img alt="Satchel on mobile" src="assets/SatchelThumbnail3.png" style="width: 49%;"> <img alt="Satchel on mobile with inventory open" src="assets/SatchelThumbnail4.png" style="width: 49%;">
+
+<https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5>
 
 ## ⭐ Features
 
