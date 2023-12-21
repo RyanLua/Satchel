@@ -1,1 +1,31 @@
-site_name: My Docs
+site_name: Satchel Documentation
+site_url: https://ryanluu.dev/Satchel
+
+repo_name: RyanLua/Satchel
+repo_url: https://github.com/RyanLua/Satchel
+
+theme:
+  name: material
+
+  palette:
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      primary: light blue
+      accent: light blue
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: light blue
+      accent: light blue
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
