@@ -8,6 +8,7 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  custom_dir: overrides
   language: en
   # logo: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
   # favicon: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
