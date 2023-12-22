@@ -51,9 +51,8 @@ theme:
 
 nav:
   - Home: index.md
-  - Guide:
-    - Installation: installation.md
-    - Usage: usage.md
+  - Installation: installation.md
+  - Usage: usage.md
   - API Reference: api-reference.md
 
 markdown_extensions:
