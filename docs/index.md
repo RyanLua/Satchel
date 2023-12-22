@@ -27,7 +27,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     [:material-arrow-right: API Reference](api-reference)
 
-- :material-toolbox:{ .lg .middle } __Highly customizable__
+- :material-toolbox-outline:{ .lg .middle } __Highly customizable__
 
     ---
 
