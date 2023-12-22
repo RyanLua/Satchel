@@ -20,7 +20,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Made for computers, phone, tablet, console, and VR. Responsive design allows Satchel to adapt to any device
 
-    [:octicons-arrow-right-24: Reference](#)
+    [:octicons-arrow-right-24: API Reference](api-reference)
 
 - :material-toolbox:{ .lg .middle } __Highly customizable__
 
@@ -28,7 +28,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Change the colors, fonts, language, icons, logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
 
-    [:octicons-arrow-right-24: Customization](#)
+    [:octicons-arrow-right-24: Customization](usage/#customization)
 
 - :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
 
