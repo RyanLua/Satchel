@@ -130,9 +130,9 @@ A special thanks to the following people for their contributions to Satchel.
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
-## 📖 Wiki
+## 📖 Documentation
 
-Satchel has it's very own [wiki](https://github.com/RyanLua/Satchel/wiki) you can visit. Find guides on how to get started and documentation. Below see a summary of Satchel.
+Satchel has it's very own [documentation site](https://ryanluu.dev/Satchel) you can visit. Find guides on how to get started and documentation. Below see a summary of Satchel.
 
 ### Attributes
 
