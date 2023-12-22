@@ -82,6 +82,7 @@ plugins:
       branch: main
 
 extra:
+  generator: false
   version:
     provider: mike
   social:
