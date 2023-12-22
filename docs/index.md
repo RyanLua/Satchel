@@ -1,4 +1,6 @@
 ---
+title: Home
+description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
 hide:
   - feedback
 ---
