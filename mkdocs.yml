@@ -7,8 +7,8 @@ repo_url: https://github.com/RyanLua/Satchel
 theme:
   name: material
   language: en
-  logo: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
-  favicon: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
+  # logo: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
+  # favicon: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
   features:
     - content.tooltips
   palette:
