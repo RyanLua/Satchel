@@ -29,3 +29,5 @@ theme:
 
 nav:
   - Home: index.md
+  - Guide:
+    - Installation: installation.md
