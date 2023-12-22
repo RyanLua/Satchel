@@ -18,7 +18,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png)
 
 5. Search for `Satchel` created by `WinnersTakesAll` and click on it.
-![Toolbox](https://github.com/RyanLua/Satchel/blob/main/assets/MarketplaceCard.png)
+![Toolbox](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/MarketplaceCard.png)
 
 6. Insert `Satchel` into the [Explorer](https://create.roblox.com/docs/studio/explorer) and drag it into [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
 ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
