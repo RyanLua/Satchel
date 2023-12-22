@@ -7,6 +7,9 @@ repo_url: https://github.com/RyanLua/Satchel
 theme:
   name: material
 
+  features:
+    - content.tooltips
+
   palette:
 
     # Palette toggle for light mode
@@ -37,3 +40,6 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - abbr
+  - attr_list
+  - pymdownx.snippets
