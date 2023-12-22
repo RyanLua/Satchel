@@ -22,8 +22,10 @@ Satchel is highly customizable & adjustable with [instance attributes](https://c
 | TextStrokeColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text stroke of text in default inventory window and slots. | `[0, 0, 0]` |
 | TextStrokeTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the transparency of the text stroke of text in default chat window and slots. | 0.5 |
 
-Example of customization with instance attributes only:
-![Attributes](https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74)
+<figure markdown>
+  ![Instance Attributes](https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74)
+  <figcaption>Example of customization using instance attributes</figcaption>
+</figure>
 
 ### Scripting
 

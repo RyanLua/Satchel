@@ -43,3 +43,7 @@ markdown_extensions:
   - abbr
   - attr_list
   - pymdownx.snippets
+  - md_in_html
+
+plugins:
+  - glightbox

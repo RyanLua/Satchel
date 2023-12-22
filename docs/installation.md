@@ -3,7 +3,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 ### Install from Creator Marketplace
 
 1. Get the Satchel module from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401).
-![CreatorMarketplace](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/CreatorMarketplace.png)
+![Creator Marketplace](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/CreatorMarketplace.png)
 
 2. Open Roblox Studio and create a new place or open an existing place.
 
@@ -22,15 +22,15 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 ### Install from GitHub Releases
 
 1. Download the `Satchel.rbxmx` file from [Releases](https://github.com/RyanLua/Satchel/releases).
-![GitHubRelease](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/GitHubReleases.png)
+![GitHub Release](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/GitHubReleases.png)
 
 2. Open Roblox Studio and create a new place or open an existing place.
 
 3. Go to [Explorer](https://create.roblox.com/docs/studio/explorer) and right click on [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts) and click on `Insert from file...`.
-![InsertFromFile](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/InsertFromFile.png)
+![Insert From File](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/InsertFromFile.png)
 
 4. Select the `Satchel.rbxmx` you downloaded from GitHub and click `Open`.
-![UploadFile](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SelectFile.png)
+![Upload File](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SelectFile.png)
 
 5. Ensure that `Satchel`is in [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
 ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7)
