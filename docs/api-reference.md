@@ -73,6 +73,10 @@ Determines the pixel width of the equip border when a slot is equipped. This add
 
 Determines the font of the default inventory window and slots. This includes all text in the Satchel UI.
 
+!!! bug
+
+    Rojo does not support the [Font](https://create.roblox.com/docs/reference/engine/datatypes/Font) instance attribute so the it will not be synced. You may add the attribute manually if you wish to adjust the font.
+
 ### InsetIconPadding
 
 Determines whether or not the tool icon is padded in the default inventory window and slots. Changing this will change how the tool icon is padded in the slot or not.
