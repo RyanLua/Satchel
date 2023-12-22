@@ -4,15 +4,32 @@ site_url: https://ryanluu.dev/Satchel
 repo_name: RyanLua/Satchel
 repo_url: https://github.com/RyanLua/Satchel
 
+edit_uri: edit/main/docs/
+
 theme:
   name: material
   language: en
   # logo: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
   # favicon: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
+
+  icon:
+    repo: fontawesome/brands/github
+
   features:
     - content.tooltips
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.prune
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - navigation.footer
+    - content.action.edit
+    - content.action.view
+    # - toc.integrate
+
   palette:
-    # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
       primary: light blue
       accent: light blue
@@ -21,7 +38,6 @@ theme:
         icon: material/brightness-7
         name: Switch to dark mode
 
-    # Palette toggle for dark mode
     - media: "(prefers-color-scheme: dark)"
       primary: light blue
       accent: light blue
@@ -45,9 +61,47 @@ markdown_extensions:
   - attr_list
   - pymdownx.snippets
   - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 plugins:
   - glightbox
+  - search
+  - git-authors
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - git-committers:
+      repository: RyanLua/Satchel
+      branch: main
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/RyanLua/Satchel
+      name: GitHub
+    - icon: simple/robloxstudio
+      link: https://devforum.roblox.com/t/2451549
+      name: DevForum
+  analytics:
+    provider: google
+    property: PPVP56SBQQ
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU1DGaWTcS0bernMtC-gbOuQzCudUyKmwSjullThV2jIiTZQ/viewform?usp=pp_url&entry.2143998705=https://ryanluu.dev/Satchel{url}" target="_blank" rel="noopener">feedback form</a>. 
