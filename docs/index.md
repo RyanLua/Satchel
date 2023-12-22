@@ -17,7 +17,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Install Satchel from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401) or [GitHub Releases](https://github.com/RyanLua/Satchel/releases) in less than 10 minutes
 
-    [:material-arrow-right: Installation](installation)
+    [:material-arrow-right: Installation](installation.md)
 
 - :material-devices:{ .lg .middle } __Full device support__
 
@@ -25,7 +25,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Made for computers, phone, tablet, console, and VR. Responsive design allows Satchel to adapt to any device
 
-    [:material-arrow-right: API Reference](api-reference)
+    [:material-arrow-right: API Reference](api-reference.md)
 
 - :material-toolbox-outline:{ .lg .middle } __Highly customizable__
 
@@ -33,7 +33,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Change the colors, fonts, language, icons, logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
 
-    [:material-arrow-right: Customization](usage/#customization)
+    [:material-arrow-right: Customization](usage.md#customization.md)
 
 - :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
 

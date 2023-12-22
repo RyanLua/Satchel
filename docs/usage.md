@@ -6,7 +6,7 @@ Use of Satchel after installation very easy. Just [publish your experience to Ro
 
 !!! note
 
-    Please see [API Reference](api-reference) for more details on attributes, methods, and events for Satchel and how to use Satchel to it's full potential.
+    Please see [API Reference](api-reference.md) for more details on attributes, methods, and events for Satchel and how to use Satchel to it's full potential.
 
 ### Customization
 
