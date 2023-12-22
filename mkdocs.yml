@@ -6,6 +6,8 @@ repo_url: https://github.com/RyanLua/Satchel
 
 edit_uri: edit/main/docs/
 
+copyright: Copyright &copy; Ryan Luu
+
 theme:
   name: material
   custom_dir: overrides
