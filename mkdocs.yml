@@ -31,3 +31,9 @@ nav:
   - Home: index.md
   - Guide:
     - Installation: installation.md
+    - Usage: usage.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
