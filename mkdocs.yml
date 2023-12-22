@@ -11,7 +11,7 @@ copyright: Copyright &copy; Ryan Luu
 
 theme:
   name: material
-  custom_dir: overrides
+  custom_dir: docs/overrides
   language: en
   # logo: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
   # favicon: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
@@ -31,6 +31,8 @@ theme:
     - navigation.footer
     - content.action.edit
     - content.action.view
+    - header.autohide
+    - announce.dismiss
     # - toc.integrate
 
   palette:
