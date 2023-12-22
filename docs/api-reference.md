@@ -110,9 +110,7 @@ Returns whether the inventory is opened or not.
 
 #### Returns
 
-```
-boolean
-```
+```boolean```
 
 ### SetBackpackEnabled
 
@@ -120,15 +118,11 @@ Sets whether the backpack gui is enabled or disabled.
 
 #### Parameters
 
-```
-enabled: boolean
-```
+```enabled: boolean```
 
 #### Returns
 
-```
-void
-```
+```void```
 
 ### GetBackpackEnabled
 
@@ -136,9 +130,7 @@ Returns whether the backpack gui is enabled or disabled.
 
 #### Returns
 
-```
-boolean
-```
+```boolean```
 
 ### GetStateChangedEvent
 
@@ -146,6 +138,4 @@ Returns a signal that fires when the inventory is opened or closed.
 
 #### Returns
 
-```
-RBXScriptSignal
-```
+```RBXScriptSignal```
