@@ -75,6 +75,7 @@ plugins:
   - glightbox
   - search
   - git-authors
+  - tags
   - git-revision-date-localized:
       enable_creation_date: true
   - git-committers:
