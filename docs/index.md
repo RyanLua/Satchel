@@ -46,7 +46,22 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
+- :material-lightning-bolt-outline:{ .lg .middle } __Blazingly performant and lightweight__
+
+    ---
+
+    Built for speed, Satchel is less 0.1 MB and extremely performant. As fast, if not faster than the default backpack.
+
+    [:material-arrow-right: Comparision](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
+
+- :material-sync:{ .lg .middle } __Rojo sync compatability__
+
+    ---
+
+    Satchel is built using and for Rojo. Easily add to your Rojo projects or contribute. Distributed through Wally or Git Submodules.
+
+    [:material-arrow-right: Rojo](https://rojo.space/)
+
 </div>
 
 *[Responsive design]: A design approach that allows UI to adapt to different devices and screen sizes
-
