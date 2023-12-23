@@ -87,8 +87,8 @@ plugins:
 
 extra:
   generator: false
-  version:
-    provider: mike
+  # version:
+  #   provider: mike
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/RyanLua/Satchel
