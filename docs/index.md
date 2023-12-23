@@ -34,7 +34,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Change the colors, fonts, language, icons, logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
+    Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
 
     [:material-arrow-right: Customization](usage.md#customization.md)
 
@@ -42,7 +42,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Satchel is licensed under Mozilla Public License Version 2.0 and available on [GitHub](https://github.com/RyanLua/Satchel)
+    Satchel is licensed under Mozilla Public License Version 2.0 and is available on [GitHub](https://github.com/RyanLua/Satchel)](https://github.com/RyanLua/Satchel)
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
@@ -50,11 +50,11 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Built for speed, Satchel is less 0.1 MB and extremely performant. As fast, if not faster than the default backpack.
+    Built for speed, Satchel is less than 0.1 MB and extremely performant. As fast, if not faster than the default backpack.
 
     [:material-arrow-right: Comparision](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
-- :material-sync:{ .lg .middle } __Rojo sync compatability__
+- :material-sync:{ .lg .middle } __Rojo sync compatibility__
 
     ---
 
