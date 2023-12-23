@@ -58,7 +58,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Satchel is built using and for Rojo. Easily add to your Rojo projects or contribute. Distributed through Wally or Git Submodules.
+    Compatible with Rojo. Easily add to your Rojo projects or contribute. Distributed through Wally or Git Submodules.
 
     [:material-arrow-right: Rojo](https://rojo.space/)
 
