@@ -42,7 +42,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Satchel is licensed under Mozilla Public License Version 2.0 and is available on [GitHub](https://github.com/RyanLua/Satchel)](https://github.com/RyanLua/Satchel)
+    Satchel is licensed under Mozilla Public License Version 2.0 and is available on [GitHub](https://github.com/RyanLua/Satchel)
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
@@ -65,3 +65,4 @@ This documentation will allow you to install Satchel and learn about how to scri
 </div>
 
 *[Responsive design]: A design approach that allows UI to adapt to different devices and screen sizes
+*[MPL-2.0]: Mozilla Public License 2.0
