@@ -65,7 +65,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Built for speed, Satchel is less than 0.1 MB and extremely performant. As fast, if not faster than the default backpack.
 
-    [:material-arrow-right: Comparision](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
+    [:material-arrow-right: Benchmarks](benchmarks.md)
 
 - :material-sync:{ .lg .middle } __Rojo sync compatibility__
 
