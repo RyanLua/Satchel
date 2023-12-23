@@ -57,6 +57,7 @@ nav:
   - Installation: installation.md
   - Usage: usage.md
   - Platforms: platforms.md
+  - Benchmarks: benchmarks.md
   - API Reference: api-reference.md
 
 markdown_extensions:
@@ -84,6 +85,10 @@ plugins:
   - git-committers:
       repository: RyanLua/Satchel
       branch: main
+
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
 
 extra:
   generator: false
