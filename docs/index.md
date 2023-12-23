@@ -28,7 +28,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Made for computers, phone, tablet, console, and VR. Responsive design allows Satchel to adapt to any device
 
-    [:material-arrow-right: API Reference](api-reference.md)
+    [:material-arrow-right: Platforms](platforms.md)
 
 - :material-toolbox-outline:{ .lg .middle } __Highly customizable__
 
