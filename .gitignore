@@ -47,3 +47,4 @@ Packages
 
 site*/
 .cache
+.env
