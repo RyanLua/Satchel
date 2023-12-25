@@ -13,7 +13,7 @@ hide:
 
 ???+ abstract "Please don't scroll away"
 
-    Satchel needs your support for its future and development. We distribute Satchel and provide updates for free, for anyone to use or modify. Just know by donating, 100% goes towards the development and paying for the education of the maintainers.
+    Satchel needs your support for its future and development. We distribute Satchel and provide updates for free, for anyone to use or modify. Just know by donating, 100% goes towards the development and paying for the education of the maintainers. So please consider becoming a patron.
 
     [Become a patron](https://patreon.com/RyanLuu){ .md-button }
 
@@ -39,7 +39,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Made for computers, phone, tablet, console, and VR. Responsive design allows Satchel to adapt to any device
+    Compatible with computers, phones, tablets, consoles, and VR. Input-based UI allows the UI to adapt to input rather than device in real time.
 
     [:material-arrow-right: Platforms](platforms.md)
 
@@ -55,7 +55,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Satchel is licensed under Mozilla Public License Version 2.0 and is available on [GitHub](https://github.com/RyanLua/Satchel)
+    Open source and licensed under the Mozilla Public License Version 2.0. Available on [GitHub](https://github.com/RyanLua/Satchel)
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
@@ -63,7 +63,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Built for speed, Satchel is less than 0.1 MB and extremely performant. As fast, if not faster than the default backpack.
+    Built for speed and ultra-lightweight. Satchel is takes less than 0.1 MB of space and is as fast, if not faster than the default backpack.
 
     [:material-arrow-right: Benchmarks](benchmarks.md)
 
@@ -77,5 +77,5 @@ This documentation will allow you to install Satchel and learn about how to scri
 
 </div>
 
-*[Responsive design]: A design approach that allows UI to adapt to different devices and screen sizes
 *[MPL-2.0]: Mozilla Public License 2.0
+*[VR]: Virtual reality
