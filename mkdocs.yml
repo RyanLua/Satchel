@@ -80,7 +80,7 @@ extra:
       make our documentation better.
   analytics:
     provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
+    property: PPVP56SBQQ
     feedback:
       title: Was this page helpful?
       ratings:
