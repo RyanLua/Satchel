@@ -9,7 +9,11 @@ tags:
   - About
 ---
 
-Satchel acts as a modern refresh of the default Roblox backpack UI and is based on  [CoreScript's BackpackScript or Roblox's CoreGui](<https://github.com/MaximumADHD/Roblox-Client-Tracker/blob/roblox/scripts/CoreScripts/Modules/BackpackScript.lua>).
+Welcome to Satchel, if you don't know already, Satchel acts as a modern refresh of the default Roblox backpack UI with a lot of improvements in place.
+
+Satchel and its documentation is always a work in progress but you can help too. Learn how to change the code for Satchel or just click the edit documentation icon and fix some grammar.
+
+Just want to use Satchel? Check out [Installation](installation.md).
 
 ## Improvements
 
