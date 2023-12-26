@@ -44,7 +44,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  # favicon: https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/IconOn.png
+  favicon: favicon.png
+  logo: logo.png
   icon:
     repo: fontawesome/brands/github
   language: en
