@@ -165,15 +165,15 @@ local IS_PHONE = UserInputService.TouchEnabled and workspace.CurrentCamera.Viewp
 
 local player = Players.LocalPlayer
 
-local MainFrame = nil
-local HotbarFrame = nil
-local InventoryFrame = nil
-local VRInventorySelector = nil
+local MainFrame: Frame = nil
+local HotbarFrame: Frame = nil
+local InventoryFrame: Frame = nil
+local VRInventorySelector: TextButton = nil
 local ScrollingFrame: ScrollingFrame = nil
 local UIGridFrame: Frame = nil
 local UIGridLayout: UIGridLayout = nil
-local ScrollUpInventoryButton = nil
-local ScrollDownInventoryButton = nil
+local ScrollUpInventoryButton: ImageButton = nil
+local ScrollDownInventoryButton: ImageButton = nil
 
 local Character = player.Character or player.CharacterAdded:Wait()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
