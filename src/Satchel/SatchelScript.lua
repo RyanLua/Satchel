@@ -2059,7 +2059,8 @@ function BackpackScript:GetBackpackEnabled(): boolean
 	return BackpackEnabled
 end
 
-function BackpackScript:GetStateChangedEvent(): RBXScriptSignal
+-- Returns the BindableEvent for when the backpack state changes
+function BackpackScript:GetStateChangedEvent(): BindableEvent
 	return BackpackScript.StateChanged
 end
 
