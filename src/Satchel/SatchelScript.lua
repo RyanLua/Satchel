@@ -1918,20 +1918,14 @@ do -- Search stuff
 	UserInputService.LastInputTypeChanged:Connect(detectGamepad)
 end
 
-local menuClosed = false
-
-GuiService.MenuOpened:Connect(function(): ()
+-- When menu is opend, disable backpack
+GuiService.MenuOpened:Connect(function()
 	BackpackGui.Enabled = false
-	if InventoryFrame.Visible then
-		menuClosed = true
-	end
 end)
 
-GuiService.MenuClosed:Connect(function(): ()
+-- When menu is closed, enable backpack
+GuiService.MenuClosed:Connect(function()
 	BackpackGui.Enabled = true
-	if menuClosed then
-		menuClosed = false
-	end
 end)
 
 do -- Make the Inventory expand/collapse arrow (unless TopBar)
