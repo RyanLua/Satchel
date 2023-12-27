@@ -374,13 +374,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	slot.Index = index
 	slot.Frame = nil
 
-	local SlotFrame: Frame = nil
-	local FakeSlotFrame = nil
+	local SlotFrame: TextButton = nil
+	local FakeSlotFrame: Frame = nil
 	local ToolIcon: ImageLabel = nil
 	local ToolName: TextLabel = nil
-	local ToolChangeConn = nil
-	local HighlightFrame: UIStroke = nil
-	local SelectionObj = nil
+	local ToolChangeConn: RBXScriptSignal = nil
+	local HighlightFrame: UIStroke = nil -- UIStroke
+	local SelectionObj: Frame = nil
 
 	--NOTE: The following are only defined for Hotbar Slots
 	local ToolTip: TextLabel = nil
