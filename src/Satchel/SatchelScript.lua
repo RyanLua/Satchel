@@ -219,24 +219,18 @@ local function ShowVRBackpackPopup(): ()
 	end
 end
 
-local function NewGui(className: string, objectName: string?): any
+local function NewGui(className: string): any
 	local newGui: TextLabel = Instance.new(className)
-	newGui.Name = objectName
-	newGui.BackgroundColor3 = Color3.new(0, 0, 0)
 	newGui.BackgroundTransparency = 1
-	newGui.BorderColor3 = Color3.new(0, 0, 0)
 	newGui.Size = UDim2.new(1, 0, 1, 0)
 	if className:match("Text") then
 		newGui.TextColor3 = TEXT_COLOR
-		newGui.Text = ""
 		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
 		newGui.TextStrokeColor3 = TEXT_STROKE_COLOR
 		newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
 		newGui.TextSize = FONT_SIZE
-		newGui.TextWrapped = true
 		if className == "TextButton" then
 			newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
-			newGui.BorderSizePixel = 1
 		end
 	end
 	return newGui
