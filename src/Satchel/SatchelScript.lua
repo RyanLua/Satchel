@@ -222,16 +222,6 @@ end
 local function NewGui(className: string): any
 	local newGui: TextLabel = Instance.new(className)
 	newGui.BackgroundTransparency = 1
-	if className:match("Text") then
-		newGui.TextColor3 = TEXT_COLOR
-		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
-		newGui.TextStrokeColor3 = TEXT_STROKE_COLOR
-		newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
-		newGui.TextSize = FONT_SIZE
-		if className == "TextButton" then
-			newGui.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
-		end
-	end
 	return newGui
 end
 
@@ -429,7 +419,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			ToolIcon.Image = icon
 
 			if icon ~= "" then
-			-- Enable the tool name on the slot if there is no icon
+				-- Enable the tool name on the slot if there is no icon
 				ToolName.Visible = false
 			else
 				ToolName.Visible = true
@@ -692,6 +682,11 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	ToolName = NewGui("TextLabel")
 	ToolName.Name = "ToolName"
+	ToolName.TextColor3 = TEXT_COLOR
+	ToolName.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
+	ToolName.TextStrokeColor3 = TEXT_STROKE_COLOR
+	ToolName.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
+	ToolName.TextSize = FONT_SIZE
 	ToolName.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	ToolName.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolName.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -703,8 +698,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	if index <= NumberOfHotbarSlots then -- Hotbar-Specific Slot Stuff
 		-- ToolTip stuff
 		ToolTip = NewGui("TextLabel")
-		ToolTip.Size = UDim2.new(1, 0, 1, 0)
 		ToolTip.Name = "ToolTip"
+		ToolTip.Size = UDim2.new(1, 0, 1, 0)
+		ToolTip.TextColor3 = TEXT_COLOR
+		ToolTip.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
+		ToolTip.TextStrokeColor3 = TEXT_STROKE_COLOR
+		ToolTip.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
+		ToolTip.TextSize = FONT_SIZE
 		ToolTip.ZIndex = 2
 		ToolTip.TextWrapped = false
 		ToolTip.TextYAlignment = Enum.TextYAlignment.Center
@@ -758,7 +758,11 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			local slotNum = (index < 10) and index or 0
 			SlotNumber = NewGui("TextLabel")
 			SlotNumber.Name = "Number"
-			SlotNumber.Text = slotNum
+			SlotNumber.TextColor3 = TEXT_COLOR
+			SlotNumber.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
+			SlotNumber.TextStrokeColor3 = TEXT_STROKE_COLOR
+			SlotNumber.TextSize = FONT_SIZE
+			SlotNumber.Text = tostring(slotNum)
 			SlotNumber.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
 			SlotNumber.Visible = false
@@ -1799,8 +1803,12 @@ do -- Search stuff
 	local searchBox = NewGui("TextBox")
 	searchBox.Name = "TextBox"
 	searchBox.Text = ""
+	searchBox.TextColor3 = TEXT_COLOR
+	searchBox.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
+	searchBox.TextStrokeColor3 = TEXT_STROKE_COLOR
+	searchBox.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
+	searchBox.TextSize = FONT_SIZE
 	searchBox.PlaceholderText = SEARCH_TEXT_PLACEHOLDER
-	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
 	searchBox.TextColor3 = TEXT_COLOR
 	searchBox.TextTransparency = TEXT_STROKE_TRANSPARENCY
 	searchBox.TextStrokeColor3 = TEXT_STROKE_COLOR
