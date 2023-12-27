@@ -356,7 +356,7 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 	local FakeSlotFrame: Frame = nil
 	local ToolIcon: ImageLabel = nil
 	local ToolName: TextLabel = nil
-	local ToolChangeConn: RBXScriptSignal = nil
+	local ToolChangeConn: RBXScriptConnection = nil
 	local HighlightFrame: UIStroke = nil -- UIStroke
 	local SelectionObj: Frame = nil
 
@@ -384,11 +384,12 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 
 	-- Fill the slot with a tool
 	function slot:Fill(tool: Tool)
+		-- Clear slot if it has no tool else assign the tool
 		if not tool then
 			return self:Clear()
 		end
 
-		self.Tool = tool
+		self.Tool = tool :: Tool
 
 		-- Update the slot with tool data
 		local function assignToolData(): ()
@@ -438,18 +439,16 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 		if hotbarSlot then
 			FullHotbarSlots = FullHotbarSlots + 1
 			-- If using a controller, determine whether or not we can enable BindCoreAction("RBXHotbarEquip", etc)
-			if WholeThingEnabled then
-				if FullHotbarSlots >= 1 and not GamepadActionsBound then
-					-- Player added first item to a hotbar slot, enable BindCoreAction
-					GamepadActionsBound = true
-					ContextActionService:BindAction(
-						"RBXHotbarEquip",
-						changeToolFunc,
-						false,
-						Enum.KeyCode.ButtonL1,
-						Enum.KeyCode.ButtonR1
-					)
-				end
+			if WholeThingEnabled and FullHotbarSlots >= 1 and not GamepadActionsBound then
+				-- Player added first item to a hotbar slot, enable BindCoreAction
+				GamepadActionsBound = true
+				ContextActionService:BindAction(
+					"RBXHotbarEquip",
+					changeToolFunc,
+					false,
+					Enum.KeyCode.ButtonL1,
+					Enum.KeyCode.ButtonR1
+				)
 			end
 		end
 
