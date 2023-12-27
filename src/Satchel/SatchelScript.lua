@@ -33,14 +33,14 @@ local PlayerGui = Players.LocalPlayer.PlayerGui
 
 local BackpackScript = {}
 
-BackpackScript.OpenClose = nil -- Function to toggle open/close
-BackpackScript.IsOpen = false
-BackpackScript.StateChanged = Instance.new("BindableEvent") -- Fires after any open/close, passes IsNowOpen
+BackpackScript.OpenClose = nil :: any -- Function to toggle open/close
+BackpackScript.IsOpen = false :: boolean
+BackpackScript.StateChanged = Instance.new("BindableEvent") :: BindableEvent -- Fires after any open/close, passes IsNowOpen
 
-BackpackScript.ModuleName = "Backpack"
-BackpackScript.KeepVRTopbarOpen = true
-BackpackScript.VRIsExclusive = true
-BackpackScript.VRClosesNonExclusive = true
+BackpackScript.ModuleName = "Backpack" :: string
+BackpackScript.KeepVRTopbarOpen = true :: boolean
+BackpackScript.VRIsExclusive = true :: boolean
+BackpackScript.VRClosesNonExclusive = true :: boolean
 
 local targetScript: LocalScript = script.Parent
 
