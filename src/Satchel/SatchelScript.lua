@@ -1793,6 +1793,7 @@ do -- Search stuff
 
 	local searchBox = NewGui("TextBox")
 	searchBox.Name = "TextBox"
+	searchBox.Text = ""
 	searchBox.PlaceholderText = SEARCH_TEXT_PLACEHOLDER
 	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
 	searchBox.TextColor3 = TEXT_COLOR
