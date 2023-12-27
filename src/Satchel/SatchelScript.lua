@@ -388,6 +388,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	-- Slot Functions --
 
+	-- Update slot transparency
 	local function UpdateSlotFading(): ()
 		if VRService.VREnabled and BackpackPanel then
 			local panelTransparency: number = BackpackPanel.transparency
@@ -411,6 +412,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		SlotFrame.BackgroundColor3 = SlotFrame.Draggable and SLOT_DRAGGABLE_COLOR or BACKGROUND_COLOR
 	end
 
+	-- Adjust the slots to the centered
 	function slot:Readjust(visualIndex: number, visualTotal: number): () --NOTE: Only used for Hotbar slots
 		local centered = HotbarFrame.Size.X.Offset / 2
 		local sizePlus = ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS
@@ -420,6 +422,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 			UDim2.new(0, centered - (ICON_SIZE_PIXELS / 2) + (sizePlus * factor), 0, ICON_BUFFER_PIXELS)
 	end
 
+	-- Fill the slot with a tool
 	function slot:Fill(tool: Tool)
 		if not tool then
 			return self:Clear()
@@ -427,11 +430,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 		self.Tool = tool
 
+		-- Update the slot with tool data
 		local function assignToolData(): ()
 			local icon = tool.TextureId
 			ToolIcon.Image = icon
 
 			if icon ~= "" then
+			-- Enable the tool name on the slot if there is no icon
 				ToolName.Visible = false
 			else
 				ToolName.Visible = true
@@ -439,6 +444,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 			ToolName.Text = tool.Name
 
+			-- If there is a tooltip, then show it
 			if ToolTip and tool:IsA("Tool") then --NOTE: HopperBin
 				ToolTip.Text = tool.ToolTip
 				ToolTip.Size = UDim2.new(0, 0, 0, TOOLTIP_HEIGHT)
@@ -447,11 +453,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		end
 		assignToolData()
 
+		-- Disconnect tool event if it exists
 		if ToolChangeConn then
 			ToolChangeConn:Disconnect()
 			ToolChangeConn = nil
 		end
 
+		-- Update the slot with new tool data if the tool's properties changes
 		ToolChangeConn = tool.Changed:Connect(function(property: string)
 			if property == "TextureId" or property == "Name" or property == "ToolTip" then
 				assignToolData()
@@ -489,6 +497,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		LowestEmptySlot = FindLowestEmpty()
 	end
 
+	-- Empty the slot of any tool data
 	function slot:Clear(): ()
 		if not self.Tool then
 			return
