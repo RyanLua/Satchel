@@ -221,7 +221,6 @@ end
 
 local function NewGui(className: string): any
 	local newGui: TextLabel = Instance.new(className)
-	newGui.BackgroundTransparency = 1
 	return newGui
 end
 
@@ -647,11 +646,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	do
 		local selectionObjectClipper = NewGui("Frame")
 		selectionObjectClipper.Name = "SelectionObjectClipper"
+		selectionObjectClipper.BackgroundTransparency = 1
 		selectionObjectClipper.Visible = false
 		selectionObjectClipper.Parent = SlotFrame
 
 		SelectionObj = NewGui("ImageLabel")
 		SelectionObj.Name = "Selector"
+		SelectionObj.BackgroundTransparency = 1
 		SelectionObj.Size = UDim2.new(1, 0, 1, 0)
 		SelectionObj.Image = "rbxasset://textures/ui/Keyboard/key_selection_9slice.png"
 		SelectionObj.ScaleType = Enum.ScaleType.Slice
@@ -660,6 +661,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	end
 
 	ToolIcon = NewGui("ImageLabel")
+	ToolIcon.BackgroundTransparency = 1
 	ToolIcon.Name = "Icon"
 	ToolIcon.Size = UDim2.new(1, 0, 1, 0)
 	ToolIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -681,6 +683,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	ToolIconCorner.Parent = ToolIcon
 
 	ToolName = NewGui("TextLabel")
+	ToolName.BackgroundTransparency = 1
 	ToolName.Name = "ToolName"
 	ToolName.TextColor3 = TEXT_COLOR
 	ToolName.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
@@ -757,6 +760,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		if index < 10 or index == NumberOfHotbarSlots then -- NOTE: Hardcoded on purpose!
 			local slotNum = (index < 10) and index or 0
 			SlotNumber = NewGui("TextLabel")
+			SlotNumber.BackgroundTransparency = 1
 			SlotNumber.Name = "Number"
 			SlotNumber.TextColor3 = TEXT_COLOR
 			SlotNumber.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
@@ -1481,18 +1485,21 @@ end
 
 local function MakeVRRoundButton(name: string, image: string): (ImageButton, ImageLabel, ImageLabel)
 	local newButton = NewGui("ImageButton")
+	newButton.BackgroundTransparency = 1
 	newButton.Name = name
 	newButton.Size = UDim2.new(0, 40, 0, 40)
 	newButton.Image = "rbxasset://textures/ui/Keyboard/close_button_background.png"
 
 	local buttonIcon = NewGui("ImageLabel")
 	buttonIcon.Name = "Icon"
+	buttonIcon.BackgroundTransparency = 1
 	buttonIcon.Size = UDim2.new(0.5, 0, 0.5, 0)
 	buttonIcon.Position = UDim2.new(0.25, 0, 0.25, 0)
 	buttonIcon.Image = image
 	buttonIcon.Parent = newButton
 
 	local buttonSelectionObject = NewGui("ImageLabel")
+	buttonSelectionObject.BackgroundTransparency = 1
 	buttonSelectionObject.Name = "Selection"
 	buttonSelectionObject.Size = UDim2.new(0.9, 0, 0.9, 0)
 	buttonSelectionObject.Position = UDim2.new(0.05, 0, 0.05, 0)
@@ -1504,6 +1511,7 @@ end
 
 -- Make the main frame, which (mostly) covers the screen
 MainFrame = NewGui("Frame")
+MainFrame.BackgroundTransparency = 1
 MainFrame.Name = "Backpack"
 MainFrame.Size = UDim2.new(1, 0, 1, 0)
 MainFrame.Visible = false
@@ -1511,6 +1519,7 @@ MainFrame.Parent = BackpackGui
 
 -- Make the HotbarFrame, which holds only the Hotbar Slots
 HotbarFrame = NewGui("Frame")
+HotbarFrame.BackgroundTransparency = 1
 HotbarFrame.Name = "Hotbar"
 HotbarFrame.Size = UDim2.new(1, 0, 1, 0)
 HotbarFrame.Parent = MainFrame
@@ -1532,11 +1541,13 @@ InventoryIcon.Activated:Connect(function()
 end)
 
 local LeftBumperButton = NewGui("ImageLabel")
+LeftBumperButton.BackgroundTransparency = 1
 LeftBumperButton.Name = "LeftBumper"
 LeftBumperButton.Size = UDim2.new(0, 40, 0, 40)
 LeftBumperButton.Position = UDim2.new(0, -LeftBumperButton.Size.X.Offset, 0.5, -LeftBumperButton.Size.Y.Offset / 2)
 
 local RightBumperButton = NewGui("ImageLabel")
+RightBumperButton.BackgroundTransparency = 1
 RightBumperButton.Name = "RightBumper"
 RightBumperButton.Size = UDim2.new(0, 40, 0, 40)
 RightBumperButton.Position = UDim2.new(1, 0, 0.5, -RightBumperButton.Size.Y.Offset / 2)
@@ -1566,6 +1577,7 @@ VRInventorySelector.Text = ""
 VRInventorySelector.Parent = InventoryFrame
 
 local selectorImage = NewGui("ImageLabel")
+selectorImage.BackgroundTransparency = 1
 selectorImage.Name = "Selector"
 selectorImage.Size = UDim2.new(1, 0, 1, 0)
 selectorImage.Image = "rbxasset://textures/ui/Keyboard/key_selection_9slice.png"
@@ -1580,6 +1592,7 @@ end)
 
 -- Make the ScrollingFrame, which holds the rest of the Slots (however many)
 ScrollingFrame = NewGui("ScrollingFrame")
+ScrollingFrame.BackgroundTransparency = 1
 ScrollingFrame.Name = "ScrollingFrame"
 ScrollingFrame.Size = UDim2.new(1, 0, 1, 0)
 ScrollingFrame.Selectable = false
@@ -1592,6 +1605,7 @@ ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.Parent = InventoryFrame
 
 UIGridFrame = NewGui("Frame")
+UIGridFrame.BackgroundTransparency = 1
 UIGridFrame.Name = "UIGridFrame"
 UIGridFrame.Selectable = false
 UIGridFrame.Size = UDim2.new(1, -(ICON_BUFFER_PIXELS * 2), 1, 0)
@@ -1801,6 +1815,7 @@ do -- Search stuff
 	searchFrameBorder.Parent = searchFrame
 
 	local searchBox = NewGui("TextBox")
+	searchBox.BackgroundTransparency = 1
 	searchBox.Name = "TextBox"
 	searchBox.Text = ""
 	searchBox.TextColor3 = TEXT_COLOR
