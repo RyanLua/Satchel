@@ -348,9 +348,9 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 	-- Slot Definition --
 
 	local slot = {}
-	slot.Tool = nil
-	slot.Index = index
-	slot.Frame = nil
+	slot.Tool = nil :: Tool
+	slot.Index = index :: number
+	slot.Frame = nil :: Frame
 
 	local SlotFrame: TextButton = nil
 	local FakeSlotFrame: Frame = nil
@@ -370,7 +370,6 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 	local function UpdateSlotFading(): ()
 		SlotFrame.SelectionImageObject = nil
 		SlotFrame.BackgroundTransparency = SlotFrame.Draggable and 0 or SLOT_LOCKED_TRANSPARENCY
-		SlotFrame.BackgroundColor3 = SlotFrame.Draggable and SLOT_DRAGGABLE_COLOR or BACKGROUND_COLOR
 	end
 
 	-- Adjust the slots to the centered
