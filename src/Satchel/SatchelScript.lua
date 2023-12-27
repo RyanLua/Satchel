@@ -219,7 +219,7 @@ local function ShowVRBackpackPopup(): ()
 	end
 end
 
-local function NewGui(className: string, objectName: string): any
+local function NewGui(className: string, objectName: string?): any
 	local newGui: TextLabel = Instance.new(className)
 	newGui.Name = objectName
 	newGui.BackgroundColor3 = Color3.new(0, 0, 0)
@@ -642,7 +642,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	-- Slot Init Logic --
 
-	SlotFrame = NewGui("TextButton", index)
+	SlotFrame = NewGui("TextButton")
+	SlotFrame.Name = tostring(index)
 	SlotFrame.BackgroundColor3 = BACKGROUND_COLOR
 	SlotFrame.BorderColor3 = SLOT_BORDER_COLOR
 	SlotFrame.Text = ""
@@ -661,11 +662,13 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	slot.Frame = SlotFrame
 
 	do
-		local selectionObjectClipper = NewGui("Frame", "SelectionObjectClipper")
+		local selectionObjectClipper = NewGui("Frame")
+		selectionObjectClipper.Name = "SelectionObjectClipper"
 		selectionObjectClipper.Visible = false
 		selectionObjectClipper.Parent = SlotFrame
 
-		SelectionObj = NewGui("ImageLabel", "Selector")
+		SelectionObj = NewGui("ImageLabel")
+		SelectionObj.Name = "Selector"
 		SelectionObj.Size = UDim2.new(1, 0, 1, 0)
 		SelectionObj.Image = "rbxasset://textures/ui/Keyboard/key_selection_9slice.png"
 		SelectionObj.ScaleType = Enum.ScaleType.Slice
@@ -673,7 +676,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		SelectionObj.Parent = selectionObjectClipper
 	end
 
-	ToolIcon = NewGui("ImageLabel", "Icon")
+	ToolIcon = NewGui("ImageLabel")
+	ToolIcon.Name = "Icon"
 	ToolIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolIcon.AnchorPoint = Vector2.new(0.5, 0.5)
 	if LEGACY_PADDING_ENABLED == true then
@@ -692,7 +696,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	end
 	ToolIconCorner.Parent = ToolIcon
 
-	ToolName = NewGui("TextLabel", "ToolName")
+	ToolName = NewGui("TextLabel")
+	ToolName.Name = "ToolName"
 	ToolName.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	ToolName.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolName.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -703,7 +708,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	if index <= NumberOfHotbarSlots then -- Hotbar-Specific Slot Stuff
 		-- ToolTip stuff
-		ToolTip = NewGui("TextLabel", "ToolTip")
+		ToolTip = NewGui("TextLabel")
+		ToolTip.Name = "ToolTip"
 		ToolTip.ZIndex = 2
 		ToolTip.TextWrapped = false
 		ToolTip.TextYAlignment = Enum.TextYAlignment.Center
@@ -755,7 +761,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 		-- Show label and assign hotkeys for 1-9 and 0 (zero is always last slot when > 10 total)
 		if index < 10 or index == NumberOfHotbarSlots then -- NOTE: Hardcoded on purpose!
 			local slotNum = (index < 10) and index or 0
-			SlotNumber = NewGui("TextLabel", "Number")
+			SlotNumber = NewGui("TextLabel")
+			SlotNumber.Name = "Number"
 			SlotNumber.Text = slotNum
 			SlotNumber.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Heavy, Enum.FontStyle.Normal)
 			SlotNumber.Size = UDim2.new(0.4, 0, 0.4, 0)
@@ -804,7 +811,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 				SlotFrame.Parent = InventoryFrame
 				SlotFrame.Position = newPosition
 
-				FakeSlotFrame = NewGui("Frame", "FakeSlot")
+				FakeSlotFrame = NewGui("Frame")
+				FakeSlotFrame.Name = "FakeSlot"
 				FakeSlotFrame.LayoutOrder = SlotFrame.LayoutOrder
 				FakeSlotFrame.Size = SlotFrame.Size
 				FakeSlotFrame.BackgroundTransparency = 1
@@ -1473,17 +1481,20 @@ local function OnIconChanged(enabled: boolean): ()
 end
 
 local function MakeVRRoundButton(name: string, image: string): (ImageButton, ImageLabel, ImageLabel)
-	local newButton = NewGui("ImageButton", name)
+	local newButton = NewGui("ImageButton")
+	newButton.Name = name
 	newButton.Size = UDim2.new(0, 40, 0, 40)
 	newButton.Image = "rbxasset://textures/ui/Keyboard/close_button_background.png"
 
-	local buttonIcon = NewGui("ImageLabel", "Icon")
+	local buttonIcon = NewGui("ImageLabel")
+	buttonIcon.Name = "Icon"
 	buttonIcon.Size = UDim2.new(0.5, 0, 0.5, 0)
 	buttonIcon.Position = UDim2.new(0.25, 0, 0.25, 0)
 	buttonIcon.Image = image
 	buttonIcon.Parent = newButton
 
-	local buttonSelectionObject = NewGui("ImageLabel", "Selection")
+	local buttonSelectionObject = NewGui("ImageLabel")
+	buttonSelectionObject.Name = "Selection"
 	buttonSelectionObject.Size = UDim2.new(0.9, 0, 0.9, 0)
 	buttonSelectionObject.Position = UDim2.new(0.05, 0, 0.05, 0)
 	buttonSelectionObject.Image = "rbxasset://textures/ui/Keyboard/close_button_selection.png"
@@ -1493,12 +1504,14 @@ local function MakeVRRoundButton(name: string, image: string): (ImageButton, Ima
 end
 
 -- Make the main frame, which (mostly) covers the screen
-MainFrame = NewGui("Frame", "Backpack")
+MainFrame = NewGui("Frame")
+MainFrame.Name = "Backpack"
 MainFrame.Visible = false
 MainFrame.Parent = BackpackGui
 
 -- Make the HotbarFrame, which holds only the Hotbar Slots
-HotbarFrame = NewGui("Frame", "Hotbar")
+HotbarFrame = NewGui("Frame")
+HotbarFrame.Name = "Hotbar"
 HotbarFrame.Parent = MainFrame
 
 -- Make all the Hotbar Slots
@@ -1517,16 +1530,19 @@ InventoryIcon.Activated:Connect(function()
 	end
 end)
 
-local LeftBumperButton = NewGui("ImageLabel", "LeftBumper")
+local LeftBumperButton = NewGui("ImageLabel")
+LeftBumperButton.Name = "LeftBumper"
 LeftBumperButton.Size = UDim2.new(0, 40, 0, 40)
 LeftBumperButton.Position = UDim2.new(0, -LeftBumperButton.Size.X.Offset, 0.5, -LeftBumperButton.Size.Y.Offset / 2)
 
-local RightBumperButton = NewGui("ImageLabel", "RightBumper")
+local RightBumperButton = NewGui("ImageLabel")
+RightBumperButton.Name = "RightBumper"
 RightBumperButton.Size = UDim2.new(0, 40, 0, 40)
 RightBumperButton.Position = UDim2.new(1, 0, 0.5, -RightBumperButton.Size.Y.Offset / 2)
 
 -- Make the Inventory, which holds the ScrollingFrame, the header, and the search box
-InventoryFrame = NewGui("Frame", "Inventory")
+InventoryFrame = NewGui("Frame")
+InventoryFrame.Name = "Inventory"
 InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
 InventoryFrame.BackgroundColor3 = BACKGROUND_COLOR
 InventoryFrame.Active = true
@@ -1539,14 +1555,16 @@ corner.Name = "Corner"
 corner.CornerRadius = BACKGROUND_CORNER_RADIUS
 corner.Parent = InventoryFrame
 
-VRInventorySelector = NewGui("TextButton", "VRInventorySelector")
+VRInventorySelector = NewGui("TextButton")
+VRInventorySelector.Name = "VRInventorySelector"
 VRInventorySelector.Position = UDim2.new(0, 0, 0, 0)
 VRInventorySelector.Size = UDim2.new(1, 0, 1, 0)
 VRInventorySelector.BackgroundTransparency = 1
 VRInventorySelector.Text = ""
 VRInventorySelector.Parent = InventoryFrame
 
-local selectorImage = NewGui("ImageLabel", "Selector")
+local selectorImage = NewGui("ImageLabel")
+selectorImage.Name = "Selector"
 selectorImage.Size = UDim2.new(1, 0, 1, 0)
 selectorImage.Image = "rbxasset://textures/ui/Keyboard/key_selection_9slice.png"
 selectorImage.ScaleType = Enum.ScaleType.Slice
@@ -1559,7 +1577,8 @@ VRInventorySelector.MouseButton1Click:Connect(function(): ()
 end)
 
 -- Make the ScrollingFrame, which holds the rest of the Slots (however many)
-ScrollingFrame = NewGui("ScrollingFrame", "ScrollingFrame")
+ScrollingFrame = NewGui("ScrollingFrame")
+ScrollingFrame.Name = "ScrollingFrame"
 ScrollingFrame.Selectable = false
 ScrollingFrame.ScrollingDirection = Enum.ScrollingDirection.Y
 ScrollingFrame.BorderSizePixel = 0
@@ -1569,7 +1588,8 @@ ScrollingFrame.VerticalScrollBarInset = Enum.ScrollBarInset.ScrollBar
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.Parent = InventoryFrame
 
-UIGridFrame = NewGui("Frame", "UIGridFrame")
+UIGridFrame = NewGui("Frame")
+UIGridFrame.Name = "UIGridFrame"
 UIGridFrame.Selectable = false
 UIGridFrame.Size = UDim2.new(1, -(ICON_BUFFER_PIXELS * 2), 1, 0)
 UIGridFrame.Position = UDim2.new(0, ICON_BUFFER_PIXELS, 0, 0)
@@ -1751,7 +1771,8 @@ local function resizeGamepadHintsFrame(): ()
 	end
 end
 
-local searchFrame = NewGui("Frame", "Search")
+local searchFrame = NewGui("Frame")
+searchFrame.Name = "Search"
 do -- Search stuff
 	searchFrame.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
@@ -1776,7 +1797,8 @@ do -- Search stuff
 	searchFrameBorder.Transparency = SEARCH_BORDER_TRANSPARENCY
 	searchFrameBorder.Parent = searchFrame
 
-	local searchBox = NewGui("TextBox", "TextBox")
+	local searchBox = NewGui("TextBox")
+	searchBox.Name = "TextBox"
 	searchBox.PlaceholderText = SEARCH_TEXT_PLACEHOLDER
 	-- searchBox.PlaceholderColor3 = SEARCH_PLACEHOLDER_COLOR
 	searchBox.TextColor3 = TEXT_COLOR
@@ -1798,7 +1820,8 @@ do -- Search stuff
 	searchBox.ZIndex = 2
 	searchBox.Parent = searchFrame
 
-	local xButton = NewGui("TextButton", "X")
+	local xButton = NewGui("TextButton")
+	xButton.Name = "X"
 	xButton.Text = ""
 	xButton.Size = UDim2.new(0, 30, 0, 30)
 	xButton.Position = UDim2.new(1, -xButton.Size.X.Offset, 0.5, -xButton.Size.Y.Offset / 2)
@@ -1807,7 +1830,8 @@ do -- Search stuff
 	xButton.BackgroundTransparency = 1
 	xButton.Parent = searchFrame
 
-	local xImage = NewGui("ImageButton", "X")
+	local xImage = NewGui("ImageButton")
+	xImage.Name = "X"
 	xImage.Image = SEARCH_IMAGE_X
 	xImage.BackgroundTransparency = 1
 	xImage.Size = UDim2.new(
