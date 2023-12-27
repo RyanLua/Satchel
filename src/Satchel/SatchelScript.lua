@@ -2041,14 +2041,17 @@ do -- Hotkey stuff
 	end)
 end
 
+-- Sets whether the backpack is enabled or not
 function BackpackScript:SetBackpackEnabled(Enabled: boolean): ()
 	BackpackEnabled = Enabled
 end
 
+-- Returns if the backpack's inventory is open
 function BackpackScript:IsOpened(): boolean
 	return BackpackScript.IsOpen
 end
 
+-- Returns on if the backpack is enabled or not
 function BackpackScript:GetBackpackEnabled(): boolean
 	return BackpackEnabled
 end
@@ -2058,10 +2061,12 @@ function BackpackScript:GetStateChangedEvent(): BindableEvent
 	return BackpackScript.StateChanged
 end
 
+-- Update every heartbeat the icon state
 RunService.Heartbeat:Connect(function(): ()
 	OnIconChanged(BackpackEnabled)
 end)
 
+-- Update the transparency of the backpack based on GuiService.PreferredTransparency
 local function OnPreferredTransparencyChanged()
 	local preferredTransparency = GuiService.PreferredTransparency
 
