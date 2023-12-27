@@ -1464,7 +1464,7 @@ local function OnIconChanged(enabled: boolean): ()
 	end
 end
 
-local function MakeVRRoundButton(name: string, image: string): (GuiObject, GuiObject, GuiObject)
+local function MakeVRRoundButton(name: string, image: string): (ImageButton, ImageLabel, ImageLabel)
 	local newButton = NewGui("ImageButton", name)
 	newButton.Size = UDim2.new(0, 40, 0, 40)
 	newButton.Image = "rbxasset://textures/ui/Keyboard/close_button_background.png"
