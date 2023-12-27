@@ -163,7 +163,7 @@ local GamepadActionsBound = false
 
 local IS_PHONE = UserInputService.TouchEnabled and workspace.CurrentCamera.ViewportSize.X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
-local Player = Players.LocalPlayer
+local player = Players.LocalPlayer
 
 local MainFrame = nil
 local HotbarFrame = nil
@@ -175,9 +175,9 @@ local UIGridLayout: UIGridLayout = nil
 local ScrollUpInventoryButton = nil
 local ScrollDownInventoryButton = nil
 
-local Character = Player.Character or Player.CharacterAdded:Wait()
+local Character = player.Character or player.CharacterAdded:Wait()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
-local Backpack = Player:WaitForChild("Backpack")
+local Backpack = player:WaitForChild("Backpack")
 
 local InventoryIcon: any = UIShelf.CreateIcon({
 	Name = "Backpack",
@@ -928,7 +928,7 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 
 	--TODO: Optimize / refactor / do something else
 	if not StarterToolFound and tool.Parent == Character and not SlotsByTool[tool] then
-		local starterGear = Player:FindFirstChild("StarterGear")
+		local starterGear = player:FindFirstChild("StarterGear")
 		if starterGear then
 			if starterGear:FindFirstChild(tool.Name) then
 				StarterToolFound = true
@@ -1021,7 +1021,7 @@ local function OnCharacterAdded(character: Model): ()
 	--NOTE: Humanoid is set inside OnChildAdded
 
 	-- And the new backpack, when it gets here
-	Backpack = Player:WaitForChild("Backpack")
+	Backpack = player:WaitForChild("Backpack")
 	table.insert(CharConns, Backpack.ChildRemoved:Connect(OnChildRemoved))
 	table.insert(CharConns, Backpack.ChildAdded:Connect(OnChildAdded))
 	for _, child in pairs(Backpack:GetChildren()) do
@@ -1999,15 +1999,15 @@ end
 -- Now that we're done building the GUI, we Connect to all the major events
 
 -- Wait for the player if LocalPlayer wasn't ready earlier
-while not Player do
+while not player do
 	task.wait()
-	Player = Players.LocalPlayer
+	player = Players.LocalPlayer
 end
 
 -- Listen to current and all future characters of our player
-Player.CharacterAdded:Connect(OnCharacterAdded)
-if Player.Character then
-	OnCharacterAdded(Player.Character)
+player.CharacterAdded:Connect(OnCharacterAdded)
+if player.Character then
+	OnCharacterAdded(player.Character)
 end
 
 do -- Hotkey stuff
