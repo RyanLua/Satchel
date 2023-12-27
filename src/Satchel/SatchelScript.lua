@@ -222,7 +222,6 @@ end
 local function NewGui(className: string): any
 	local newGui: TextLabel = Instance.new(className)
 	newGui.BackgroundTransparency = 1
-	newGui.Size = UDim2.new(1, 0, 1, 0)
 	if className:match("Text") then
 		newGui.TextColor3 = TEXT_COLOR
 		newGui.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
@@ -672,6 +671,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	ToolIcon = NewGui("ImageLabel")
 	ToolIcon.Name = "Icon"
+	ToolIcon.Size = UDim2.new(1, 0, 1, 0)
 	ToolIcon.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolIcon.AnchorPoint = Vector2.new(0.5, 0.5)
 	if LEGACY_PADDING_ENABLED == true then
@@ -703,6 +703,7 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 	if index <= NumberOfHotbarSlots then -- Hotbar-Specific Slot Stuff
 		-- ToolTip stuff
 		ToolTip = NewGui("TextLabel")
+		ToolTip.Size = UDim2.new(1, 0, 1, 0)
 		ToolTip.Name = "ToolTip"
 		ToolTip.ZIndex = 2
 		ToolTip.TextWrapped = false
@@ -1500,12 +1501,14 @@ end
 -- Make the main frame, which (mostly) covers the screen
 MainFrame = NewGui("Frame")
 MainFrame.Name = "Backpack"
+MainFrame.Size = UDim2.new(1, 0, 1, 0)
 MainFrame.Visible = false
 MainFrame.Parent = BackpackGui
 
 -- Make the HotbarFrame, which holds only the Hotbar Slots
 HotbarFrame = NewGui("Frame")
 HotbarFrame.Name = "Hotbar"
+HotbarFrame.Size = UDim2.new(1, 0, 1, 0)
 HotbarFrame.Parent = MainFrame
 
 -- Make all the Hotbar Slots
@@ -1537,6 +1540,7 @@ RightBumperButton.Position = UDim2.new(1, 0, 0.5, -RightBumperButton.Size.Y.Offs
 -- Make the Inventory, which holds the ScrollingFrame, the header, and the search box
 InventoryFrame = NewGui("Frame")
 InventoryFrame.Name = "Inventory"
+InventoryFrame.Size = UDim2.new(1, 0, 1, 0)
 InventoryFrame.BackgroundTransparency = BACKGROUND_TRANSPARENCY
 InventoryFrame.BackgroundColor3 = BACKGROUND_COLOR
 InventoryFrame.Active = true
@@ -1573,6 +1577,7 @@ end)
 -- Make the ScrollingFrame, which holds the rest of the Slots (however many)
 ScrollingFrame = NewGui("ScrollingFrame")
 ScrollingFrame.Name = "ScrollingFrame"
+ScrollingFrame.Size = UDim2.new(1, 0, 1, 0)
 ScrollingFrame.Selectable = false
 ScrollingFrame.ScrollingDirection = Enum.ScrollingDirection.Y
 ScrollingFrame.BorderSizePixel = 0
@@ -1766,8 +1771,8 @@ local function resizeGamepadHintsFrame(): ()
 end
 
 local searchFrame = NewGui("Frame")
-searchFrame.Name = "Search"
 do -- Search stuff
+	searchFrame.Name = "Search"
 	searchFrame.BackgroundColor3 = SEARCH_BACKGROUND_COLOR
 	searchFrame.BackgroundTransparency = SEARCH_BACKGROUND_TRANSPARENCY
 	searchFrame.Size = UDim2.new(
