@@ -152,14 +152,13 @@ BackpackGui.ResetOnSpawn = false
 BackpackGui.Name = "BackpackGui"
 BackpackGui.Parent = PlayerGui
 
-local IsTenFootInterface = GuiService:IsTenFootInterface()
-
+local IsTenFootInterface: boolean = GuiService:IsTenFootInterface()
 if IsTenFootInterface then
 	ICON_SIZE_PIXELS = 100
 	FONT_SIZE = 24
 end
 
-local GamepadActionsBound = false
+local GamepadActionsBound: boolean = false
 
 local IS_PHONE = UserInputService.TouchEnabled and workspace.CurrentCamera.ViewportSize.X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
