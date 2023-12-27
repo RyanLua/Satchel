@@ -78,7 +78,7 @@ local TOOLTIP_OFFSET: number = -5 -- From to
 -- Topbar icons
 local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
-local ARROW_HOTKEY: table = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
+local ARROW_HOTKEY = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 
 -- Hotbar slots
 local HOTBAR_SLOTS_FULL: number = 10 -- 10 is the max
@@ -121,7 +121,7 @@ local DOUBLE_CLICK_TIME: number = 0.5
 local ICON_BUFFER_PIXELS: number = 5
 local ICON_SIZE_PIXELS: number = 60
 
-local MOUSE_INPUT_TYPES: table = { -- These are the input types that will be used for mouse -- [[ADDED]], Optional
+local MOUSE_INPUT_TYPES = { -- These are the input types that will be used for mouse -- [[ADDED]], Optional
 	[Enum.UserInputType.MouseButton1] = true,
 	[Enum.UserInputType.MouseButton2] = true,
 	[Enum.UserInputType.MouseButton3] = true,
@@ -129,7 +129,7 @@ local MOUSE_INPUT_TYPES: table = { -- These are the input types that will be use
 	[Enum.UserInputType.MouseWheel] = true,
 }
 
-local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be used for gamepad
+local GAMEPAD_INPUT_TYPES = { -- These are the input types that will be used for gamepad
 	[Enum.UserInputType.Gamepad1] = true,
 	[Enum.UserInputType.Gamepad2] = true,
 	[Enum.UserInputType.Gamepad3] = true,
@@ -1698,8 +1698,8 @@ local function resizeGamepadHintsFrame(): ()
 
 	local spaceTaken: number = 0
 
-	local gamepadHints: table = gamepadHintsFrame:GetChildren()
-	local filteredGamepadHints: table = {}
+	local gamepadHints = gamepadHintsFrame:GetChildren()
+	local filteredGamepadHints = {}
 
 	for _, child in pairs(gamepadHints) do
 		if child:IsA("GuiObject") then
