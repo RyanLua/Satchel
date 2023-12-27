@@ -341,7 +341,8 @@ local function IsEquipped(tool: Tool): boolean
 	return tool and tool.Parent == Character --NOTE: HopperBin
 end
 
-local function MakeSlot(parent: Instance, index: number): GuiObject
+-- Create a slot
+local function MakeSlot(parent: Instance, index: number?): GuiObject
 	index = index or (#Slots + 1)
 
 	-- Slot Definition --
@@ -367,25 +368,8 @@ local function MakeSlot(parent: Instance, index: number): GuiObject
 
 	-- Update slot transparency
 	local function UpdateSlotFading(): ()
-		if VRService.VREnabled and BackpackPanel then
-			local panelTransparency: number = BackpackPanel.transparency
-
-			SlotFrame.BackgroundTransparency = panelTransparency
-			SlotFrame.TextTransparency = panelTransparency
-			if ToolIcon then
-				ToolIcon.ImageTransparency = InventoryFrame.Visible and 0 or panelTransparency
-			end
-			if HighlightFrame then
-				for _, child in pairs(HighlightFrame:GetChildren()) do
-					child.BackgroundTransparency = panelTransparency
-				end
-			end
-
-			SlotFrame.SelectionImageObject = SelectionObj
-		else
-			SlotFrame.SelectionImageObject = nil
-			SlotFrame.BackgroundTransparency = SlotFrame.Draggable and 0 or SLOT_LOCKED_TRANSPARENCY
-		end
+		SlotFrame.SelectionImageObject = nil
+		SlotFrame.BackgroundTransparency = SlotFrame.Draggable and 0 or SLOT_LOCKED_TRANSPARENCY
 		SlotFrame.BackgroundColor3 = SlotFrame.Draggable and SLOT_DRAGGABLE_COLOR or BACKGROUND_COLOR
 	end
 
