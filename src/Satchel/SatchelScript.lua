@@ -374,10 +374,10 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 
 	-- Adjust the slots to the centered
 	function slot:Readjust(visualIndex: number, visualTotal: number): () --NOTE: Only used for Hotbar slots
-		local centered = HotbarFrame.Size.X.Offset / 2
-		local sizePlus = ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS
-		local midpointish = (visualTotal / 2) + 0.5
-		local factor = visualIndex - midpointish
+		local centered: number = HotbarFrame.Size.X.Offset / 2
+		local sizePlus: number = ICON_BUFFER_PIXELS + ICON_SIZE_PIXELS
+		local midpointish: number = (visualTotal / 2) + 0.5
+		local factor: number = visualIndex - midpointish
 		SlotFrame.Position =
 			UDim2.new(0, centered - (ICON_SIZE_PIXELS / 2) + (sizePlus * factor), 0, ICON_BUFFER_PIXELS)
 	end
