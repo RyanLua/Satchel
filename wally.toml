@@ -6,7 +6,8 @@ license = "MPL-2.0"
 authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
-exclude = ["assets"]
+exclude = ["**"]
+include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
 
 [dependencies]
 UIShelf = "canary-development/uishelf@1.1.5"
