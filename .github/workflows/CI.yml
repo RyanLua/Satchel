@@ -11,7 +11,6 @@ jobs:
       - name: Setup Selene
         uses: ok-nick/setup-aftman@v0.4.2
         with:
-          version: latest
           cache: true
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Selene
