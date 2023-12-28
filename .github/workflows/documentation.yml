@@ -1,15 +1,20 @@
 name: documentation
+
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
+
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  # Build job
-  build:
+  documentation:
     name: Build documentation
     runs-on: ubuntu-latest
     steps:
