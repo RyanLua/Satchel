@@ -6,17 +6,24 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: ok-nick/setup-aftman@v0.4.2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - run: selene ./src
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Selene
+        uses: ok-nick/setup-aftman@v0.4.2
+        with:
+          version: latest
+          cache: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Selene
+        run: selene src
   style:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: JohnnyMorganz/stylua-action@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        version: latest
-        args: --check ./src
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run StyLua
+        uses: JohnnyMorganz/stylua-action@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          args: --check src
