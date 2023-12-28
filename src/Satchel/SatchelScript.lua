@@ -342,7 +342,7 @@ end
 local function DisableActiveHopper() --NOTE: HopperBin
 	ActiveHopper:ToggleSelect()
 	SlotsByTool[ActiveHopper]:UpdateEquipView()
-	ActiveHopper = nil
+	ActiveHopper = nil :: any
 end
 
 local function UnequipAllTools(): () --NOTE: HopperBin
