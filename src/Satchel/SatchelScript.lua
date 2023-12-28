@@ -155,7 +155,7 @@ local BackpackEnabled: boolean = true
 
 local UIShelf: any = require(script.Parent.Packages.UIShelf)
 
-local BackpackGui = Instance.new("ScreenGui")
+local BackpackGui: ScreenGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
 BackpackGui.IgnoreGuiInset = true
 BackpackGui.ResetOnSpawn = false
@@ -170,9 +170,10 @@ end
 
 local GamepadActionsBound: boolean = false
 
-local IS_PHONE = UserInputService.TouchEnabled and workspace.CurrentCamera.ViewportSize.X < HOTBAR_SLOTS_WIDTH_CUTOFF
+local IS_PHONE: boolean = UserInputService.TouchEnabled
+	and workspace.CurrentCamera.ViewportSize.X < HOTBAR_SLOTS_WIDTH_CUTOFF
 
-local player = Players.LocalPlayer
+local Player: Player = Players.LocalPlayer
 
 local MainFrame: Frame = nil
 local HotbarFrame: Frame = nil
@@ -185,9 +186,9 @@ local ScrollUpInventoryButton: any = nil
 local ScrollDownInventoryButton: any = nil
 local changeToolFunc: any = nil
 
-local Character = player.Character or player.CharacterAdded:Wait()
-local Humanoid = Character:FindFirstChildOfClass("Humanoid")
-local Backpack = player:WaitForChild("Backpack")
+local Character: Model = Player.Character or Player.CharacterAdded:Wait()
+local Humanoid: any = Character:WaitForChild("Humanoid")
+local Backpack: Instance = Player:WaitForChild("Backpack")
 
 local InventoryIcon: any = UIShelf.CreateIcon({
 	Name = "Backpack",
@@ -204,20 +205,21 @@ local Slots = {} -- List of all Slots by index
 local LowestEmptySlot: any = nil
 local SlotsByTool = {} -- Map of Tools to their assigned Slots
 local HotkeyFns = {} -- Map of KeyCode values to their assigned behaviors
-local Dragging = {} -- Only used to check if anything is being dragged, to disable other input
+local Dragging: { boolean } = {} -- Only used to check if anything is being dragged, to disable other input
 local FullHotbarSlots = 0 -- Now being used to also determine whether or not LB and RB on the gamepad are enabled.
 local ActiveHopper = nil -- NOTE: HopperBin
-local StarterToolFound = false -- Special handling is required for the gear currently equipped on the site
-local WholeThingEnabled = false
-local TextBoxFocused = false -- ANY TextBox, not just the search box
-local ViewingSearchResults = false -- If the results of a search are currently being viewed
+local StarterToolFound: boolean = false -- Special handling is required for the gear currently equipped on the site
+local WholeThingEnabled: boolean = false
+local TextBoxFocused: boolean = false -- ANY TextBox, not just the search box
+local ViewingSearchResults: boolean = false -- If the results of a search are currently being viewed
 -- local HotkeyStrings = {} -- Used for eating/releasing hotkeys
-local CharConns = {} -- Holds character Connections to be cleared later
-local GamepadEnabled = false -- determines if our gui needs to be gamepad friendly
+local CharConns: { RBXScriptConnection } = {} -- Holds character Connections to be cleared later
+local GamepadEnabled: boolean = false -- determines if our gui needs to be gamepad friendly
 
 local IsVR = VRService.VREnabled -- Are we currently using a VR device?
-local NumberOfHotbarSlots = IsVR and HOTBAR_SLOTS_VR or (IS_PHONE and HOTBAR_SLOTS_MINI or HOTBAR_SLOTS_FULL) -- Number of slots shown at the bottom
-local NumberOfInventoryRows = IsVR and INVENTORY_ROWS_VR or (IS_PHONE and INVENTORY_ROWS_MINI or INVENTORY_ROWS_FULL) -- How many rows in the popped-up inventory
+local NumberOfHotbarSlots: number = IsVR and HOTBAR_SLOTS_VR or (IS_PHONE and HOTBAR_SLOTS_MINI or HOTBAR_SLOTS_FULL) -- Number of slots shown at the bottom
+local NumberOfInventoryRows: number = IsVR and INVENTORY_ROWS_VR
+	or (IS_PHONE and INVENTORY_ROWS_MINI or INVENTORY_ROWS_FULL) -- How many rows in the popped-up inventory
 local BackpackPanel = nil
 local lastEquippedSlot: any = nil
 
@@ -232,7 +234,7 @@ local function ShowVRBackpackPopup(): ()
 end
 
 local function FindLowestEmpty(): number?
-	for i = 1, NumberOfHotbarSlots do
+	for i: number = 1, NumberOfHotbarSlots do
 		local slot = Slots[i]
 		if not slot.Tool then
 			return slot
@@ -242,7 +244,7 @@ local function FindLowestEmpty(): number?
 end
 
 local function isInventoryEmpty()
-	for i = NumberOfHotbarSlots + 1, #Slots do
+	for i: number = NumberOfHotbarSlots + 1, #Slots do
 		local slot = Slots[i]
 		if slot and slot.Tool then
 			return false
@@ -262,7 +264,7 @@ local function AdjustHotbarFrames(): ()
 	local visualTotal = inventoryOpen and NumberOfHotbarSlots or FullHotbarSlots
 	local visualIndex = 0
 
-	for i = 1, NumberOfHotbarSlots do
+	for i: number = 1, NumberOfHotbarSlots do
 		local slot = Slots[i]
 		if slot.Tool or inventoryOpen then
 			visualIndex = visualIndex + 1
@@ -282,7 +284,7 @@ local function UpdateScrollingFrameCanvasSize(): ()
 end
 
 local function AdjustInventoryFrames(): ()
-	for i = NumberOfHotbarSlots + 1, #Slots do
+	for i: number = NumberOfHotbarSlots + 1, #Slots do
 		local slot = Slots[i]
 		slot.Frame.LayoutOrder = slot.Index
 		slot.Frame.Visible = (slot.Tool ~= nil)
@@ -879,7 +881,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 				end
 			elseif CheckBounds(HotbarFrame, x, y) then
 				local closest = { math.huge, nil :: any }
-				for i = 1, NumberOfHotbarSlots do
+				for i: number = 1, NumberOfHotbarSlots do
 					local otherSlot: any = Slots[i]
 					local offset = GetOffset(otherSlot.Frame, Vector2.new(x, y))
 					if offset < closest[1] then
@@ -955,12 +957,12 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 
 	--TODO: Optimize / refactor / do something else
 	if not StarterToolFound and tool.Parent == Character and not SlotsByTool[tool] then
-		local starterGear = player:FindFirstChild("StarterGear")
+		local starterGear = Player:FindFirstChild("StarterGear")
 		if starterGear then
 			if starterGear:FindFirstChild(tool.Name) then
 				StarterToolFound = true
 				local slot = LowestEmptySlot or MakeSlot(UIGridFrame)
-				for i = slot.Index, 1, -1 do
+				for i: number = slot.Index, 1, -1 do
 					local curr = Slots[i] -- An empty slot, because above
 					local pIndex = i - 1
 					if pIndex > 0 then
@@ -1039,7 +1041,7 @@ end
 
 local function OnCharacterAdded(character: Model): ()
 	-- First, clean up any old slots
-	for i = #Slots, 1, -1 do
+	for i: number = #Slots, 1, -1 do
 		local slot = Slots[i]
 		if slot.Tool then
 			slot:Clear()
@@ -1066,7 +1068,7 @@ local function OnCharacterAdded(character: Model): ()
 	--NOTE: Humanoid is set inside OnChildAdded
 
 	-- And the new backpack, when it gets here
-	Backpack = player:WaitForChild("Backpack")
+	Backpack = Player:WaitForChild("Backpack")
 	table.insert(CharConns, Backpack.ChildRemoved:Connect(OnChildRemoved))
 	table.insert(CharConns, Backpack.ChildAdded:Connect(OnChildAdded))
 	for _, child in pairs(Backpack:GetChildren()) do
@@ -1104,7 +1106,7 @@ end
 local function OnUISChanged(): ()
 	-- Detect if player is using Touch
 	if UserInputService:GetLastInputType() == Enum.UserInputType.Touch then
-		for i = 1, NumberOfHotbarSlots do
+		for i: number = 1, NumberOfHotbarSlots do
 			Slots[i]:TurnNumber(false)
 		end
 		return
@@ -1112,7 +1114,7 @@ local function OnUISChanged(): ()
 
 	-- Detect if player is using Keyboard
 	if UserInputService:GetLastInputType() == Enum.UserInputType.Keyboard then
-		for i = 1, NumberOfHotbarSlots do
+		for i: number = 1, NumberOfHotbarSlots do
 			Slots[i]:TurnNumber(true)
 		end
 		return
@@ -1121,7 +1123,7 @@ local function OnUISChanged(): ()
 	-- Detect if player is using Mouse
 	for _, mouse in pairs(MOUSE_INPUT_TYPES) do
 		if UserInputService:GetLastInputType() == mouse then
-			for i = 1, NumberOfHotbarSlots do
+			for i: number = 1, NumberOfHotbarSlots do
 				Slots[i]:TurnNumber(true)
 			end
 			return
@@ -1131,7 +1133,7 @@ local function OnUISChanged(): ()
 	-- Detect if player is using Controller
 	for _, gamepad in pairs(GAMEPAD_INPUT_TYPES) do
 		if UserInputService:GetLastInputType() == gamepad then
-			for i = 1, NumberOfHotbarSlots do
+			for i: number = 1, NumberOfHotbarSlots do
 				Slots[i]:TurnNumber(false)
 			end
 			return
@@ -1151,7 +1153,7 @@ function unbindAllGamepadEquipActions(): ()
 end
 
 -- local function setHotbarVisibility(visible: boolean, isInventoryScreen: boolean): ()
--- 	for i = 1, NumberOfHotbarSlots do
+-- 	for i: number = 1, NumberOfHotbarSlots do
 -- 		local hotbarSlot = Slots[i]
 -- 		if hotbarSlot and hotbarSlot.Frame and (isInventoryScreen or hotbarSlot.Tool) then
 -- 			hotbarSlot.Frame.Visible = visible
@@ -1262,7 +1264,7 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 			moveDirection = 1
 		end
 
-		for i = 1, NumberOfHotbarSlots do
+		for i: number = 1, NumberOfHotbarSlots do
 			local hotbarSlot = Slots[i]
 			if hotbarSlot:IsEquipped() then
 				local newSlotPosition = moveDirection + i
@@ -1308,7 +1310,7 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 
 		local startIndex = moveDirection == -1 and NumberOfHotbarSlots or 1
 		local endIndex = moveDirection == -1 and 1 or NumberOfHotbarSlots
-		for i = startIndex, endIndex, moveDirection do
+		for i: number = startIndex, endIndex, moveDirection do
 			if Slots[i].Tool then
 				Slots[i]:Select()
 				return
@@ -1318,7 +1320,7 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 end
 
 function getGamepadSwapSlot()
-	for i = 1, #Slots do
+	for i: number = 1, #Slots do
 		return Slots[i]
 	end
 	return
@@ -1430,7 +1432,7 @@ end
 function disableGamepadInventoryControl(): ()
 	unbindAllGamepadEquipActions()
 
-	for i = 1, NumberOfHotbarSlots do
+	for i: number = 1, NumberOfHotbarSlots do
 		local hotbarSlot = Slots[i]
 		if hotbarSlot and hotbarSlot.Frame then
 			hotbarSlot.Frame.BorderSizePixel = 0
@@ -1792,7 +1794,7 @@ local function resizeGamepadHintsFrame(): ()
 
 	--The space between all the frames should be equal
 	local spaceBetweenElements: number = (gamepadHintsFrame.AbsoluteSize.X - spaceTaken) / (#filteredGamepadHints - 1)
-	for i = 1, #filteredGamepadHints do
+	for i: number = 1, #filteredGamepadHints do
 		filteredGamepadHints[i].Position = (
 			i == 1 and UDim2.new(0, 0, 0, 0)
 			or UDim2.new(
@@ -1900,7 +1902,7 @@ do -- Search stuff
 		end
 
 		local hitTable = {}
-		for i = NumberOfHotbarSlots + 1, #Slots do -- Only search inventory slots
+		for i: number = NumberOfHotbarSlots + 1, #Slots do -- Only search inventory slots
 			local slot = Slots[i]
 			local hits: any = slot:CheckTerms(terms)
 			table.insert(hitTable, { slot, hits })
@@ -1933,7 +1935,7 @@ do -- Search stuff
 	local function clearResults(): ()
 		if xButton.ZIndex > 0 then
 			ViewingSearchResults = false
-			for i = NumberOfHotbarSlots + 1, #Slots do
+			for i: number = NumberOfHotbarSlots + 1, #Slots do
 				local slot = Slots[i]
 				slot.Frame.LayoutOrder = slot.Index
 				slot.Frame.Parent = UIGridFrame
@@ -2017,7 +2019,7 @@ do -- Make the Inventory expand/collapse arrow (unless TopBar)
 			return
 		end
 
-		for i = 1, NumberOfHotbarSlots do
+		for i: number = 1, NumberOfHotbarSlots do
 			if Slots[i].Frame == GuiService.SelectedObject and Slots[i].Tool then
 				Slots[i]:MoveToInventory()
 				return
@@ -2031,7 +2033,7 @@ do -- Make the Inventory expand/collapse arrow (unless TopBar)
 			local nowOpen = InventoryFrame.Visible
 			AdjustHotbarFrames()
 			HotbarFrame.Active = not HotbarFrame.Active
-			for i = 1, NumberOfHotbarSlots do
+			for i: number = 1, NumberOfHotbarSlots do
 				Slots[i]:SetClickability(not nowOpen)
 			end
 		end
@@ -2072,15 +2074,15 @@ end
 -- Now that we're done building the GUI, we Connect to all the major events
 
 -- Wait for the player if LocalPlayer wasn't ready earlier
-while not player do
+while not Player do
 	task.wait()
-	player = Players.LocalPlayer
+	Player = Players.LocalPlayer
 end
 
 -- Listen to current and all future characters of our player
-player.CharacterAdded:Connect(OnCharacterAdded)
-if player.Character then
-	OnCharacterAdded(player.Character)
+Player.CharacterAdded:Connect(OnCharacterAdded)
+if Player.Character then
+	OnCharacterAdded(Player.Character)
 end
 
 do -- Hotkey stuff
