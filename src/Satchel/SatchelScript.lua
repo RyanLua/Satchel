@@ -663,6 +663,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 	ToolName = Instance.new("TextLabel")
 	ToolName.BackgroundTransparency = 1
 	ToolName.Name = "ToolName"
+	ToolName.Text = ""
 	ToolName.TextColor3 = TEXT_COLOR
 	ToolName.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
 	ToolName.TextStrokeColor3 = TEXT_STROKE_COLOR
@@ -680,6 +681,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 		-- ToolTip stuff
 		ToolTip = Instance.new("TextLabel")
 		ToolTip.Name = "ToolTip"
+		ToolTip.Text = ""
 		ToolTip.Size = UDim2.new(1, 0, 1, 0)
 		ToolTip.TextColor3 = TEXT_COLOR
 		ToolTip.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
