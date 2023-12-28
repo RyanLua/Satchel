@@ -62,8 +62,6 @@ local SLOT_EQUIP_COLOR: Color3 = targetScript:GetAttribute("EquipBorderColor3") 
 local SLOT_LOCKED_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3 -- Locked means undraggable
 local SLOT_LOCKED_TRANSPARENCY: number = SLOT_LOCKED_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local SLOT_EQUIP_THICKNESS: number = targetScript:GetAttribute("EquipBorderSizePixel") or 5 -- Relative
-local SLOT_DRAGGABLE_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
-	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 local SLOT_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 local SLOT_BORDER_COLOR: Color3 = Color3.new(1, 1, 1) -- Appears when dragging
 
@@ -493,8 +491,9 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 		LowestEmptySlot = FindLowestEmpty()
 	end
 
-	function slot:UpdateEquipView(unequippedOverride: boolean): ()
-		if not unequippedOverride and IsEquipped(self.Tool) then -- Equipped
+	function slot:UpdateEquipView(unequippedOverride: boolean?): ()
+		local override = unequippedOverride or false
+		if not override and IsEquipped(self.Tool) then -- Equipped
 			lastEquippedSlot = slot
 			if not HighlightFrame then
 				HighlightFrame = Instance.new("UIStroke")
