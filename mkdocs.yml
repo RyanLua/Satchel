@@ -60,6 +60,8 @@ plugins:
   - git-committers:
       repository: RyanLua/Satchel
       branch: main
+      token: !!python/object/apply:os.getenv ["MKDOCS_GIT_COMMITTERS_APIKEY"]
+
 
 extra:
   generator: false
