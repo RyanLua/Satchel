@@ -8,11 +8,11 @@ permissions:
   contents: write
 
 jobs:
+  # Build job
   build:
     name: Build documentation
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
@@ -20,20 +20,16 @@ jobs:
           sparse-checkout: |
             docs
             mkdocs.yml
-
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
       - name: Set up Python runtime
         uses: actions/setup-python@v4
         with:
           python-version: 3.x
-
       - name: Set the date environmental variable
         run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
-
       - name: Set up build cache
         uses: actions/cache@v3
         with:
@@ -41,10 +37,10 @@ jobs:
           path: .cache
           restore-keys: |
             mkdocs-material-
-
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+  # Deployment job
   deploy:
     name: Deploy documentation
     environment:
@@ -55,6 +51,5 @@ jobs:
     steps:
       - name: Install mkdocs
         run: pip install mkdocs
-
       - name: Deploy to GitHub Pages
         run: mkdocs gh-deploy --force
