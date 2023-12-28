@@ -167,12 +167,13 @@ local player = Players.LocalPlayer
 local MainFrame: Frame = nil
 local HotbarFrame: Frame = nil
 local InventoryFrame: Frame = nil
-local VRInventorySelector: TextButton = nil
+local VRInventorySelector: any = nil
 local ScrollingFrame: ScrollingFrame = nil
 local UIGridFrame: Frame = nil
 local UIGridLayout: UIGridLayout = nil
-local ScrollUpInventoryButton: ImageButton = nil
-local ScrollDownInventoryButton: ImageButton = nil
+local ScrollUpInventoryButton: any = nil
+local ScrollDownInventoryButton: any = nil
+local changeToolFunc: any = nil
 
 local Character = player.Character or player.CharacterAdded:Wait()
 local Humanoid = Character:FindFirstChildOfClass("Humanoid")
@@ -190,7 +191,7 @@ InventoryIcon:SetImageSize(Vector2.new(40, 40))
 InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
 
 local Slots = {} -- List of all Slots by index
-local LowestEmptySlot = nil
+local LowestEmptySlot: any = nil
 local SlotsByTool = {} -- Map of Tools to their assigned Slots
 local HotkeyFns = {} -- Map of KeyCode values to their assigned behaviors
 local Dragging = {} -- Only used to check if anything is being dragged, to disable other input
@@ -207,7 +208,7 @@ local IsVR = VRService.VREnabled -- Are we currently using a VR device?
 local NumberOfHotbarSlots = IsVR and HOTBAR_SLOTS_VR or (IS_PHONE and HOTBAR_SLOTS_MINI or HOTBAR_SLOTS_FULL) -- Number of slots shown at the bottom
 local NumberOfInventoryRows = IsVR and INVENTORY_ROWS_VR or (IS_PHONE and INVENTORY_ROWS_MINI or INVENTORY_ROWS_FULL) -- How many rows in the popped-up inventory
 local BackpackPanel = nil
-local lastEquippedSlot = nil
+local lastEquippedSlot: any = nil
 
 local function EvaluateBackpackPanelVisibility(enabled: boolean): boolean
 	return enabled and InventoryIcon.enabled and BackpackEnabled and VRService.VREnabled
@@ -342,23 +343,23 @@ local function IsEquipped(tool: Tool): boolean
 end
 
 -- Create a slot
-local function MakeSlot(parent: Instance, index: number?): GuiObject
-	index = index or (#Slots + 1)
+local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
+	local index = initIndex or (#Slots + 1)
 
 	-- Slot Definition --
 
-	local slot = {}
-	slot.Tool = nil :: Tool
+	local slot: any = {}
+	slot.Tool = nil :: any
 	slot.Index = index :: number
-	slot.Frame = nil :: Frame
+	slot.Frame = nil :: any
 
-	local SlotFrame: TextButton = nil
+	local SlotFrame: any = nil
 	local FakeSlotFrame: Frame = nil
 	local ToolIcon: ImageLabel = nil
 	local ToolName: TextLabel = nil
-	local ToolChangeConn: RBXScriptConnection = nil
-	local HighlightFrame: UIStroke = nil -- UIStroke
-	local SelectionObj: Frame = nil
+	local ToolChangeConn: any = nil
+	local HighlightFrame: any = nil -- UIStroke
+	local SelectionObj: ImageLabel = nil
 
 	--NOTE: The following are only defined for Hotbar Slots
 	local ToolTip: TextLabel = nil
@@ -462,6 +463,7 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 			return
 		end
 
+		-- Disconnect tool event if it exists
 		if ToolChangeConn then
 			ToolChangeConn:Disconnect()
 			ToolChangeConn = nil
@@ -521,11 +523,11 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 	function slot:Delete(): ()
 		SlotFrame:Destroy() --NOTE: Also clears connections
 		table.remove(Slots, self.Index)
-		local newSize = #Slots
+		local newSize: number = #Slots
 
 		-- Now adjust the rest (both visually and representationally)
-		for i = self.Index, newSize do
-			Slots[i]:SlideBack()
+		for slotIndex: number = self.Index :: number, newSize :: number do
+			Slots[slotIndex]:SlideBack()
 		end
 
 		UpdateScrollingFrameCanvasSize()
@@ -568,9 +570,9 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 		end
 	end
 
-	function slot:CheckTerms(terms: table): number
+	function slot:CheckTerms(terms: any): number
 		local hits = 0
-		local function checkEm(str: string, term: table): ()
+		local function checkEm(str: string, term: any): ()
 			local _, n = str:lower():gsub(term, "")
 			hits = hits + n
 		end
@@ -720,7 +722,7 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 			if slot.Index <= NumberOfHotbarSlots then -- From a Hotbar slot
 				local tool = slot.Tool
 				self:Clear() --NOTE: Order matters here
-				local newSlot = MakeSlot(UIGridFrame)
+				local newSlot: any = MakeSlot(UIGridFrame)
 				newSlot:Fill(tool)
 				if IsEquipped(tool) then -- Also unequip it --NOTE: HopperBin
 					UnequipAllTools()
@@ -755,7 +757,7 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 	do -- Dragging Logic
 		local startPoint = SlotFrame.Position
 		local lastUpTime = 0
-		local startParent = nil
+		local startParent: any = nil
 
 		SlotFrame.DragBegin:Connect(function(dragPoint: UDim2)
 			Dragging[SlotFrame] = true
@@ -851,15 +853,15 @@ local function MakeSlot(parent: Instance, index: number?): GuiObject
 					now = 0 -- Resets the timer
 				end
 			elseif CheckBounds(HotbarFrame, x, y) then
-				local closest = { math.huge, nil }
+				local closest = { math.huge, nil :: any }
 				for i = 1, NumberOfHotbarSlots do
-					local otherSlot = Slots[i]
+					local otherSlot: any = Slots[i]
 					local offset = GetOffset(otherSlot.Frame, Vector2.new(x, y))
 					if offset < closest[1] then
 						closest = { offset, otherSlot }
 					end
 				end
-				local closestSlot = closest[2]
+				local closestSlot: any = closest[2]
 				if closestSlot ~= slot then
 					slot:Swap(closestSlot)
 					if slot.Index > NumberOfHotbarSlots then
@@ -928,12 +930,12 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 		if starterGear then
 			if starterGear:FindFirstChild(tool.Name) then
 				StarterToolFound = true
-				local slot = LowestEmptySlot or MakeSlot(UIGridFrame)
+				local slot: any = LowestEmptySlot or MakeSlot(UIGridFrame)
 				for i = slot.Index, 1, -1 do
-					local curr = Slots[i] -- An empty slot, because above
+					local curr: any = Slots[i] -- An empty slot, because above
 					local pIndex = i - 1
 					if pIndex > 0 then
-						local prev = Slots[pIndex] -- Guaranteed to be full, because above
+						local prev: any = Slots[pIndex] -- Guaranteed to be full, because above
 						prev:Swap(curr)
 					else
 						curr:Fill(tool)
@@ -952,7 +954,7 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 	end
 
 	-- The tool is either moving or new
-	local slot = SlotsByTool[tool]
+	local slot: any = SlotsByTool[tool]
 	if slot then
 		slot:UpdateEquipView()
 	else -- New! Put into lowest hotbar slot or new inventory slot
@@ -1268,16 +1270,15 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 	end)
 end
 
-function getGamepadSwapSlot(): any
+function getGamepadSwapSlot()
 	for i = 1, #Slots do
-		if Slots[i].Frame.BorderSizePixel > 0 then
-			return Slots[i]
-		end
+		return Slots[i]
 	end
+	return
 end
 
 -- selene: allow(unused_variable)
-function changeSlot(slot)
+function changeSlot(slot: any)
 	local swapInVr = not VRService.VREnabled or InventoryFrame.Visible
 
 	if slot.Frame == GuiService.SelectedObject and swapInVr then
@@ -1502,8 +1503,8 @@ HotbarFrame.Size = UDim2.new(1, 0, 1, 0)
 HotbarFrame.Parent = MainFrame
 
 -- Make all the Hotbar Slots
-for i = 1, NumberOfHotbarSlots do
-	local slot = MakeSlot(HotbarFrame, i)
+for index: number = 1, NumberOfHotbarSlots do
+	local slot: any = MakeSlot(HotbarFrame, index)
 	slot.Frame.Visible = false
 
 	if not LowestEmptySlot then
@@ -1721,7 +1722,7 @@ local function resizeGamepadHintsFrame(): ()
 	local spaceTaken: number = 0
 
 	local gamepadHints = gamepadHintsFrame:GetChildren()
-	local filteredGamepadHints = {}
+	local filteredGamepadHints: any = {}
 
 	for _, child in pairs(gamepadHints) do
 		if child:IsA("GuiObject") then
@@ -1799,14 +1800,13 @@ do -- Search stuff
 	searchBox.TextStrokeTransparency = TEXT_STROKE_TRANSPARENCY
 	searchBox.TextStrokeColor3 = TEXT_STROKE_COLOR
 	searchBox.FontFace = Font.new(FONT_FAMILY.Family, Enum.FontWeight.Medium, Enum.FontStyle.Normal)
-	searchBox.TextSize = FONT_SIZE
 	searchBox.PlaceholderText = SEARCH_TEXT_PLACEHOLDER
 	searchBox.TextColor3 = TEXT_COLOR
 	searchBox.TextTransparency = TEXT_STROKE_TRANSPARENCY
 	searchBox.TextStrokeColor3 = TEXT_STROKE_COLOR
 	searchBox.ClearTextOnFocus = false
 	searchBox.TextTruncate = Enum.TextTruncate.AtEnd
-	searchBox.FontSize = Enum.FontSize.Size14
+	searchBox.TextSize = FONT_SIZE
 	searchBox.TextXAlignment = Enum.TextXAlignment.Left
 	searchBox.TextYAlignment = Enum.TextYAlignment.Center
 	searchBox.Size = UDim2.new(
@@ -1855,20 +1855,20 @@ do -- Search stuff
 		local hitTable = {}
 		for i = NumberOfHotbarSlots + 1, #Slots do -- Only search inventory slots
 			local slot = Slots[i]
-			local hits = slot:CheckTerms(terms)
+			local hits: any = slot:CheckTerms(terms)
 			table.insert(hitTable, { slot, hits })
 			slot.Frame.Visible = false
 			slot.Frame.Parent = InventoryFrame
 		end
 
-		table.sort(hitTable, function(left, right)
+		table.sort(hitTable, function(left: any, right: any)
 			return left[2] > right[2]
 		end)
 		ViewingSearchResults = true
 
 		local hitCount = 0
 		for _, data in ipairs(hitTable) do
-			local slot, hits = data[1], data[2]
+			local slot, hits: any = data[1], data[2]
 			if hits > 0 then
 				slot.Frame.Visible = true
 				slot.Frame.Parent = UIGridFrame
