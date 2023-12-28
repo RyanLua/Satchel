@@ -5,7 +5,9 @@
 	"[markdown]": {
 		"editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
 	},
-    "markdownlint.ignore": ".github",
+    "markdownlint.ignore": [
+        ".github/**"
+    ],
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true
 }
