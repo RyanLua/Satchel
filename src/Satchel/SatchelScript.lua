@@ -1028,7 +1028,7 @@ local function OnChildRemoved(child: Instance): () -- From Character or Backpack
 	end
 
 	if tool :: any == ActiveHopper then --NOTE: HopperBin
-		ActiveHopper = nil  :: any
+		ActiveHopper = nil :: any
 	end
 
 	BackpackScript.BackpackItemRemoved:Fire()
@@ -1048,7 +1048,7 @@ local function OnCharacterAdded(character: Model): ()
 			slot:Delete()
 		end
 	end
-	ActiveHopper = nil  :: any --NOTE: HopperBin
+	ActiveHopper = nil :: any --NOTE: HopperBin
 
 	-- And any old Connections
 	for _, conn in pairs(CharConns) do
