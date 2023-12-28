@@ -3,30 +3,62 @@ on:
   push:
     branches:
       - main
+
+env:
+  CONCURRENCY: 1
+  PYTHON_VERSION: 3.x
+
 permissions:
   contents: write
+
 jobs:
-  deploy:
+  documentation:
+    name: Build documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-      - uses: actions/setup-python@v4
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
-          python-version: 3.x
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
-      - uses: actions/cache@v3
+          fetch-depth: 0
+          sparse-checkout: |
+            docs
+
+      - name: Set up Python runtime
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Set the date environmental variable
+        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+
+      - name: Set up build cache
+        uses: actions/cache@v3
+        id: cache
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
           restore-keys: |
             mkdocs-material-
-      - run: pip install mkdocs-material 
-      - run: pip install mkdocs-glightbox
-      - run: pip install mkdocs-git-authors-plugin
-      - run: pip install mkdocs-git-committers-plugin-2
-      - run: pip install mkdocs-git-revision-date-localized-plugin
-      - run: mkdocs gh-deploy --force
+
+      - name: Install dependencies
+        run: sudo apt-get install pngquant
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Insiders
+        if: github.event.repository.fork == false
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+
+      - name: Deploy documentation
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          PYTHONPATH: .
+          # GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+        run: |
+          mkdocs gh-deploy --force
+          mkdocs --version
