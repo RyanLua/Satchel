@@ -25,26 +25,54 @@ jobs:
           sparse-checkout: |
             docs
             mkdocs.yml
+
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
       - name: Set up Python runtime
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - name: Set the date environmental variable
-        run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+
       - name: Set up build cache
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
-          key: mkdocs-material-${{ env.cache_id }}
+          key: mkdocs-material-${{ hashfiles('.cache/**') }}
           path: .cache
           restore-keys: |
             mkdocs-material-
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Install mkdocs
         run: pip install mkdocs
+
+      - name: Build documentation
+        run: |
+          mkdocs build --clean
+          mkdocs --version
+
+      - name: Adjust permissions
+        run: |
+          chmod -c -R +rX site/ | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        uses: actions/deploy-pages@v4
+
+      - name: Save build cache
+        uses: actions/cache/save@v3
+        with:
+          key: mkdocs-material-${{ hashfiles('.cache/**') }}
+          path: .cache
