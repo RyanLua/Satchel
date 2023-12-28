@@ -8,13 +8,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Selene
-        uses: ok-nick/setup-aftman@v0.4.2
-        with:
-          cache: true
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Selene
-        run: selene src
+        uses: baptiste0928/cargo-install@v2.2.0
+        with:
+          crate: selene
+          args: src
   style:
     runs-on: ubuntu-latest
     steps:
