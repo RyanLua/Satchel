@@ -53,6 +53,7 @@ BackpackScript.BackpackItemRemoved.Name = "BackpackRemoved"
 
 local targetScript: LocalScript = script.Parent
 
+-- Constants --
 local PREFERRED_TRANSPARENCY: number = GuiService.PreferredTransparency or 1
 
 -- Legacy behavior for backpack
@@ -61,7 +62,7 @@ local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadd
 
 -- Background
 local BACKGROUND_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
-local BACKGROUND_TRANSPARENCY = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
+local BACKGROUND_TRANSPARENCY: number = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
 local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
 local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
@@ -85,7 +86,7 @@ local TOOLTIP_OFFSET: number = -5 -- From to
 -- Topbar icons
 local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
-local ARROW_HOTKEY = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
+local ARROW_HOTKEY: { Enum.KeyCode } = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 
 -- Hotbar slots
 local HOTBAR_SLOTS_FULL: number = 10 -- 10 is the max
@@ -128,24 +129,26 @@ local DOUBLE_CLICK_TIME: number = 0.5
 local ICON_BUFFER_PIXELS: number = 5
 local ICON_SIZE_PIXELS: number = 60
 
-local MOUSE_INPUT_TYPES = { -- These are the input types that will be used for mouse -- [[ADDED]], Optional
-	[Enum.UserInputType.MouseButton1] = true,
-	[Enum.UserInputType.MouseButton2] = true,
-	[Enum.UserInputType.MouseButton3] = true,
-	[Enum.UserInputType.MouseMovement] = true,
-	[Enum.UserInputType.MouseWheel] = true,
-}
+local MOUSE_INPUT_TYPES: { [Enum.UserInputType]: boolean } =
+	{ -- These are the input types that will be used for mouse -- [[ADDED]], Optional
+		[Enum.UserInputType.MouseButton1] = true,
+		[Enum.UserInputType.MouseButton2] = true,
+		[Enum.UserInputType.MouseButton3] = true,
+		[Enum.UserInputType.MouseMovement] = true,
+		[Enum.UserInputType.MouseWheel] = true,
+	}
 
-local GAMEPAD_INPUT_TYPES = { -- These are the input types that will be used for gamepad
-	[Enum.UserInputType.Gamepad1] = true,
-	[Enum.UserInputType.Gamepad2] = true,
-	[Enum.UserInputType.Gamepad3] = true,
-	[Enum.UserInputType.Gamepad4] = true,
-	[Enum.UserInputType.Gamepad5] = true,
-	[Enum.UserInputType.Gamepad6] = true,
-	[Enum.UserInputType.Gamepad7] = true,
-	[Enum.UserInputType.Gamepad8] = true,
-}
+local GAMEPAD_INPUT_TYPES: { [Enum.UserInputType]: boolean } =
+	{ -- These are the input types that will be used for gamepad
+		[Enum.UserInputType.Gamepad1] = true,
+		[Enum.UserInputType.Gamepad2] = true,
+		[Enum.UserInputType.Gamepad3] = true,
+		[Enum.UserInputType.Gamepad4] = true,
+		[Enum.UserInputType.Gamepad5] = true,
+		[Enum.UserInputType.Gamepad6] = true,
+		[Enum.UserInputType.Gamepad7] = true,
+		[Enum.UserInputType.Gamepad8] = true,
+	}
 
 -- Topbar logic
 local BackpackEnabled: boolean = true
@@ -1024,8 +1027,8 @@ local function OnChildRemoved(child: Instance): () -- From Character or Backpack
 		end
 	end
 
-	if tool == ActiveHopper then --NOTE: HopperBin
-		ActiveHopper = nil
+	if tool :: any == ActiveHopper then --NOTE: HopperBin
+		ActiveHopper = nil  :: any
 	end
 
 	BackpackScript.BackpackItemRemoved:Fire()
@@ -1045,7 +1048,7 @@ local function OnCharacterAdded(character: Model): ()
 			slot:Delete()
 		end
 	end
-	ActiveHopper = nil --NOTE: HopperBin
+	ActiveHopper = nil  :: any --NOTE: HopperBin
 
 	-- And any old Connections
 	for _, conn in pairs(CharConns) do
