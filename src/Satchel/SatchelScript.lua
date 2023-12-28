@@ -42,6 +42,15 @@ BackpackScript.KeepVRTopbarOpen = true :: boolean
 BackpackScript.VRIsExclusive = true :: boolean
 BackpackScript.VRClosesNonExclusive = true :: boolean
 
+BackpackScript.BackpackEmpty = Instance.new("BindableEvent").Name :: BindableEvent -- Fires when the backpack is empty (no tools
+BackpackScript.BackpackEmpty.Name = "BackpackEmpty"
+
+BackpackScript.BackpackItemAdded = Instance.new("BindableEvent").Name :: BindableEvent -- Fires when an item is added to the backpack
+BackpackScript.BackpackItemAdded.Name = "BackpackAdded"
+
+BackpackScript.BackpackItemRemoved = Instance.new("BindableEvent").Name :: BindableEvent -- Fires when an item is removed from the backpack
+BackpackScript.BackpackItemRemoved.Name = "BackpackRemoved"
+
 local targetScript: LocalScript = script.Parent
 
 local PREFERRED_TRANSPARENCY: number = GuiService.PreferredTransparency or 1
@@ -194,6 +203,7 @@ local SlotsByTool = {} -- Map of Tools to their assigned Slots
 local HotkeyFns = {} -- Map of KeyCode values to their assigned behaviors
 local Dragging = {} -- Only used to check if anything is being dragged, to disable other input
 local FullHotbarSlots = 0 -- Now being used to also determine whether or not LB and RB on the gamepad are enabled.
+local ActiveHopper = nil -- NOTE: HopperBin
 local StarterToolFound = false -- Special handling is required for the gear currently equipped on the site
 local WholeThingEnabled = false
 local TextBoxFocused = false -- ANY TextBox, not just the search box
@@ -228,15 +238,17 @@ local function FindLowestEmpty(): number?
 	return nil
 end
 
--- local function isInventoryEmpty(): boolean
--- 	for i = NumberOfHotbarSlots + 1, #Slots do
--- 		local slot = Slots[i]
--- 		if slot and slot.Tool then
--- 			return false
--- 		end
--- 	end
--- 	return true
--- end
+local function isInventoryEmpty()
+	for i = NumberOfHotbarSlots + 1, #Slots do
+		local slot = Slots[i]
+		if slot and slot.Tool then
+			return false
+		end
+	end
+	return true
+end
+
+BackpackScript.IsInventoryEmpty = isInventoryEmpty
 
 local function UseGazeSelection(): boolean
 	return false -- disabled in new VR system
@@ -324,9 +336,18 @@ local function GetOffset(guiObject: GuiObject, point: Vector2): number
 	return (centerPoint - point).Magnitude
 end
 
+local function DisableActiveHopper() --NOTE: HopperBin
+	ActiveHopper:ToggleSelect()
+	SlotsByTool[ActiveHopper]:UpdateEquipView()
+	ActiveHopper = nil
+end
+
 local function UnequipAllTools(): () --NOTE: HopperBin
 	if Humanoid then
 		Humanoid:UnequipTools()
+		if ActiveHopper then
+			DisableActiveHopper()
+		end
 	end
 end
 
@@ -913,16 +934,20 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 end
 
 local function OnChildAdded(child: Instance): () -- To Character or Backpack
-	if not child:IsA("Tool") then --NOTE: HopperBin
+	if not child:IsA("Tool") and not child:IsA("HopperBin") then --NOTE: HopperBin
 		if child:IsA("Humanoid") and child.Parent == Character then
 			Humanoid = child
 		end
 		return
 	end
-	local tool = child
+	local tool: any = child
 
 	if tool.Parent == Character then
 		ShowVRBackpackPopup()
+	end
+
+	if ActiveHopper and tool.Parent == Character then --NOTE: HopperBin
+		DisableActiveHopper()
 	end
 
 	--TODO: Optimize / refactor / do something else
@@ -931,12 +956,12 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 		if starterGear then
 			if starterGear:FindFirstChild(tool.Name) then
 				StarterToolFound = true
-				local slot: any = LowestEmptySlot or MakeSlot(UIGridFrame)
+				local slot = LowestEmptySlot or MakeSlot(UIGridFrame)
 				for i = slot.Index, 1, -1 do
-					local curr: any = Slots[i] -- An empty slot, because above
+					local curr = Slots[i] -- An empty slot, because above
 					local pIndex = i - 1
 					if pIndex > 0 then
-						local prev: any = Slots[pIndex] -- Guaranteed to be full, because above
+						local prev = Slots[pIndex] -- Guaranteed to be full, because above
 						prev:Swap(curr)
 					else
 						curr:Fill(tool)
@@ -964,11 +989,19 @@ local function OnChildAdded(child: Instance): () -- To Character or Backpack
 		if slot.Index <= NumberOfHotbarSlots and not InventoryFrame.Visible then
 			AdjustHotbarFrames()
 		end
+		if tool:IsA("HopperBin") then --NOTE: HopperBin
+			if tool.Active then
+				UnequipAllTools()
+				ActiveHopper = tool
+			end
+		end
 	end
+
+	BackpackScript.BackpackItemAdded:Fire()
 end
 
 local function OnChildRemoved(child: Instance): () -- From Character or Backpack
-	if not child:IsA("Tool") then --NOTE: HopperBin
+	if not child:IsA("Tool") and not child:IsA("HopperBin") then --NOTE: HopperBin
 		return
 	end
 	local tool = child
@@ -990,6 +1023,15 @@ local function OnChildRemoved(child: Instance): () -- From Character or Backpack
 			AdjustHotbarFrames()
 		end
 	end
+
+	if tool == ActiveHopper then --NOTE: HopperBin
+		ActiveHopper = nil
+	end
+
+	BackpackScript.BackpackItemRemoved:Fire()
+	if isInventoryEmpty() then
+		BackpackScript.BackpackEmpty:Fire()
+	end
 end
 
 local function OnCharacterAdded(character: Model): ()
@@ -1003,6 +1045,7 @@ local function OnCharacterAdded(character: Model): ()
 			slot:Delete()
 		end
 	end
+	ActiveHopper = nil --NOTE: HopperBin
 
 	-- And any old Connections
 	for _, conn in pairs(CharConns) do
@@ -2051,7 +2094,9 @@ do -- Hotkey stuff
 
 	-- Manual unequip for HopperBins on drop button pressed
 	HotkeyFns[DROP_HOTKEY_VALUE] = function(): () --NOTE: HopperBin
-		UnequipAllTools()
+		if ActiveHopper then
+			UnequipAllTools()
+		end
 	end
 
 	-- Listen to keyboard status, for showing/hiding hotkey labels
