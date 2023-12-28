@@ -16,11 +16,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  documentation:
-    name: Build documentation
+  # Build job
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -28,12 +28,10 @@ jobs:
             docs
             mkdocs.yml
 
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Set up Python runtime
+      - name: Setup Python runtime
         uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -41,7 +39,7 @@ jobs:
           cache-dependency-path: |
             requirements.txt
 
-      - name: Set up build cache
+      - name: Setup build cache
         uses: actions/cache/restore@v3
         with:
           key: mkdocs-material-${{ hashfiles('.cache/**') }}
@@ -52,19 +50,24 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install mkdocs
-        run: pip install mkdocs
-
-      - name: Build documentation
+      - name: Build with MkDocs
         run: |
           mkdocs build --clean
           mkdocs --version
 
-      - name: Upload to GitHub Pages
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
 
