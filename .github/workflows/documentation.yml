@@ -4,10 +4,6 @@ on:
     branches:
       - main
 
-env:
-  CONCURRENCY: 1
-  PYTHON_VERSION: 3.x
-
 permissions:
   contents: write
 
@@ -24,17 +20,21 @@ jobs:
           sparse-checkout: |
             docs
 
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
       - name: Set up Python runtime
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ env.PYTHON_VERSION }}
+          python-version: 3.x
 
       - name: Set the date environmental variable
         run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV
 
       - name: Set up build cache
         uses: actions/cache@v3
-        id: cache
         with:
           key: mkdocs-material-${{ env.cache_id }}
           path: .cache
@@ -56,10 +56,4 @@ jobs:
     needs: build
     steps:
       - name: Deploy to GitHub Pages
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          PYTHONPATH: .
-          # GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
-        run: |
-          mkdocs gh-deploy --force
-          mkdocs --version
+        run: mkdocs gh-deploy --force
