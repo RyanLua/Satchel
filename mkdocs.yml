@@ -1,0 +1,129 @@
+site_name: Satchel Documentation
+site_url: https://satchel.ryanluu.dev
+site_author: Ryan Luu
+site_description: Documentation for the Satchel, , a modern open-source alternative to Roblox's default backpack.
+
+repo_name: RyanLua/Satchel
+repo_url: https://github.com/RyanLua/Satchel
+
+copyright: Copyright &copy; Ryan Luu
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.tooltips
+    - header.autohide
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.prune
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - search.share 
+    - navigation.footer
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      primary: light blue
+      accent: light blue
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: light blue
+      accent: light blue
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  favicon: favicon.png
+  logo: logo.png
+  icon:
+    repo: fontawesome/brands/github
+  language: en
+
+plugins:
+  - glightbox
+  - search
+  - git-authors
+  - tags
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - git-committers:
+      repository: RyanLua/Satchel
+      branch: main
+
+extra:
+  generator: false
+  # version:
+  #   provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/RyanLua/Satchel
+      name: GitHub
+    - icon: simple/robloxstudio
+      link: https://devforum.roblox.com/t/2451549
+      name: DevForum
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+  analytics:
+    provider: google
+    property: PPVP56SBQQ
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thanks for your feedback! Help us improve this page by
+            using our <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU1DGaWTcS0bernMtC-gbOuQzCudUyKmwSjullThV2jIiTZQ/viewform?usp=pp_url&entry.2143998705={url}" target="_blank" rel="noopener">feedback form</a>. 
+
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
+
+edit_uri: edit/main/docs/
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - abbr
+  - attr_list
+  - pymdownx.snippets
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - Introduction: introduction.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Platforms: platforms.md
+  - Benchmarks: benchmarks.md
+  - Alternatives: alternatives.md
+  - API Reference: api-reference.md
