@@ -42,13 +42,13 @@ BackpackScript.KeepVRTopbarOpen = true :: boolean
 BackpackScript.VRIsExclusive = true :: boolean
 BackpackScript.VRClosesNonExclusive = true :: boolean
 
-BackpackScript.BackpackEmpty = Instance.new("BindableEvent").Name :: BindableEvent -- Fires when the backpack is empty (no tools
+BackpackScript.BackpackEmpty = Instance.new("BindableEvent") :: BindableEvent -- Fires when the backpack is empty (no tools
 BackpackScript.BackpackEmpty.Name = "BackpackEmpty"
 
-BackpackScript.BackpackItemAdded = Instance.new("BindableEvent").Name :: BindableEvent -- Fires when an item is added to the backpack
+BackpackScript.BackpackItemAdded = Instance.new("BindableEvent") :: BindableEvent -- Fires when an item is added to the backpack
 BackpackScript.BackpackItemAdded.Name = "BackpackAdded"
 
-BackpackScript.BackpackItemRemoved = Instance.new("BindableEvent").Name :: BindableEvent -- Fires when an item is removed from the backpack
+BackpackScript.BackpackItemRemoved = Instance.new("BindableEvent") :: BindableEvent -- Fires when an item is removed from the backpack
 BackpackScript.BackpackItemRemoved.Name = "BackpackRemoved"
 
 local targetScript: LocalScript = script.Parent
