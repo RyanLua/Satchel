@@ -68,7 +68,7 @@ extra:
   # version:
   #   provider: mike
   social:
-    - icon: fontawesome/brands/github
+    - icon: simple/github
       link: https://github.com/RyanLua/Satchel
       name: GitHub
     - icon: simple/robloxstudio
