@@ -55,6 +55,7 @@ plugins:
   - search
   - git-authors
   - tags
+  - social
   - git-revision-date-localized:
       enable_creation_date: true
   - git-committers:

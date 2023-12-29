@@ -48,6 +48,9 @@ jobs:
             mkdocs-material-
 
       - name: Install dependencies
+        run: sudo apt-get install pngquant
+
+      - name: Install Python dependencies
         run: pip install -r requirements.txt
 
       - name: Build with MkDocs
