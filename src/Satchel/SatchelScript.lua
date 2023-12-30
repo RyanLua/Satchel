@@ -1405,6 +1405,7 @@ function enableGamepadInventoryControl()
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
+			-- selene: allow(shadowing)
 			local selectedSlot = getGamepadSwapSlot()
 			if selectedSlot then
 				selectedSlot.Frame.BorderSizePixel = 0
