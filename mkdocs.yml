@@ -29,6 +29,7 @@ theme:
     - search.share 
     - navigation.footer
     - toc.follow
+    - toc.integrate
   palette:
     - media: "(prefers-color-scheme: light)"
       primary: light blue
