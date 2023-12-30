@@ -1252,12 +1252,12 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 	lastChangeToolInputObject = inputObject
 	lastChangeToolInputTime = tick()
 
-	task.delay(maxEquipDeltaTime, function(): ()
+	task.delay(maxEquipDeltaTime, function()
 		if lastChangeToolInputObject ~= inputObject then
 			return
 		end
 
-		local moveDirection = 0
+		local moveDirection: number = 0
 		if inputObject.KeyCode == Enum.KeyCode.ButtonL1 then
 			moveDirection = -1
 		else
@@ -1265,10 +1265,11 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 		end
 
 		for i: number = 1, NumberOfHotbarSlots do
-			local hotbarSlot = Slots[i]
+			local hotbarSlot: any = Slots[i]
 			if hotbarSlot:IsEquipped() then
-				local newSlotPosition = moveDirection + i
-				local hitEdge = false
+
+				local newSlotPosition: number = moveDirection + i
+				local hitEdge: boolean = false
 				if newSlotPosition > NumberOfHotbarSlots then
 					newSlotPosition = 1
 					hitEdge = true
@@ -1277,7 +1278,7 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 					hitEdge = true
 				end
 
-				local origNewSlotPos = newSlotPosition
+				local origNewSlotPos: number = newSlotPosition
 				while not Slots[newSlotPosition].Tool do
 					newSlotPosition = newSlotPosition + moveDirection
 					if newSlotPosition == origNewSlotPos then
@@ -1308,8 +1309,8 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 			return
 		end
 
-		local startIndex = moveDirection == -1 and NumberOfHotbarSlots or 1
-		local endIndex = moveDirection == -1 and 1 or NumberOfHotbarSlots
+		local startIndex: number = moveDirection == -1 and NumberOfHotbarSlots or 1
+		local endIndex: number = moveDirection == -1 and 1 or NumberOfHotbarSlots
 		for i: number = startIndex, endIndex, moveDirection do
 			if Slots[i].Tool then
 				Slots[i]:Select()
