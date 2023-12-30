@@ -1321,9 +1321,10 @@ end
 
 function getGamepadSwapSlot()
 	for i: number = 1, #Slots do
-		return Slots[i]
+		if Slots[i].Frame.BorderSizePixel > 0 then
+			return Slots[i]
+		end
 	end
-	return
 end
 
 -- selene: allow(unused_variable)
