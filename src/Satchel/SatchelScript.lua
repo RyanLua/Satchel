@@ -213,7 +213,7 @@ local WholeThingEnabled: boolean = false
 local TextBoxFocused: boolean = false -- ANY TextBox, not just the search box
 local ViewingSearchResults: boolean = false -- If the results of a search are currently being viewed
 -- local HotkeyStrings = {} -- Used for eating/releasing hotkeys
-local CharConns: { SatchelScriptConnection } = {} -- Holds character Connections to be cleared later
+local CharConns: { RBXScriptConnection } = {} -- Holds character Connections to be cleared later
 local GamepadEnabled: boolean = false -- determines if our gui needs to be gamepad friendly
 
 local IsVR = VRService.VREnabled -- Are we currently using a VR device?
