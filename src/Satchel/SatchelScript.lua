@@ -1319,12 +1319,13 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 	end)
 end
 
-function getGamepadSwapSlot()
+function getGamepadSwapSlot(): any
 	for i: number = 1, #Slots do
 		if Slots[i].Frame.BorderSizePixel > 0 then
 			return Slots[i]
 		end
 	end
+	return
 end
 
 -- selene: allow(unused_variable)
