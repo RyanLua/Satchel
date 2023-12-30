@@ -1398,7 +1398,6 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl()
-	-- selene: allow(unused_variable)
 	local goBackOneLevel = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject)
 		if inputState ~= Enum.UserInputState.Begin then
 			return
@@ -1406,12 +1405,13 @@ function enableGamepadInventoryControl()
 
 		local selectedSlot = getGamepadSwapSlot()
 		if selectedSlot then
-			-- selene: allow(shadowing)
 			local selectedSlot = getGamepadSwapSlot()
 			if selectedSlot then
 				selectedSlot.Frame.BorderSizePixel = 0
 				return
 			end
+		elseif InventoryFrame.Visible then
+			BackpackScript.OpenClose()
 		end
 	end
 
