@@ -463,12 +463,12 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 
 		if hotbarSlot then
 			FullHotbarSlots = FullHotbarSlots + 1
-			-- If using a controller, determine whether or not we can enable BindCoreAction("SatchelHotbarEquip", etc)
+			-- If using a controller, determine whether or not we can enable BindCoreAction("BackpackHotbarEquip", etc)
 			if WholeThingEnabled and FullHotbarSlots >= 1 and not GamepadActionsBound then
 				-- Player added first item to a hotbar slot, enable BindCoreAction
 				GamepadActionsBound = true
 				ContextActionService:BindAction(
-					"SatchelHotbarEquip",
+					"BackpackHotbarEquip",
 					changeToolFunc,
 					false,
 					Enum.KeyCode.ButtonL1,
@@ -506,9 +506,9 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 		if self.Index <= NumberOfHotbarSlots then
 			FullHotbarSlots = FullHotbarSlots - 1
 			if FullHotbarSlots < 1 then
-				-- Player removed last item from hotbar; UnbindCoreAction("SatchelHotbarEquip"), allowing the developer to use LB and RB.
+				-- Player removed last item from hotbar; UnbindCoreAction("BackpackHotbarEquip"), allowing the developer to use LB and RB.
 				GamepadActionsBound = false
-				ContextActionService:UnbindAction("SatchelHotbarEquip")
+				ContextActionService:UnbindAction("BackpackHotbarEquip")
 			end
 		end
 
@@ -1148,8 +1148,8 @@ local noOpFunc = function() end
 -- local selectDirection = Vector2.new(0, 0)
 
 function unbindAllGamepadEquipActions()
-	ContextActionService:UnbindAction("SatchelBackpackHasGamepadFocus")
-	ContextActionService:UnbindAction("SatchelCloseInventory")
+	ContextActionService:UnbindAction("BackpackHasGamepadFocus")
+	ContextActionService:UnbindAction("BackpackCloseInventory")
 end
 
 -- local function setHotbarVisibility(visible: boolean, isInventoryScreen: boolean)
@@ -1417,9 +1417,9 @@ function enableGamepadInventoryControl()
 		end
 	end
 
-	ContextActionService:BindAction("SatchelBackpackHasGamepadFocus", noOpFunc, false, Enum.UserInputType.Gamepad1)
+	ContextActionService:BindAction("BackpackHasGamepadFocus", noOpFunc, false, Enum.UserInputType.Gamepad1)
 	ContextActionService:BindAction(
-		"SatchelCloseInventory",
+		"BackpackCloseInventory",
 		goBackOneLevel,
 		false,
 		Enum.KeyCode.ButtonB,
@@ -1451,7 +1451,7 @@ local function bindBackpackHotbarAction()
 	if WholeThingEnabled and not GamepadActionsBound then
 		GamepadActionsBound = true
 		ContextActionService:BindAction(
-			"SatchelHotbarEquip",
+			"BackpackHotbarEquip",
 			changeToolFunc,
 			false,
 			Enum.KeyCode.ButtonL1,
@@ -1463,7 +1463,7 @@ end
 local function unbindBackpackHotbarAction()
 	disableGamepadInventoryControl()
 	GamepadActionsBound = false
-	ContextActionService:UnbindAction("SatchelHotbarEquip")
+	ContextActionService:UnbindAction("BackpackHotbarEquip")
 end
 
 function gamepadDisconnected()
@@ -1473,7 +1473,7 @@ end
 
 function gamepadConnected()
 	GamepadEnabled = true
-	GuiService:AddSelectionParent("SatchelBackpackSelection", MainFrame)
+	GuiService:AddSelectionParent("BackpackSelection", MainFrame)
 
 	if FullHotbarSlots >= 1 then
 		bindBackpackHotbarAction()
@@ -2061,9 +2061,9 @@ do -- Make the Inventory expand/collapse arrow (unless TopBar)
 		end
 
 		if InventoryFrame.Visible then
-			ContextActionService:BindAction("SatchelRemoveSlot", removeHotBarSlot, false, Enum.KeyCode.ButtonX)
+			ContextActionService:BindAction("BackpackRemoveSlot", removeHotBarSlot, false, Enum.KeyCode.ButtonX)
 		else
-			ContextActionService:UnbindAction("SatchelRemoveSlot")
+			ContextActionService:UnbindAction("BackpackRemoveSlot")
 		end
 
 		BackpackScript.IsOpen = InventoryFrame.Visible
