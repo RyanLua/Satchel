@@ -1,13 +1,6 @@
-  {
-    "name": "Satchel",
-    "tree": {
-      "$className": "DataModel",
-      "StarterPlayer": {
-        "$className": "StarterPlayer",
-        "StarterPlayerScripts": {
-          "$className": "StarterPlayerScripts",
-          "$path": "src"
-        }
-      }
-    }
+{
+  "name": "Satchel",
+  "tree": {
+    "$path": "src"
   }
+}
