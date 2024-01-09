@@ -42,3 +42,8 @@ luac.out
 # Wally
 
 Packages
+
+# MkDocs documentation
+
+site*/
+.cache
