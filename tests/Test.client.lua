@@ -10,9 +10,9 @@
 	file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ]]
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local TestEZ = require(ReplicatedStorage.TestEZ)
+local TestEZ = require(ReplicatedStorage:WaitForChild("testez"))
 
 local Satchel = script:WaitForChild("Satchel")
 
-TestEZ.TestBootstrap:run({ Satchel })
 require(Satchel) -- Initialize Satchel
+TestEZ.TestBootstrap:run({ Satchel }) -- Run Tests
