@@ -10,3 +10,4 @@ exclude = ["assets"]
 
 [dependencies]
 UIShelf = "canary-development/uishelf@1.1.5"
+testez = "roblox/testez@0.4.1"
