@@ -1,0 +1,22 @@
+{
+  "name": "Satchel",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "$path": "Packages"
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "Test": {
+          "$path": "tests/Test.client.lua",
+          "Satchel": {
+            "$path": "src"
+          }
+        }
+      }
+    }
+  }
+}
