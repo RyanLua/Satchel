@@ -10,4 +10,4 @@
 	file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ]]
 
-require(script:WaitForChild("SatchelScript")) -- Initialize Satchel
+require(script:WaitForChild("Satchel")) -- Initialize Satchel
