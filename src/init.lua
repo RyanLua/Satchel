@@ -143,7 +143,7 @@ local GAMEPAD_INPUT_TYPES: table = { -- These are the input types that will be u
 -- Topbar logic
 local BackpackEnabled: boolean = true
 
-local UIShelf: any = require(script.Parent.Packages.UIShelf)
+local UIShelf: any = require(script.Packages.UIShelf)
 
 local BackpackGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
