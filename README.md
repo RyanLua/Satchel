@@ -134,7 +134,7 @@ A special thanks to the following people for their contributions to Satchel.
 ## 💖 Support
 
 > [!NOTE]
-> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](Satchel/blob/main/SUPPORT.md) for additional information.
+> If you see an issue with Satchel and would like to report it, see [SUPPORT.md](.github/SUPPORT.md) for additional information.
 
 Satchel fully supports all platforms which includes computer, tablet, phone, console, and VR. Satchel is also fully compatible experiences using TopbarPlus by 1ForeverHD.
 
@@ -194,7 +194,7 @@ Satchel offers access to some of its internal methods and events for scripting p
 
 ## 🙏 Contributing
 
-We welcome all contributions from the community. If you would like to contribute, please see [CONTRIBUTING.md](CONTRIBUTING.md) to get started on how to contribute to Satchel.
+We welcome all contributions from the community. If you would like to contribute, please see [CONTRIBUTING.md](.github/CONTRIBUTING.md) to get started on how to contribute to Satchel.
 
 When you contribute to Satchel you will be accredited for your contribution for everyone to see on this repository along with supporting the open-source community.
 
