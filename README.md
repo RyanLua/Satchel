@@ -140,12 +140,14 @@ Satchel fully supports all platforms which includes computer, tablet, phone, con
 
 ## 📖 Documentation
 
-Satchel has it's very own [documentation site](https://ryanluu.dev/Satchel) you can visit. Find guides on how to get started and documentation. Below see a summary of Satchel.
+> [!NOTE]
+> Visit the [Satchel documentation website](https://ryanluu.dev/Satchel) to learn about Satchel.
 
-### Attributes
+Satchel has it's very own [documentation site](https://ryanluu.dev/Satchel) you can visit. Find guides on how to get started and documentation.
 
-> [!WARNING]
-> Rojo does not support the FontFace instance attribute so the FontFace attribute will not be synced. You may add the attribute manually if you wish to adjust the font.
+<details>
+
+<summary><h3>Attributes</h3></summary>
 
 Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
 
@@ -164,7 +166,11 @@ Satchel supports instance attributes allowing you to change and customize many a
 | TextStrokeColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text stroke of text in default inventory window and slots. | `[0, 0, 0]` |
 | TextStrokeTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the transparency of the text stroke of text in default chat window and slots. | 0.5 |
 
-### Methods
+</details>
+
+<details>
+
+<summary><h3>Methods</h3></summary>
 
 Satchel offers access to some of its internal methods and events for scripting purposes. Below see a table with all the methods available.
 
@@ -184,9 +190,7 @@ Satchel offers access to some of its internal methods and events for scripting p
 | :--- |
 | Returns a signal that fires when the inventory is opened or closed. |
 
-<!--
-| EquipBorderMode: [`BorderMode`](https://create.roblox.com/docs/reference/engine/enums/BorderMode) | Determines in what manner the equip border is laid out relative to its dimensions when a slot is equipped. |
--->
+</details>
 
 ## 🙏 Contributing
 
