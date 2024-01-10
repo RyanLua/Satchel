@@ -1,6 +1,5 @@
 name: "Help improve documentation"
 description: Report issues in our documentation.
-title: "Documentation: "
 labels: ["documentation"]
 body:
   - type: markdown
