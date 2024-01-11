@@ -1,8 +1,12 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "features": {
-  },
-  "postCreateCommand": "brew install wally && wally install",
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {
+		"ghcr.io/devcontainers/features/rust:1": {
+			"version": "none",
+			"profile": "minimal"
+		}
+	},
+  "postCreateCommand": "cargo install && wally install",
   "customizations": {
     "vscode": {
       "extensions": [
