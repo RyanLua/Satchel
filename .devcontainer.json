@@ -6,7 +6,7 @@
 			"profile": "minimal"
 		}
 	},
-  "postCreateCommand": "cargo install && wally install",
+  "postCreateCommand": "cargo install wally && wally install",
   "customizations": {
     "vscode": {
       "extensions": [
