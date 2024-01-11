@@ -1,5 +1,14 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "evaera.vscode-rojo",
+        "kampfkarren.selene-vscode",
+        "johnnymorganz.stylua"
+      ]
+    }
   }
 }
