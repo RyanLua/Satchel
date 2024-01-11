@@ -1,11 +1,5 @@
 {
-	"image": "mcr.microsoft.com/devcontainers/universal:2",
-	"features": {
-		"ghcr.io/devcontainers/features/rust:1": {
-			"version": "latest",
-			"profile": "minimal"
-		}
-	},
+  "image": "mcr.microsoft.com/devcontainers/rust:latest",
   "postCreateCommand": "cargo install wally && wally install",
   "customizations": {
     "vscode": {
