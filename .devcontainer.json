@@ -2,6 +2,7 @@
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "features": {
   },
+  "postCreateCommand": "brew install wally && wally install",
   "customizations": {
     "vscode": {
       "extensions": [
