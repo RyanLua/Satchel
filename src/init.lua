@@ -1,7 +1,7 @@
 --!strict
 
 --[[
-	Name: SatchelScript
+	Name: Satchel
 	Version: 1.2.0
 	Description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
 	By: @WinnersTakesAll on Roblox & @RyanLua on GitHub
@@ -153,7 +153,7 @@ local GAMEPAD_INPUT_TYPES: { [Enum.UserInputType]: boolean } =
 -- Topbar logic
 local BackpackEnabled: boolean = true
 
-local UIShelf: any = require(script.Parent.Packages.UIShelf)
+local UIShelf: any = require(script.Packages.UIShelf)
 
 local BackpackGui: ScreenGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
