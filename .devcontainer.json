@@ -1,0 +1,13 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/rust:latest",
+  "postCreateCommand": "cargo install wally && wally install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "evaera.vscode-rojo",
+        "kampfkarren.selene-vscode",
+        "johnnymorganz.stylua"
+      ]
+    }
+  }
+}
