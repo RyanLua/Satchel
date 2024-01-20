@@ -27,6 +27,13 @@
             "EquipBorderSizePixel": {
                 "Float32": 5
             },
+            "FontFace": {
+		    	"Font": {
+		    		"family": "rbxasset://fonts/families/GothamSSm.json",
+		    		"weight": "Regular",
+		    		"style": "Normal"
+	    		}
+            },
             "InsetIconPadding": {
                 "Bool": true
             },
