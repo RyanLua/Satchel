@@ -51,7 +51,7 @@ BackpackScript.BackpackItemAdded.Name = "BackpackAdded"
 BackpackScript.BackpackItemRemoved = Instance.new("BindableEvent") :: BindableEvent -- Fires when an item is removed from the backpack
 BackpackScript.BackpackItemRemoved.Name = "BackpackRemoved"
 
-local targetScript: LocalScript = script.Parent
+local targetScript: LocalScript = script
 
 -- Constants --
 local PREFERRED_TRANSPARENCY: number = GuiService.PreferredTransparency or 1
