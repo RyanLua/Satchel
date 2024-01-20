@@ -834,7 +834,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 				FakeSlotFrame:Destroy()
 			end
 
-			local now = tick()
+			local now = os.clock()
 			SlotFrame.Position = startPoint
 			SlotFrame.Parent = startParent
 
@@ -1240,17 +1240,17 @@ changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, i
 				and inputObject.KeyCode == Enum.KeyCode.ButtonR1
 			)
 		then
-			if (tick() - lastChangeToolInputTime) <= maxEquipDeltaTime then
+			if (os.clock() - lastChangeToolInputTime) <= maxEquipDeltaTime then
 				UnequipAllTools()
 				lastChangeToolInputObject = inputObject
-				lastChangeToolInputTime = tick()
+				lastChangeToolInputTime = os.clock()
 				return
 			end
 		end
 	end
 
 	lastChangeToolInputObject = inputObject
-	lastChangeToolInputTime = tick()
+	lastChangeToolInputTime = os.clock()
 
 	task.delay(maxEquipDeltaTime, function()
 		if lastChangeToolInputObject ~= inputObject then
