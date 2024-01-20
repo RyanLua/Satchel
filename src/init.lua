@@ -31,24 +31,26 @@ local VRService = game:GetService("VRService")
 local Players = game:GetService("Players")
 local PlayerGui = Players.LocalPlayer.PlayerGui
 
+local Signal = require(script.Packages.Signal)
+
 local BackpackScript = {}
 
 BackpackScript.OpenClose = nil :: any -- Function to toggle open/close
 BackpackScript.IsOpen = false :: boolean
-BackpackScript.StateChanged = Instance.new("BindableEvent") :: BindableEvent -- Fires after any open/close, passes IsNowOpen
+BackpackScript.StateChanged = Signal.new() -- Fires after any open/close, passes IsNowOpen
 
 BackpackScript.ModuleName = "Backpack" :: string
 BackpackScript.KeepVRTopbarOpen = true :: boolean
 BackpackScript.VRIsExclusive = true :: boolean
 BackpackScript.VRClosesNonExclusive = true :: boolean
 
-BackpackScript.BackpackEmpty = Instance.new("BindableEvent") :: BindableEvent -- Fires when the backpack is empty (no tools
+BackpackScript.BackpackEmpty = Signal.new() -- Fires when the backpack is empty (no tools
 BackpackScript.BackpackEmpty.Name = "BackpackEmpty"
 
-BackpackScript.BackpackItemAdded = Instance.new("BindableEvent") :: BindableEvent -- Fires when an item is added to the backpack
+BackpackScript.BackpackItemAdded = Signal.new() -- Fires when an item is added to the backpack
 BackpackScript.BackpackItemAdded.Name = "BackpackAdded"
 
-BackpackScript.BackpackItemRemoved = Instance.new("BindableEvent") :: BindableEvent -- Fires when an item is removed from the backpack
+BackpackScript.BackpackItemRemoved = Signal.new() -- Fires when an item is removed from the backpack
 BackpackScript.BackpackItemRemoved.Name = "BackpackRemoved"
 
 local targetScript: LocalScript = script.Parent
@@ -1979,7 +1981,7 @@ do -- Search stuff
 	searchBox.Changed:Connect(onChanged)
 	searchBox.FocusLost:Connect(focusLost)
 
-	BackpackScript.StateChanged.Event:Connect(function(isNowOpen: boolean)
+	BackpackScript.StateChanged:Connect(function(isNowOpen: boolean)
 		-- InventoryIcon:getInstance("iconButton").Modal = isNowOpen -- Allows free mouse movement even in first person
 
 		if not isNowOpen then
