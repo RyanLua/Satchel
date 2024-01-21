@@ -2144,8 +2144,8 @@ function BackpackScript:GetBackpackEnabled(): boolean
 	return BackpackEnabled
 end
 
--- Returns the BindableEvent for when the backpack state changes
-function BackpackScript:GetStateChangedEvent(): BindableEvent
+-- Returns the Signal for when the backpack state changes
+function BackpackScript:GetStateChangedEvent()
 	return BackpackScript.StateChanged
 end
 
