@@ -146,7 +146,7 @@ end
 -- a Signal:Connect() which disconnects itself.
 function Signal:Wait()
 	local waitingCoroutine = coroutine.running()
-	local cn;
+	local cn
 	cn = self:Connect(function(...)
 		cn:Disconnect()
 		task.spawn(waitingCoroutine, ...)
@@ -157,7 +157,7 @@ end
 -- Implement Signal:Once() in terms of a connection which disconnects
 -- itself before running the handler.
 function Signal:Once(fn)
-	local cn;
+	local cn
 	cn = self:Connect(function(...)
 		if cn._connected then
 			cn:Disconnect()
