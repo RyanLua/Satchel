@@ -1223,6 +1223,7 @@ end
 -- 	end
 -- end
 
+-- selene: allow(unused_variable)
 changeToolFunc = function(actionName: string, inputState: Enum.UserInputState, inputObject: InputObject): ()
 	if inputState ~= Enum.UserInputState.Begin then
 		return
@@ -1327,6 +1328,7 @@ function getGamepadSwapSlot(): any
 	return
 end
 
+-- selene: allow(unused_variable)
 function changeSlot(slot: any): ()
 	local swapInVr: boolean = not VRService.VREnabled or InventoryFrame.Visible
 
@@ -1404,6 +1406,7 @@ function enableGamepadInventoryControl(): ()
 
 		local selectedSlot: any = getGamepadSwapSlot()
 		if selectedSlot then
+			-- selene: allow(shadowing)
 			local selectedSlot: any = getGamepadSwapSlot()
 			if selectedSlot then
 				selectedSlot.Frame.BorderSizePixel = 0
