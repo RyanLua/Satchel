@@ -880,7 +880,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 					now = 0 -- Resets the timer
 				end
 			elseif CheckBounds(HotbarFrame, x, y) then
-				local closest: {number} = { math.huge, nil :: any }
+				local closest: { number } = { math.huge, nil :: any }
 				for i: number = 1, NumberOfHotbarSlots do
 					local otherSlot: any = Slots[i]
 					local offset: number = GetOffset(otherSlot.Frame, Vector2.new(x, y))
@@ -1079,7 +1079,8 @@ local function OnCharacterAdded(character: Model): ()
 end
 
 local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
-	local ChatInputBarConfiguration = TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration") :: ChatInputBarConfiguration
+	local ChatInputBarConfiguration =
+		TextChatService:FindFirstChildOfClass("ChatInputBarConfiguration") :: ChatInputBarConfiguration
 	-- Pass through keyboard hotkeys when not typing into a TextBox and not disabled (except for the Drop key)
 	if
 		input.UserInputType == Enum.UserInputType.Keyboard
@@ -1769,7 +1770,7 @@ local function resizeGamepadHintsFrame(): ()
 
 	local spaceTaken: number = 0
 
-	local gamepadHints: {Instance} = gamepadHintsFrame:GetChildren()
+	local gamepadHints: { Instance } = gamepadHintsFrame:GetChildren()
 	local filteredGamepadHints: any = {}
 
 	for _, child: Instance in pairs(gamepadHints) do
