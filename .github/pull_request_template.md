@@ -1,10 +1,8 @@
 ## Description
-_No response_
 
 <!-- Provide a brief description of the changes being made in this pull request. -->
 
 ## Related Issues
-_No response_
 
 <!-- List any related issues or pull requests that are being resolved or addressed by this pull request.
 
@@ -14,7 +12,6 @@ Closes #issue_number
 Replace issue_number with the issue number to mark it -->
 
 ## Changes Made
-_No response_
 
 <!-- Describe the changes that were made in this pull request. Be as detailed as possible. -->
 
@@ -32,7 +29,6 @@ Simply put an "x" between the brackets like here to check it -->
 - [ ] I have followed the code style guidelines for this project.
 
 ## Additional Notes
-_No response_
 
 <!-- Provide any additional information or notes that may be helpful in reviewing this pull request. -->
 
