@@ -1,17 +1,20 @@
 ## Description
+_No response_
 
 <!-- Provide a brief description of the changes being made in this pull request. -->
 
 ## Related Issues
+_No response_
 
 <!-- List any related issues or pull requests that are being resolved or addressed by this pull request.
 
 Example:
 Closes #issue_number
 
-Replace issue_number with the issue number to mark it-->
+Replace issue_number with the issue number to mark it -->
 
 ## Changes Made
+_No response_
 
 <!-- Describe the changes that were made in this pull request. Be as detailed as possible. -->
 
@@ -22,13 +25,14 @@ Replace issue_number with the issue number to mark it-->
 Example:
 - [x] I have checked this box
 
-Simply put an "x" between the brackets like here to check it-->
+Simply put an "x" between the brackets like here to check it -->
 
 - [ ] I have tested these changes thoroughly.
 - [ ] I have reviewed my code for any potential errors or issues.
 - [ ] I have followed the code style guidelines for this project.
 
 ## Additional Notes
+_No response_
 
 <!-- Provide any additional information or notes that may be helpful in reviewing this pull request. -->
 
