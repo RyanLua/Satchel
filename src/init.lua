@@ -1,4 +1,5 @@
 --!strict
+--!nolint DeprecatedApi
 
 --[[
 	Name: Satchel
