@@ -21,7 +21,7 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"postCreateCommand": "cargo install wally && wally install",
 
 	// Configure tool-specific properties.
 	"customizations": {
