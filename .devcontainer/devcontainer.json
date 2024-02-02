@@ -20,7 +20,7 @@
 	],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "curl https://sh.rustup.rs -sSf | sh && cargo install wally && wally install",
+	"postCreateCommand": "cargo install wally && wally install",
 
 	// Configure tool-specific properties.
 	"customizations": {
