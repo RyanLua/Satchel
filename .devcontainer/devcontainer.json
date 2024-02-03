@@ -19,8 +19,8 @@
 		34872
 	],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cargo install wally && wally install",
+	// Use 'onCreateCommand' to run commands when a dev container is created.
+	"onCreateCommand": "cargo install wally && wally install",
 
 	// Configure tool-specific properties.
 	"customizations": {
