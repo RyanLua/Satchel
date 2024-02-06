@@ -9,7 +9,7 @@
 Example:
 Closes #issue_number
 
-Replace issue_number with the issue number to mark it-->
+Replace issue_number with the issue number to mark it -->
 
 ## Changes Made
 
@@ -22,7 +22,7 @@ Replace issue_number with the issue number to mark it-->
 Example:
 - [x] I have checked this box
 
-Simply put an "x" between the brackets like here to check it-->
+Simply put an "x" between the brackets like here to check it -->
 
 - [ ] I have tested these changes thoroughly.
 - [ ] I have reviewed my code for any potential errors or issues.

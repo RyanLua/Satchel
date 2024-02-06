@@ -6,7 +6,8 @@
       "extensions": [
         "evaera.vscode-rojo",
         "kampfkarren.selene-vscode",
-        "johnnymorganz.stylua"
+        "johnnymorganz.stylua",
+        "johnnymorganz.luau-lsp"
       ]
     }
   }

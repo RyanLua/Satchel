@@ -7,7 +7,7 @@ body:
     id: conversation
     attributes:
       label: Write your question
-      description: "Write your question or problem below. Ensure you have read and adhere to our [Code of Conduct](https://github.com/RyanLua/Satchel/blob/main/CODE_OF_CONDUCT.md)."
+      description: "Write your question or problem below. Ensure you have read and adhere to our [Code of Conduct](https://github.com/RyanLua/Satchel/blob/main/.github/CODE_OF_CONDUCT.md)."
     validations:
       required: true
   - type: markdown
