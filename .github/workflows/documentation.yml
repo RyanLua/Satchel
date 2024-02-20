@@ -3,6 +3,10 @@ name: documentation
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "**"
+      - "!.github/workflows/documentation.ya?ml"
+      - "!docs/**"
 
   workflow_dispatch:
 
