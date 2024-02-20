@@ -1,6 +1,22 @@
 name: markdown
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths-ignore:
+      - "**"
+      - "!.github/workflows/markdown.ya?ml"
+      - "!**.md"
+
+  push:
+    paths-ignore:
+      - "**"
+      - "!.github/workflows/markdown.ya?ml"
+      - "!**.md"
+
+permissions:
+  contents: read
 
 jobs:
   lint:
