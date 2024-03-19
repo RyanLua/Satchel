@@ -12,6 +12,7 @@
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff&style=for-the-badge)](../../releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff&style=for-the-badge)](../../search?l=lua)
   [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff&style=for-the-badge)](LICENSE.txt)
+  [![Discord](https://dcbadge.vercel.app/api/server/hYU4rvT7DK?theme=default-inverted)](https://discord.gg/hYU4rvT7DK)
 
 </div>
 
