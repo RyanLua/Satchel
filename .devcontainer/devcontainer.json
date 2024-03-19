@@ -20,7 +20,7 @@
 	],
 
 	// Use 'onCreateCommand' to run commands when a dev container is created.
-	"onCreateCommand": "cargo install wally && wally install",
+	"onCreateCommand": "bun install wally && wally install",
 
 	// Configure tool-specific properties.
 	"customizations": {
