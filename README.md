@@ -75,7 +75,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 <details>
 
-<summary><h3>Install from Creator Marketplace</h3></summary>
+<summary>Install from Creator Marketplace</summary>
 
 1. Get the Satchel module from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401).
 ![CreatorMarketplace](assets/CreatorMarketplace.png)
@@ -98,7 +98,7 @@ Installation of Satchel is easy and painless. Satchel is a drag-and-drop module 
 
 <details>
 
-<summary><h3>Install from GitHub Releases</h3></summary>
+<summary>Install from GitHub Releases</summary>
 
 1. Download the `Satchel.rbxmx` file from [Releases](../../releases).
 ![GitHubRelease](assets/GitHubReleases.png)
@@ -142,7 +142,7 @@ Satchel has it's very own [documentation site](https://ryanluu.dev/Satchel) you 
 
 <details>
 
-<summary><h3>Attributes</h3></summary>
+<summary>Attributes</summary>
 
 Satchel supports instance attributes allowing you to change and customize many aspects including various behaviors in a friendly easy-to-use interface without having to touch any code. Below see all attributes.
 
@@ -165,7 +165,7 @@ Satchel supports instance attributes allowing you to change and customize many a
 
 <details>
 
-<summary><h3>Methods</h3></summary>
+<summary>Methods</summary>
 
 Satchel offers access to some of its internal methods and events for scripting purposes. Below see a table with all the methods available.
 
