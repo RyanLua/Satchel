@@ -9,10 +9,10 @@
 
 <div align="center">
 
-  [![Discord](https://img.shields.io/discord/1162303282002272359?style=for-the-badge&label=discord&logo=discord&color=00a2ff&logoColor=white)](https://discord.gg/hYU4rvT7DK)
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff&style=for-the-badge)](../../releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff&style=for-the-badge)](../../search?l=lua)
   [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff&style=for-the-badge)](LICENSE.txt)
+  [![Discord](https://img.shields.io/discord/1162303282002272359?style=for-the-badge&label=discord&logo=discord&color=00a2ff&logoColor=white)](https://discord.gg/hYU4rvT7DK)
 
 </div>
 
