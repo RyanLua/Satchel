@@ -1,26 +1,23 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/rust
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-	"name": "Rust",
+	"name": "Ubuntu",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/rust:1-1-bullseye",
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 
-	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
-	// "mounts": [
-	// 	{
-	// 		"source": "devcontainer-cargo-cache-${devcontainerId}",
-	// 		"target": "/usr/local/cargo",
-	// 		"type": "volume"
-	// 	}
-	// ],
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
 		34872
 	],
 
-	// Use 'onCreateCommand' to run commands when a dev container is created.
-	"onCreateCommand": "cargo install wally && wally install",
+	"onCreateCommand": "curl https://sh.rustup.rs -sSf | sh -s -- -y && sudo apt-get update && sudo apt install pkg-config libudev-dev -y",
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "cargo install aftman && aftman self-install && aftman install --no-trust-check && export PATH='~/.aftman/bin:'$PATH && wally install",
 
 	// Configure tool-specific properties.
 	"customizations": {
