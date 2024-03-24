@@ -20,10 +20,11 @@
 		}
 	},
 
+	// Use 'onCreateCommand' to run commands when the container is first created.
 	"onCreateCommand": "curl https://sh.rustup.rs -sSf | sh -s -- -y && sudo apt-get update && sudo apt install pkg-config libudev-dev -y",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "cargo install aftman && aftman self-install && aftman install --no-trust-check && export PATH='~/.aftman/bin:'$PATH && wally install",
+	"postCreateCommand": ". $HOME/.cargo/env && cargo install aftman && aftman self-install && aftman install --no-trust-check && export PATH='~/.aftman/bin:'$PATH",
 
 	// Configure tool-specific properties.
 	"customizations": {
