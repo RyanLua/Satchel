@@ -27,6 +27,11 @@
 
 	// Configure tool-specific properties.
 	"customizations": {
+		"codespaces": {
+			"openFiles": [
+				"src/init.lua"
+			]
+		},
 		"vscode": {
 			"extensions": [
 				"evaera.vscode-rojo",
