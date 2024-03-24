@@ -13,6 +13,12 @@
 	"forwardPorts": [
 		34872
 	],
+	"portsAttributes": {
+		"34872": {
+			"label": "Rojo",
+			"onAutoForward": "notify"
+		}
+	},
 
 	"onCreateCommand": "curl https://sh.rustup.rs -sSf | sh -s -- -y && sudo apt-get update && sudo apt install pkg-config libudev-dev -y",
 
