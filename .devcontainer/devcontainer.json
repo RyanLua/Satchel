@@ -33,6 +33,7 @@
 			]
 		},
 		"vscode": {
+			"settings": {},
 			"extensions": [
 				"evaera.vscode-rojo",
 				"kampfkarren.selene-vscode",
