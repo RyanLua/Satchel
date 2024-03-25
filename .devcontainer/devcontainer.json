@@ -5,9 +5,17 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 
+	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
+	"mounts": [
+		{
+			"source": "devcontainer-cargo-cache-${devcontainerId}",
+			"target": "/usr/local/cargo",
+			"type": "volume"
+		}
+	],
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
-
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
