@@ -7,13 +7,13 @@ on:
     paths-ignore:
       - "**"
       - "!.github/workflows/ci.ya?ml"
-      - "!**.lua"
+      - "!**.luau"
 
   push:
     paths-ignore:
       - "**"
       - "!.github/workflows/ci.ya?ml"
-      - "!**.lua"
+      - "!**.luau"
 
 permissions:
   contents: read

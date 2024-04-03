@@ -1,6 +1,6 @@
 {
   "name": "Satchel",
-  "globIgnorePaths": ["**/*.spec.lua"],
+  "globIgnorePaths": ["**/*.spec.luau"],
   "tree": {
     "$className": "DataModel",
     "StarterPlayer": {
@@ -8,7 +8,7 @@
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
         "Develop": {
-          "$path": "tests/Develop.client.lua",
+          "$path": "tests/Develop.client.luau",
           "Satchel": {
             "$path": "src"
           }
