@@ -29,7 +29,7 @@
 	},
 
 	// Use 'onCreateCommand' to run commands when the container is first created.
-	"onCreateCommand": "curl https://sh.rustup.rs -sSf | sh -s -- -y && sudo apt-get update && sudo apt install pkg-config libssl-dev libudev-dev -y",
+	"onCreateCommand": "wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb && curl https://sh.rustup.rs -sSf | sh -s -- -y && sudo apt-get update && sudo apt install pkg-config libssl-dev libudev-dev -y && sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb && rm -rf libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb",
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": ". $HOME/.cargo/env && cargo install aftman && aftman self-install && aftman install --no-trust-check && . ~/.profile && wally install",
