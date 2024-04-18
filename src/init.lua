@@ -2000,11 +2000,13 @@ end
 -- When menu is opend, disable backpack
 GuiService.MenuOpened:Connect(function(): ()
 	BackpackGui.Enabled = false
+	inventoryIcon:setEnabled(false)
 end)
 
 -- When menu is closed, enable backpack
 GuiService.MenuClosed:Connect(function(): ()
 	BackpackGui.Enabled = true
+	inventoryIcon:setEnabled(true)
 end)
 
 do -- Make the Inventory expand/collapse arrow (unless TopBar)
