@@ -158,12 +158,20 @@ local BackpackEnabled: boolean = true
 local Icon: any = require(ReplicatedStorage:WaitForChild("Icon"))
 
 local inventoryIcon: any = Icon.new()
-    :setName("Inventory")
-    :setImage(ARROW_IMAGE_OPEN, "Selected")
-    :setImage(ARROW_IMAGE_CLOSE, "Deselected")
+	:setName("Inventory")
+	:setImage(ARROW_IMAGE_OPEN, "Selected")
+	:setImage(ARROW_IMAGE_CLOSE, "Deselected")
 	:setImageScale(1)
 	:setCaption("Inventory")
 	:bindToggleKey(Enum.KeyCode.Backquote)
+	:autoDeselect(false)
+	:setOrder(-1)
+
+inventoryIcon.toggled:Connect(function(): ()
+	if not GuiService.MenuIsOpen then
+		BackpackScript.OpenClose()
+	end
+end)
 
 local BackpackGui: ScreenGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
@@ -1558,12 +1566,6 @@ for index: number = 1, NumberOfHotbarSlots do
 		LowestEmptySlot = slot
 	end
 end
-
-inventoryIcon.toggled:Connect(function(): ()
-	if not GuiService.MenuIsOpen then
-		BackpackScript.OpenClose()
-	end
-end)
 
 local LeftBumperButton: ImageLabel = Instance.new("ImageLabel")
 LeftBumperButton.BackgroundTransparency = 1
