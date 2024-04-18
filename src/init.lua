@@ -23,6 +23,7 @@
 ]]
 
 local ContextActionService = game:GetService("ContextActionService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TextChatService = game:GetService("TextChatService")
 local UserInputService = game:GetService("UserInputService")
 local StarterGui = game:GetService("StarterGui")
@@ -154,7 +155,15 @@ local GAMEPAD_INPUT_TYPES: { [Enum.UserInputType]: boolean } =
 -- Topbar logic
 local BackpackEnabled: boolean = true
 
-local UIShelf: any = require(script.Packages.UIShelf)
+local Icon: any = require(ReplicatedStorage:WaitForChild("Icon"))
+
+local inventoryIcon: any = Icon.new()
+    :setName("Inventory")
+    :setImage(ARROW_IMAGE_OPEN, "Selected")
+    :setImage(ARROW_IMAGE_CLOSE, "Deselected")
+	:setImageScale(1)
+	:setCaption("Inventory")
+	:bindToggleKey(Enum.KeyCode.Backquote)
 
 local BackpackGui: ScreenGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
@@ -191,17 +200,6 @@ local Character: Model = Player.Character or Player.CharacterAdded:Wait()
 local Humanoid: any = Character:WaitForChild("Humanoid")
 local Backpack: Instance = Player:WaitForChild("Backpack")
 
-local InventoryIcon: any = UIShelf.CreateIcon({
-	Name = "Backpack",
-	Image = ARROW_IMAGE_CLOSE,
-	Order = 1,
-	Area = UIShelf.HorizontalAlignment.Left,
-})
-InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
-InventoryIcon:SetTooltip("Backpack")
-InventoryIcon:SetImageSize(Vector2.new(40, 40))
-InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
-
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot: any = nil
 local SlotsByTool = {} -- Map of Tools to their assigned Slots
@@ -225,7 +223,7 @@ local BackpackPanel = nil
 local lastEquippedSlot: any = nil
 
 local function EvaluateBackpackPanelVisibility(enabled: boolean): boolean
-	return enabled and InventoryIcon.enabled and BackpackEnabled and VRService.VREnabled
+	return enabled and inventoryIcon.enabled and BackpackEnabled and VRService.VREnabled
 end
 
 local function ShowVRBackpackPopup(): ()
@@ -792,7 +790,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 			startPoint = dragPoint
 
 			SlotFrame.BorderSizePixel = 2
-			-- InventoryIcon:lock()
+			inventoryIcon:lock()
 
 			-- Raise above other slots
 			SlotFrame.ZIndex = 2
@@ -841,7 +839,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 			SlotFrame.Parent = startParent
 
 			SlotFrame.BorderSizePixel = 0
-			-- InventoryIcon:unlock()
+			inventoryIcon:unlock()
 
 			-- Restore height
 			SlotFrame.ZIndex = 1
@@ -1489,11 +1487,6 @@ end
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
 	enabled = enabled and StarterGui:GetCore("TopbarEnabled")
-	if InventoryFrame.Visible then
-		InventoryIcon:SetImage(ARROW_IMAGE_OPEN)
-	else
-		InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
-	end
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
 
@@ -1566,7 +1559,7 @@ for index: number = 1, NumberOfHotbarSlots do
 	end
 end
 
-InventoryIcon.Activated:Connect(function(): ()
+inventoryIcon.toggled:Connect(function(): ()
 	if not GuiService.MenuIsOpen then
 		BackpackScript.OpenClose()
 	end
