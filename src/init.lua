@@ -88,7 +88,7 @@ local TOOLTIP_OFFSET: number = -5 -- From to
 -- Topbar icons
 local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
-local ARROW_HOTKEY: { Enum.KeyCode } = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
+-- local ARROW_HOTKEY: { Enum.KeyCode } = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 
 -- Hotbar slots
 local HOTBAR_SLOTS_FULL: number = 10 -- 10 is the max
