@@ -18,6 +18,7 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.top
+    - navigation.tabs
     - search.highlight
     - search.suggest
     - navigation.footer
@@ -104,13 +105,14 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - Home: index.md
-  - Introduction: introduction.md
-  - Installation: installation.md
-  - Usage: usage.md
-  - Platforms: platforms.md
-  - Benchmarks: benchmarks.md
-  - Alternatives: alternatives.md
-  - API Reference: api-reference.md
+  - Home:
+    - Home: index.md
+    - Introduction: introduction.md
+    - Installation: installation.md
+    - Usage: usage.md
+    - Platforms: platforms.md
+    - Benchmarks: benchmarks.md
+    - Alternatives: alternatives.md
+    - API Reference: api-reference.md
   - Support: support.md
   - Contributing: contributing.md
