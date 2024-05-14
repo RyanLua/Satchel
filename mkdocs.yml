@@ -17,9 +17,7 @@ theme:
     - content.tooltips
     - navigation.instant
     - navigation.instant.progress
-    - navigation.prune
     - navigation.top
-    - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
