@@ -3,10 +3,6 @@ title: Installation
 description: Use of Satchel very easy. Highly customizable using instance attributes and with scripting support.
 icon: material/download-outline
 comments: true
-tags:
-  - Guide
-  - Creator Marketplace
-  - GitHub Releases
 ---
 
 Installing Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with no configuration needed.

@@ -52,7 +52,6 @@ theme:
 
 plugins:
   - search
-  - tags
 
 extra:
   generator: false

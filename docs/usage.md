@@ -3,10 +3,6 @@ title: Usage
 description: Use of Satchel very easy. Highly customizable using instance attributes and with scripting support.
 icon: material/toolbox-outline
 comments: true
-tags:
-  - Overview
-  - Customization
-  - Scripting
 ---
 
 Use of Satchel after installation very easy. Just [publish your experience to Roblox](https://create.roblox.com/docs/production/publishing) and see Satchel live in action.
