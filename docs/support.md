@@ -1,4 +1,5 @@
 ---
+status: new
 title: Support
 description: Learn how to support Satchel and its development.
 icon: material/heart-outline
