@@ -2,7 +2,6 @@
 title: API Reference
 description: Satchel is a reskin of the default BackpackGui. Satchel acts very similar to the default backpack and is based on a fork on the default backpack.
 icon: material/book-outline
-comments: true
 ---
 
 Satchel is a reskin of the default BackpackGui located in [CoreGui](https://create.roblox.com/docs/reference/engine/classes/CoreGui). Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the [Backpack](https://create.roblox.com/docs/reference/engine/classes/Backpack).

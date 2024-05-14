@@ -2,7 +2,6 @@
 title: Benchmarks
 description: Satchel benchmarks on performance and speed.
 icon: material/speedometer
-comments: true
 ---
 
 Built for speed, optimized scripting allows Satchel to be blazingly fast. As faster or even faster than the default speed.

@@ -2,7 +2,6 @@
 title: Introduction
 description: Learn about Satchel and why you should use Satchel over other backpack systems.
 icon: material/star-outline
-comments: true
 ---
 
 Welcome to Satchel, if you don't know already, Satchel acts as a modern refresh of the default Roblox backpack UI with a lot of improvements in place.
