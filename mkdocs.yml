@@ -12,12 +12,9 @@ theme:
   name: material
   custom_dir: docs/overrides
   features:
-    - announce.dismiss
     - content.action.edit
-    - content.action.view
     - content.code.copy
     - content.tooltips
-    - header.autohide
     - navigation.instant
     - navigation.instant.progress
     - navigation.prune
@@ -48,6 +45,7 @@ theme:
   logo: logo.png
   icon:
     repo: fontawesome/brands/github
+    edit: material/pencil
   language: en
 
 plugins:
