@@ -47,7 +47,7 @@ plugins:
   - search
 
 extra:
-  generator: false
+  # generator: false
   # version:
   #   provider: mike
   social:
