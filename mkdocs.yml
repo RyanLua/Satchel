@@ -51,18 +51,8 @@ theme:
   language: en
 
 plugins:
-  - glightbox
   - search
-  - git-authors
   - tags
-  - social
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - git-committers:
-      repository: RyanLua/Satchel
-      branch: main
-      token: !!python/object/apply:os.getenv ["MKDOCS_GIT_COMMITTERS_APIKEY"]
-
 
 extra:
   generator: false
