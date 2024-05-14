@@ -19,9 +19,7 @@ theme:
     - navigation.instant.progress
     - navigation.top
     - search.highlight
-    - search.share
     - search.suggest
-    - search.share 
     - navigation.footer
     - toc.follow
   palette:
