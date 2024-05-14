@@ -11,11 +11,11 @@ hide:
 
 ---
 
-???+ abstract "Please don't scroll away"
+<!-- ???+ abstract "Please don't scroll away"
 
     Satchel needs your support for its future and development. We distribute Satchel and provide updates for free, for anyone to use or modify. Just know by donating, 100% goes towards the development and paying for the education of the maintainers. So please consider becoming a patron.
 
-    [Become a patron](https://patreon.com/RyanLuu){ .md-button }
+    [Become a patron](https://patreon.com/RyanLuu){ .md-button } -->
 
 Satchel is a modern open-source alternative to Roblox's default backpack.
 
