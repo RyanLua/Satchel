@@ -4,6 +4,16 @@ description: Satchel is a reskin of the default BackpackGui. Satchel acts very s
 icon: material/book-outline
 ---
 
+<style>
+    .md-typeset__table {
+      width: 100%;
+    }
+
+    .md-typeset__table table:not([class]) {
+      display: table
+    }
+</style>
+
 Satchel is a reskin of the default BackpackGui located in [CoreGui](https://create.roblox.com/docs/reference/engine/classes/CoreGui). Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the [Backpack](https://create.roblox.com/docs/reference/engine/classes/Backpack).
 
 ## Summary
@@ -105,7 +115,11 @@ Returns whether the inventory is opened or not.
 
 #### Returns
 
-```boolean```
+<table>
+    <tr>
+        <td><a href="https://create.roblox.com/docs/luau/booleans">bool</a></td>
+    </tr>
+</table>
 
 ### SetBackpackEnabled
 
@@ -113,11 +127,20 @@ Sets whether the backpack gui is enabled or disabled.
 
 #### Parameters
 
-```enabled: boolean```
+<table>
+    <tr>
+        <td>enabled: <a href="https://create.roblox.com/docs/luau/booleans">bool</a></td>
+        <td>Whether to enable or disable the Backpack</td>
+    </tr>
+</table>
 
 #### Returns
 
-```void```
+<table>
+    <tr>
+        <td>void</td>
+    </tr>
+</table>
 
 ### GetBackpackEnabled
 
@@ -125,7 +148,11 @@ Returns whether the backpack gui is enabled or disabled.
 
 #### Returns
 
-```boolean```
+<table>
+    <tr>
+        <td><a href="https://create.roblox.com/docs/luau/booleans">bool</a></td>
+    </tr>
+</table>
 
 ### GetStateChangedEvent
 
@@ -133,4 +160,8 @@ Returns a signal that fires when the inventory is opened or closed.
 
 #### Returns
 
-```RBXScriptSignal```
+<table>
+    <tr>
+        <td><a href="https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal">RBXScriptSignal</a></td>
+    </tr>
+</table>
