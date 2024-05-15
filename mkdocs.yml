@@ -15,8 +15,8 @@ theme:
     - content.action.edit
     - content.code.copy
     - content.tooltips
-    - navigation.instant
-    - navigation.instant.progress
+    # - navigation.instant
+    # - navigation.instant.progress
     - navigation.top
     - navigation.tabs
     - search.highlight
@@ -25,8 +25,6 @@ theme:
     - toc.follow
   palette:
     - media: "(prefers-color-scheme: light)"
-      primary: light blue
-      accent: light blue
       scheme: default
       toggle:
         icon: material/brightness-7
