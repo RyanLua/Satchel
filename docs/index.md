@@ -23,6 +23,10 @@ Satchel aims to be more customizable and easier to use than the default backpack
 
 This documentation will allow you to install Satchel and learn about how to script using Satchel.
 
+<div style="position: relative; width: 100%; padding-top: 56.25%;">
+    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=fWf69QVH87thTG65" title="Satchel Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
 ---
 
 <div class="grid cards" markdown>
