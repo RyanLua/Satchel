@@ -6,8 +6,8 @@ hide:
   - feedback
 ---
 
-![Satchel](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SatchelBlack.png#only-light)
-![Satchel](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SatchelWhite.png#only-dark)
+![Satchel](assets/satchel-black.svg#only-light)
+![Satchel](assets/satchel-white.svg#only-dark)
 
 ---
 
