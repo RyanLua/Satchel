@@ -81,10 +81,6 @@ extra:
             Thanks for your feedback! Help us improve this page by
             using our <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU1DGaWTcS0bernMtC-gbOuQzCudUyKmwSjullThV2jIiTZQ/viewform?usp=pp_url&entry.2143998705={url}" target="_blank" rel="noopener">feedback form</a>. 
 
-extra_javascript:
-  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-  - javascripts/tablesort.js
-
 edit_uri: edit/main/docs/
 
 markdown_extensions:
