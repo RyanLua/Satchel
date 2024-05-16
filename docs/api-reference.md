@@ -16,6 +16,42 @@ icon: material/book-outline
 
 Satchel is a reskin of the default BackpackGui located in [CoreGui](https://create.roblox.com/docs/reference/engine/classes/CoreGui). Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the [Backpack](https://create.roblox.com/docs/reference/engine/classes/Backpack).
 
+#### Code Samples
+
+This code sample makes a TextButton that toggles the inventory when clicked.
+
+```lua title="Toggle Satchel" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local button = Instance.new("TextButton")
+button.AnchorPoint = Vector2.new(0.5, 0.5)
+button.Position = UDim2.new(0.5, 0, 0.5, 0)
+button.Text = "Toggle Inventory"
+button.MouseButton1Click:Connect(function()
+    if Satchel:GetBackpackEnabled() then
+        Satchel.SetBackpackEnabled(false)
+    else
+        Satchel.SetBackpackEnabled(true)
+    end
+end)
+```
+
+This code sample detects when the inventory is opened or closed.
+
+```lua title="Detect Inventory State" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
+    if isOpened then
+        print("Inventory opened")
+    else
+        print("Inventory closed")
+    end
+end)
+```
+
 ## Summary
 
 ### Attributes
