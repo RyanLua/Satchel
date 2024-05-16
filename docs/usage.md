@@ -35,12 +35,13 @@ More attributes can be found in the [API Reference](api-reference.md). The list 
 
 Satchel offers methods and events for scripting purposes. In the below code example we will use the `SetBackpackEnabled` method to disable the Satchel. The script expects the Satchel module to be in [`ReplicatedStorage`](https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage).
 
-```lua
+``` lua title="LocalScript" linenums="1"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
--- Disable Satchel
-Satchel.SetBackpackEnabled(false)
+Satchel.SetBackpackEnabled(false) -- (1)!
 ```
+
+1. Disable Satchel using the [SetBackpackEnabled](api-reference.md#setbackpackenabled) method.
 
 For the full API reference, see [API Reference](api-reference.md) for more details on attributes, methods, and events for Satchel and how to use Satchel to it's full potential.

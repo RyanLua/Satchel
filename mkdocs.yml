@@ -15,6 +15,7 @@ theme:
     - content.action.edit
     - content.code.copy
     - content.tooltips
+    - content.code.annotate
     # - navigation.instant
     # - navigation.instant.progress
     - navigation.top
