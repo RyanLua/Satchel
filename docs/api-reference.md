@@ -173,6 +173,17 @@ Determines the transparency of the text stroke of text in default chat window an
 
 Returns whether the inventory is opened or not.
 
+#### Code Samples
+
+This code sample will return whether the inventory is opened or not.
+
+```lua title="Is Opened" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local isOpened = Satchel.IsOpened()
+```
+
 #### Returns
 
 <table>
@@ -184,6 +195,17 @@ Returns whether the inventory is opened or not.
 ### SetBackpackEnabled
 
 Sets whether the backpack gui is enabled or disabled.
+
+#### Code Samples
+
+This code sample will disable the backpack gui.
+
+```lua title="Disable Backpack" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+Satchel.SetBackpackEnabled(false)
+```
 
 #### Parameters
 
@@ -206,6 +228,17 @@ Sets whether the backpack gui is enabled or disabled.
 
 Returns whether the backpack gui is enabled or disabled.
 
+#### Code Samples
+
+This code sample will return whether the backpack gui is enabled or disabled.
+
+```lua title="Get Backpack Enabled" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local isEnabled = Satchel.GetBackpackEnabled()
+```
+
 #### Returns
 
 <table>
@@ -217,6 +250,24 @@ Returns whether the backpack gui is enabled or disabled.
 ### GetStateChangedEvent
 
 Returns a signal that fires when the inventory is opened or closed.
+
+#### Code Samples
+
+This code sample detects when the inventory is opened or closed.
+
+```lua title="Detect Inventory State" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
+    if isOpened then
+        print("Inventory opened")
+    else
+        print("Inventory closed")
+    end
+end)
+```
+
 
 #### Returns
 
