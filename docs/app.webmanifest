@@ -1,0 +1,24 @@
+{
+  "name": "Satchel Documentation",
+  "short_name": "Satchel",
+  "icons": [
+    {
+      "src": "/icons/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icons/512-maskable.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#00a2ff",
+  "background_color": "#00a2ff",
+  "lang": "en",
+  "description": "Documentation for Satchel, a modern open-source alternative to Roblox's default backpack",
+  "categories": ["utilities", "reference", "developer"]
+}

@@ -12,60 +12,45 @@ theme:
   name: material
   custom_dir: docs/overrides
   features:
-    - announce.dismiss
     - content.action.edit
-    - content.action.view
     - content.code.copy
     - content.tooltips
-    - header.autohide
-    - navigation.instant
-    - navigation.instant.progress
-    - navigation.prune
+    - content.code.annotate
+    # - navigation.instant
+    # - navigation.instant.progress
     - navigation.top
-    - navigation.tracking
+    - navigation.tabs
     - search.highlight
-    - search.share
     - search.suggest
-    - search.share 
     - navigation.footer
     - toc.follow
   palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
-      primary: light blue
-      accent: light blue
-      scheme: default
+      scheme: default 
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      primary: light blue
-      accent: light blue
       scheme: slate
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: Switch to system preference
   favicon: favicon.png
   logo: logo.png
   icon:
     repo: fontawesome/brands/github
+    edit: material/pencil
   language: en
 
 plugins:
-  - glightbox
   - search
-  - git-authors
-  - tags
-  - social
-  - git-revision-date-localized:
-      enable_creation_date: true
-  - git-committers:
-      repository: RyanLua/Satchel
-      branch: main
-      token: !!python/object/apply:os.getenv ["MKDOCS_GIT_COMMITTERS_APIKEY"]
-
 
 extra:
-  generator: false
+  # generator: false
   # version:
   #   provider: mike
   social:
@@ -100,10 +85,6 @@ extra:
             Thanks for your feedback! Help us improve this page by
             using our <a href="https://docs.google.com/forms/d/e/1FAIpQLSfU1DGaWTcS0bernMtC-gbOuQzCudUyKmwSjullThV2jIiTZQ/viewform?usp=pp_url&entry.2143998705={url}" target="_blank" rel="noopener">feedback form</a>. 
 
-extra_javascript:
-  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-  - javascripts/tablesort.js
-
 edit_uri: edit/main/docs/
 
 markdown_extensions:
@@ -122,11 +103,14 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - Home: index.md
-  - Introduction: introduction.md
-  - Installation: installation.md
-  - Usage: usage.md
-  - Platforms: platforms.md
-  - Benchmarks: benchmarks.md
-  - Alternatives: alternatives.md
-  - API Reference: api-reference.md
+  - Home:
+    - Home: index.md
+    - Introduction: introduction.md
+    - Installation: installation.md
+    - Usage: usage.md
+    - Platforms: platforms.md
+    - Benchmarks: benchmarks.md
+    - Alternatives: alternatives.md
+    - API Reference: api-reference.md
+  - Support: support.md
+  - Contributing: contributing.md
