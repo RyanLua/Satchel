@@ -268,7 +268,6 @@ Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
 end)
 ```
 
-
 #### Returns
 
 <table>
