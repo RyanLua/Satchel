@@ -51,4 +51,21 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
 ### Wally
 
-Coming soon
+1. Open your Rojo project in the code editor of your choice.
+
+2. Install [Wally](https://wally.run/install) to your project.
+
+3. Initialize Wally using `wally init`.
+
+4. In the new `wally.toml` file, add `satchel = "ryanlua/satchel@1.2.0"`. Be sure to use the latest version.
+
+5. Install Satchel from Wally by running `wally install`. Satchel should appear under `project/Packages`. Don't forget to add `Packages` to your [`.gitignore`](http://git-scm.com/docs/gitignore)
+
+6. In a [`LocalScript`](https://create.roblox.com/docs/reference/engine/classes/LocalScript) under [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts), require Satchel from the installation location of Wally. Default is `ReplicatedStorage.Packages`.
+
+```lua
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = ReplicatedStorage.Packages.Satchel -- Make sure this points to where Satchel is
+
+require(Satchel)
+```
