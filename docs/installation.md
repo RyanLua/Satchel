@@ -23,7 +23,8 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
     ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png){ width="50%" }
 
 5. Search for `Satchel` created by `WinnersTakesAll` and click on it.
-![Toolbox](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/MarketplaceCard.png)
+
+    ![Toolbox](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/MarketplaceCard.png)
 
 6. Insert `Satchel` into the [Explorer](https://create.roblox.com/docs/studio/explorer) and drag it into [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
 
@@ -63,7 +64,7 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
 6. In a [`LocalScript`](https://create.roblox.com/docs/reference/engine/classes/LocalScript) under [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts), require Satchel from the installation location of Wally. Default is `ReplicatedStorage.Packages`.
 
-```lua
+```lua title="LocalScript" linenums="1"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = ReplicatedStorage.Packages.Satchel -- Make sure this points to where Satchel is
 
