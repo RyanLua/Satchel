@@ -1,6 +1,6 @@
 {
   "name": "Satchel",
-  "globIgnorePaths": ["**/*.spec.lua"],
+  "globIgnorePaths": ["**/*.spec.luau"],
   "tree": {
     "$path": "src"
   }
