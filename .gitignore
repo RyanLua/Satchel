@@ -40,10 +40,11 @@ luac.out
 *.hex
 
 # Wally
-
 Packages
 
 # MkDocs documentation
-
 site*/
 .cache
+
+# Rojo
+sourcemap.json

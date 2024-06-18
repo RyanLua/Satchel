@@ -1,6 +1,22 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  workflow_dispatch:
+
+  pull_request:
+    paths-ignore:
+      - "**"
+      - "!.github/workflows/ci.ya?ml"
+      - "!**.luau"
+
+  push:
+    paths-ignore:
+      - "**"
+      - "!.github/workflows/ci.ya?ml"
+      - "!**.luau"
+
+permissions:
+  contents: read
 
 jobs:
   lint:
@@ -11,7 +27,6 @@ jobs:
       - name: Setup Selene
         uses: ok-nick/setup-aftman@v0.4.2
         with:
-          cache: true
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Selene
         run: selene src
@@ -21,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Run StyLua
-        uses: JohnnyMorganz/stylua-action@v3
+        uses: JohnnyMorganz/stylua-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: latest

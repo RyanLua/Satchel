@@ -2,11 +2,6 @@
 title: Alternatives
 description: Alternatives to Satchel along with pros and cons.
 icon: material/card-multiple-outline
-comments: true
-tags:
-  - Others
-  - Comparison
-  - Third-party
 ---
 
 Satchel isn't the best backpack system out there or the only one but it does offer some advantages against others. Some free and open-souce alternaves of Satchel.
