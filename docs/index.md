@@ -6,22 +6,26 @@ hide:
   - feedback
 ---
 
-![Satchel](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SatchelBlack.png#only-light)
-![Satchel](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SatchelWhite.png#only-dark)
+![Satchel](assets/satchel-black.svg#only-light)
+![Satchel](assets/satchel-white.svg#only-dark)
 
 ---
 
-???+ abstract "Please don't scroll away"
+<!-- ???+ abstract "Please don't scroll away"
 
     Satchel needs your support for its future and development. We distribute Satchel and provide updates for free, for anyone to use or modify. Just know by donating, 100% goes towards the development and paying for the education of the maintainers. So please consider becoming a patron.
 
-    [Become a patron](https://patreon.com/RyanLuu){ .md-button }
+    [Become a patron](https://patreon.com/RyanLuu){ .md-button } -->
 
 Satchel is a modern open-source alternative to Roblox's default backpack.
 
 Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
 
 This documentation will allow you to install Satchel and learn about how to script using Satchel.
+
+<div style="position: relative; width: 100%; padding-top: 56.25%;">
+    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=fWf69QVH87thTG65" title="Satchel Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 ---
 

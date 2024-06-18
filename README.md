@@ -14,8 +14,8 @@
   [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff&style=for-the-badge)](LICENSE.txt)
   [![Discord](https://img.shields.io/discord/1162303282002272359?style=for-the-badge&label=discord&logo=discord&color=00a2ff&logoColor=white)](https://discord.gg/hYU4rvT7DK)
 
+  [![Download](https://gist.githubusercontent.com/RyanLua/d507e8ad7581fe264deb91606954b920/raw/8013a784d7518ddd465512d31f4f51e18d35c06c/GitHubDownloadBadge.svg)](https://github.com/RyanLua/Satchel/releases/latest/download/Satchel.rbxm)
   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RyanLua/Satchel?quickstart=1)
-
 </div>
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.

@@ -2,14 +2,11 @@
 title: Usage
 description: Use of Satchel very easy. Highly customizable using instance attributes and with scripting support.
 icon: material/toolbox-outline
-comments: true
-tags:
-  - Overview
-  - Customization
-  - Scripting
 ---
 
 Use of Satchel after installation very easy. Just [publish your experience to Roblox](https://create.roblox.com/docs/production/publishing) and see Satchel live in action.
+
+To learn how to install Satchel, see [Installation](installation.md).
 
 !!! note
 
@@ -17,22 +14,17 @@ Use of Satchel after installation very easy. Just [publish your experience to Ro
 
 ### Customization
 
-Satchel is highly customizable & adjustable with [instance attributes](https://create.roblox.com/docs/studio/instance-attributes) support allowing you to customize the behavior and appearance of over 10+ attributes. Below see a table containing all the attributes along with a description of what that attribute does.
+Satchel is highly customizable & adjustable with [instance attributes](https://create.roblox.com/docs/studio/instance-attributes) support allowing you to customize the behavior and appearance of over 10+ attributes.
 
-| Attribute | Description | Default |
-| :--- | :--- | :--- |
-| BackgroundColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the background color of the default inventory window and slots. | `[25, 27, 29]` |
-| BackgroundTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the background transparency of the default inventory window and slots. | 0.3 |
-| CornerRadius: [`UDim`](https://create.roblox.com/docs/reference/engine/datatypes/UDim) | Determines the radius, in pixels, of the default inventory window and slots. | `0, 8` |
-| EquipBorderColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the equip border when a slot is equipped. | `[255, 255, 255]` |
-| EquipBorderSizePixel: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the pixel width of the equip border when a slot is equipped. | `5` |
-| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. | `Gotham SSm` |
-| InsetIconPadding: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the tool icon is padded in the default inventory window and slots. | True |
-| OutlineEquipBorder: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the equip border is outline or inset when a slot is equipped. | True |
-| TextColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text in default inventory window and slots. | `[255, 255, 255]` |
-| TextSize: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the size of the text in the default inventory window and slots. | `14` |
-| TextStrokeColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text stroke of text in default inventory window and slots. | `[0, 0, 0]` |
-| TextStrokeTransparency: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the transparency of the text stroke of text in default chat window and slots. | 0.5 |
+Some of the attributes include:
+
+* Text Color, Size, Stroke Color & Transparency
+* Background Color & Transparency
+* Equip Border Color & Thickness
+* Corner Radius
+* Font
+
+More attributes can be found in the [API Reference](api-reference.md). The list above is not exhaustive and there are may more attributes available for customization.
 
 <figure markdown>
   ![Instance Attributes](https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74)
@@ -41,20 +33,15 @@ Satchel is highly customizable & adjustable with [instance attributes](https://c
 
 ### Scripting
 
-Satchel offers methods and events for scripting purposes. Below see a table with all the methods available.
+Satchel offers methods and events for scripting purposes. In the below code example we will use the `SetBackpackEnabled` method to disable the Satchel. The script expects the Satchel module to be in [`ReplicatedStorage`](https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage).
 
-| IsOpened(): [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) |
-| :--- |
-| Returns whether the inventory is opened or not. |
+``` lua title="LocalScript" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
-| SetBackpackEnabled(enabled: boolean): `void` |
-| :--- |
-| Sets whether the backpack gui is enabled or disabled. |
+Satchel.SetBackpackEnabled(false) -- (1)!
+```
 
-| GetBackpackEnabled(): [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) |
-| :--- |
-| Returns whether the backpack gui is enabled or disabled. |
+1. Disable Satchel using the [SetBackpackEnabled](api-reference.md#setbackpackenabled) method.
 
-| GetStateChangedEvent(): [`RBXScriptSignal`](https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal) |
-| :--- |
-| Returns a signal that fires when the inventory is opened or closed. |
+For the full API reference, see [API Reference](api-reference.md) for more details on attributes, methods, and events for Satchel and how to use Satchel to it's full potential.
