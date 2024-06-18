@@ -87,7 +87,7 @@ local TOOLTIP_OFFSET: number = -5 -- From to
 -- Topbar icons
 local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
 local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
-local ARROW_HOTKEY: { Enum.KeyCode } = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
+-- local ARROW_HOTKEY: { Enum.KeyCode } = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 
 -- Hotbar slots
 local HOTBAR_SLOTS_FULL: number = 10 -- 10 is the max
@@ -154,7 +154,23 @@ local GAMEPAD_INPUT_TYPES: { [Enum.UserInputType]: boolean } =
 -- Topbar logic
 local BackpackEnabled: boolean = true
 
-local UIShelf: any = require(script.Packages.UIShelf)
+local Icon: any = require(script.Packages:WaitForChild("topbarplus"))
+
+local inventoryIcon: any = Icon.new()
+	:setName("Inventory")
+	:setImage(ARROW_IMAGE_OPEN, "Selected")
+	:setImage(ARROW_IMAGE_CLOSE, "Deselected")
+	:setImageScale(1)
+	:setCaption("Inventory")
+	:bindToggleKey(Enum.KeyCode.Backquote)
+	:autoDeselect(false)
+	:setOrder(-1)
+
+inventoryIcon.toggled:Connect(function(): ()
+	if not GuiService.MenuIsOpen then
+		BackpackScript.OpenClose()
+	end
+end)
 
 local BackpackGui: ScreenGui = Instance.new("ScreenGui")
 BackpackGui.DisplayOrder = 120
@@ -191,17 +207,6 @@ local Character: Model = Player.Character or Player.CharacterAdded:Wait()
 local Humanoid: any = Character:WaitForChild("Humanoid")
 local Backpack: Instance = Player:WaitForChild("Backpack")
 
-local InventoryIcon: any = UIShelf.CreateIcon({
-	Name = "Backpack",
-	Image = ARROW_IMAGE_CLOSE,
-	Order = 1,
-	Area = UIShelf.HorizontalAlignment.Left,
-})
-InventoryIcon:BindKeyCode(ARROW_HOTKEY[1], ARROW_HOTKEY[2])
-InventoryIcon:SetTooltip("Backpack")
-InventoryIcon:SetImageSize(Vector2.new(40, 40))
-InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
-
 local Slots = {} -- List of all Slots by index
 local LowestEmptySlot: any = nil
 local SlotsByTool = {} -- Map of Tools to their assigned Slots
@@ -225,7 +230,7 @@ local BackpackPanel = nil
 local lastEquippedSlot: any = nil
 
 local function EvaluateBackpackPanelVisibility(enabled: boolean): boolean
-	return enabled and InventoryIcon.enabled and BackpackEnabled and VRService.VREnabled
+	return enabled and inventoryIcon.enabled and BackpackEnabled and VRService.VREnabled
 end
 
 local function ShowVRBackpackPopup(): ()
@@ -792,7 +797,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 			startPoint = dragPoint
 
 			SlotFrame.BorderSizePixel = 2
-			-- InventoryIcon:lock()
+			inventoryIcon:lock()
 
 			-- Raise above other slots
 			SlotFrame.ZIndex = 2
@@ -841,7 +846,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 			SlotFrame.Parent = startParent
 
 			SlotFrame.BorderSizePixel = 0
-			-- InventoryIcon:unlock()
+			inventoryIcon:unlock()
 
 			-- Restore height
 			SlotFrame.ZIndex = 1
@@ -1100,7 +1105,7 @@ local function OnInputBegan(input: InputObject, isProcessed: boolean): ()
 	if not isProcessed then
 		if inputType == Enum.UserInputType.MouseButton1 or inputType == Enum.UserInputType.Touch then
 			if InventoryFrame.Visible then
-				BackpackScript.OpenClose()
+				inventoryIcon:deselect()
 			end
 		end
 	end
@@ -1401,10 +1406,10 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
-		if inputState ~= Enum.UserInputState.Begin then
-			return
-		end
+	local goBackOneLevel = function(): ()
+		-- if inputState ~= Enum.UserInputState.Begin then
+		-- 	return
+		-- end
 
 		local selectedSlot: any = getGamepadSwapSlot()
 		if selectedSlot then
@@ -1415,7 +1420,7 @@ function enableGamepadInventoryControl(): ()
 				return
 			end
 		elseif InventoryFrame.Visible then
-			BackpackScript.OpenClose()
+			inventoryIcon:deselect()
 		end
 	end
 
@@ -1489,11 +1494,6 @@ end
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
 	enabled = enabled and StarterGui:GetCore("TopbarEnabled")
-	if InventoryFrame.Visible then
-		InventoryIcon:SetImage(ARROW_IMAGE_OPEN)
-	else
-		InventoryIcon:SetImage(ARROW_IMAGE_CLOSE)
-	end
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
 
@@ -1565,12 +1565,6 @@ for index: number = 1, NumberOfHotbarSlots do
 		LowestEmptySlot = slot
 	end
 end
-
-InventoryIcon.Activated:Connect(function(): ()
-	if not GuiService.MenuIsOpen then
-		BackpackScript.OpenClose()
-	end
-end)
 
 local LeftBumperButton: ImageLabel = Instance.new("ImageLabel")
 LeftBumperButton.BackgroundTransparency = 1
@@ -2007,11 +2001,13 @@ end
 -- When menu is opend, disable backpack
 GuiService.MenuOpened:Connect(function(): ()
 	BackpackGui.Enabled = false
+	inventoryIcon:setEnabled(false)
 end)
 
 -- When menu is closed, enable backpack
 GuiService.MenuClosed:Connect(function(): ()
 	BackpackGui.Enabled = true
+	inventoryIcon:setEnabled(true)
 end)
 
 do -- Make the Inventory expand/collapse arrow (unless TopBar)

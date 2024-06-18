@@ -3,23 +3,8 @@
 registry = "test"
 
 [[package]]
-name = "canary-development/uishelf"
-version = "1.1.5"
-dependencies = [["Signal", "red-blox/signal@1.0.0"]]
-
-[[package]]
-name = "red-blox/promise"
-version = "1.1.1"
-dependencies = [["Spawn", "red-blox/spawn@1.0.0"]]
-
-[[package]]
-name = "red-blox/signal"
-version = "1.0.0"
-dependencies = [["Promise", "red-blox/promise@1.1.1"], ["Spawn", "red-blox/spawn@1.0.0"]]
-
-[[package]]
-name = "red-blox/spawn"
-version = "1.0.0"
+name = "1foreverhd/topbarplus"
+version = "3.0.2"
 dependencies = []
 
 [[package]]
@@ -30,4 +15,4 @@ dependencies = []
 [[package]]
 name = "ryanlua/satchel"
 version = "1.2.0"
-dependencies = [["UIShelf", "canary-development/uishelf@1.1.5"], ["testez", "roblox/testez@0.4.1"]]
+dependencies = [["testez", "roblox/testez@0.4.1"], ["topbarplus", "1foreverhd/topbarplus@3.0.2"]]
