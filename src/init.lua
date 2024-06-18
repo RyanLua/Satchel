@@ -1407,10 +1407,10 @@ function vrMoveSlotToInventory(): ()
 end
 
 function enableGamepadInventoryControl(): ()
-	local goBackOneLevel = function(inputState: Enum.UserInputState): ()
-		if inputState ~= Enum.UserInputState.Begin then
-			return
-		end
+	local goBackOneLevel = function(): ()
+\		-- if inputState ~= Enum.UserInputState.Begin then
+		-- 	return
+		-- end
 
 		local selectedSlot: any = getGamepadSwapSlot()
 		if selectedSlot then
@@ -1421,7 +1421,7 @@ function enableGamepadInventoryControl(): ()
 				return
 			end
 		elseif InventoryFrame.Visible then
-			BackpackScript.OpenClose()
+			inventoryIcon:deselect()
 		end
 	end
 
