@@ -1408,7 +1408,7 @@ end
 
 function enableGamepadInventoryControl(): ()
 	local goBackOneLevel = function(): ()
-\		-- if inputState ~= Enum.UserInputState.Begin then
+		-- if inputState ~= Enum.UserInputState.Begin then
 		-- 	return
 		-- end
 
