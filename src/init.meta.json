@@ -18,7 +18,7 @@
       },
       "FontFace": {
         "Font": {
-          "family": "rbxasset://fonts/families/GothamSSm.json",
+          "family": "rbxasset://fonts/families/BuilderSans.json",
           "weight": "Regular",
           "style": "Normal"
         }
@@ -33,7 +33,7 @@
         "Color3": [1, 1, 1]
       },
       "TextSize": {
-        "Float32": 14
+        "Float32": 16
       },
       "TextStrokeColor3": {
         "Color3": [0, 0, 0]

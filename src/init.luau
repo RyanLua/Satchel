@@ -122,8 +122,9 @@ local SEARCH_BUFFER_PIXELS: number = 5
 local SEARCH_WIDTH_PIXELS: number = 200
 
 -- Misc
-local FONT_FAMILY: Font = targetScript:GetAttribute("FontFace") or Font.new("rbxasset://fonts/families/GothamSSm.json")
-local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 14
+local FONT_FAMILY: Font = targetScript:GetAttribute("FontFace")
+	or Font.new("rbxasset://fonts/families/BuilderSans.json")
+local FONT_SIZE: number = targetScript:GetAttribute("TextSize") or 16
 local DROP_HOTKEY_VALUE: number = Enum.KeyCode.Backspace.Value
 local ZERO_KEY_VALUE: number = Enum.KeyCode.Zero.Value
 local DOUBLE_CLICK_TIME: number = 0.5
