@@ -18,7 +18,7 @@
       },
       "FontFace": {
         "Font": {
-          "family": "rbxasset://fonts/families/GothamSSm.json",
+          "family": "rbxasset://fonts/families/BuilderSans.json",
           "weight": "Regular",
           "style": "Normal"
         }
