@@ -10,7 +10,7 @@
         "$className": "StarterPlayerScripts",
 
         "Test": {
-          "$path": "tests/Test.client.lua",
+          "$path": "tests/Test.client.luau",
 
           "Satchel": {
             "$path": "src"
