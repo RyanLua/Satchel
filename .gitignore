@@ -48,3 +48,6 @@ site*/
 
 # Rojo
 sourcemap.json
+
+# Workflow builds
+builds/
