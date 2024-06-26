@@ -5,17 +5,10 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 
-	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
-	"mounts": [
-		{
-			"source": "devcontainer-cargo-cache-${devcontainerId}",
-			"target": "/usr/local/cargo",
-			"type": "volume"
-		}
-	],
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/ryanlua/features/rojo:latest": {}
+	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
@@ -28,16 +21,8 @@
 		}
 	},
 
-	"runArgs": [
-		"-e",
-		"TMPDIR=/home/vscode/tmp"
-	],
-
-	// Use 'onCreateCommand' to run commands when the container is first created.
-	"onCreateCommand": "mkdir -p $TMPDIR && wget http://nz2.archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb && curl https://sh.rustup.rs -sSf | sh -s -- -y && sudo apt-get update && sudo apt install pkg-config libssl-dev libudev-dev -y && sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb && rm -rf libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb",
-
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": ". $HOME/.cargo/env && cargo install aftman && aftman self-install && aftman install --no-trust-check && . ~/.profile && wally install",
+	"postCreateCommand": "aftman install --no-trust-check && wally install",
 
 	// Configure tool-specific properties.
 	"customizations": {
@@ -49,7 +34,6 @@
 		"vscode": {
 			"settings": {},
 			"extensions": [
-				"evaera.vscode-rojo",
 				"kampfkarren.selene-vscode",
 				"johnnymorganz.stylua",
 				"johnnymorganz.luau-lsp"
