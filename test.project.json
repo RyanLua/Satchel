@@ -1,5 +1,6 @@
 {
   "name": "Test Satchel",
+  "servePort": 34872,
   "tree": {
     "$className": "DataModel",
 
