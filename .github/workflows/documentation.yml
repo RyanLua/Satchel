@@ -1,8 +1,12 @@
-name: documentation
+name: Build Documentation
 
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "**"
+      - "!.github/workflows/documentation.ya?ml"
+      - "!docs/**"
 
   workflow_dispatch:
 
@@ -29,7 +33,7 @@ jobs:
             mkdocs.yml
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Setup Python runtime
         uses: actions/setup-python@v5

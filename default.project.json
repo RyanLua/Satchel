@@ -1,7 +1,7 @@
 {
   "name": "Satchel",
   "servePort": 34872,
-  "globIgnorePaths": ["**/*.spec.lua"],
+  "globIgnorePaths": ["**/*.spec.luau"],
   "tree": {
     "$path": "src"
   }

@@ -2,11 +2,6 @@
 title: Platforms
 description: Satchel supports all platforms that Roblox supports. Computers, phones, tablets, consoles, and VR are all supported by Satchel right out of the box.
 icon: material/devices
-comments: true
-tags:
-  - Devices
-  - Compatibility
-  - Comparison
 ---
 
 We support all platforms that Roblox supports. Computers, phones, tablets, consoles, and VR are all supported by Satchel right out of the box. Where the default backpack should run, so should Satchel.

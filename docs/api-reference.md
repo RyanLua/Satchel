@@ -2,14 +2,55 @@
 title: API Reference
 description: Satchel is a reskin of the default BackpackGui. Satchel acts very similar to the default backpack and is based on a fork on the default backpack.
 icon: material/book-outline
-comments: true
-tags:
-  - API
-  - Summary
-  - Documentation
 ---
 
+<style>
+    .md-typeset__table {
+      width: 100%;
+    }
+
+    .md-typeset__table table:not([class]) {
+      display: table
+    }
+</style>
+
 Satchel is a reskin of the default BackpackGui located in [CoreGui](https://create.roblox.com/docs/reference/engine/classes/CoreGui). Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the [Backpack](https://create.roblox.com/docs/reference/engine/classes/Backpack).
+
+#### Code Samples
+
+This code sample makes a TextButton that toggles the inventory when clicked.
+
+```lua title="Toggle Satchel" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local button = Instance.new("TextButton")
+button.AnchorPoint = Vector2.new(0.5, 0.5)
+button.Position = UDim2.new(0.5, 0, 0.5, 0)
+button.Text = "Toggle Inventory"
+button.MouseButton1Click:Connect(function()
+    if Satchel:GetBackpackEnabled() then
+        Satchel.SetBackpackEnabled(false)
+    else
+        Satchel.SetBackpackEnabled(true)
+    end
+end)
+```
+
+This code sample detects when the inventory is opened or closed.
+
+```lua title="Detect Inventory State" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
+    if isOpened then
+        print("Inventory opened")
+    else
+        print("Inventory closed")
+    end
+end)
+```
 
 ## Summary
 
@@ -22,7 +63,7 @@ Satchel is a reskin of the default BackpackGui located in [CoreGui](https://crea
 | CornerRadius: [`UDim`](https://create.roblox.com/docs/reference/engine/datatypes/UDim) | Determines the radius, in pixels, of the default inventory window and slots. | `0, 8` |
 | EquipBorderColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the equip border when a slot is equipped. | `[255, 255, 255]` |
 | EquipBorderSizePixel: [`number`](https://create.roblox.com/docs/scripting/luau/numbers) | Determines the pixel width of the equip border when a slot is equipped. | `5` |
-| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. | `Gotham SSm` |
+| FontFace: [`Font`](https://create.roblox.com/docs/reference/engine/enums/Font) | Determines the font of the default inventory window and slots. | `Builder Sans` |
 | InsetIconPadding: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the tool icon is padded in the default inventory window and slots. | True |
 | OutlineEquipBorder: [`boolean`](https://create.roblox.com/docs/scripting/luau/booleans) | Determines whether or not the equip border is outline or inset when a slot is equipped. | True |
 | TextColor3: [`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3) | Determines the color of the text in default inventory window and slots. | `[255, 255, 255]` |
@@ -52,25 +93,37 @@ Satchel is a reskin of the default BackpackGui located in [CoreGui](https://crea
 
 ### BackgroundColor3
 
+[`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3)
+
 Determines the background color of the default inventory window and slots. Changing this will update the background color for all elements excluding the search box background for visibility purposes.
 
 ### BackgroundTransparency
+
+[`number`](https://create.roblox.com/docs/luau/numbers)
 
 Determines the background transparency of the default inventory window and slots. This will change how the hot bar looks in its locked state and the inventory background.
 
 ### CornerRadius
 
+[`UDim`](https://create.roblox.com/docs/reference/engine/datatypes/UDim)
+
 Determines the radius, in pixels, of the default inventory window and slots. This will affect all elements with a visible rounded corner. The corner radius for the search bar is calculated automatically based on this value.
 
 ### EquipBorderColor3
+
+[`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3)
 
 Determines the color of the equip border when a slot is equipped. The drag outline color of the slot will not changed by this.
 
 ### EquipBorderSizePixel
 
+[`number`](https://create.roblox.com/docs/luau/numbers)
+
 Determines the pixel width of the equip border when a slot is equipped. This additionally controls the padding of tool icons.
 
 ### FontFace
+
+[`Enum.Font`](https://create.roblox.com/docs/reference/engine/enums/Font)
 
 Determines the font of the default inventory window and slots. This includes all text in the Satchel UI.
 
@@ -80,25 +133,37 @@ Determines the font of the default inventory window and slots. This includes all
 
 ### InsetIconPadding
 
+[`bool`](https://create.roblox.com/docs/luau/booleans)
+
 Determines whether or not the tool icon is padded in the default inventory window and slots. Changing this will change how the tool icon is padded in the slot or not.
 
 ### OutlineEquipBorder
+
+[`bool`](https://create.roblox.com/docs/luau/booleans)
 
 Determines whether or not the equip border is outline or inset when a slot is equipped. Changing this will make the equip border either border will outline or inset the slot.
 
 ### TextColor3
 
+[`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3)
+
 Determines the color of the text in default inventory window and slots. This will change the color of all text.
 
 ### TextSize
+
+[`number`](https://create.roblox.com/docs/luau/numbers)
 
 Determines the size of the text in the default inventory window and slots. This will change the text size of the tool names and will not change other text like search text, hotkey number, and gamepad hints.
 
 ### TextStrokeColor3
 
+[`Color3`](https://create.roblox.com/docs/reference/engine/datatypes/Color3)
+
 Determines the color of the text stroke of text in default inventory window and slots. This will change the color of all text strokes which are visible.
 
 ### TextStrokeTransparency
+
+[`number`](https://create.roblox.com/docs/luau/numbers)
 
 Determines the transparency of the text stroke of text in default chat window and slots. This will change all text strokes in which text strokes are visible.
 
@@ -108,34 +173,105 @@ Determines the transparency of the text stroke of text in default chat window an
 
 Returns whether the inventory is opened or not.
 
+#### Code Samples
+
+This code sample will return whether the inventory is opened or not.
+
+```lua title="Is Opened" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local isOpened = Satchel.IsOpened()
+```
+
 #### Returns
 
-```boolean```
+<table>
+    <tr>
+        <td><a href="https://create.roblox.com/docs/luau/booleans">bool</a></td>
+    </tr>
+</table>
 
 ### SetBackpackEnabled
 
 Sets whether the backpack gui is enabled or disabled.
 
+#### Code Samples
+
+This code sample will disable the backpack gui.
+
+```lua title="Disable Backpack" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+Satchel.SetBackpackEnabled(false)
+```
+
 #### Parameters
 
-```enabled: boolean```
+<table>
+    <tr>
+        <td>enabled: <a href="https://create.roblox.com/docs/luau/booleans">bool</a></td>
+        <td>Whether to enable or disable the Backpack</td>
+    </tr>
+</table>
 
 #### Returns
 
-```void```
+<table>
+    <tr>
+        <td>void</td>
+    </tr>
+</table>
 
 ### GetBackpackEnabled
 
 Returns whether the backpack gui is enabled or disabled.
 
+#### Code Samples
+
+This code sample will return whether the backpack gui is enabled or disabled.
+
+```lua title="Get Backpack Enabled" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local isEnabled = Satchel.GetBackpackEnabled()
+```
+
 #### Returns
 
-```boolean```
+<table>
+    <tr>
+        <td><a href="https://create.roblox.com/docs/luau/booleans">bool</a></td>
+    </tr>
+</table>
 
 ### GetStateChangedEvent
 
 Returns a signal that fires when the inventory is opened or closed.
 
+#### Code Samples
+
+This code sample detects when the inventory is opened or closed.
+
+```lua title="Detect Inventory State" linenums="1"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
+    if isOpened then
+        print("Inventory opened")
+    else
+        print("Inventory closed")
+    end
+end)
+```
+
 #### Returns
 
-```RBXScriptSignal```
+<table>
+    <tr>
+        <td><a href="https://create.roblox.com/docs/reference/engine/datatypes/RBXScriptSignal">RBXScriptSignal</a></td>
+    </tr>
+</table>

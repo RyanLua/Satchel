@@ -1,0 +1,75 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      draft:
+          description: 'This release will be saved as a draft and not published.'
+          default: false
+          required: false
+          type: boolean
+      prerelease:
+        description: 'This release will be labeled as non-production ready.'
+        default: false
+        required: false
+        type: boolean
+      tag_name:
+        description: 'Choose an existing tag, or create a new tag when you publish this release.'
+        required: true
+        type: string
+      make_latest:
+        description: 'This release will be labeled as the latest for this repository.'
+        default: true
+        required: false
+        type: boolean
+
+permissions:
+  contents: write
+  discussions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.4.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Wally
+        env:
+          WALLY_AUTH_TOKEN: ${{ secrets.WALLY_AUTH_TOKEN }}
+        run: |
+          wally login --token "$WALLY_AUTH_TOKEN"
+          wally install
+
+      - name: Build using Rojo
+        run: |
+          mkdir builds
+          rojo build --output builds/Satchel.rbxm default.project.json
+          rojo build --output builds/Satchel.rbxmx default.project.json
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: builds/
+          generate_release_notes: true
+          tag_name: ${{ inputs.tag_name }}
+          draft: ${{ inputs.draft }}
+          prerelease: ${{ inputs.prerelease }}
+          make_latest: ${{ inputs.make_latest }}
+
+      - name: Publish to Wally
+        run: wally publish
+
+      - name: Archive build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-file-builds
+          path: builds/
+          if-no-files-found: error
+          compression-level: 9
