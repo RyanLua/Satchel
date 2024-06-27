@@ -11,4 +11,6 @@ include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
 
 [dependencies]
 topbarplus = "1foreverhd/topbarplus@3.0.2"
+
+[dev-dependencies]
 testez = "roblox/testez@0.4.1"
