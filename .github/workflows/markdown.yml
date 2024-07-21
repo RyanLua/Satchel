@@ -1,4 +1,4 @@
-name: markdown
+name: Check Markdown
 
 on:
   workflow_dispatch:

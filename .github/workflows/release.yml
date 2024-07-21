@@ -52,6 +52,27 @@ jobs:
           rojo build --output builds/Satchel.rbxm default.project.json
           rojo build --output builds/Satchel.rbxmx default.project.json
 
+      - name: Archive build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-file-builds
+          path: builds/
+          if-no-files-found: error
+          compression-level: 9
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build files
+        uses: actions/download-artifact@v3
+        with:
+          name: release-file-builds
+          path: builds/
+
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
@@ -65,11 +86,3 @@ jobs:
 
       - name: Publish to Wally
         run: wally publish
-
-      - name: Archive build files
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-file-builds
-          path: builds/
-          if-no-files-found: error
-          compression-level: 9
