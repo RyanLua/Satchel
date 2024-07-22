@@ -40,7 +40,8 @@ luac.out
 *.hex
 
 # Wally
-Packages
+/Packages
+/DevPackages
 
 # MkDocs documentation
 site*/
