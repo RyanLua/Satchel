@@ -14,7 +14,15 @@
           "$path": "tests/Test.client.luau",
 
           "Satchel": {
-            "$path": "src"
+            "$path": "src",
+
+            "Packages": {
+              "$path": "Packages"
+            },
+
+            "DevPackages": {
+              "$path": "DevPackages"
+            }
           }
         }
       }
