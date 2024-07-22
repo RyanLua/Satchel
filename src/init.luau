@@ -704,6 +704,7 @@ local function MakeSlot(parent: Instance, initIndex: number?): GuiObject
 	ToolName.Size = UDim2.new(1, -SLOT_EQUIP_THICKNESS * 2, 1, -SLOT_EQUIP_THICKNESS * 2)
 	ToolName.Position = UDim2.new(0.5, 0, 0.5, 0)
 	ToolName.AnchorPoint = Vector2.new(0.5, 0.5)
+	ToolName.TextWrapped = true
 	ToolName.TextTruncate = Enum.TextTruncate.AtEnd
 	ToolName.Parent = SlotFrame
 
