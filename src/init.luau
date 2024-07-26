@@ -63,7 +63,7 @@ local LEGACY_PADDING_ENABLED: boolean = targetScript:GetAttribute("InsetIconPadd
 -- Background
 local BACKGROUND_TRANSPARENCY_DEFAULT: number = targetScript:GetAttribute("BackgroundTransparency") or 0.3
 local BACKGROUND_TRANSPARENCY: number = BACKGROUND_TRANSPARENCY_DEFAULT * PREFERRED_TRANSPARENCY
-local BACKGROUND_CORNER_RADIUS: UDim = targetScript:GetAttribute("CornerRadius") or UDim.new(0, 8)
+local BACKGROUND_CORNER_RADIUS: UDim = UDim.new(0, 8)
 local BACKGROUND_COLOR: Color3 = targetScript:GetAttribute("BackgroundColor3")
 	or Color3.new(25 / 255, 27 / 255, 29 / 255)
 
@@ -115,7 +115,7 @@ local SEARCH_BORDER_THICKNESS: number = 1
 local SEARCH_TEXT_PLACEHOLDER: string = "Search"
 local SEARCH_TEXT_OFFSET: number = 8
 local SEARCH_TEXT: string = ""
-local SEARCH_CORNER_RADIUS: UDim = SLOT_CORNER_RADIUS - UDim.new(0, 5) or UDim.new(0, 3)
+local SEARCH_CORNER_RADIUS: UDim = UDim.new(0, 3)
 local SEARCH_IMAGE_X: string = "rbxasset://textures/ui/InspectMenu/x.png"
 local SEARCH_BUFFER_PIXELS: number = 5
 local SEARCH_WIDTH_PIXELS: number = 200
