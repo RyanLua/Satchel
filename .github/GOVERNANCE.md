@@ -19,7 +19,7 @@ All contributors and users are expected to adhere to the following code of condu
 * Contribute positively and constructively to discussions and development.
 * Maintain confidentiality of any sensitive information related to the module.
 
-The owner reserves the right to remove any contributor or user who violates the code of conduct. Learn more at [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
+The owner reserves the right to remove any contributor or user who violates the code of conduct. Learn more at [CODE_OF_CONDUCT.md](https://github.com/RyanLua/Satchel?tab=coc-ov-file)
 
 ## Decision Making
 
