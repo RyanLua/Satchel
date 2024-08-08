@@ -1,4 +1,4 @@
-name: Release
+name: Create Release
 
 on:
   workflow_dispatch:
@@ -66,6 +66,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Aftman
+        uses: ok-nick/setup-aftman@v0.4.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Wally
+        env:
+          WALLY_AUTH_TOKEN: ${{ secrets.WALLY_AUTH_TOKEN }}
+        run: |
+          wally login --token "$WALLY_AUTH_TOKEN"
+          wally install
 
       - name: Download build files
         uses: actions/download-artifact@v4

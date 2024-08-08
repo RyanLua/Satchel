@@ -34,4 +34,4 @@ Simply put an "x" between the brackets like here to check it -->
 
 ## Code of Conduct
 
-By submitting this issue, I agree to follow the [Code of Conduct](CODE_OF_CONDUCT.md).
+By submitting this issue, I agree to follow the [Code of Conduct](https://github.com/RyanLua/Satchel?tab=coc-ov-file).
