@@ -1,5 +1,5 @@
 {
-  "name": "Satchel",
+  "name": "satchel",
   "servePort": 34872,
   "globIgnorePaths": ["**/*.spec.luau"],
   "tree": {

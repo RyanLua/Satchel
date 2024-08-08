@@ -3,7 +3,7 @@
 
 --[[
 	Name: Satchel
-	Version: 1.3.0
+	Version: 1.3.1
 	Description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
 	By: @WinnersTakesAll on Roblox & @RyanLua on GitHub
 
