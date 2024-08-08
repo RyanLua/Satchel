@@ -39,6 +39,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Wally
+        env:
+          WALLY_AUTH_TOKEN: ${{ secrets.WALLY_AUTH_TOKEN }}
+        run: |
+          wally login --token "$WALLY_AUTH_TOKEN"
+          wally install
+
       - name: Build using Rojo
         run: |
           mkdir builds
