@@ -14,5 +14,5 @@ dependencies = []
 
 [[package]]
 name = "ryanlua/satchel"
-version = "1.3.0"
+version = "1.3.1"
 dependencies = [["topbarplus", "legitatx/topbarplus@3.0.5"], ["testez", "roblox/testez@0.4.1"]]
