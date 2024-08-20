@@ -1,38 +1,27 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+// README at: https://github.com/ryanlua/templates/tree/main/src/roblox
 {
-	"name": "Ubuntu",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"name": "Roblox",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfil
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
 	"features": {
-		"ghcr.io/ryanlua/features/rojo:latest": {}
-	},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [
-		34872
-	],
-	"portsAttributes": {
-		"34872": {
-			"label": "Rojo",
-			"onAutoForward": "notify"
+		"ghcr.io/ryanlua/features/rojo:0.2.0": {
+			"version": "latest",
+			"toolchainManager": "rokit"
 		}
 	},
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "aftman install --no-trust-check && wally install",
-
 	// Configure tool-specific properties.
 	"customizations": {
+		// Configure properties specific to VS Code.
 		"codespaces": {
 			"openFiles": [
-				"src/init.lua"
+				"src/init.luau"
 			]
 		},
 		"vscode": {
-			"settings": {},
+			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"kampfkarren.selene-vscode",
 				"johnnymorganz.stylua",
@@ -40,6 +29,17 @@
 			]
 		}
 	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [34872],
+	"portsAttributes": {
+			"34872": {
+				"label": "Rojo"
+			}
+	},
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "rokit install --no-trust-check && wally install",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root"

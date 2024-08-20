@@ -34,10 +34,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Aftman
-        uses: ok-nick/setup-aftman@v0.4.2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Setup Rokit
+        uses: CompeyDev/setup-rokit@v0.1.0
 
       - name: Setup Wally
         env:
