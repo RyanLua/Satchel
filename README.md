@@ -12,7 +12,7 @@
   [![GitHub release](https://img.shields.io/github/v/release/RyanLua/Satchel?include_prereleases&logo=robloxstudio&logoColor=white&color=00a2ff&style=for-the-badge)](../../releases)
   [![GitHub top language](https://img.shields.io/github/languages/top/RyanLua/Satchel?logo=lua&color=00a2ff&style=for-the-badge)](../../search?l=lua)
   [![GitHub license](https://img.shields.io/github/license/RyanLua/Satchel?logo=mozilla&color=00a2ff&style=for-the-badge)](LICENSE.txt)
-  [![Discord](https://img.shields.io/discord/1162303282002272359?style=for-the-badge&label=discord&logo=discord&color=00a2ff&logoColor=white)](https://discord.gg/hYU4rvT7DK)
+  [![Discord](https://img.shields.io/discord/1162303282002272359?style=for-the-badge&label=discord&logo=discord&color=00a2ff&logoColor=white)](https://discord.gg/N2KEnHzrsW)
 
   [![Download](https://gist.githubusercontent.com/RyanLua/d507e8ad7581fe264deb91606954b920/raw/8013a784d7518ddd465512d31f4f51e18d35c06c/GitHubDownloadBadge.svg)](https://github.com/RyanLua/Satchel/releases/latest/download/Satchel.rbxm)
   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RyanLua/Satchel?quickstart=1)
