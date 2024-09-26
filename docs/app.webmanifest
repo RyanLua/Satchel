@@ -40,10 +40,15 @@
       "form_factor": "wide"
     }
   ],
+  "start_url": "/?utm_medium=PWA&utm_source=launcher",
   "display": "standalone",
   "theme_color": "#00a2ff",
   "background_color": "#00a2ff",
   "lang": "en",
   "description": "Documentation for Satchel, a modern open-source alternative to Roblox's default backpack",
-  "categories": ["utilities", "reference", "developer"]
+  "categories": [
+    "utilities",
+    "reference",
+    "developer"
+  ]
 }
