@@ -9,7 +9,8 @@
 		"ghcr.io/ryanlua/features/rojo:0.2.0": {
 			"version": "latest",
 			"toolchainManager": "rokit"
-		}
+		},
+		"ghcr.io/devcontainers/features/python:1": {}
 	},
 
 	// Configure tool-specific properties.
@@ -31,15 +32,22 @@
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [34872],
+	"forwardPorts": [
+		8000,
+		34872
+	],
 	"portsAttributes": {
-			"34872": {
-				"label": "Rojo"
-			}
+		"8000": {
+			"label": "MkDocs",
+			"onAutoForward": "openPreview"
+		},
+		"34872": {
+			"label": "Rojo"
+		}
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "rokit install --no-trust-check && wally install",
+	"postCreateCommand": "pip install mkdocs-material && rokit install --no-trust-check && wally install",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root"
