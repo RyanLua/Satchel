@@ -38,6 +38,30 @@
       "sizes": "2880x2160",
       "type": "image/png",
       "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/narrow-screenshot1.png",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/narrow-screenshot2.png",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/narrow-screenshot3.png",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshots/narrow-screenshot4.png",
+      "sizes": "1082x2402",
+      "type": "image/png",
+      "form_factor": "narrow"
     }
   ],
   "start_url": "/?utm_medium=PWA&utm_source=launcher",
