@@ -14,7 +14,32 @@
       "purpose": "maskable"
     }
   ],
-  "start_url": "/",
+  "screenshots": [
+    {
+      "src": "/screenshots/wide-screenshot1.png",
+      "sizes": "2880x2160",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/wide-screenshot2.png",
+      "sizes": "2880x2160",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/wide-screenshot3.png",
+      "sizes": "2880x2160",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/wide-screenshot4.png",
+      "sizes": "2880x2160",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
   "display": "standalone",
   "theme_color": "#00a2ff",
   "background_color": "#00a2ff",
