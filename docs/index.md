@@ -6,10 +6,7 @@ hide:
   - feedback
 ---
 
-![Satchel](assets/satchel-black.svg#only-light)
-![Satchel](assets/satchel-white.svg#only-dark)
-
----
+# Satchel
 
 <!-- ???+ abstract "Please don't scroll away"
 
