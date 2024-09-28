@@ -58,7 +58,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
 
-    [:material-arrow-right: Customization](usage.md#customization.md)
+    [:material-arrow-right: Customization](usage.md#customization)
 
 - :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
 
