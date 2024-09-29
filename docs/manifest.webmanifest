@@ -1,5 +1,4 @@
 {
-  "background_color": "#00a2ff",
   "categories": [
     "utilities",
     "reference",
@@ -77,6 +76,5 @@
     }
   ],
   "short_name": "Satchel",
-  "start_url": "/?utm_medium=PWA&utm_source=launcher",
-  "theme_color": "#00a2ff"
+  "start_url": "/?utm_medium=PWA&utm_source=launcher"
 }
