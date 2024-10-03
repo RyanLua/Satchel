@@ -16,8 +16,8 @@ theme:
     - content.code.copy
     - content.tooltips
     - content.code.annotate
-    # - navigation.instant
-    # - navigation.instant.progress
+    - navigation.instant
+    - navigation.instant.progress
     - navigation.top
     - navigation.tabs
     - search.highlight
@@ -61,13 +61,9 @@ extra:
     - icon: simple/robloxstudio
       link: https://devforum.roblox.com/t/2451549
       name: DevForum
-  consent:
-    title: Cookie consent
-    description: >- 
-      We use cookies to recognize your repeated visits and preferences, as well
-      as to measure the effectiveness of our documentation and whether users
-      find what they're searching for. With your consent, you're helping us to
-      make our documentation better.
+    - icon: simple/discord
+      link: https://discord.gg/N2KEnHzrsW
+      name: Discord
   analytics:
     provider: google
     property: PPVP56SBQQ
@@ -102,6 +98,9 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra_css:
+  - stylesheets/extra.css
 
 nav:
   - Home:

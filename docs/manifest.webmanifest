@@ -1,0 +1,80 @@
+{
+  "categories": [
+    "utilities",
+    "reference",
+    "developer"
+  ],
+  "description": "Documentation for Satchel, a modern open-source alternative to Roblox's default backpack",
+  "dir": "ltr",
+  "display": "standalone",
+  "icons": [
+    {
+      "sizes": "512x512",
+      "src": "/icons/512.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "maskable",
+      "sizes": "512x512",
+      "src": "/icons/512-maskable.png",
+      "type": "image/png"
+    }
+  ],
+  "id": "satchel",
+  "lang": "en",
+  "name": "Satchel Documentation",
+  "orientation": "any",
+  "scope": "/",
+  "screenshots": [
+    {
+      "form_factor": "wide",
+      "sizes": "2880x2160",
+      "src": "/screenshots/wide-screenshot1.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "wide",
+      "sizes": "2880x2160",
+      "src": "/screenshots/wide-screenshot2.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "wide",
+      "sizes": "2880x2160",
+      "src": "/screenshots/wide-screenshot3.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "wide",
+      "sizes": "2880x2160",
+      "src": "/screenshots/wide-screenshot4.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "narrow",
+      "sizes": "1082x2402",
+      "src": "/screenshots/narrow-screenshot1.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "narrow",
+      "sizes": "1082x2402",
+      "src": "/screenshots/narrow-screenshot2.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "narrow",
+      "sizes": "1082x2402",
+      "src": "/screenshots/narrow-screenshot3.png",
+      "type": "image/png"
+    },
+    {
+      "form_factor": "narrow",
+      "sizes": "1082x2402",
+      "src": "/screenshots/narrow-screenshot4.png",
+      "type": "image/png"
+    }
+  ],
+  "short_name": "Satchel",
+  "start_url": "/?utm_medium=PWA&utm_source=launcher"
+}

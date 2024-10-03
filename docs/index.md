@@ -23,9 +23,17 @@ Satchel aims to be more customizable and easier to use than the default backpack
 
 This documentation will allow you to install Satchel and learn about how to script using Satchel.
 
-<div style="position: relative; width: 100%; padding-top: 56.25%;">
-    <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=fWf69QVH87thTG65" title="Satchel Demo Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+<video
+  controls
+  muted
+  preload="metadata"
+  src="https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5"
+  poster="https://github.com/RyanLua/Satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669"
+  type="video/mp4">
+  Sorry, your browser doesn't support embedded videos, but don't worry, you can
+  <a href="https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5">download it</a>
+  and watch it with your favorite video player!
+</video>
 
 ---
 
@@ -53,7 +61,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
 
-    [:material-arrow-right: Customization](usage.md#customization.md)
+    [:material-arrow-right: Customization](usage.md#customization)
 
 - :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
 
