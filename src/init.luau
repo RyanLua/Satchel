@@ -84,8 +84,8 @@ local TOOLTIP_HEIGHT: number = 16
 local TOOLTIP_OFFSET: number = -5 -- From to
 
 -- Topbar icons
-local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn.png"
-local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff.png"
+local ARROW_IMAGE_OPEN: string = "rbxasset://textures/ui/TopBar/inventoryOn@3x.png"
+local ARROW_IMAGE_CLOSE: string = "rbxasset://textures/ui/TopBar/inventoryOff@3x.png"
 -- local ARROW_HOTKEY: { Enum.KeyCode } = { Enum.KeyCode.Backquote, Enum.KeyCode.DPadUp } --TODO: Hookup '~' too?
 
 -- Hotbar slots
@@ -160,7 +160,7 @@ local inventoryIcon: any = Icon.new()
 	:setName("Inventory")
 	:setImage(ARROW_IMAGE_OPEN, "Selected")
 	:setImage(ARROW_IMAGE_CLOSE, "Deselected")
-	:setImageScale(1)
+	:setImageScale(1.1)
 	:setCaption("Inventory")
 	:bindToggleKey(Enum.KeyCode.Backquote)
 	:autoDeselect(false)
