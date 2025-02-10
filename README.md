@@ -16,7 +16,19 @@
 
   [![Download](https://gist.githubusercontent.com/RyanLua/d507e8ad7581fe264deb91606954b920/raw/8013a784d7518ddd465512d31f4f51e18d35c06c/GitHubDownloadBadge.svg)](https://github.com/RyanLua/Satchel/releases/latest/download/Satchel.rbxm)
   [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/RyanLua/Satchel?quickstart=1)
+  [![Open in VS Code](https://img.shields.io/badge/Open%20in-VS%20Code-blue?logo=visualstudiocode)](https://vscode.dev/github/RyanLua/Satchel)
+[![Open in Glitch](https://img.shields.io/badge/Open%20in-Glitch-blue?logo=glitch)](https://glitch.com/edit/#!/import/github/RyanLua/Satchel)
+[![Edit in Codesandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/RyanLua/Satchel)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/RyanLua/Satchel)
+[![Open in Repl.it](https://replit.com/badge/github/withastro/astro)](https://replit.com/github/RyanLua/Satchel)
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/RyanLua/Satchel)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/RyanLua/Satchel)
 </div>
+
+## 🌏  Open in the Cloud 
+Click any of the buttons below to start a new development environment to demo or contribute to the codebase:
+
+
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
 
