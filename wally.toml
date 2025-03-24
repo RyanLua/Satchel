@@ -6,8 +6,11 @@ license = "MPL-2.0"
 authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
+homepage = "https://satchel.ryanluu.dev/"
+repository = "https://github.com/RyanLua/Satchel"
 exclude = ["**"]
 include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
 
 [dependencies]
-topbarplus = "legitatx/topbarplus@3.0.5"
+React = "jsdotlua/react@17.2.1"
+TopbarPlus = "legitatx/topbarplus@3.0.5"

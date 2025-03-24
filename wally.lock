@@ -3,6 +3,71 @@
 registry = "test"
 
 [[package]]
+name = "jsdotlua/boolean"
+version = "1.2.7"
+dependencies = [["number", "jsdotlua/number@1.2.7"]]
+
+[[package]]
+name = "jsdotlua/collections"
+version = "1.2.7"
+dependencies = [["es7-types", "jsdotlua/es7-types@1.2.7"], ["instance-of", "jsdotlua/instance-of@1.2.7"]]
+
+[[package]]
+name = "jsdotlua/console"
+version = "1.2.7"
+dependencies = [["collections", "jsdotlua/collections@1.2.7"]]
+
+[[package]]
+name = "jsdotlua/es7-types"
+version = "1.2.7"
+dependencies = []
+
+[[package]]
+name = "jsdotlua/instance-of"
+version = "1.2.7"
+dependencies = []
+
+[[package]]
+name = "jsdotlua/luau-polyfill"
+version = "1.2.7"
+dependencies = [["boolean", "jsdotlua/boolean@1.2.7"], ["collections", "jsdotlua/collections@1.2.7"], ["console", "jsdotlua/console@1.2.7"], ["es7-types", "jsdotlua/es7-types@1.2.7"], ["instance-of", "jsdotlua/instance-of@1.2.7"], ["math", "jsdotlua/math@1.2.7"], ["number", "jsdotlua/number@1.2.7"], ["string", "jsdotlua/string@1.2.7"], ["symbol-luau", "jsdotlua/symbol-luau@1.0.1"], ["timers", "jsdotlua/timers@1.2.7"]]
+
+[[package]]
+name = "jsdotlua/math"
+version = "1.2.7"
+dependencies = []
+
+[[package]]
+name = "jsdotlua/number"
+version = "1.2.7"
+dependencies = []
+
+[[package]]
+name = "jsdotlua/react"
+version = "17.2.1"
+dependencies = [["luau-polyfill", "jsdotlua/luau-polyfill@1.2.7"], ["shared", "jsdotlua/shared@17.2.1"]]
+
+[[package]]
+name = "jsdotlua/shared"
+version = "17.2.1"
+dependencies = [["luau-polyfill", "jsdotlua/luau-polyfill@1.2.7"]]
+
+[[package]]
+name = "jsdotlua/string"
+version = "1.2.7"
+dependencies = [["es7-types", "jsdotlua/es7-types@1.2.7"], ["number", "jsdotlua/number@1.2.7"]]
+
+[[package]]
+name = "jsdotlua/symbol-luau"
+version = "1.0.1"
+dependencies = []
+
+[[package]]
+name = "jsdotlua/timers"
+version = "1.2.7"
+dependencies = [["collections", "jsdotlua/collections@1.2.7"]]
+
+[[package]]
 name = "legitatx/topbarplus"
 version = "3.0.5"
 dependencies = []
@@ -10,4 +75,4 @@ dependencies = []
 [[package]]
 name = "ryanlua/satchel"
 version = "1.3.1"
-dependencies = [["topbarplus", "legitatx/topbarplus@3.0.5"]]
+dependencies = [["React", "jsdotlua/react@17.2.1"], ["TopbarPlus", "legitatx/topbarplus@3.0.5"]]
