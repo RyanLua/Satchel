@@ -2,8 +2,10 @@
   "name": "Satchel",
   "tree": {
     "$path": "models",
+
     "Satchel": {
       "$path": "src",
+
       "Packages": {
         "$path": "Packages"
       }
