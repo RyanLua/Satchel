@@ -49,6 +49,10 @@ site*/
 
 # Rojo
 sourcemap.json
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
 
 # Workflow builds
 builds/
