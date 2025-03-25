@@ -1,12 +1,22 @@
 {
-  "name": "satchel",
-  "servePort": 34872,
-  "globIgnorePaths": ["**/*.spec.luau"],
+  "name": "Satchel",
   "tree": {
-    "$path": "src",
+    "$className": "DataModel",
 
-    "Packages": {
-      "$path": "Packages"
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        
+        "Satchel": {
+          "$path": "src",
+
+          "Packages": {
+            "$path": "Packages"
+          }
+        }
+      }
     }
   }
 }
