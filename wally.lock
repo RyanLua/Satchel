@@ -43,7 +43,27 @@ version = "1.2.7"
 dependencies = []
 
 [[package]]
+name = "jsdotlua/promise"
+version = "3.5.2"
+dependencies = []
+
+[[package]]
 name = "jsdotlua/react"
+version = "17.2.1"
+dependencies = [["luau-polyfill", "jsdotlua/luau-polyfill@1.2.7"], ["shared", "jsdotlua/shared@17.2.1"]]
+
+[[package]]
+name = "jsdotlua/react-reconciler"
+version = "17.2.1"
+dependencies = [["luau-polyfill", "jsdotlua/luau-polyfill@1.2.7"], ["promise", "jsdotlua/promise@3.5.2"], ["react", "jsdotlua/react@17.2.1"], ["scheduler", "jsdotlua/scheduler@17.2.1"], ["shared", "jsdotlua/shared@17.2.1"]]
+
+[[package]]
+name = "jsdotlua/react-roblox"
+version = "17.2.1"
+dependencies = [["luau-polyfill", "jsdotlua/luau-polyfill@1.2.7"], ["react", "jsdotlua/react@17.2.1"], ["react-reconciler", "jsdotlua/react-reconciler@17.2.1"], ["scheduler", "jsdotlua/scheduler@17.2.1"], ["shared", "jsdotlua/shared@17.2.1"]]
+
+[[package]]
+name = "jsdotlua/scheduler"
 version = "17.2.1"
 dependencies = [["luau-polyfill", "jsdotlua/luau-polyfill@1.2.7"], ["shared", "jsdotlua/shared@17.2.1"]]
 
@@ -75,4 +95,4 @@ dependencies = []
 [[package]]
 name = "ryanlua/satchel"
 version = "1.3.1"
-dependencies = [["React", "jsdotlua/react@17.2.1"], ["TopbarPlus", "legitatx/topbarplus@3.0.5"]]
+dependencies = [["React", "jsdotlua/react@17.2.1"], ["ReactRoblox", "jsdotlua/react-roblox@17.2.1"], ["TopbarPlus", "legitatx/topbarplus@3.0.5"]]
