@@ -11,7 +11,11 @@ return {
 		return React.createElement(Slot, {
 			toolName = "Tool Name",
 			slotNumber = "0",
+			textureIcon = "rbxasset://textures/ui/GuiImagePlaceholder.png",
 			equipped = true,
+			onActivated = function()
+				print("click")
+			end,
 		})
 	end,
 }

@@ -2,19 +2,20 @@ local React = require("../Packages/React")
 
 local Theme = require("../Theme")
 
-export type Props = {
+local function SlotButton(props: {
 	toolName: string,
 	textureIcon: string,
 	tooltip: string,
 	slotNumber: string,
 	equipped: boolean,
-}
-
-local function SlotButton(props: Props)
+	onActivated: () -> (),
+})
 	return React.createElement("TextButton", {
 		Size = UDim2.new(0, 60, 0, 60),
 		TextScaled = true,
 		Text = props.toolName,
+		[React.Event.Activated] = props.onActivated,
+
 	}, {
 		React.createElement("UITextSizeConstraint", {
 			MaxTextSize = 18,

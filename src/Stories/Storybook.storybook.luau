@@ -1,6 +1,13 @@
-local storybook = {
-	name = "Stories",
-	storyRoots = { script.Parent },
-}
+local React = require("../Packages/React")
+local ReactRoblox = require("../Packages/ReactRoblox")
 
-return storybook
+return {
+	name = script.Parent.Name,
+	storyRoots = {
+		script.Parent,
+	},
+	packages = {
+		React = React,
+		ReactRoblox = ReactRoblox,
+	},
+}
