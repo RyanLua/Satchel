@@ -32,6 +32,7 @@ local function SlotButton(props: {
 			BackgroundTransparency = 1,
 			Image = props.textureIcon,
 			Size = UDim2.new(1, 0, 1, 0),
+			Visible = if props.textureIcon then true else false,
 		}, {
 			React.createElement("UICorner", {
 				CornerRadius = UDim.new(0, 3),
