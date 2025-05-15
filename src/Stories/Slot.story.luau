@@ -10,6 +10,7 @@ local controls = {
 	textureIcon = "rbxasset://textures/ui/GuiImagePlaceholder.png",
 	slotNumber = "0",
 	equipped = false,
+	locked = false,
 }
 
 type Props = {
@@ -27,6 +28,7 @@ return {
 			slotNumber = props.controls.slotNumber,
 			textureIcon = props.controls.textureIcon,
 			equipped = props.controls.equipped,
+			locked = props.controls.locked,
 			onActivated = function()
 				print("Slot activated")
 			end,

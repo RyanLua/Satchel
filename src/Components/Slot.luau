@@ -1,30 +1,39 @@
 --!strict
 
 local React = require("../Packages/React")
+local constants = require("../Constants")
 
 local function SlotButton(props: {
 	toolName: string,
 	textureIcon: string,
 	tooltip: string,
 	slotNumber: string,
+	locked: boolean,
 	equipped: boolean,
 	onActivated: () -> (),
 })
 	return React.createElement("TextButton", {
+		BackgroundColor3 = constants.theme.backgroundColor,
+		TextColor3 = constants.theme.textColor,
+		TextSize = constants.theme.textSize,
+		TextStrokeColor3 = constants.theme.textStrokeColor,
+		TextStrokeTransparency = constants.theme.textStrokeTransparency,
+		Font = constants.theme.font,
+		BackgroundTransparency = if props.locked then 0 else constants.theme.backgroundTransparency,
+		Text = props.toolName,
 		Size = UDim2.new(0, 60, 0, 60),
 		TextScaled = true,
-		Text = props.toolName,
 		[React.Event.Activated] = props.onActivated,
 	}, {
 		React.createElement("UITextSizeConstraint", {
-			MaxTextSize = 18,
+			MaxTextSize = constants.theme.textSize,
 		}),
 	}, {
 		React.createElement("UIPadding", {
-			PaddingBottom = UDim.new(0, 5),
-			PaddingLeft = UDim.new(0, 5),
-			PaddingRight = UDim.new(0, 5),
-			PaddingTop = UDim.new(0, 5),
+			PaddingBottom = constants.theme.padding,
+			PaddingLeft = constants.theme.padding,
+			PaddingRight = constants.theme.padding,
+			PaddingTop = constants.theme.padding,
 		}),
 	}, {
 		React.createElement("ImageLabel", {
@@ -33,29 +42,35 @@ local function SlotButton(props: {
 			Size = UDim2.new(1, 0, 1, 0),
 		}, {
 			React.createElement("UICorner", {
-				CornerRadius = UDim.new(0, 3),
+				CornerRadius = constants.theme.cornerRadiusSmall,
 			}),
 		}),
 	}, {
 		React.createElement("UICorner", {
-			CornerRadius = UDim.new(0, 8),
+			CornerRadius = constants.theme.cornerRadius,
 		}),
 	}, {
 		React.createElement("TextLabel", {
+			TextColor3 = constants.theme.textColor,
+			TextSize = constants.theme.textSizeSmall,
+			TextStrokeColor3 = constants.theme.textStrokeColor,
+			TextStrokeTransparency = constants.theme.textStrokeTransparency,
+			Font = constants.theme.fontSmall,
+			Text = props.slotNumber,
 			BackgroundTransparency = 1,
 			Position = UDim2.new(0, 0, 0, 0),
 			Size = UDim2.new(1, 0, 1, 0),
 			TextXAlignment = Enum.TextXAlignment.Left,
 			TextYAlignment = Enum.TextYAlignment.Top,
-			Text = props.slotNumber,
 		}, {
 			React.createElement("UICorner", {
-				CornerRadius = UDim.new(0, 3),
+				CornerRadius = constants.theme.cornerRadiusSmall,
 			}),
 		}, {
 			React.createElement("UIStroke", {
 				ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-				Thickness = 5,
+				Thickness = constants.theme.thickness,
+				Color = constants.theme.equippedColor,
 				Enabled = props.equipped,
 			}),
 		}),
