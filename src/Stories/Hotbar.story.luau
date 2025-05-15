@@ -1,3 +1,5 @@
+--!strict
+
 local React = require("../Packages/React")
 local ReactRoblox = require("../Packages/ReactRoblox")
 

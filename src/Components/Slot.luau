@@ -1,6 +1,6 @@
-local React = require("../Packages/React")
+--!strict
 
-local Theme = require("../Theme")
+local React = require("../Packages/React")
 
 local function SlotButton(props: {
 	toolName: string,
