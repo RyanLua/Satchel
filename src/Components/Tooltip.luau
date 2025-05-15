@@ -1,26 +1,33 @@
 --!strict
 
 local React = require("../Packages/React")
+local constants = require("../Constants")
 
 local function TooltipTextBox(props: {
 	text: string,
 })
 	return React.createElement("TextLabel", {
 		Text = props.text,
-		TextSize = 15,
+		TextSize = constants.theme.textSizeSmall,
+		TextColor3 = constants.theme.textColor,
+		TextStrokeColor3 = constants.theme.textStrokeColor,
+		TextStrokeTransparency = constants.theme.textStrokeTransparency,
+		Font = constants.theme.font,
+		BackgroundColor3 = constants.theme.tooltipBackgroundColor,
+		BackgroundTransparency = constants.theme.tooltipBackgroundTransparency,
 		AnchorPoint = Vector2.new(0.5, 1),
 		Position = UDim2.new(0.5, 0, 0, -10),
 		AutomaticSize = Enum.AutomaticSize.XY,
 	}, {
 		React.createElement("UICorner", {
-			CornerRadius = UDim.new(0, 4),
+			CornerRadius = constants.theme.cornerRadiusSmall,
 		}),
 	}, {
 		React.createElement("UIPadding", {
-			PaddingTop = UDim.new(0, 4),
-			PaddingLeft = UDim.new(0, 4),
-			PaddingRight = UDim.new(0, 4),
-			PaddingBottom = UDim.new(0, 4),
+			PaddingTop = constants.theme.padding,
+			PaddingLeft = constants.theme.padding,
+			PaddingRight = constants.theme.padding,
+			PaddingBottom = constants.theme.padding,
 		}),
 	})
 end

@@ -7,7 +7,7 @@ local function HotbarFrame(props: {
 })
 	return React.createElement("Frame", {
 		AutomaticSize = Enum.AutomaticSize.XY,
-		-- BackgroundTransparency = 1,
+		BackgroundTransparency = 1,
 	}, {
 		React.createElement("UIListLayout", {
 			Padding = UDim.new(0, 5),

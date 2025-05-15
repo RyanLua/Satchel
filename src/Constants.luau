@@ -14,12 +14,14 @@ return {
 
 		-- Colors
 		backgroundColor = Color3.fromRGB(25, 27, 29),
+		tooltipBackgroundColor = Color3.fromRGB(25, 27, 29),
 		textColor = Color3.fromRGB(255, 255, 255),
 		textStrokeColor = Color3.fromRGB(0, 0, 0),
 		equippedColor = Color3.fromRGB(255, 255, 255),
 
 		-- Transparency
 		backgroundTransparency = 0.3,
+		tooltipBackgroundTransparency = 0,
 		textStrokeTransparency = 0.5,
 	},
 }
