@@ -10,8 +10,6 @@ local function TooltipTextBox(props: {
 		Text = props.text,
 		TextSize = constants.theme.textSizeSmall,
 		TextColor3 = constants.theme.textColor,
-		TextStrokeColor3 = constants.theme.textStrokeColor,
-		TextStrokeTransparency = constants.theme.textStrokeTransparency,
 		Font = constants.theme.font,
 		BackgroundColor3 = constants.theme.tooltipBackgroundColor,
 		BackgroundTransparency = constants.theme.tooltipBackgroundTransparency,
