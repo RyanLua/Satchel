@@ -20,7 +20,7 @@ local function SlotButton(props: {
 		TextStrokeTransparency = constants.theme.textStrokeTransparency,
 		Font = constants.theme.font,
 		BackgroundTransparency = if props.locked then 0 else constants.theme.backgroundTransparency,
-		Text = props.toolName or "",
+		Text = if props.textureIcon then "" else props.toolName or "",
 		Size = UDim2.new(0, 60, 0, 60),
 		TextScaled = true,
 		[React.Event.Activated] = props.onActivated,
