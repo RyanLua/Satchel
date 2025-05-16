@@ -1,7 +1,5 @@
 --!strict
 
-local UserInputService = game:GetService("UserInputService")
-
 local React = require("../Packages/React")
 
 local function SlotButton(props: {
