@@ -4,13 +4,13 @@ local React = require("../Packages/React")
 local constants = require("../Constants")
 
 local function SlotButton(props: {
-	toolName: string,
-	textureIcon: string,
-	tooltip: string,
-	slotNumber: string,
-	locked: boolean,
-	equipped: boolean,
-	onActivated: () -> (),
+	toolName: string?,
+	textureIcon: string?,
+	tooltip: string?,
+	slotNumber: string?,
+	locked: boolean?,
+	equipped: boolean?,
+	onActivated: (() -> ())?,
 })
 	return React.createElement("TextButton", {
 		BackgroundColor3 = constants.theme.backgroundColor,
@@ -20,7 +20,7 @@ local function SlotButton(props: {
 		TextStrokeTransparency = constants.theme.textStrokeTransparency,
 		Font = constants.theme.font,
 		BackgroundTransparency = if props.locked then 0 else constants.theme.backgroundTransparency,
-		Text = props.toolName,
+		Text = props.toolName or "",
 		Size = UDim2.new(0, 60, 0, 60),
 		TextScaled = true,
 		[React.Event.Activated] = props.onActivated,
@@ -38,7 +38,7 @@ local function SlotButton(props: {
 	}, {
 		React.createElement("ImageLabel", {
 			BackgroundTransparency = 1,
-			Image = props.textureIcon,
+			Image = props.textureIcon or "",
 			Size = UDim2.new(1, 0, 1, 0),
 		}, {
 			React.createElement("UICorner", {
@@ -56,7 +56,7 @@ local function SlotButton(props: {
 			TextStrokeColor3 = constants.theme.textStrokeColor,
 			TextStrokeTransparency = constants.theme.textStrokeTransparency,
 			Font = constants.theme.fontSmall,
-			Text = props.slotNumber,
+			Text = props.slotNumber or "",
 			BackgroundTransparency = 1,
 			Position = UDim2.new(0, 0, 0, 0),
 			Size = UDim2.new(1, 0, 1, 0),
@@ -71,7 +71,7 @@ local function SlotButton(props: {
 				ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
 				Thickness = constants.theme.thickness,
 				Color = constants.theme.equippedColor,
-				Enabled = props.equipped,
+				Enabled = props.equipped or false,
 			}),
 		}),
 	})
