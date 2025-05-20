@@ -4,7 +4,7 @@ local React = require("../Packages/React")
 local constants = require("../Constants")
 
 local function BackgroundFrame(props: {
-	Size : UDim2,
+	Size: UDim2,
 	child: () -> (),
 })
 	return React.createElement("Frame", {
