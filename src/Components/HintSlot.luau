@@ -3,15 +3,16 @@
 local React = require("../Packages/React")
 
 local function SlotButton(props: {
+	IsTenFootInterface: boolean?,
 	LayoutOrder: number?,
 	image: string,
 })
 	return React.createElement("ImageLabel", {
 		LayoutOrder = props.LayoutOrder or -1,
-		Image = props.image,
+		Image = if props.IsTenFootInterface then props.image:gsub("(%.png)$", "@2x%1") else props.image,
 		ScaleType = Enum.ScaleType.Fit,
 		BackgroundTransparency = 1,
-		Size = UDim2.new(0, 60, 0, 37),
+		Size = if props.IsTenFootInterface then UDim2.new(0, 100, 0, 73) else UDim2.new(0, 60, 0, 37),
 	})
 end
 
