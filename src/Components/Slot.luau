@@ -4,6 +4,7 @@ local React = require("../Packages/React")
 local constants = require("../Constants")
 
 local function SlotButton(props: {
+	IsTenFootInterface: boolean?,
 	toolName: string?,
 	textureIcon: string?,
 	tooltip: string?,
@@ -21,12 +22,12 @@ local function SlotButton(props: {
 		Font = constants.theme.font,
 		BackgroundTransparency = if props.locked then 0 else constants.theme.backgroundTransparency,
 		Text = if props.textureIcon then "" else props.toolName or "",
-		Size = UDim2.new(0, 60, 0, 60),
+		Size = if props.IsTenFootInterface then UDim2.new(0, 100, 0, 100) else UDim2.new(0, 60, 0, 60),
 		TextScaled = true,
 		[React.Event.Activated] = props.onActivated,
 	}, {
 		React.createElement("UITextSizeConstraint", {
-			MaxTextSize = constants.theme.textSize,
+			MaxTextSize = if props.IsTenFootInterface then constants.theme.textSizeLarge else constants.theme.textSize,
 		}),
 	}, {
 		React.createElement("UIPadding", {
@@ -52,7 +53,7 @@ local function SlotButton(props: {
 	}, {
 		React.createElement("TextLabel", {
 			TextColor3 = constants.theme.textColor,
-			TextSize = constants.theme.textSizeSmall,
+			TextSize = if props.IsTenFootInterface then constants.theme.textSize else constants.theme.textSizeSmall,
 			TextStrokeColor3 = constants.theme.textStrokeColor,
 			TextStrokeTransparency = constants.theme.textStrokeTransparency,
 			Font = constants.theme.fontSmall,

@@ -6,6 +6,7 @@ local ReactRoblox = require("../Packages/ReactRoblox")
 local Slot = require("../Components/Slot")
 
 local controls = {
+	IsTenFootInterface = false,
 	toolName = "Tool name",
 	textureIcon = "rbxasset://textures/ui/GuiImagePlaceholder.png",
 	slotNumber = "0",
@@ -24,6 +25,7 @@ return {
 	controls = controls,
 	story = function(props: Props)
 		return React.createElement(Slot, {
+			IsTenFootInterface = props.controls.IsTenFootInterface,
 			toolName = props.controls.toolName,
 			slotNumber = props.controls.slotNumber,
 			textureIcon = props.controls.textureIcon,

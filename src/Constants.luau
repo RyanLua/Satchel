@@ -11,6 +11,7 @@ return {
 		font = Enum.Font.BuilderSansMedium,
 		fontSmall = Enum.Font.BuilderSansExtraBold,
 		textSize = 18,
+		textSizeLarge = 24,
 		textSizeSmall = 14,
 
 		-- Colors
