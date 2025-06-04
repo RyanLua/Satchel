@@ -89,5 +89,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
 </div>
 
+<iframe src="https://discord.com/widget?id=1162303282002272359" width=100% height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
 *[MPL-2.0]: Mozilla Public License 2.0
 *[VR]: Virtual reality
