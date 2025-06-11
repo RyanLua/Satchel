@@ -1,3 +1,5 @@
+--!strict
+
 --[[
 	Name: Satchel
 	Description: Loads the Satchel backpack system.
@@ -10,8 +12,4 @@
 	file, You can obtain one at Mozilla Public License Version 2.0.
 ]]
 
-local Satchel = script:WaitForChild("Satchel")
-local TestEZ = require(Satchel.DevPackages:WaitForChild("testez"))
-
-require(Satchel) -- Initialize Satchel
-TestEZ.TestBootstrap:run({ Satchel }) -- Run Tests
+require(script.Parent) -- Run Satchel
