@@ -1,5 +1,5 @@
 name: Report a bug
-description: File a bug report.
+description: Something is not working correctly
 labels: ["bug"]
 body:
   - type: input
