@@ -1,0 +1,28 @@
+{
+  "ClassName": "Camera",
+  "Properties": {
+    "CFrame": [
+      0, 3, 0,
+      -1, 1.50995803e-07, 6.60023616e-15,
+      0, -4.37113883e-08, 1,
+      1.50995803e-07, 1, 4.37113883e-08
+    ]
+  },
+  "Children": [
+    {
+      "ClassName": "Part",
+      "Properties": {
+        "Size": [4, 1, 4]
+      },
+      "Children": [
+        {
+          "ClassName": "Decal",
+          "Properties": {
+            "Face": "Top",
+            "Texture": "rbxassetid://18139994576"
+          }
+        }
+      ]
+    }
+  ]
+}
