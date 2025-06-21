@@ -1,5 +1,5 @@
-local module = {}
+local RunService = game:GetService("RunService")
 
-print("💼 Running Satchel v2.0.0 by WinnersTakesAll")
-
-return module
+if not RunService:IsStudio() then
+	print("💼 Running Satchel v2.0.0 by WinnersTakesAll")
+end
