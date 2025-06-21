@@ -1,34 +1,42 @@
-return {
-	theme = {
+--!strict
+
+--[[
+	Constants for variables.
+--]]
+
+local Constants = {
+	Theme = {
 		-- Spacing
-		thickness = 5,
-		padding = UDim.new(0, 5),
-		paddingLarge = UDim.new(0, 8),
-		cornerRadius = UDim.new(0, 8),
-		cornerRadiusSmall = UDim.new(0, 3), -- padding - cornerRadius
+		Thickness = 5,
+		Padding = UDim.new(0, 5),
+		PaddingLarge = UDim.new(0, 8),
+		CornerRadius = UDim.new(0, 8),
+		CornerRadiusSmall = UDim.new(0, 3), -- padding - cornerRadius
 
 		-- Font
-		font = Enum.Font.BuilderSansMedium,
-		fontSmall = Enum.Font.BuilderSansExtraBold,
-		textSize = 18,
-		textSizeLarge = 24,
-		textSizeSmall = 14,
+		Font = Enum.Font.BuilderSansMedium,
+		FontSmall = Enum.Font.BuilderSansExtraBold,
+		TextSize = 18,
+		TextSizeLarge = 24,
+		TextSizeSmall = 14,
 
 		-- Colors
-		backgroundColor = Color3.fromRGB(25, 27, 29),
-		tooltipBackgroundColor = Color3.fromRGB(38, 40, 48),
-		containerStrokeColor = Color3.fromRGB(255, 255, 255),
-		textColor = Color3.fromRGB(255, 255, 255),
-		textStrokeColor = Color3.fromRGB(0, 0, 0),
-		containerTextColor = Color3.fromRGB(255, 255, 255),
-		equippedColor = Color3.fromRGB(255, 255, 255),
+		BackgroundColor = Color3.fromRGB(25, 27, 29),
+		TooltipBackgroundColor = Color3.fromRGB(38, 40, 48),
+		ContainerStrokeColor = Color3.fromRGB(255, 255, 255),
+		TextColor = Color3.fromRGB(255, 255, 255),
+		TextStrokeColor = Color3.fromRGB(0, 0, 0),
+		ContainerTextColor = Color3.fromRGB(255, 255, 255),
+		EquippedColor = Color3.fromRGB(255, 255, 255),
 
 		-- Transparency
-		backgroundTransparency = 0.3,
-		containerBackgroundTransparency = 0.2,
-		tooltipBackgroundTransparency = 0,
-		textStrokeTransparency = 0.5,
-		containerTextTransparency = 0.5,
-		containerStrokeTransparency = 0.8,
+		BackgroundTransparency = 0.3,
+		ContainerBackgroundTransparency = 0.2,
+		TooltipBackgroundTransparency = 0,
+		TextStrokeTransparency = 0.5,
+		ContainerTextTransparency = 0.5,
+		ContainerStrokeTransparency = 0.8,
 	},
 }
+
+return Constants

@@ -1,7 +1,7 @@
 --!strict
 
 local React = require("../Packages/React")
-local constants = require("../Constants")
+local Constants = require("../Constants")
 
 local function ContainerFrame(props: {
 	Size: UDim2,
@@ -9,17 +9,17 @@ local function ContainerFrame(props: {
 })
 	return React.createElement("Frame", {
 		Size = props.Size,
-		BackgroundTransparency = constants.theme.containerBackgroundTransparency,
-		BackgroundColor3 = constants.theme.backgroundColor,
+		BackgroundTransparency = Constants.Theme.ContainerBackgroundTransparency,
+		BackgroundColor3 = Constants.Theme.BackgroundColor,
 	}, {
 		React.createElement("UICorner", {
-			CornerRadius = constants.theme.cornerRadiusSmall,
+			CornerRadius = Constants.Theme.CornerRadiusSmall,
 		}),
 	}, {
 		React.createElement("UIStroke", {
 			ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-			Color = constants.theme.containerStrokeColor,
-			Transparency = constants.theme.containerStrokeTransparency,
+			Color = Constants.Theme.ContainerStrokeColor,
+			Transparency = Constants.Theme.ContainerStrokeTransparency,
 		}),
 	})
 end

@@ -1,7 +1,7 @@
 --!strict
 
 local React = require("../Packages/React")
-local constants = require("../Constants")
+local Constants = require("../Constants")
 
 local function SlotButton(props: {
 	IsTenFootInterface: boolean?,
@@ -14,27 +14,27 @@ local function SlotButton(props: {
 	onActivated: (() -> ())?,
 })
 	return React.createElement("TextButton", {
-		BackgroundColor3 = constants.theme.backgroundColor,
-		TextColor3 = constants.theme.textColor,
-		TextSize = constants.theme.textSize,
-		TextStrokeColor3 = constants.theme.textStrokeColor,
-		TextStrokeTransparency = constants.theme.textStrokeTransparency,
-		Font = constants.theme.font,
-		BackgroundTransparency = if props.locked then 0 else constants.theme.backgroundTransparency,
+		BackgroundColor3 = Constants.Theme.BackgroundColor,
+		TextColor3 = Constants.Theme.TextColor,
+		TextSize = Constants.Theme.TextSize,
+		TextStrokeColor3 = Constants.Theme.TextStrokeColor,
+		TextStrokeTransparency = Constants.Theme.TextStrokeTransparency,
+		Font = Constants.Theme.Font,
+		BackgroundTransparency = if props.locked then 0 else Constants.Theme.BackgroundTransparency,
 		Text = if props.textureIcon then "" else props.toolName or "",
 		Size = if props.IsTenFootInterface then UDim2.new(0, 100, 0, 100) else UDim2.new(0, 60, 0, 60),
 		TextScaled = true,
 		[React.Event.Activated] = props.onActivated,
 	}, {
 		React.createElement("UITextSizeConstraint", {
-			MaxTextSize = if props.IsTenFootInterface then constants.theme.textSizeLarge else constants.theme.textSize,
+			MaxTextSize = if props.IsTenFootInterface then Constants.Theme.TextSizeLarge else Constants.Theme.TextSize,
 		}),
 	}, {
 		React.createElement("UIPadding", {
-			PaddingBottom = constants.theme.padding,
-			PaddingLeft = constants.theme.padding,
-			PaddingRight = constants.theme.padding,
-			PaddingTop = constants.theme.padding,
+			PaddingBottom = Constants.Theme.Padding,
+			PaddingLeft = Constants.Theme.Padding,
+			PaddingRight = Constants.Theme.Padding,
+			PaddingTop = Constants.Theme.Padding,
 		}),
 	}, {
 		React.createElement("ImageLabel", {
@@ -43,20 +43,20 @@ local function SlotButton(props: {
 			Size = UDim2.new(1, 0, 1, 0),
 		}, {
 			React.createElement("UICorner", {
-				CornerRadius = constants.theme.cornerRadiusSmall,
+				CornerRadius = Constants.Theme.CornerRadiusSmall,
 			}),
 		}),
 	}, {
 		React.createElement("UICorner", {
-			CornerRadius = constants.theme.cornerRadius,
+			CornerRadius = Constants.Theme.CornerRadius,
 		}),
 	}, {
 		React.createElement("TextLabel", {
-			TextColor3 = constants.theme.textColor,
-			TextSize = if props.IsTenFootInterface then constants.theme.textSize else constants.theme.textSizeSmall,
-			TextStrokeColor3 = constants.theme.textStrokeColor,
-			TextStrokeTransparency = constants.theme.textStrokeTransparency,
-			Font = constants.theme.fontSmall,
+			TextColor3 = Constants.Theme.TextColor,
+			TextSize = if props.IsTenFootInterface then Constants.Theme.TextSize else Constants.Theme.TextSizeSmall,
+			TextStrokeColor3 = Constants.Theme.TextStrokeColor,
+			TextStrokeTransparency = Constants.Theme.TextStrokeTransparency,
+			Font = Constants.Theme.FontSmall,
 			Text = props.slotNumber or "",
 			BackgroundTransparency = 1,
 			Position = UDim2.new(0, 0, 0, 0),
@@ -65,13 +65,13 @@ local function SlotButton(props: {
 			TextYAlignment = Enum.TextYAlignment.Top,
 		}, {
 			React.createElement("UICorner", {
-				CornerRadius = constants.theme.cornerRadiusSmall,
+				CornerRadius = Constants.Theme.CornerRadiusSmall,
 			}),
 		}, {
 			React.createElement("UIStroke", {
 				ApplyStrokeMode = Enum.ApplyStrokeMode.Border,
-				Thickness = constants.theme.thickness,
-				Color = constants.theme.equippedColor,
+				Thickness = Constants.Theme.Thickness,
+				Color = Constants.Theme.EquippedColor,
 				Enabled = props.equipped or false,
 			}),
 		}),

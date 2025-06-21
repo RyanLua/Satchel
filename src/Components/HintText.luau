@@ -1,7 +1,7 @@
 --!strict
 
 local React = require("../Packages/React")
-local constants = require("../Constants")
+local Constants = require("../Constants")
 
 local function SlotButton(props: {
 	LayoutOrder: number?,
@@ -25,11 +25,11 @@ local function SlotButton(props: {
 		React.createElement("TextLabel", {
 			AutomaticSize = Enum.AutomaticSize.X,
 			Position = UDim2.new(0, 42, 0, 0),
-			Font = constants.theme.font,
-			TextColor3 = constants.theme.textColor,
+			Font = Constants.Theme.Font,
+			TextColor3 = Constants.Theme.TextColor,
 			BackgroundTransparency = 1,
 			Text = props.text,
-			TextSize = constants.theme.textSize,
+			TextSize = Constants.Theme.TextSize,
 			Size = UDim2.new(0, 0, 1, 0),
 		}),
 	})
