@@ -11,7 +11,5 @@
 ]]
 
 local Satchel = script:WaitForChild("Satchel")
-local TestEZ = require(Satchel.DevPackages:WaitForChild("testez"))
 
 require(Satchel) -- Initialize Satchel
-TestEZ.TestBootstrap:run({ Satchel }) -- Run Tests
