@@ -10,7 +10,4 @@ exclude = ["**"]
 include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
 
 [dependencies]
-topbarplus = "1foreverhd/topbarplus@3.2.4"
-
-[dev-dependencies]
-testez = "roblox/testez@0.4.1"
+topbarplus = "1foreverhd/topbarplus@3.2.5"
