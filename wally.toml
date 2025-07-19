@@ -6,8 +6,7 @@ license = "MPL-2.0"
 authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
-exclude = ["**"]
-include = ["src/*", "Packages/*", "default.project.json", "wally.lock", "wally.toml"]
+exclude = ["assets", "docs", "tests", "LICENSE.txt", "mkdocs.yml", "README.md", "requirements.txt", "rokit.toml", "selene.toml", "test.project.json"]
 
 [dependencies]
 topbarplus = "1foreverhd/topbarplus@3.2.5"
