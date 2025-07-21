@@ -6,7 +6,7 @@
 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
 	"features": {
-		"ghcr.io/ryanlua/features/rojo:0.2.0": {
+		"ghcr.io/ryanlua/features/rojo:0.2.1": {
 			"version": "latest",
 			"toolchainManager": "rokit"
 		},
