@@ -48,7 +48,7 @@
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip install mkdocs-material && rokit install --force && wally install",
+	"postCreateCommand": "pip install mkdocs-material && rokit install --no-trust-check && wally install",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root"
