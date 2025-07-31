@@ -137,9 +137,9 @@ Satchel fully supports all platforms which includes computer, tablet, phone, con
 ## 📖 Documentation
 
 > [!NOTE]
-> Visit the [Satchel documentation website](https://satchel.ryanluu.dev) to learn about Satchel.
+> Visit the [Satchel documentation website](https://satchel.luau.page) to learn about Satchel.
 
-Satchel has it's very own [documentation site](https://satchel.ryanluu.dev) you can visit. Find guides on how to get started and documentation.
+Satchel has it's very own [documentation site](https://satchel.luau.page) you can visit. Find guides on how to get started and documentation.
 
 <details>
 
