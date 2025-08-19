@@ -7,7 +7,6 @@ copyright: Copyright &copy; Ryan Luu
 
 theme:
   name: material
-  custom_dir: docs/overrides
   features:
     - content.code.copy
     - content.tooltips
@@ -36,6 +35,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+  icon:
+    repo: fontawesome/brands/github
   favicon: assets/favicon.svg
   logo: assets/logo.svg
 
@@ -43,23 +44,19 @@ plugins:
   - search
 
 extra:
-  # generator: false
-  # version:
-  #   provider: mike
   social:
     - icon: simple/github
       link: https://github.com/RyanLua/Satchel
       name: GitHub
+    - icon: simple/roblox
+      link: https://www.roblox.com/games/13592168150
+      name: Roblox
     - icon: simple/robloxstudio
       link: https://devforum.roblox.com/t/2451549
       name: DevForum
     - icon: simple/discord
       link: https://discord.gg/N2KEnHzrsW
       name: Discord
-  analytics:
-    provider: google
-    property: PPVP56SBQQ
-edit_uri: edit/main/docs/
 
 markdown_extensions:
   - admonition
