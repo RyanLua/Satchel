@@ -40,12 +40,11 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
-  favicon: favicon.svg
-  logo: logo.svg
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
-  language: en
+  favicon: assets/favicon.svg
+  logo: assets/logo.svg
 
 plugins:
   - search
