@@ -1,8 +1,5 @@
 site_name: Satchel Documentation
 site_url: https://satchel.luau.page
-site_author: Ryan Luu
-site_description: Documentation for the Satchel, a modern open-source alternative to Roblox's default backpack.
-
 repo_name: RyanLua/Satchel
 repo_url: https://github.com/RyanLua/Satchel
 
@@ -84,14 +81,11 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
-  - Home:
-    - Home: index.md
-    - Introduction: introduction.md
-    - Installation: installation.md
-    - Usage: usage.md
-    - Platforms: platforms.md
-    - Benchmarks: benchmarks.md
-    - Alternatives: alternatives.md
-    - API Reference: api-reference.md
-  - Sponsor: sponsor.md
-  - Contributing: contributing.md
+  - Home: index.md
+  - Introduction: introduction.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Platforms: platforms.md
+  - Benchmarks: benchmarks.md
+  - Alternatives: alternatives.md
+  - API Reference: api-reference.md
