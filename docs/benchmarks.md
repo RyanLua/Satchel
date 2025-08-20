@@ -1,6 +1,4 @@
 ---
-title: Benchmarks
-description: Satchel benchmarks on performance and speed.
 icon: material/speedometer
 ---
 

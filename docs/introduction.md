@@ -1,6 +1,4 @@
 ---
-title: Introduction
-description: Learn about Satchel and why you should use Satchel over other backpack systems.
 icon: material/star-outline
 ---
 

@@ -1,6 +1,4 @@
 ---
-title: API Reference
-description: Satchel is a reskin of the default BackpackGui. Satchel acts very similar to the default backpack and is based on a fork on the default backpack.
 icon: material/book-outline
 ---
 

@@ -1,6 +1,4 @@
 ---
-title: Installation
-description: Use of Satchel very easy. Highly customizable using instance attributes and with scripting support.
 icon: material/download-outline
 ---
 

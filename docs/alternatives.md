@@ -1,6 +1,4 @@
 ---
-title: Alternatives
-description: Alternatives to Satchel along with pros and cons.
 icon: material/card-multiple-outline
 ---
 
