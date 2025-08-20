@@ -20,7 +20,7 @@ Satchel is a reskin of the default BackpackGui located in [CoreGui](https://crea
 
 This code sample makes a TextButton that toggles the inventory when clicked.
 
-```lua title="Toggle Satchel" linenums="1"
+```lua title="Toggle Satchel"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
@@ -39,7 +39,7 @@ end)
 
 This code sample detects when the inventory is opened or closed.
 
-```lua title="Detect Inventory State" linenums="1"
+```lua title="Detect Inventory State"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
@@ -177,7 +177,7 @@ Returns whether the inventory is opened or not.
 
 This code sample will return whether the inventory is opened or not.
 
-```lua title="Is Opened" linenums="1"
+```lua title="Is Opened"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
@@ -200,7 +200,7 @@ Sets whether the backpack gui is enabled or disabled.
 
 This code sample will disable the backpack gui.
 
-```lua title="Disable Backpack" linenums="1"
+```lua title="Disable Backpack"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
@@ -232,7 +232,7 @@ Returns whether the backpack gui is enabled or disabled.
 
 This code sample will return whether the backpack gui is enabled or disabled.
 
-```lua title="Get Backpack Enabled" linenums="1"
+```lua title="Get Backpack Enabled"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 
@@ -255,7 +255,7 @@ Returns a signal that fires when the inventory is opened or closed.
 
 This code sample detects when the inventory is opened or closed.
 
-```lua title="Detect Inventory State" linenums="1"
+```lua title="Detect Inventory State"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
 

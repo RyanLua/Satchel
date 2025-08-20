@@ -64,7 +64,7 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
 6. In a [`LocalScript`](https://create.roblox.com/docs/reference/engine/classes/LocalScript) under [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts), require Satchel from the installation location of Wally. Default is `ReplicatedStorage.Packages`.
 
-```lua title="LocalScript" linenums="1"
+```lua title="LocalScript"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Satchel = ReplicatedStorage.Packages.Satchel -- Make sure this points to where Satchel is
 
