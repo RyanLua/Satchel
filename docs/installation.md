@@ -4,57 +4,57 @@ icon: material/download-outline
 
 Installing Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with no configuration needed.
 
+!!! tip
+
+    While Satchel can run anywhere because it uses [RunContext], it is recommeneded to parent Satchel to [`ReplicatedStorage`][ReplicatedStorage] for best practices and organizational reasons.
+
+  [RunContext]: https://devforum.roblox.com/t/1938784
+  [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
+
 ## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
 
-1. Get the Satchel module from the [Creator Store].
+1. Get the **Satchel** model from the [Creator Store].
 
-    ![Creator Store](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/CreatorMarketplace.png){ width="100%" }
+    ![Creator Store](assets/creator-store.png){ width="100%" }
 
 1. Open Roblox Studio and create a new place or open an existing place.
 
-1. Open or locate the [Toolbox].
+1. From the [View] tab, open the [Toolbox] and select the **Inventory** tab.
 
     ![View Tab Toolbox](https://prod.docsiteassets.roblox.com/assets/studio/general/View-Tab-Toolbox.png)
 
-1. Open your [Inventory] from the [Toolbox].
+    ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png)
 
-    ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png){ width="50%" }
+1. Locate the **Satchel** model and click it, or drag-and-drop it into the 3D view.
 
-1. Search for `Satchel` created by `WinnersTakesAll` and click on it.
+    ![Toolbox](assets/store-card.png)
 
-    ![Toolbox](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/MarketplaceCard.png)
-
-1. Insert `Satchel` into the [Explorer] and drag it into [StarterPlayerScripts].
-
-    ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7){ width="50%" }
+1. In the [Explorer] window, move the **Satchel** model into [`ReplicatedStorage`][ReplicatedStorage].
 
   [Creator Store]: https://create.roblox.com/store/asset/13947506401
-  [Inventory]: https://create.roblox.com/docs/studio/toolbox#inventory
+  [View]: https://create.roblox.com/docs/studio/view-tab
+  [Toolbox]: https://create.roblox.com/docs/projects/assets/toolbox
   [Explorer]: https://create.roblox.com/docs/studio/explorer
-  [Toolbox]: https://create.roblox.com/docs/studio/toolbox
-  [StarterPlayerScripts]: https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts
 
 ## GitHub Releases
 
-1. Download the `Satchel.rbxmx` file from [Releases].
+1. Download the `Satchel.rbxm` or `Satchel.rbxmx` model file from [GitHub Releases].
 
-    ![GitHub Release](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/GitHubReleases.png){ width="75%" }
+    !!! info
+
+        Binary (`.rbxm`) and XML (`.rbxmx`) model files contain the exact same model. `.rbxm` is a smaller file size to download.
+
+    ![GitHub Release](assets/github-releases.png)
 
 1. Open Roblox Studio and create a new place or open an existing place.
 
-1. Go to [Explorer] and right-click on [`StarterPlayerScripts`][StarterPlayerScripts] and click on `Insert from file...`.
+1. In the [Explorer] window, insert **Satchel** into [`ReplicatedStorage`][ReplicatedStorage].
 
-    ![Insert From File](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/InsertFromFile.png){ width="75%" }
+    ![Contextual menu](https://prod.docsiteassets.roblox.com/assets/studio/explorer/Context-Menu-Service.png){ width="50%" }
 
-1. Select the `Satchel.rbxmx` you downloaded from GitHub and click `Open`.
+1. Select the **Satchel** model file you downloaded from GitHub.
 
-    ![Upload File](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SelectFile.png){ width="75%" }
-
-1. Ensure that `Satchel`is in [StarterPlayerScripts].
-
-    ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7){ width="50%" }
-
-  [Releases]: https://github.com/RyanLua/Satchel/releases
+  [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
 
 ## Wally
 
