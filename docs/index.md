@@ -28,11 +28,11 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Install Satchel from the [Creator Marketplace] or [GitHub Releases] in less than 10 minutes
+    Install Satchel from the [Creator Store] or [GitHub Releases] in less than 10 minutes
 
     [:material-arrow-right: Installation](installation.md)
 
-  [Creator Marketplace]: https://create.roblox.com/marketplace/asset/13947506401
+  [Creator Store]: https://create.roblox.com/store/asset/13947506401
   [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
 
 - :material-devices:{ .lg .middle } __Full device support__

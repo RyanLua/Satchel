@@ -6,9 +6,9 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
 ## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
 
-1. Get the Satchel module from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401).
+1. Get the Satchel module from the [Creator Store].
 
-    ![Creator Marketplace](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/CreatorMarketplace.png){ width="100%" }
+    ![Creator Store](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/CreatorMarketplace.png){ width="100%" }
 
 1. Open Roblox Studio and create a new place or open an existing place.
 
@@ -28,6 +28,7 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
     ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7){ width="50%" }
 
+  [Creator Store]: https://create.roblox.com/store/asset/13947506401
   [Inventory]: https://create.roblox.com/docs/studio/toolbox#inventory
   [Explorer]: https://create.roblox.com/docs/studio/explorer
   [Toolbox]: https://create.roblox.com/docs/studio/toolbox
@@ -65,7 +66,7 @@ You are expected to already have Wally setup in your Rojo project and basic know
 
     ``` toml title="wally.toml"
     [dependencies]
-    satchel = "ryanlua/satchel@1.3.2"
+    satchel = "ryanlua/satchel@1.0.0"
     ```
 
 1. Install Satchel from Wally by running `wally install`.
