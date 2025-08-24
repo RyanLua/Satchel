@@ -6,7 +6,9 @@ Satchel isn't the best backpack system out there or the only one but it does off
 
 ## NeoHotbar
 
-[Neobar](https://avafe.me/NeoHotbar/) is a modern hotbar-only system that acts as a great alternative to Satchel if you are looking for a hotbar only. Made on a strong foundation and well-built, [Neobar](https://avafe.me/NeoHotbar/) is a powerful tool with unparalleled customization and API.
+[Neobar] is a modern hotbar-only system that acts as a great alternative to Satchel if you are looking for a hotbar only. Made on a strong foundation and well-built, [Neobar] is a powerful tool with unparalleled customization and API.
+
+  [Neobar]: https://avafe.me/NeoHotbar/
 
 ### Pros
 
@@ -23,7 +25,9 @@ Satchel isn't the best backpack system out there or the only one but it does off
 
 ## ReInvent
 
-[ReInvent](https://devforum.roblox.com/t/1822656) is an older-style hotbar and inventory system that is made completely separate from the backpack core scripts. [ReInvent](https://devforum.roblox.com/t/1822656) is no longer supported and lacks proper documentation and developer-facing APIs.
+[ReInvent] is an older-style hotbar and inventory system that is made completely separate from the backpack core scripts. [ReInvent] is no longer supported and lacks proper documentation and developer-facing APIs.
+
+  [ReInvent]: https://devforum.roblox.com/t/1822656
 
 ### Pros
 
@@ -39,7 +43,9 @@ Satchel isn't the best backpack system out there or the only one but it does off
 
 ## dispeller's Open Source Inv
 
-[dispeller's Open Source Inv](https://devforum.roblox.com/t/405675) is a primitive and simple backpack system but lacks major features and support. Confusing to develop with and not developer-friendly.
+[dispeller's Open Source Inv] is a primitive and simple backpack system but lacks major features and support. Confusing to develop with and not developer-friendly.
+
+  [dispeller's Open Source Inv]: https://devforum.roblox.com/t/405675
 
 ### Pros
 

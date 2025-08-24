@@ -28,9 +28,12 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Install Satchel from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401) or [GitHub Releases](https://github.com/RyanLua/Satchel/releases) in less than 10 minutes
+    Install Satchel from the [Creator Marketplace] or [GitHub Releases] in less than 10 minutes
 
     [:material-arrow-right: Installation](installation.md)
+
+  [Creator Marketplace]: https://create.roblox.com/marketplace/asset/13947506401
+  [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
 
 - :material-devices:{ .lg .middle } __Full device support__
 
@@ -44,17 +47,23 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
+    Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes]
 
     [:material-arrow-right: Customization](usage.md#customization)
+
+  [instance attributes]: https://create.roblox.com/docs/studio/instance-attributes
 
 - :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
 
     ---
 
-    Open source and licensed under the Mozilla Public License Version 2.0. Available on [GitHub](https://github.com/RyanLua/Satchel)
+    Open source and licensed under the Mozilla Public License Version 2.0. Available on [GitHub]
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
+
+  [GitHub]: https://github.com/RyanLua/Satchel
+
+*[MPL-2.0]: Mozilla Public License 2.0
 
 - :material-lightning-bolt-outline:{ .lg .middle } __Blazingly performant and lightweight__
 
@@ -75,6 +84,3 @@ This documentation will allow you to install Satchel and learn about how to scri
 </div>
 
 <iframe src="https://discord.com/widget?id=1162303282002272359" width=100% height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-
-*[MPL-2.0]: Mozilla Public License 2.0
-*[VR]: Virtual reality

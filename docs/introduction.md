@@ -6,7 +6,9 @@ Welcome to Satchel, if you don't know already, Satchel acts as a modern refresh 
 
 Satchel and its documentation is always a work in progress but you can help too. Learn how to change the code for Satchel or just click the edit documentation icon and fix some grammar.
 
-Just want to use Satchel? Check out [Installation](installation.md).
+Just want to use Satchel? Check out [Installation].
+
+  [Installation]: installation.md
 
 ## Improvements
 
