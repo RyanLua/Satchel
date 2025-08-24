@@ -2,25 +2,32 @@
 // README at: https://github.com/ryanlua/templates/tree/main/src/roblox
 {
 	"name": "Roblox",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfil
 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
 	"features": {
-		"ghcr.io/ryanlua/features/rojo:0.2.1": {},
+		"ghcr.io/ryanlua/features/rojo:0.2.1": {
+			"version": "latest",
+			"toolchainManager": "rokit"
+		},
 		"ghcr.io/devcontainers/features/python:1": {}
 	},
 
 	// Configure tool-specific properties.
 	"customizations": {
 		// Configure properties specific to VS Code.
+		"codespaces": {
+			"openFiles": [
+				"src/init.luau"
+			]
+		},
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"kampfkarren.selene-vscode",
 				"johnnymorganz.stylua",
 				"johnnymorganz.luau-lsp",
-				"DavidAnson.vscode-markdownlint",
-				"redhat.vscode-yaml"
+				"DavidAnson.vscode-markdownlint"
 			]
 		}
 	},
@@ -41,7 +48,7 @@
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip install mkdocs-material --break-system-packages && rokit install --no-trust-check && wally install",
+	"postCreateCommand": "pip install mkdocs-material && rokit install --no-trust-check && wally install",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root"
