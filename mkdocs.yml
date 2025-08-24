@@ -53,6 +53,11 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.superfences
+  - material.extensions.preview:
+      configurations:
+        - targets:
+            include:
+              - "*"
   - toc:
       permalink: true
       toc_depth: 3
