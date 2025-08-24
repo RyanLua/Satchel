@@ -28,7 +28,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Install Satchel from the [Creator Store] or [GitHub Releases] in less than 10 minutes
+    Drag and drop installation from the [Creator Store] or [GitHub Releases]
 
     [:material-arrow-right: Installation](installation.md)
 
@@ -39,7 +39,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Compatible with computers, phones, tablets, consoles, and VR. Input-based UI allows the UI to adapt to input rather than device in real time.
+    Compatible with computer, phone, tablet, console, and VR
 
     [:material-arrow-right: Platforms](platforms.md)
 
@@ -47,39 +47,21 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes]
+    Change colors, fonts, and more using [instance attributes]
 
     [:material-arrow-right: Customization](usage.md#customization)
 
   [instance attributes]: https://create.roblox.com/docs/studio/instance-attributes
 
-- :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
+- :material-scale-balance:{ .lg .middle } __Free and open-source__
 
     ---
 
-    Open source and licensed under the Mozilla Public License Version 2.0. Available on [GitHub]
+    Open source for everyone to use and available on [GitHub]
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
   [GitHub]: https://github.com/RyanLua/Satchel
-
-*[MPL-2.0]: Mozilla Public License 2.0
-
-- :material-lightning-bolt-outline:{ .lg .middle } __Blazingly performant and lightweight__
-
-    ---
-
-    Built for speed and ultra-lightweight. Satchel is takes less than 0.1 MB of space and is as fast, if not faster than the default backpack.
-
-    [:material-arrow-right: Benchmarks](benchmarks.md)
-
-- :material-sync:{ .lg .middle } __Rojo sync compatibility__
-
-    ---
-
-    Compatible with Rojo. Easily add to your Rojo projects or contribute. Distributed through Wally or Git Submodules.
-
-    [:material-arrow-right: Rojo](https://rojo.space/)
 
 </div>
 
