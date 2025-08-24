@@ -62,7 +62,7 @@ You are expected to already have Wally setup in your Rojo project and basic know
 
 1. Open your Rojo project in the code editor of your choice.
 
-1. In the `wally.toml` file, add the [latest Wally version for Purse][Wally]. Your dependencies should look similar to this:
+1. In the `wally.toml` file, add the [latest Wally version for Satchel][Wally]. Your dependencies should look similar to this:
 
     ``` toml title="wally.toml"
     [dependencies]
