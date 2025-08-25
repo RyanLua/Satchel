@@ -39,15 +39,13 @@ More attributes can be found in the [API Reference]. The list above is not exhau
 
 Satchel offers methods and events for scripting purposes. In the below code example we will use the `SetBackpackEnabled` method to disable the Satchel. The script expects the Satchel module to be in [`ReplicatedStorage`][ReplicatedStorage].
 
-``` lua title="LocalScript"
+``` lua title="Disable Backpack"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Satchel = require(ReplicatedStorage.Satchel)
 
-Satchel.SetBackpackEnabled(false) -- (1)!
+Satchel.SetBackpackEnabled(false)
 ```
-
-1. Disable Satchel using the [SetBackpackEnabled] method.
 
 For the full API reference, see [API Reference] for more details on attributes, methods, and events for Satchel and how to use Satchel to it's full potential.
 

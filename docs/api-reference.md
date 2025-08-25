@@ -176,18 +176,6 @@ Determines the transparency of the text stroke of text in default chat window an
 
 Returns whether the inventory is opened or not.
 
-#### Code Samples
-
-This code sample will return whether the inventory is opened or not.
-
-``` lua title="Is Opened"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Satchel = require(ReplicatedStorage.Satchel)
-
-local isOpened = Satchel.IsOpened()
-```
-
 #### Returns
 
 <table>
@@ -232,18 +220,6 @@ Satchel.SetBackpackEnabled(false)
 ### GetBackpackEnabled
 
 Returns whether the backpack gui is enabled or disabled.
-
-#### Code Samples
-
-This code sample will return whether the backpack gui is enabled or disabled.
-
-``` lua title="Get Backpack Enabled"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Satchel = require(ReplicatedStorage.Satchel)
-
-local isEnabled = Satchel.GetBackpackEnabled()
-```
 
 #### Returns
 
