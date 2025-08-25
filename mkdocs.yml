@@ -33,6 +33,8 @@ theme:
   logo: assets/logo.svg
 
 extra:
+  version:
+    provider: mike
   social:
     - icon: simple/github
       link: https://github.com/RyanLua/Satchel
