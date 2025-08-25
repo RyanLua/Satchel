@@ -75,11 +75,11 @@ Special thanks for our sponsors for supporting Satchel and it's future developme
 
 <div class="mdx-premium" markdown>
 
-[![Do Big Studios]{ style="height: 120px" }](https://www.dobiggames.com/){ target=_blank title="Do Big Studios" }
+[![Do Big Studios](assets/sponsors/do-big-light.png#only-light){ style="height: 65px" }](https://www.dobigstudios.com/){ target=_blank title="Do Big Studios" }
+[![Do Big Studios](assets/sponsors/do-big-dark.png#only-dark){ style="height: 65px" }](https://www.dobigstudios.com/){ target=_blank title="Do Big Studios" }
 
 </div>
 
-  [Do Big Studios]: https://www.dobiggames.com/_next/image?url=%2Ficon.png&w=128&q=75
 
 [:material-heart: Sponsor Satchel][sponsor]{ .md-button .md-button--primary }
 
