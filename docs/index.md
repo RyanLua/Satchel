@@ -80,7 +80,6 @@ Special thanks for our sponsors for supporting Satchel and it's future developme
 
 </div>
 
-
 [:material-heart: Sponsor Satchel][sponsor]{ .md-button .md-button--primary }
 
   [sponsor]: https://github.com/sponsors/RyanLua "Become a sponsor"
