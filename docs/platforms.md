@@ -28,7 +28,7 @@ Support for Apple iPhone 5 (568 x 320px) or newer.
 
 * 568 x 320px minimum display size
 * Mobile interface
-* 5 hotbar slots
+* 6 hotbar slots
 
 ### Tablet
 
@@ -36,7 +36,7 @@ Support for Apple iPad 2 (1024 x 768px) or newer.
 
 * 1024 x 768px minimum display size
 * Mobile interface
-* 10 or 5 hotbar slots (Depending on display size)
+* 10 or 6 hotbar slots (Depending on display size)
 
 ### Console
 
@@ -53,4 +53,4 @@ VR including Valve Index, Meta Quest 2 and above, and similar.
 * Adapted mobile interface
 * Controller context hint UI
 * Custom VR inventory controls
-* 5 hotbar slots
+* 6 hotbar slots
