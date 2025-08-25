@@ -66,3 +66,21 @@ This documentation will allow you to install Satchel and learn about how to scri
 </div>
 
 <iframe src="https://discord.com/widget?id=1162303282002272359" width=100% height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+---
+
+## Our Sponsors
+
+Special thanks for our sponsors for supporting Satchel and it's future development. We distribute Satchel and provide updates for free, for anyone to use or modify.
+
+<div class="mdx-premium" markdown>
+
+[![Do Big Studios]{ style="height: 120px" }](https://www.dobiggames.com/){ target=_blank title="Do Big Studios" }
+
+</div>
+
+  [Do Big Studios]: https://www.dobiggames.com/_next/image?url=%2Ficon.png&w=128&q=75
+
+[:material-heart: Sponsor Satchel][sponsor]{ .md-button .md-button--primary }
+
+  [sponsor]: https://github.com/sponsors/RyanLua

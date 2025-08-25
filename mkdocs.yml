@@ -9,6 +9,7 @@ theme:
   name: material
   features:
     - content.code.copy
+    - content.tooltips
     - navigation.footer
     - navigation.top
   palette:
@@ -48,6 +49,9 @@ extra:
     - icon: simple/discord
       link: https://discord.gg/N2KEnHzrsW
       name: Discord
+
+extra_css:
+  - stylesheets/extra.css
 
 markdown_extensions:
   - abbr
