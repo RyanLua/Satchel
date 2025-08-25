@@ -8,8 +8,8 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
     While Satchel can run anywhere because it uses [RunContext], it is recommeneded to parent Satchel to [`ReplicatedStorage`][ReplicatedStorage] for best practices and organizational reasons.
 
-  [RunContext]: https://devforum.roblox.com/t/1938784
-  [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
+      [RunContext]: https://devforum.roblox.com/t/1938784
+      [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
 
 ## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
 

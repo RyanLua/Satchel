@@ -48,11 +48,7 @@ Support for Xbox and PlayStation. Specialized ten-foot interface and hint UI for
 
 ### VR
 
-!!! danger
-
-    Do not use Satchel on production VR experiences. Support is not guaranteed. Report bugs under the VR platform.
-
-Experimental support for VR including Valve Index, Meta Quest 2 and above, and similar.
+VR including Valve Index, Meta Quest 2 and above, and similar.
 
 * Adapted mobile interface
 * Controller context hint UI
