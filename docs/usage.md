@@ -41,7 +41,8 @@ Satchel offers methods and events for scripting purposes. In the below code exam
 
 ``` lua title="LocalScript"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.SetBackpackEnabled(false) -- (1)!
 ```

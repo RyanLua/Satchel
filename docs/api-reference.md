@@ -21,9 +21,10 @@ Satchel is a reskin of the default BackpackGui located in [CoreGui]. Satchel act
 
 This code sample makes a TextButton that toggles the inventory when clicked.
 
-```lua title="Toggle Satchel"
+``` lua title="Toggle Satchel"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 local button = Instance.new("TextButton")
 button.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -40,9 +41,10 @@ end)
 
 This code sample detects when the inventory is opened or closed.
 
-```lua title="Detect Inventory State"
+``` lua title="Detect Inventory State"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
     if isOpened then
@@ -178,9 +180,10 @@ Returns whether the inventory is opened or not.
 
 This code sample will return whether the inventory is opened or not.
 
-```lua title="Is Opened"
+``` lua title="Is Opened"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 local isOpened = Satchel.IsOpened()
 ```
@@ -201,9 +204,10 @@ Sets whether the backpack gui is enabled or disabled.
 
 This code sample will disable the backpack gui.
 
-```lua title="Disable Backpack"
+``` lua title="Disable Backpack"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.SetBackpackEnabled(false)
 ```
@@ -233,9 +237,10 @@ Returns whether the backpack gui is enabled or disabled.
 
 This code sample will return whether the backpack gui is enabled or disabled.
 
-```lua title="Get Backpack Enabled"
+``` lua title="Get Backpack Enabled"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 local isEnabled = Satchel.GetBackpackEnabled()
 ```
@@ -256,9 +261,10 @@ Returns a signal that fires when the inventory is opened or closed.
 
 This code sample detects when the inventory is opened or closed.
 
-```lua title="Detect Inventory State"
+``` lua title="Detect Inventory State"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
     if isOpened then
