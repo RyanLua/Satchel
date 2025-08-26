@@ -49,6 +49,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -1285,18 +1287,6 @@
 <h2 id="methods_1">Methods<a class="headerlink" data-preview="" href="#methods_1" title="Permanent link">&para;</a></h2>
 <h3 id="isopened">IsOpened<a class="headerlink" data-preview="" href="#isopened" title="Permanent link">&para;</a></h3>
 <p>Returns whether the inventory is opened or not.</p>
-<h4 id="code-samples_1">Code Samples<a class="headerlink" data-preview="" href="#code-samples_1" title="Permanent link">&para;</a></h4>
-<p>This code sample will return whether the inventory is opened or not.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Is Opened</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">Satchel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="p">(</span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="py">Satchel</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">isOpened</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Satchel</span><span class="p">.</span><span class="nf">IsOpened</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
 <h4 id="returns">Returns<a class="headerlink" data-preview="" href="#returns" title="Permanent link">&para;</a></h4>
 <table>
     <tr>
@@ -1306,7 +1296,7 @@
 
 <h3 id="setbackpackenabled">SetBackpackEnabled<a class="headerlink" data-preview="" href="#setbackpackenabled" title="Permanent link">&para;</a></h3>
 <p>Sets whether the backpack gui is enabled or disabled.</p>
-<h4 id="code-samples_2">Code Samples<a class="headerlink" data-preview="" href="#code-samples_2" title="Permanent link">&para;</a></h4>
+<h4 id="code-samples_1">Code Samples<a class="headerlink" data-preview="" href="#code-samples_1" title="Permanent link">&para;</a></h4>
 <p>This code sample will disable the backpack gui.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Disable Backpack</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1335,18 +1325,6 @@
 
 <h3 id="getbackpackenabled">GetBackpackEnabled<a class="headerlink" data-preview="" href="#getbackpackenabled" title="Permanent link">&para;</a></h3>
 <p>Returns whether the backpack gui is enabled or disabled.</p>
-<h4 id="code-samples_3">Code Samples<a class="headerlink" data-preview="" href="#code-samples_3" title="Permanent link">&para;</a></h4>
-<p>This code sample will return whether the backpack gui is enabled or disabled.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Get Backpack Enabled</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">Satchel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="p">(</span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="py">Satchel</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">isEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Satchel</span><span class="p">.</span><span class="nf">GetBackpackEnabled</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
 <h4 id="returns_2">Returns<a class="headerlink" data-preview="" href="#returns_2" title="Permanent link">&para;</a></h4>
 <table>
     <tr>
@@ -1356,7 +1334,7 @@
 
 <h3 id="getstatechangedevent">GetStateChangedEvent<a class="headerlink" data-preview="" href="#getstatechangedevent" title="Permanent link">&para;</a></h3>
 <p>Returns a signal that fires when the inventory is opened or closed.</p>
-<h4 id="code-samples_4">Code Samples<a class="headerlink" data-preview="" href="#code-samples_4" title="Permanent link">&para;</a></h4>
+<h4 id="code-samples_2">Code Samples<a class="headerlink" data-preview="" href="#code-samples_2" title="Permanent link">&para;</a></h4>
 <p>This code sample detects when the inventory is opened or closed.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Detect Inventory State</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -1509,7 +1487,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.26099bd0.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tooltips", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.26099bd0.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.f55ec18e.min.js"></script>

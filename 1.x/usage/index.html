@@ -51,6 +51,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -619,13 +621,13 @@
 </ul>
 <p>More attributes can be found in the <a data-preview="" href="../api-reference/">API Reference</a>. The list above is not exhaustive and there are may more attributes available for customization.</p>
 <figure>
-<p><img alt="Instance Attributes" src="https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74" />
+<p><img alt="Instance Attributes" src="../assets/attributes-example.png" />
   </p>
 <figcaption>Example of customization using instance attributes</figcaption>
 </figure>
 <h3 id="scripting">Scripting<a class="headerlink" data-preview="" href="#scripting" title="Permanent link">&para;</a></h3>
 <p>Satchel offers methods and events for scripting purposes. In the below code example we will use the <code>SetBackpackEnabled</code> method to disable the Satchel. The script expects the Satchel module to be in <a href="https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage"><code>ReplicatedStorage</code></a>.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">LocalScript</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Disable Backpack</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
 <span class="normal">4</span>
@@ -633,11 +635,8 @@
 
 <span class="kd">local</span><span class="w"> </span><span class="nv">Satchel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="p">(</span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="py">Satchel</span><span class="p">)</span>
 
-<span class="nv">Satchel</span><span class="p">.</span><span class="nf">SetBackpackEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="c1">-- (1)!</span>
+<span class="nv">Satchel</span><span class="p">.</span><span class="nf">SetBackpackEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<ol>
-<li>Disable Satchel using the <a data-preview="" href="../api-reference/#setbackpackenabled">SetBackpackEnabled</a> method.</li>
-</ol>
 <p>For the full API reference, see <a data-preview="" href="../api-reference/">API Reference</a> for more details on attributes, methods, and events for Satchel and how to use Satchel to it's full potential.</p>
 
 
@@ -778,7 +777,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.26099bd0.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "content.tooltips", "navigation.footer", "navigation.top"], "search": "../assets/javascripts/workers/search.26099bd0.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.f55ec18e.min.js"></script>
