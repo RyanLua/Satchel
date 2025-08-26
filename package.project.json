@@ -1,0 +1,16 @@
+{
+  "name": "PurseLoader",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$path": "models",
+    "Purse": {
+      "$path": "Linking.luau",
+      "Packages": {
+        "$path": "Packages",
+        "purse": {
+          "$path": "src"
+        }
+      }
+    }
+  }
+}

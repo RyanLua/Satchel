@@ -1,0 +1,22 @@
+{
+  "name": "Develop Purse",
+  "emitLegacyScripts": false,
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "PurseLoader": {
+        "$path": "models",
+        "Purse": {
+          "$path": "Linking.luau",
+          "Packages": {
+            "$path": "Packages",
+            "purse": {
+              "$path": "src"
+            }
+          }
+        }
+      }
+    }
+  }
+}
