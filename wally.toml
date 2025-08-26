@@ -7,7 +7,7 @@ authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
 exclude = ["**"]
-include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
+include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json", "LICENSE", "README.md"]
 
 [dependencies]
 topbarplus = "1foreverhd/topbarplus@3.2.5"
