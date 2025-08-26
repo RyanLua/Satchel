@@ -8,7 +8,7 @@
 
   [![CI](https://github.com/RyanLua/Satchel/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanLua/Satchel/actions/workflows/ci.yml)
   [![GitHub Release](https://img.shields.io/github/v/release/RyanLua/Satchel)](https://github.com/RyanLua/Satchel/releases)
-  [![Docs](https://img.shields.io/badge/docs-website-green.svg)](https://satchel.luau.page/)
+  [![Docs](https://img.shields.io/badge/docs-website-green)](https://satchel.luau.page/)
   [![Playground](https://img.shields.io/badge/playground-experience-blue)](https://www.roblox.com/games/13592168150)
   [![Discord](https://discord.com/api/guilds/1162303282002272359/widget.png)](https://discord.gg/N2KEnHzrsW)
 </div>
@@ -22,11 +22,9 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 ## 📖 Documentation
 
-To get started with Satchel, go to our [documentation site](https://satchel.luau.page).
+See the [documentation site](https://satchel.luau.page) for more about Satchel. Find guides on how to get started, learn about the API, understand what Satchel is, and more.
 
-## 🙏 Contributing
-
-We welcome all contributions from the community. See the [contributing guidelines](.github/CONTRIBUTING.md) for details.
+If you see anything wrong, open a new [documentation issue](https://github.com/RyanLua/Satchel/issues/new?template=documentation_issue.yml).
 
 ## ❤️ Sponsors
 
@@ -47,6 +45,10 @@ Special thanks for our sponsors for supporting Satchel and it's future developme
 <br>
 
 [Become a sponsor](https://github.com/sponsors/RyanLua)
+
+## 🙏 Contributing
+
+We welcome all contributions from the community. See the [contributing guidelines](.github/CONTRIBUTING.md) for details.
 
 ## 📃 License
 
