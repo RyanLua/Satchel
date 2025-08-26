@@ -1,17 +1,17 @@
 {
-  "name": "Develop Purse",
+  "name": "Develop Satchel",
   "emitLegacyScripts": false,
   "tree": {
     "$className": "DataModel",
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
-      "PurseLoader": {
+      "SatchelLoader": {
         "$path": "models",
-        "Purse": {
-          "$path": "Linking.luau",
+        "Satchel": {
+          "$path": "Loader.luau",
           "Packages": {
             "$path": "Packages",
-            "purse": {
+            "satchel": {
               "$path": "src"
             }
           }

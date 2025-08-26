@@ -1,13 +1,13 @@
 {
-  "name": "PurseLoader",
+  "name": "SatchelLoader",
   "emitLegacyScripts": false,
   "tree": {
     "$path": "models",
-    "Purse": {
-      "$path": "Linking.luau",
+    "Satchel": {
+      "$path": "Loader.luau",
       "Packages": {
         "$path": "Packages",
-        "purse": {
+        "satchel": {
           "$path": "src"
         }
       }

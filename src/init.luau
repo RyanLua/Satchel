@@ -154,7 +154,7 @@ local GAMEPAD_INPUT_TYPES: { [Enum.UserInputType]: boolean } =
 -- Topbar logic
 local BackpackEnabled: boolean = true
 
-local Icon: any = require(script.Packages:WaitForChild("topbarplus"))
+local Icon: any = require(script.Parent.topbarplus)
 
 local inventoryIcon: any = Icon.new()
 	:setName("Inventory")
