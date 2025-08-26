@@ -9,6 +9,10 @@ on:
       - "docs/**"
       - "mkdocs.yml"
 
+env:
+  VERSION: 1.x
+  ALIAS: "latest"
+
 permissions:
   contents: write
 
@@ -43,8 +47,21 @@ jobs:
 
       - run: sudo apt-get install pngquant
 
-      - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git
+      - run: pip install git+https://${GH_TOKEN}@github.com/squidfunk/mkdocs-material-insiders.git mike
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - run: mkdocs gh-deploy --force
+      - name: Fetch gh-pages branch
+        run: git fetch origin gh-pages --depth=1
+
+      - name: Deploy latest documentation
+        if: env.ALIAS == 'release'
+        run: mike deploy $VERSION latest --update-aliases --branch gh-pages
+
+      - name: Set default version to latest
+        if: env.ALIAS == 'release'
+        run: mike set-default latest --branch gh-pages --push
+
+      - name: Deploy developer documentation
+        if: env.ALIAS == 'dev'
+        run: mike deploy $VERSION --update-aliases --branch gh-pages --push
