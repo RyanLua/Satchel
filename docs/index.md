@@ -8,7 +8,7 @@ Satchel aims to be more customizable and easier to use than the default backpack
 
 This documentation will allow you to install Satchel and learn about how to script using Satchel.
 
-<video
+<!-- <video
   controls
   muted
   preload="metadata"
@@ -18,11 +18,11 @@ This documentation will allow you to install Satchel and learn about how to scri
   Sorry, your browser doesn't support embedded videos, but don't worry, you can
   <a href="https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5">download it</a>
   and watch it with your favorite video player!
-</video>
+</video> -->
 
-<!-- <div style="position:relative;padding-top:56.25%;">
+<div style="position:relative;padding-top:56.25%;">
   <iframe width=100% height=100% src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=pml_j4MqaixKv5ZN&disablekb=1&fs=0" frameborder="0" style="position:absolute;top:0;"></iframe>
-</div> -->
+</div>
 
 ---
 
