@@ -31,7 +31,7 @@ More attributes can be found in the [API Reference]. The list above is not exhau
   [instance attributes]: https://create.roblox.com/docs/studio/instance-attributes
 
 <figure markdown>
-  ![Instance Attributes](https://github.com/RyanLua/Satchel/assets/80087248/a115e388-de55-4cfa-9c41-63b117df4b74)
+  ![Instance Attributes](assets/attributes-example.png)
   <figcaption>Example of customization using instance attributes</figcaption>
 </figure>
 
