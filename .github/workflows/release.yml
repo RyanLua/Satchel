@@ -8,6 +8,10 @@ on:
         required: true
         type: string
 
+env:
+  OUTPUT_NAME: Satchel
+  BUILD_PROJECT: package.project.json
+
 permissions:
   contents: write
   discussions: write
@@ -27,8 +31,8 @@ jobs:
       - name: Build using Rojo
         run: |
           mkdir builds
-          rojo build --output builds/Purse.rbxm package.project.json
-          rojo build --output builds/Purse.rbxmx package.project.json
+          rojo build --output builds/$OUTPUT_NAME.rbxm $BUILD_PROJECT
+          rojo build --output builds/$OUTPUT_NAME.rbxmx $BUILD_PROJECT
 
       - name: Archive build files
         uses: actions/upload-artifact@v4
