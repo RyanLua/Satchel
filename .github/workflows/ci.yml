@@ -1,13 +1,10 @@
 name: CI
 
 on:
-  workflow_dispatch:
-
   push:
-    paths-ignore:
-      - "**"
-      - "!.github/workflows/ci.ya?ml"
-      - "!**.luau"
+    paths:
+      - ".github/workflows/ci.yml"
+      - "**.luau"
 
 permissions:
   contents: read
