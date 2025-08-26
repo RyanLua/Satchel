@@ -1,6 +1,4 @@
 ---
-title: Platforms
-description: Satchel supports all platforms that Roblox supports. Computers, phones, tablets, consoles, and VR are all supported by Satchel right out of the box.
 icon: material/devices
 ---
 
@@ -8,7 +6,9 @@ We support all platforms that Roblox supports. Computers, phones, tablets, conso
 
 !!! note
 
-    Do you see a bug specific to a platform? [Open a bug report](https://github.com/RyanLua/Satchel/issues/new) we'll look into it.
+    Do you see a bug specific to a platform? [Open a bug report] we'll look into it.
+
+      [Open a bug report]: https://github.com/RyanLua/Satchel/issues/new
 
 ## Current supported devices
 
@@ -28,7 +28,7 @@ Support for Apple iPhone 5 (568 x 320px) or newer.
 
 * 568 x 320px minimum display size
 * Mobile interface
-* 5 hotbar slots
+* 6 hotbar slots
 
 ### Tablet
 
@@ -36,7 +36,7 @@ Support for Apple iPad 2 (1024 x 768px) or newer.
 
 * 1024 x 768px minimum display size
 * Mobile interface
-* 10 or 5 hotbar slots (Depending on display size)
+* 10 or 6 hotbar slots (Depending on display size)
 
 ### Console
 
@@ -48,13 +48,9 @@ Support for Xbox and PlayStation. Specialized ten-foot interface and hint UI for
 
 ### VR
 
-!!! danger
-
-    Do not use Satchel on production VR experiences. Support is not guaranteed. Report bugs under the VR platform.
-
-Experimental support for VR including Valve Index, Meta Quest 2 and above, and similar.
+VR including Valve Index, Meta Quest 2 and above, and similar.
 
 * Adapted mobile interface
 * Controller context hint UI
 * Custom VR inventory controls
-* 5 hotbar slots
+* 6 hotbar slots

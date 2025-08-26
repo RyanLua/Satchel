@@ -1,6 +1,4 @@
 ---
-title: API Reference
-description: Satchel is a reskin of the default BackpackGui. Satchel acts very similar to the default backpack and is based on a fork on the default backpack.
 icon: material/book-outline
 ---
 
@@ -14,15 +12,19 @@ icon: material/book-outline
     }
 </style>
 
-Satchel is a reskin of the default BackpackGui located in [CoreGui](https://create.roblox.com/docs/reference/engine/classes/CoreGui). Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the [Backpack](https://create.roblox.com/docs/reference/engine/classes/Backpack).
+Satchel is a reskin of the default BackpackGui located in [CoreGui]. Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the [Backpack].
+
+  [CoreGui]: https://create.roblox.com/docs/reference/engine/classes/CoreGui
+  [Backpack]: https://create.roblox.com/docs/reference/engine/classes/Backpack
 
 #### Code Samples
 
 This code sample makes a TextButton that toggles the inventory when clicked.
 
-```lua title="Toggle Satchel" linenums="1"
+``` lua title="Toggle Satchel"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 local button = Instance.new("TextButton")
 button.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -39,9 +41,10 @@ end)
 
 This code sample detects when the inventory is opened or closed.
 
-```lua title="Detect Inventory State" linenums="1"
+``` lua title="Detect Inventory State"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
     if isOpened then
@@ -173,17 +176,6 @@ Determines the transparency of the text stroke of text in default chat window an
 
 Returns whether the inventory is opened or not.
 
-#### Code Samples
-
-This code sample will return whether the inventory is opened or not.
-
-```lua title="Is Opened" linenums="1"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
-
-local isOpened = Satchel.IsOpened()
-```
-
 #### Returns
 
 <table>
@@ -200,9 +192,10 @@ Sets whether the backpack gui is enabled or disabled.
 
 This code sample will disable the backpack gui.
 
-```lua title="Disable Backpack" linenums="1"
+``` lua title="Disable Backpack"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.SetBackpackEnabled(false)
 ```
@@ -228,17 +221,6 @@ Satchel.SetBackpackEnabled(false)
 
 Returns whether the backpack gui is enabled or disabled.
 
-#### Code Samples
-
-This code sample will return whether the backpack gui is enabled or disabled.
-
-```lua title="Get Backpack Enabled" linenums="1"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
-
-local isEnabled = Satchel.GetBackpackEnabled()
-```
-
 #### Returns
 
 <table>
@@ -255,9 +237,10 @@ Returns a signal that fires when the inventory is opened or closed.
 
 This code sample detects when the inventory is opened or closed.
 
-```lua title="Detect Inventory State" linenums="1"
+``` lua title="Detect Inventory State"
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = require(ReplicatedStorage:WaitForChild("Satchel"))
+
+local Satchel = require(ReplicatedStorage.Satchel)
 
 Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
     if isOpened then

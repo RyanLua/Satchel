@@ -1,7 +1,0 @@
-﻿# Requirements for core
-mkdocs
-mkdocs-material
-
-# Requirements for social
-cairosvg
-pillow
