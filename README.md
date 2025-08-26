@@ -8,7 +8,7 @@
 
   [![CI](https://github.com/RyanLua/Satchel/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanLua/Satchel/actions/workflows/ci.yml)
   [![GitHub Release](https://img.shields.io/github/v/release/RyanLua/Satchel)](https://github.com/RyanLua/Satchel/releases)
-  [![Docs](https://img.shields.io/badge/docs-website-green.svg)](https://satchel.luau.page/)
+  [![Docs](https://img.shields.io/badge/docs-website-green)](https://satchel.luau.page/)
   [![Playground](https://img.shields.io/badge/playground-experience-blue)](https://www.roblox.com/games/13592168150)
   [![Discord](https://discord.com/api/guilds/1162303282002272359/widget.png)](https://discord.gg/N2KEnHzrsW)
 </div>
