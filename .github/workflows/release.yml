@@ -3,25 +3,10 @@ name: Create Release
 on:
   workflow_dispatch:
     inputs:
-      draft:
-          description: 'This release will be saved as a draft and not published.'
-          default: false
-          required: false
-          type: boolean
-      prerelease:
-        description: 'This release will be labeled as non-production ready.'
-        default: false
-        required: false
-        type: boolean
       tag_name:
-        description: 'Choose an existing tag, or create a new tag when you publish this release.'
+        description: 'Tag name'
         required: true
         type: string
-      make_latest:
-        description: 'This release will be labeled as the latest for this repository.'
-        default: true
-        required: false
-        type: boolean
 
 permissions:
   contents: write
@@ -31,24 +16,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
       - name: Setup Rokit
         uses: CompeyDev/setup-rokit@v0.1.2
 
       - name: Setup Wally
-        env:
-          WALLY_AUTH_TOKEN: ${{ secrets.WALLY_AUTH_TOKEN }}
-        run: |
-          wally login --token "$WALLY_AUTH_TOKEN"
-          wally install
+        run: wally install
 
       - name: Build using Rojo
         run: |
           mkdir builds
-          rojo build --output builds/Satchel.rbxm default.project.json
-          rojo build --output builds/Satchel.rbxmx default.project.json
+          rojo build --output builds/Purse.rbxm package.project.json
+          rojo build --output builds/Purse.rbxmx package.project.json
 
       - name: Archive build files
         uses: actions/upload-artifact@v4
@@ -56,14 +36,12 @@ jobs:
           name: release-file-builds
           path: builds/
           if-no-files-found: error
-          compression-level: 9
 
   release:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
 
       - name: Setup Rokit
         uses: CompeyDev/setup-rokit@v0.1.2
@@ -85,12 +63,10 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: builds/
+          files: builds/*
           generate_release_notes: true
           tag_name: ${{ inputs.tag_name }}
-          draft: ${{ inputs.draft }}
-          prerelease: ${{ inputs.prerelease }}
-          make_latest: ${{ inputs.make_latest }}
+          draft: true
 
       - name: Publish to Wally
         run: wally publish
