@@ -1,11 +1,7 @@
 {
-  "name": "satchel",
-  "servePort": 34872,
+  "name": "Satchel",
+  "emitLegacyScripts": false,
   "tree": {
-    "$path": "src",
-
-    "Packages": {
-      "$path": "Packages"
-    }
+    "$path": "src"
   }
 }
