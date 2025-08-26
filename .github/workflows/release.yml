@@ -10,7 +10,7 @@ on:
 
 env:
   OUTPUT_NAME: Satchel
-  BUILD_PROJECT: default.project.json
+  BUILD_PROJECT: package.project.json
 
 permissions:
   contents: write
