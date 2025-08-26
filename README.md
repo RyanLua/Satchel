@@ -196,4 +196,4 @@ When you contribute to Satchel you will be accredited for your contribution for 
 
 ## 📃 License
 
-Satchel is licensed under [Mozilla Public License 2.0](http://mozilla.org/MPL/2.0/). See [LICENSE.txt](LICENSE.txt) for details.
+Satchel is available under the Mozilla Public License 2.0 license. See [LICENSE.txt](LICENSE.txt) for details.
