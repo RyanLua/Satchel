@@ -2,15 +2,6 @@
   "name": "SatchelLoader",
   "emitLegacyScripts": false,
   "tree": {
-    "$path": "models",
-    "Satchel": {
-      "$path": "Loader.luau",
-      "Packages": {
-        "$path": "Packages",
-        "satchel": {
-          "$path": "src"
-        }
-      }
-    }
+    "$path": "models"
   }
 }
