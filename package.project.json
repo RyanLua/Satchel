@@ -1,7 +1,7 @@
 {
-  "name": "Satchel",
+  "name": "SatchelLoader",
   "emitLegacyScripts": false,
   "tree": {
-    "$path": "src"
+    "$path": "models"
   }
 }
