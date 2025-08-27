@@ -1,21 +1,6 @@
 ---
-title: Home
-description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
 icon: material/home-outline
-hide:
-  - feedback
 ---
-
-![Satchel](assets/satchel-black.svg#only-light)
-![Satchel](assets/satchel-white.svg#only-dark)
-
----
-
-<!-- ???+ abstract "Please don't scroll away"
-
-    Satchel needs your support for its future and development. We distribute Satchel and provide updates for free, for anyone to use or modify. Just know by donating, 100% goes towards the development and paying for the education of the maintainers. So please consider becoming a patron.
-
-    [Become a patron](https://patreon.com/RyanLuu){ .md-button } -->
 
 Satchel is a modern open-source alternative to Roblox's default backpack.
 
@@ -23,7 +8,7 @@ Satchel aims to be more customizable and easier to use than the default backpack
 
 This documentation will allow you to install Satchel and learn about how to script using Satchel.
 
-<video
+<!-- <video
   controls
   muted
   preload="metadata"
@@ -33,7 +18,11 @@ This documentation will allow you to install Satchel and learn about how to scri
   Sorry, your browser doesn't support embedded videos, but don't worry, you can
   <a href="https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5">download it</a>
   and watch it with your favorite video player!
-</video>
+</video> -->
+
+<div style="position:relative;padding-top:56.25%;">
+  <iframe width=100% height=100% src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=pml_j4MqaixKv5ZN&disablekb=1&fs=0" frameborder="0" style="position:absolute;top:0;"></iframe>
+</div>
 
 ---
 
@@ -43,15 +32,18 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Install Satchel from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401) or [GitHub Releases](https://github.com/RyanLua/Satchel/releases) in less than 10 minutes
+    Drag and drop installation from the [Creator Store] or [GitHub Releases]
 
     [:material-arrow-right: Installation](installation.md)
+
+  [Creator Store]: https://create.roblox.com/store/asset/13947506401
+  [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
 
 - :material-devices:{ .lg .middle } __Full device support__
 
     ---
 
-    Compatible with computers, phones, tablets, consoles, and VR. Input-based UI allows the UI to adapt to input rather than device in real time.
+    Compatible with computer, phone, tablet, console, and VR
 
     [:material-arrow-right: Platforms](platforms.md)
 
@@ -59,35 +51,39 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     ---
 
-    Change the colors, fonts, language, icons, and logo without having to open a script using [instance attributes](https://create.roblox.com/docs/studio/instance-attributes)
+    Change colors, fonts, and more using [instance attributes]
 
     [:material-arrow-right: Customization](usage.md#customization)
 
-- :material-scale-balance:{ .lg .middle } __Open Source, MPL-2.0__
+  [instance attributes]: https://create.roblox.com/docs/studio/instance-attributes
+
+- :material-scale-balance:{ .lg .middle } __Free and open-source__
 
     ---
 
-    Open source and licensed under the Mozilla Public License Version 2.0. Available on [GitHub](https://github.com/RyanLua/Satchel)
+    Open source for everyone to use and available on [GitHub]
 
     [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
 
-- :material-lightning-bolt-outline:{ .lg .middle } __Blazingly performant and lightweight__
-
-    ---
-
-    Built for speed and ultra-lightweight. Satchel is takes less than 0.1 MB of space and is as fast, if not faster than the default backpack.
-
-    [:material-arrow-right: Benchmarks](benchmarks.md)
-
-- :material-sync:{ .lg .middle } __Rojo sync compatibility__
-
-    ---
-
-    Compatible with Rojo. Easily add to your Rojo projects or contribute. Distributed through Wally or Git Submodules.
-
-    [:material-arrow-right: Rojo](https://rojo.space/)
+  [GitHub]: https://github.com/RyanLua/Satchel
 
 </div>
 
-*[MPL-2.0]: Mozilla Public License 2.0
-*[VR]: Virtual reality
+<iframe src="https://discord.com/widget?id=1162303282002272359" width=100% height="350" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
+---
+
+## Our Sponsors
+
+Special thanks for our sponsors for supporting Satchel and it's future development. We distribute Satchel and provide updates for free, for anyone to use or modify.
+
+<div class="mdx-premium" markdown>
+
+[![Do Big Studios](assets/sponsors/do-big-light.png#only-light){ style="height: 60px" }](https://www.dobigstudios.com/){ target=_blank title="Do Big Studios" }
+[![Do Big Studios](assets/sponsors/do-big-dark.png#only-dark){ style="height: 60px" }](https://www.dobigstudios.com/){ target=_blank title="Do Big Studios" }
+
+</div>
+
+[:material-heart: Sponsor Satchel][sponsor]{ .md-button .md-button--primary }
+
+  [sponsor]: https://github.com/sponsors/RyanLua "Become a sponsor"

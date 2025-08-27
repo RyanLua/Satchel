@@ -1,12 +1,9 @@
-.md-grid {
-    padding-left: env(safe-area-inset-left);
-    padding-right: env(safe-area-inset-right);
+.mdx-premium p {
+    margin: 4em 0;
+    text-align: center;
 }
 
-[dir=ltr] .md-sidebar--primary .md-sidebar__scrollwrap {
-    left: env(safe-area-inset-left);
-}
-
-[dir=rtl] .md-sidebar--primary .md-sidebar__scrollwrap {
-    right: env(safe-area-inset-right);
+/* Fix iframe background transparency */
+iframe {
+    color-scheme: light;
 }

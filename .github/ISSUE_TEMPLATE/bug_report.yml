@@ -1,10 +1,13 @@
 name: Report a bug
-description: File a bug report.
+description: Something is not working correctly
 labels: ["bug"]
 body:
-  - type: markdown
+  - type: input
+    id: version
     attributes:
-      value: Thanks for taking the time to fill out this issue!
+      label: Satchel version
+      description: What version does your bug occur on?
+      placeholder: 1.0.0
   - type: textarea
     id: description
     attributes:
@@ -37,61 +40,6 @@ body:
     id: logs
     attributes:
       label: Relevant log output
-      description: Please copy and paste any relevant log output.
-      placeholder: Add any relevant log output here. This includes any errors or warnings.
+      description: Any logs from the [Output window](https://create.roblox.com/docs/studio/output) or [Developer Console log](https://create.roblox.com/docs/studio/developer-console#log).
+      placeholder: 12:00:00.000  Hello world!  -  Client - Satchel:1
       render: lua
-  - type: textarea
-    id: other-details
-    attributes:
-      label: Other details
-      description: Is there anything else we should know or have?
-      placeholder: The bug is able to be only reproduced able this percent of the time
-  - type: input
-    id: version
-    attributes:
-      label: Version
-      description: What version does your bug occur on?
-      placeholder: 1.0.0
-  - type: dropdown
-    id: severity
-    attributes:
-      label: Severity
-      description: How severe is this bug?
-      options:
-        - Low
-        - Moderate
-        - High
-        - Critical
-  - type: dropdown
-    id: platforms
-    attributes:
-      label: Platforms affected
-      description: What platforms does this bug happen on?
-      multiple: true
-      options:
-        - Computer
-        - Tablet
-        - Phone
-        - Console
-        - VR
-  - type: dropdown
-    id: distribution
-    attributes:
-      label: Distribution variant
-      description: Where did you get Satchel from?
-      options:
-        - Roblox Developer Forum
-        - Creator Marketplace
-        - Satchel Playground
-        - ToolBlocks
-        - GitHub
-        - Wally
-        - Other
-  - type: checkboxes
-    id: terms
-    attributes:
-      label: Code of Conduct
-      description: This project has a Code of Conduct that all participants are expected to understand and follow.
-      options:
-        - label: I have read and agree to the project's [Code of Conduct](https://github.com/RyanLua/Satchel?tab=coc-ov-file)
-          required: true

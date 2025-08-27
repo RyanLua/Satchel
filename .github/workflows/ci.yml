@@ -1,13 +1,10 @@
-name: Continuous Integration
+name: CI
 
 on:
-  workflow_dispatch:
-
   push:
-    paths-ignore:
-      - "**"
-      - "!.github/workflows/ci.ya?ml"
-      - "!**.luau"
+    paths:
+      - ".github/workflows/ci.yml"
+      - "**.luau"
 
 permissions:
   contents: read
@@ -16,7 +13,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup Selene
         uses: CompeyDev/setup-rokit@v0.1.2
@@ -27,7 +24,7 @@ jobs:
   style:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Run StyLua
         uses: JohnnyMorganz/stylua-action@v4

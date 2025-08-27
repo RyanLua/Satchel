@@ -6,7 +6,7 @@
 	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
 
 	"features": {
-		"ghcr.io/ryanlua/features/rojo:0.2.0": {
+		"ghcr.io/ryanlua/features/rojo:0.2.1": {
 			"version": "latest",
 			"toolchainManager": "rokit"
 		},
@@ -26,7 +26,8 @@
 			"extensions": [
 				"kampfkarren.selene-vscode",
 				"johnnymorganz.stylua",
-				"johnnymorganz.luau-lsp"
+				"johnnymorganz.luau-lsp",
+				"DavidAnson.vscode-markdownlint"
 			]
 		}
 	},
@@ -47,7 +48,7 @@
 	},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip install mkdocs-material && rokit install --no-trust-check && wally install",
+	"postCreateCommand": "pip install mkdocs-material mike && rokit install --no-trust-check && wally install",
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root"

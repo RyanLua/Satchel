@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
-  - name: Get Community Support
+  - name: Get community support
     url: https://github.com/RyanLua/Satchel/discussions
-    about: Get support/help from the GitHub Discussions community.
+    about: Get help from the GitHub Discussions community
+  - name: Ask on our Discord server
+    url: https://discord.gg/N2KEnHzrsW
+    about: Ask members in dedicated channel on our Discord

@@ -1,72 +1,74 @@
 ---
-title: Installation
-description: Use of Satchel very easy. Highly customizable using instance attributes and with scripting support.
 icon: material/download-outline
 ---
 
 Installing Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with no configuration needed.
 
-### Creator Marketplace
+!!! tip
 
-1. Get the Satchel module from the [Creator Marketplace](https://create.roblox.com/marketplace/asset/13947506401).
+    While Satchel can run anywhere because it uses [RunContext], it is recommeneded to parent Satchel to [`ReplicatedStorage`][ReplicatedStorage] for best practices and organizational reasons.
 
-    ![Creator Marketplace](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/CreatorMarketplace.png){ width="100%" }
+      [RunContext]: https://devforum.roblox.com/t/1938784
+      [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
 
-2. Open Roblox Studio and create a new place or open an existing place.
+## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
 
-3. Open or locate the [Toolbox](https://create.roblox.com/docs/studio/toolbox).
+1. Get the **Satchel** model from the [Creator Store].
+
+    ![Creator Store](assets/creator-store.png){ width="100%" }
+
+1. Open Roblox Studio and create a new place or open an existing place.
+
+1. From the [View] tab, open the [Toolbox] and select the **Inventory** tab.
 
     ![View Tab Toolbox](https://prod.docsiteassets.roblox.com/assets/studio/general/View-Tab-Toolbox.png)
 
-4. Open your [Inventory](https://create.roblox.com/docs/studio/toolbox#inventory) from the [Toolbox](https://create.roblox.com/docs/studio/toolbox).
+    ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png)
 
-    ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png){ width="50%" }
+1. Locate the **Satchel** model and click it, or drag-and-drop it into the 3D view.
 
-5. Search for `Satchel` created by `WinnersTakesAll` and click on it.
+    ![Toolbox](assets/store-card.png)
 
-    ![Toolbox](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/MarketplaceCard.png)
+1. In the [Explorer] window, move the **Satchel** model into [`ReplicatedStorage`][ReplicatedStorage].
 
-6. Insert `Satchel` into the [Explorer](https://create.roblox.com/docs/studio/explorer) and drag it into [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
+  [Creator Store]: https://create.roblox.com/store/asset/13947506401
+  [View]: https://create.roblox.com/docs/studio/view-tab
+  [Toolbox]: https://create.roblox.com/docs/projects/assets/toolbox
+  [Explorer]: https://create.roblox.com/docs/studio/explorer
 
-    ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7){ width="50%" }
+## GitHub Releases
 
-### GitHub Releases
+1. Download the `Satchel.rbxm` or `Satchel.rbxmx` model file from [GitHub Releases].
 
-1. Download the `Satchel.rbxmx` file from [Releases](https://github.com/RyanLua/Satchel/releases).
+    !!! info
 
-    ![GitHub Release](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/GitHubReleases.png){ width="75%" }
+        Binary (`.rbxm`) and XML (`.rbxmx`) model files contain the exact same model. `.rbxm` is a smaller file size to download.
 
-2. Open Roblox Studio and create a new place or open an existing place.
+    ![GitHub Release](assets/github-releases.png)
 
-3. Go to [Explorer](https://create.roblox.com/docs/studio/explorer) and right-click on [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts) and click on `Insert from file...`.
+1. Open Roblox Studio and create a new place or open an existing place.
 
-    ![Insert From File](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/InsertFromFile.png){ width="75%" }
+1. In the [Explorer] window, insert **Satchel** into [`ReplicatedStorage`][ReplicatedStorage].
 
-4. Select the `Satchel.rbxmx` you downloaded from GitHub and click `Open`.
+    ![Contextual menu](https://prod.docsiteassets.roblox.com/assets/studio/explorer/Context-Menu-Service.png){ width="50%" }
 
-    ![Upload File](https://raw.githubusercontent.com/RyanLua/Satchel/main/assets/SelectFile.png){ width="75%" }
+1. Select the **Satchel** model file you downloaded from GitHub.
 
-5. Ensure that `Satchel`is in [StarterPlayerScripts](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts).
+  [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
 
-    ![Explorer](https://github.com/RyanLua/Satchel/assets/80087248/97d51886-08b6-40bb-b16b-90433dd7d2b7){ width="50%" }
+## Wally
 
-### Wally
+You are expected to already have Wally setup in your Rojo project and basic knowledge on how to use Wally packages.
 
 1. Open your Rojo project in the code editor of your choice.
 
-2. Install [Wally](https://wally.run/install) to your project.
+1. In the `wally.toml` file, add the [latest Wally version for Satchel][Wally]. Your dependencies should look similar to this:
 
-3. Initialize Wally using `wally init`.
+    ``` toml title="wally.toml"
+    [dependencies]
+    satchel = "ryanlua/satchel@1.0.0"
+    ```
 
-4. In the new `wally.toml` file, add `satchel = "ryanlua/satchel@1.2.0"`. Be sure to use the latest version.
+1. Install Satchel from Wally by running `wally install`.
 
-5. Install Satchel from Wally by running `wally install`. Satchel should appear under `project/Packages`. Don't forget to add `Packages` to your [`.gitignore`](http://git-scm.com/docs/gitignore)
-
-6. In a [`LocalScript`](https://create.roblox.com/docs/reference/engine/classes/LocalScript) under [`StarterPlayerScripts`](https://create.roblox.com/docs/reference/engine/classes/StarterPlayerScripts), require Satchel from the installation location of Wally. Default is `ReplicatedStorage.Packages`.
-
-```lua title="LocalScript" linenums="1"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Satchel = ReplicatedStorage.Packages.Satchel -- Make sure this points to where Satchel is
-
-require(Satchel)
-```
+  [Wally]: https://wally.run/package/ryanlua/satchel
