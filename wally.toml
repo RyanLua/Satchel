@@ -4,14 +4,13 @@ description = "A modern open-source alternative to Roblox's default backpack."
 version = "1.3.2"
 license = "MPL-2.0"
 authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
-realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
-homepage = "https://satchel.ryanluu.dev/"
-repository = "https://github.com/RyanLua/Satchel"
+realm = "shared"
+homepage = "http://satchel.luau.page/"
 exclude = ["**"]
-include = ["src", "src/*", "default.project.json", "wally.lock", "wally.toml"]
+include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json", "LICENSE", "README.md"]
 
 [dependencies]
+topbarplus = "1foreverhd/topbarplus@3.3.1"
 react = "jsdotlua/react@17.2.1"
 react-roblox = "jsdotlua/react-roblox@17.2.1"
-topbarplus = "1foreverhd/topbarplus@3.3.1"
