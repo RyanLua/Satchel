@@ -17,44 +17,6 @@ Satchel is a reskin of the default BackpackGui located in [CoreGui]. Satchel act
   [CoreGui]: https://create.roblox.com/docs/reference/engine/classes/CoreGui
   [Backpack]: https://create.roblox.com/docs/reference/engine/classes/Backpack
 
-#### Code Samples
-
-This code sample makes a TextButton that toggles the inventory when clicked.
-
-``` lua title="Toggle Satchel"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Satchel = require(ReplicatedStorage.Satchel)
-
-local button = Instance.new("TextButton")
-button.AnchorPoint = Vector2.new(0.5, 0.5)
-button.Position = UDim2.new(0.5, 0, 0.5, 0)
-button.Text = "Toggle Inventory"
-button.MouseButton1Click:Connect(function()
-    if Satchel:GetBackpackEnabled() then
-        Satchel.SetBackpackEnabled(false)
-    else
-        Satchel.SetBackpackEnabled(true)
-    end
-end)
-```
-
-This code sample detects when the inventory is opened or closed.
-
-``` lua title="Detect Inventory State"
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
-local Satchel = require(ReplicatedStorage.Satchel)
-
-Satchel.GetStateChangedEvent():Connect(function(isOpened: boolean)
-    if isOpened then
-        print("Inventory opened")
-    else
-        print("Inventory closed")
-    end
-end)
-```
-
 ## Summary
 
 ### Attributes
@@ -220,6 +182,28 @@ Satchel.SetBackpackEnabled(false)
 ### GetBackpackEnabled
 
 Returns whether the backpack gui is enabled or disabled.
+
+#### Code Samples
+
+This code sample makes a TextButton that toggles the inventory when clicked.
+
+``` lua title="Toggle Satchel"
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+local Satchel = require(ReplicatedStorage.Satchel)
+
+local button = Instance.new("TextButton")
+button.AnchorPoint = Vector2.new(0.5, 0.5)
+button.Position = UDim2.new(0.5, 0, 0.5, 0)
+button.Text = "Toggle Inventory"
+button.MouseButton1Click:Connect(function()
+    if Satchel:GetBackpackEnabled() then
+        Satchel.SetBackpackEnabled(false)
+    else
+        Satchel.SetBackpackEnabled(true)
+    end
+end)
+```
 
 #### Returns
 
