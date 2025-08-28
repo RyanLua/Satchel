@@ -1066,61 +1066,6 @@
 </style>
 
 <p>Satchel is a reskin of the default BackpackGui located in <a href="https://create.roblox.com/docs/reference/engine/classes/CoreGui">CoreGui</a>. Satchel acts very similar to the default backpack and is based on a fork on the default backpack. Behaviors between the two should remain the same with both of them managing the <a href="https://create.roblox.com/docs/reference/engine/classes/Backpack">Backpack</a>.</p>
-<h4 id="code-samples">Code Samples<a class="headerlink" data-preview="" href="#code-samples" title="Permanent link">&para;</a></h4>
-<p>This code sample makes a TextButton that toggles the inventory when clicked.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Toggle Satchel</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">Satchel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="p">(</span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="py">Satchel</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Instance</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">&quot;TextButton&quot;</span><span class="p">)</span>
-<span class="nv">button</span><span class="p">.</span><span class="py">AnchorPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Vector2</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span>
-<span class="nv">button</span><span class="p">.</span><span class="py">Position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">UDim2</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="nv">button</span><span class="p">.</span><span class="py">Text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Toggle Inventory&quot;</span>
-<span class="nv">button</span><span class="p">.</span><span class="py">MouseButton1Click</span><span class="p">:</span><span class="nf">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
-<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">Satchel</span><span class="p">:</span><span class="nf">GetBackpackEnabled</span><span class="p">()</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">        </span><span class="nv">Satchel</span><span class="p">.</span><span class="nf">SetBackpackEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">else</span>
-<span class="w">        </span><span class="nv">Satchel</span><span class="p">.</span><span class="nf">SetBackpackEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="kr">end</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-<p>This code sample detects when the inventory is opened or closed.</p>
-<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Detect Inventory State</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
-
-<span class="kd">local</span><span class="w"> </span><span class="nv">Satchel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="p">(</span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="py">Satchel</span><span class="p">)</span>
-
-<span class="nv">Satchel</span><span class="p">.</span><span class="nf">GetStateChangedEvent</span><span class="p">():</span><span class="nf">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="nv">isOpened</span><span class="p">:</span><span class="w"> </span><span class="py">boolean</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">isOpened</span><span class="w"> </span><span class="kr">then</span>
-<span class="w">        </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inventory opened&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">else</span>
-<span class="w">        </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Inventory closed&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="kr">end</span>
-<span class="kr">end</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
 <h2 id="summary">Summary<a class="headerlink" data-preview="" href="#summary" title="Permanent link">&para;</a></h2>
 <h3 id="attributes">Attributes<a class="headerlink" data-preview="" href="#attributes" title="Permanent link">&para;</a></h3>
 <table>
@@ -1296,7 +1241,7 @@
 
 <h3 id="setbackpackenabled">SetBackpackEnabled<a class="headerlink" data-preview="" href="#setbackpackenabled" title="Permanent link">&para;</a></h3>
 <p>Sets whether the backpack gui is enabled or disabled.</p>
-<h4 id="code-samples_1">Code Samples<a class="headerlink" data-preview="" href="#code-samples_1" title="Permanent link">&para;</a></h4>
+<h4 id="code-samples">Code Samples<a class="headerlink" data-preview="" href="#code-samples" title="Permanent link">&para;</a></h4>
 <p>This code sample will disable the backpack gui.</p>
 <div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Disable Backpack</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1325,6 +1270,38 @@
 
 <h3 id="getbackpackenabled">GetBackpackEnabled<a class="headerlink" data-preview="" href="#getbackpackenabled" title="Permanent link">&para;</a></h3>
 <p>Returns whether the backpack gui is enabled or disabled.</p>
+<h4 id="code-samples_1">Code Samples<a class="headerlink" data-preview="" href="#code-samples_1" title="Permanent link">&para;</a></h4>
+<p>This code sample makes a TextButton that toggles the inventory when clicked.</p>
+<div class="highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Toggle Satchel</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kd">local</span><span class="w"> </span><span class="nv">ReplicatedStorage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">game</span><span class="p">:</span><span class="nf">GetService</span><span class="p">(</span><span class="s2">&quot;ReplicatedStorage&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">Satchel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">require</span><span class="p">(</span><span class="nv">ReplicatedStorage</span><span class="p">.</span><span class="py">Satchel</span><span class="p">)</span>
+
+<span class="kd">local</span><span class="w"> </span><span class="nv">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Instance</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">&quot;TextButton&quot;</span><span class="p">)</span>
+<span class="nv">button</span><span class="p">.</span><span class="py">AnchorPoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">Vector2</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span>
+<span class="nv">button</span><span class="p">.</span><span class="py">Position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">UDim2</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="nv">button</span><span class="p">.</span><span class="py">Text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Toggle Inventory&quot;</span>
+<span class="nv">button</span><span class="p">.</span><span class="py">MouseButton1Click</span><span class="p">:</span><span class="nf">Connect</span><span class="p">(</span><span class="kr">function</span><span class="p">()</span>
+<span class="w">    </span><span class="kr">if</span><span class="w"> </span><span class="nv">Satchel</span><span class="p">:</span><span class="nf">GetBackpackEnabled</span><span class="p">()</span><span class="w"> </span><span class="kr">then</span>
+<span class="w">        </span><span class="nv">Satchel</span><span class="p">.</span><span class="nf">SetBackpackEnabled</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">else</span>
+<span class="w">        </span><span class="nv">Satchel</span><span class="p">.</span><span class="nf">SetBackpackEnabled</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">end</span>
+<span class="kr">end</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
 <h4 id="returns_2">Returns<a class="headerlink" data-preview="" href="#returns_2" title="Permanent link">&para;</a></h4>
 <table>
     <tr>
