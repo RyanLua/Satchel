@@ -56,12 +56,4 @@ jobs:
 
       - name: Deploy latest documentation
         if: env.ALIAS == 'latest'
-        run: mike deploy $VERSION latest --update-aliases --branch gh-pages
-
-      - name: Set default version to latest
-        if: env.ALIAS == 'latest'
-        run: mike set-default latest --branch gh-pages --push
-
-      - name: Deploy developer documentation
-        if: env.ALIAS == 'dev'
-        run: mike deploy $VERSION --update-aliases --branch gh-pages --push
+        run: mike deploy $VERSION --branch gh-pages
