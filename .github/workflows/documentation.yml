@@ -54,4 +54,4 @@ jobs:
         run: git fetch origin gh-pages --depth=1
 
       - name: Deploy latest documentation
-        run: mike deploy $VERSION --branch gh-pages
+        run: mike deploy $VERSION --branch gh-pages --push
