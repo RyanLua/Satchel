@@ -1494,6 +1494,7 @@ end
 
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
+	task.wait()
 	enabled = enabled and StarterGui:GetCore("TopbarEnabled")
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
