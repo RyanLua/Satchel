@@ -17,6 +17,16 @@ Satchel uses [RunContext] to run anywhere, so you do not need to move it from [W
 
 ## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
 
+The Creator Store is the easiest way to install Satchel. It is a one-click installation and requires no downloads.
+
+???+ example
+
+    Below is a video on how to install Satchel from the Creator Store.
+
+    <div style="position:relative;padding-top:56.25%;">
+      <iframe width=100% height=100% src="https://www.youtube-nocookie.com/embed/dRrzQKBLAx0?si=-iPs0s5LgM6VR323" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;"></iframe>
+    </div>
+
 1. Get the **Satchel** model from the [Creator Store].
 
     ![Creator Store](assets/creator-store.png){ width="100%" }
