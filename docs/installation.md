@@ -8,7 +8,7 @@ Satchel uses [RunContext] to run anywhere, so you do not need to move it from [W
 
 !!! danger
 
-    Do not parent the Satchel to any starter containers or it will run multiple times.
+    Do not parent the Satchel to any starter containers or it will run multiple times. Older versions of Satchel required you to do this but it is no longer needed in versions `1.4.0` and newer.
 
   [RunContext]: https://devforum.roblox.com/t/1938784
   [Workspace]: https://create.roblox.com/docs/reference/engine/classes/Workspace
