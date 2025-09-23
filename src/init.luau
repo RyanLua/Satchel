@@ -1,23 +1,9 @@
 --!nolint DeprecatedApi
 
 --[[
-	Name: Satchel
-	Version: 1.4.0
-	Description: Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel.
-	By: @WinnersTakesAll on Roblox & @RyanLua on GitHub
-
-	Acknowledgements (@Roblox):
-		@OnlyTwentyCharacters, @SolarCrane -- For creating the CoreGui script
-		@thebrickplanetboy -- For allowing me to republish his fork of the backpack system.
-		@ForeverHD -- Making Topbar Plus and open-sourcing it for everyone to use
-
-	DevForum: https://devforum.roblox.com/t/2451549
-]]
-
---[[
 	This Source Code Form is subject to the terms of the Mozilla Public
 	License, v. 2.0. If a copy of the MPL was not distributed with this
-	file, You can obtain one at Mozilla Public License Version 2.0.
+	file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ]]
 
 local ContextActionService = game:GetService("ContextActionService")
