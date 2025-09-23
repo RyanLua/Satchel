@@ -38,6 +38,8 @@ BackpackScript.BackpackItemRemoved.Name = "BackpackRemoved"
 
 local targetScript: ModuleScript = script
 
+require(script.Attribution)
+
 -- Constants --
 local PREFERRED_TRANSPARENCY: number = GuiService.PreferredTransparency or 1
 
