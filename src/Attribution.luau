@@ -8,7 +8,7 @@
 		2. Credit Satchel in your experience description by name and creator (@WinnersTakesAll)
 		3. Have a DevForum topic linked in your experience description, crediting Satchel with the above
 
-	Thank you for supporting Satchel. Consider sponsoring Satchel to fund its development. 
+	Thank you for supporting Satchel. For more, consider sponsoring Satchel to support its development. 
 ]]
 
 local RunService = game:GetService("RunService")
