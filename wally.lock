@@ -9,5 +9,5 @@ dependencies = []
 
 [[package]]
 name = "ryanlua/satchel"
-version = "1.4.0"
+version = "1.4.1"
 dependencies = [["topbarplus", "1foreverhd/topbarplus@3.3.1"]]
