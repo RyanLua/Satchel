@@ -1481,14 +1481,14 @@ end
 
 local function OnIconChanged(enabled: boolean): ()
 	-- Check for enabling/disabling the whole thing
-	local success, topbarEnabled = pcall(function()
+	local success, _topbarEnabled = pcall(function()
 		return enabled and StarterGui:GetCore("TopbarEnabled")
 	end)
 
 	if not success then
 		return
 	end
-	
+
 	WholeThingEnabled = enabled
 	MainFrame.Visible = enabled
 
