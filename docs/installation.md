@@ -1,7 +1,3 @@
----
-icon: material/download-outline
----
-
 Installing Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with no configuration needed.
 
 Satchel uses [RunContext] to run anywhere, so you do not need to move it from [Workspace], though it is recommeneded to parent to [`ReplicatedStorage`][ReplicatedStorage] for best practices and organizational reasons.
