@@ -22,13 +22,13 @@ Satchel is a modern open-source alternative to Roblox's default backpack. Satche
 
 <https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5>
 
-## 📖 Documentation
+## Documentation
 
 See the [documentation site](https://satchel.luau.page) for more about Satchel. Find guides on how to get started, learn about the API, understand what Satchel is, and more.
 
 If you see anything wrong, open a new [documentation issue](https://github.com/RyanLua/Satchel/issues/new?template=documentation_issue.yml).
 
-## ❤️ Sponsors
+## Sponsors
 
 Special thanks for our sponsors for supporting Satchel and it's future development. We distribute Satchel and provide updates for free, for anyone to use or modify.
 
@@ -48,10 +48,10 @@ Special thanks for our sponsors for supporting Satchel and it's future developme
 
 [Become a sponsor](https://github.com/sponsors/RyanLua)
 
-## 🙏 Contributing
+## Contributing
 
 We welcome all contributions from the community. See the [contributing guidelines](.github/CONTRIBUTING.md) for details.
 
-## 📃 License
+## License
 
 Satchel is available under the Mozilla Public License 2.0 license. See [LICENSE.txt](LICENSE.txt) for details.
