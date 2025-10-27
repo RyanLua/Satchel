@@ -11,6 +11,8 @@
   [![Docs](https://img.shields.io/badge/docs-website-green)](https://satchel.luau.page/)
   [![Playground](https://img.shields.io/badge/playground-experience-blue)](https://www.roblox.com/games/13592168150)
   [![Discord](https://discord.com/api/guilds/1162303282002272359/widget.png)](https://discord.gg/N2KEnHzrsW)
+  [![Mentioned in Awesome Roblox](https://awesome.re/mentioned-badge.svg)](https://github.com/awesome-roblox/awesome-roblox)
+
 </div>
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
