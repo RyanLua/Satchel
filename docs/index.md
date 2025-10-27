@@ -1,6 +1,14 @@
----
-icon: material/home-outline
----
+<style>
+    .mdx-premium p {
+      margin: 4em 0;
+      text-align: center;
+    }
+
+    /* Fix iframe background transparency */
+    iframe {
+      color-scheme: light;
+    }
+</style>
 
 Satchel is a modern open-source alternative to Roblox's default backpack.
 

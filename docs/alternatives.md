@@ -1,7 +1,3 @@
----
-icon: material/card-multiple-outline
----
-
 Satchel isn't the best backpack system out there or the only one but it does offer some advantages against others.
 
 ## Purse

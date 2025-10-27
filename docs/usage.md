@@ -1,7 +1,3 @@
----
-icon: material/toolbox-outline
----
-
 Use of Satchel after installation very easy. Just [publish your experience to Roblox] and see Satchel live in action.
 
 To learn how to install Satchel, see [Installation].

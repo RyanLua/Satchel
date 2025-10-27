@@ -50,9 +50,6 @@ extra:
       link: https://discord.gg/N2KEnHzrsW
       name: Discord
 
-extra_css:
-  - stylesheets/extra.css
-
 markdown_extensions:
   - abbr
   - admonition
