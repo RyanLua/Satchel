@@ -35,7 +35,7 @@ jobs:
           rojo build --output builds/$OUTPUT_NAME.rbxmx $BUILD_PROJECT
 
       - name: Archive build files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: release-file-builds
           path: builds/
