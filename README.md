@@ -54,4 +54,4 @@ We welcome all contributions from the community. See the [contributing guideline
 
 ## License
 
-Satchel is available under the Mozilla Public License 2.0 license. See [LICENSE.txt](LICENSE.txt) for details.
+Satchel is available under the Mozilla Public License 2.0 license. See [LICENSE.md](LICENSE.md) for details.
