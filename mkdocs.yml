@@ -41,11 +41,11 @@ extra:
       link: https://github.com/RyanLua/Satchel
       name: GitHub
     - icon: simple/roblox
-      link: https://www.roblox.com/games/13592168150
-      name: Roblox
+      link: https://create.roblox.com/store/asset/13947506401
+      name: Creator Store
     - icon: simple/robloxstudio
       link: https://devforum.roblox.com/t/2451549
-      name: DevForum
+      name: Roblox Developer Forum
     - icon: simple/discord
       link: https://discord.gg/N2KEnHzrsW
       name: Discord
