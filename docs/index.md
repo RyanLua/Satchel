@@ -1,3 +1,7 @@
+---
+icon: lucide/house
+---
+
 <style>
     .mdx-premium p {
       margin: 4em 0;

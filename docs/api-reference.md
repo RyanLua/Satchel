@@ -1,3 +1,7 @@
+---
+icon: lucide/book-marked
+---
+
 <style>
     .md-typeset__table {
       width: 100%;

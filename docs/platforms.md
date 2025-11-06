@@ -1,3 +1,7 @@
+---
+icon: lucide/monitor-smartphone
+---
+
 We support all platforms that Roblox supports. Computers, phones, tablets, consoles, and VR are all supported by Satchel right out of the box. Where the default backpack should run, so should Satchel.
 
 !!! note
