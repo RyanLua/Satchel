@@ -31,7 +31,7 @@ The Creator Store is the easiest way to install Satchel. It is a one-click insta
 
 1. From the [View] tab, open the [Toolbox] and select the **Inventory** tab.
 
-    ![View Tab Toolbox](https://prod.docsiteassets.roblox.com/assets/studio/general/View-Tab-Toolbox.png)
+    ![View Tab Toolbox](https://prod.docsiteassets.roblox.com/assets/studio/general/Toolbar-Toolbox.png)
 
     ![Inventory Tab](https://prod.docsiteassets.roblox.com/assets/studio/toolbox/Inventory-Tab.png)
 
