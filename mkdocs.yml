@@ -41,8 +41,8 @@ extra:
       link: https://github.com/RyanLua/Satchel
       name: GitHub
     - icon: simple/roblox
-      link: https://www.roblox.com/games/13592168150
-      name: Roblox
+      link: https://create.roblox.com/store/asset/13947506401
+      name: Creator Store
     - icon: simple/robloxstudio
       link: https://devforum.roblox.com/t/2451549
       name: DevForum
@@ -50,20 +50,15 @@ extra:
       link: https://discord.gg/N2KEnHzrsW
       name: Discord
 
-extra_css:
-  - stylesheets/extra.css
-
 markdown_extensions:
   - abbr
   - admonition
   - attr_list
   - md_in_html
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
   - pymdownx.superfences
-  - material.extensions.preview:
-      configurations:
-        - targets:
-            include:
-              - "*"
   - toc:
       permalink: true
       toc_depth: 3

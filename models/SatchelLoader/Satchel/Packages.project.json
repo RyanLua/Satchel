@@ -1,9 +1,9 @@
 {
   "name": "Packages",
   "tree": {
-    "$path": "../../Packages",
+    "$path": "../../../Packages",
     "satchel": {
-      "$path": "../../src"
+      "$path": "../../../src"
     }
   }
 }

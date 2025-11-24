@@ -6,7 +6,7 @@
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
       "SatchelLoader": {
-        "$path": "models"
+        "$path": "models/SatchelLoader"
       }
     }
   }

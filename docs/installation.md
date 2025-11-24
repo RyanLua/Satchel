@@ -1,17 +1,27 @@
----
-icon: material/download-outline
----
-
 Installing Satchel is easy and painless. Satchel is a drag-and-drop module that works out of the box and with no configuration needed.
 
-!!! tip
+Satchel uses [RunContext] to run anywhere, so you do not need to move it from [Workspace], though it is recommeneded to parent to [`ReplicatedStorage`][ReplicatedStorage] for best practices and organizational reasons.
 
-    While Satchel can run anywhere because it uses [RunContext], it is recommeneded to parent Satchel to [`ReplicatedStorage`][ReplicatedStorage] for best practices and organizational reasons.
+!!! danger
 
-      [RunContext]: https://devforum.roblox.com/t/1938784
-      [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
+    Do not parent the Satchel to any starter containers or it will run multiple times. Older versions of Satchel required you to do this but it is no longer needed in versions [`v1.4.0`][v1.4.0] and newer.
+
+  [RunContext]: https://devforum.roblox.com/t/1938784
+  [Workspace]: https://create.roblox.com/docs/reference/engine/classes/Workspace
+  [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
+  [v1.4.0]: https://github.com/RyanLua/Satchel/releases/tag/v1.4.0
 
 ## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
+
+The Creator Store is the easiest way to install Satchel. It is a one-click installation and requires no downloads.
+
+???+ example
+
+    Below is a video on how to install Satchel from the Creator Store.
+
+    <div style="position:relative;padding-top:56.25%;">
+      <iframe width=100% height=100% src="https://www.youtube-nocookie.com/embed/dRrzQKBLAx0?si=-iPs0s5LgM6VR323" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;"></iframe>
+    </div>
 
 1. Get the **Satchel** model from the [Creator Store].
 
@@ -60,6 +70,13 @@ Installing Satchel is easy and painless. Satchel is a drag-and-drop module that 
 
 You are expected to already have Wally setup in your Rojo project and basic knowledge on how to use Wally packages.
 
+!!! warning
+
+    Wally does not include the loader script so you need to [`#!lua require()`][require] Satchel to run:
+    ``` lua title="Satchel Loader"
+    require(script.Satchel)
+    ```
+
 1. Open your Rojo project in the code editor of your choice.
 
 1. In the `wally.toml` file, add the [latest Wally version for Satchel][Wally]. Your dependencies should look similar to this:
@@ -72,3 +89,4 @@ You are expected to already have Wally setup in your Rojo project and basic know
 1. Install Satchel from Wally by running `wally install`.
 
   [Wally]: https://wally.run/package/ryanlua/satchel
+  [require]: https://create.roblox.com/docs/reference/engine/globals/LuaGlobals#require

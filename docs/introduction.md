@@ -1,10 +1,6 @@
----
-icon: material/star-outline
----
+Welcome to Satchel, a modern alternative to Roblox's default backpack.
 
-Welcome to Satchel, if you don't know already, Satchel acts as a modern refresh of the default Roblox backpack UI with a lot of improvements in place.
-
-Satchel and its documentation is always a work in progress but you can help too. Learn how to change the code for Satchel or just click the edit documentation icon and fix some grammar.
+Satchel and its documentation are always a work in progress, but you can help too. See the [contributing guidelines](https://github.com/RyanLua/Satchel/blob/main/.github/CONTRIBUTING.md) to find how you can improve Satchel.
 
 Just want to use Satchel? Check out [Installation].
 

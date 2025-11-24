@@ -1,6 +1,14 @@
----
-icon: material/home-outline
----
+<style>
+    .mdx-premium p {
+      margin: 4em 0;
+      text-align: center;
+    }
+
+    /* Fix iframe background transparency */
+    iframe {
+      color-scheme: light;
+    }
+</style>
 
 Satchel is a modern open-source alternative to Roblox's default backpack.
 
@@ -21,7 +29,7 @@ This documentation will allow you to install Satchel and learn about how to scri
 </video> -->
 
 <div style="position:relative;padding-top:56.25%;">
-  <iframe width=100% height=100% src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=pml_j4MqaixKv5ZN&disablekb=1&fs=0" frameborder="0" style="position:absolute;top:0;"></iframe>
+  <iframe width=100% height=100% src="https://www.youtube-nocookie.com/embed/o3Bgp2a4BJg?si=QtYwkpNJf7kw2gBJ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;"></iframe>
 </div>
 
 ---

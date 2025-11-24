@@ -1,17 +1,16 @@
-# Wally
-/Packages
-/DevPackages
-
-# MkDocs documentation
-site*/
-.cache
-
 # Rojo
 sourcemap.json
 *.rbxl
 *.rbxlx
 *.rbxm
 *.rbxmx
+
+# Wally
+Packages/
+DevPackages/
+
+# MkDocs documentation
+site/
 
 # Workflow builds
 builds/
