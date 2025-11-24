@@ -1,5 +1,7 @@
 --!strict
 
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
 local React = require("../../react")
 
 local function TooltipTextBox(props: {
@@ -7,6 +9,7 @@ local function TooltipTextBox(props: {
 })
 	return React.createElement("TextLabel", {
 		Text = props.text,
+		tag = "tooltip",
 	})
 end
 
