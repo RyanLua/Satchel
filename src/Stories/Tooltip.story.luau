@@ -1,7 +1,7 @@
 --!strict
 
-local React = require("../Packages/React")
-local ReactRoblox = require("../Packages/ReactRoblox")
+local React = require("../../react")
+local ReactRoblox = require("../../react-roblox")
 
 local Tooltip = require("../Components/Tooltip")
 

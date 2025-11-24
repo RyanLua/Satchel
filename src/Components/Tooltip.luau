@@ -1,7 +1,6 @@
 --!strict
 
-local React = require("../Packages/React")
-local Constants = require("../Constants")
+local React = require("../../react")
 
 local function TooltipTextBox(props: {
 	text: string,
