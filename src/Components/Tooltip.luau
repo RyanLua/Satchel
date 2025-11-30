@@ -9,7 +9,7 @@ local function TooltipTextBox(props: {
 })
 	return React.createElement("TextLabel", {
 		Text = props.text,
-		tag = "tooltip",
+		[React.Tag] = "tooltip",
 	})
 end
 

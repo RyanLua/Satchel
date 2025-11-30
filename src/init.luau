@@ -1,20 +1,19 @@
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
+--!strict
+
 local Players = game:GetService("Players")
 
 local React = require("./react")
 local ReactRoblox = require("./react-roblox")
 
+local player = Players.LocalPlayer :: Player
+local playerGui = player.PlayerGui
+
 local tooltip = require("@self/Components/Tooltip")
 
-local Satchel = {}
+local handle = Instance.new("ScreenGui")
+handle.Name = "SatchelGui"
+handle.Parent = playerGui
+local root = ReactRoblox.createRoot(handle)
+root:render(tooltip({ text = "Hello world!" }))
 
-local function runExample()
-	local handle = Instance.new("ScreenGui", Players.LocalPlayer.PlayerGui)
-	local root = ReactRoblox.createRoot(handle)
-
-	root:render(React.createElement(tooltip, {}))
-end
-
-runExample()
-
-return Satchel
+return {}
