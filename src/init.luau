@@ -14,6 +14,6 @@ local handle = Instance.new("ScreenGui")
 handle.Name = "SatchelGui"
 handle.Parent = playerGui
 local root = ReactRoblox.createRoot(handle)
-root:render(tooltip({ text = "Hello world!" }))
+root:render(React.createElement(tooltip, { text = "Hello world!" }))
 
 return {}
