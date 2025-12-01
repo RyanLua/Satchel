@@ -2,7 +2,7 @@
 
 local React = require("../../react")
 
-export type SlotTextLabelProps = {
+export type Props = {
 	toolName: string?,
 	slotNumber: number?,
 	toolImage: string?,
@@ -12,7 +12,7 @@ export type SlotTextLabelProps = {
 	unlocked: boolean?,
 }
 
-local function SlotTextLabel(props: SlotTextLabelProps)
+local function SlotTextLabel(props: Props)
 	local tags = "slot"
 	if props.unlocked then
 		tags = tags .. " unlocked"
