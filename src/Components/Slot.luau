@@ -2,20 +2,17 @@
 
 local React = require("../../react")
 
-local Tooltip = require("./Tooltip")
-
 export type SlotTextLabelProps = {
-	equipped: boolean?,
-	unlocked: boolean?,
-
-	toolImage: string?,
 	toolName: string?,
 	slotNumber: number?,
+	toolImage: string?,
 	tooltipText: string?,
+
+	equipped: boolean?,
+	unlocked: boolean?,
 }
 
 local function SlotTextLabel(props: SlotTextLabelProps)
-	-- Determine tags based on slot state
 	local tags = "slot"
 	if props.unlocked then
 		tags = tags .. " unlocked"
@@ -28,14 +25,15 @@ local function SlotTextLabel(props: SlotTextLabelProps)
 		Text = props.toolName or "",
 		[React.Tag] = tags,
 	}, {
-		React.createElement("TextLabel", {
+		Number = React.createElement("TextLabel", {
 			Text = props.slotNumber or 0,
 		}),
-		React.createElement("ImageLabel", {
+		TextureIcon = React.createElement("ImageLabel", {
 			Image = props.toolImage or "",
 		}),
-		React.createElement(Tooltip, {
-			text = props.tooltipText,
+		ToolTip = React.createElement("TextLabel", {
+			Text = props.tooltipText or "",
+			[React.Tag] = "tooltip",
 		}),
 	})
 end
