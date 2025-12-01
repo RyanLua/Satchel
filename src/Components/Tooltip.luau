@@ -2,13 +2,13 @@
 
 local React = require("../../react")
 
-export type TooltipTextLabel = {
-	text: string,
+export type TooltipTextLabelProps = {
+	text: string?,
 }
 
-local function TooltipTextLabel(props: TooltipTextLabel)
+local function TooltipTextLabel(props: TooltipTextLabelProps)
 	return React.createElement("TextLabel", {
-		Text = props.text,
+		Text = props.text or "",
 		[React.Tag] = "tooltip",
 	})
 end
