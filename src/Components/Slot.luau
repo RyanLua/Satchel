@@ -12,7 +12,7 @@ export type Props = {
 	unlocked: boolean?,
 }
 
-local function SlotTextLabel(props: Props)
+local function SlotTextLabel(props: Props): React.ReactNode
 	local tags = "slot"
 	if props.unlocked then
 		tags = tags .. " unlocked"
