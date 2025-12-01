@@ -1,7 +1,5 @@
 --!strict
 
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 local React = require("../../react")
 
 export type TooltipTextLabel = {
