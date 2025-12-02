@@ -9,6 +9,8 @@ return {
 	react = React,
 	reactRoblox = ReactRoblox,
 	story = function()
-		return React.createElement(Backpack)
+		local component = React.createElement(Backpack, {})
+
+		return component
 	end,
 }

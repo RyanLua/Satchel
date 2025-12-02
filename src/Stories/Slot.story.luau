@@ -6,12 +6,12 @@ local ReactRoblox = require("../../react-roblox")
 local Slot = require("../Components/Slot")
 
 local controls = {
-	toolName = "Sword",
-	slotNumber = "9",
-	toolImage = "rbxasset://Textures/Sword128.png",
-	tooltipText = "A classic sword",
-	equipped = false,
-	unlocked = false,
+	ToolName = "Sword",
+	SlotNumber = 9,
+	ToolImage = "rbxasset://Textures/Sword128.png",
+	TooltipText = "A classic sword",
+	Equipped = false,
+	Unlocked = false,
 }
 
 return {
@@ -19,13 +19,15 @@ return {
 	reactRoblox = ReactRoblox,
 	controls = controls,
 	story = function(props)
-		return React.createElement(Slot, {
-			toolName = props.controls.toolName,
-			slotNumber = props.controls.slotNumber,
-			toolImage = props.controls.toolImage,
-			tooltipText = props.controls.tooltipText,
-			equipped = props.controls.equipped,
-			unlocked = props.controls.unlocked,
+		local component = React.createElement(Slot, {
+			toolName = props.controls.ToolName,
+			slotNumber = props.controls.SlotNumber,
+			toolImage = props.controls.ToolImage,
+			tooltipText = props.controls.TooltipText,
+			equipped = props.controls.Equipped,
+			unlocked = props.controls.Unlocked,
 		})
+
+		return component
 	end,
 }
