@@ -25,7 +25,7 @@ local function SlotTextLabel(props: Props): React.ReactElement<any> -- TODO: Upd
 		Text = props.toolName or "",
 		[React.Tag] = tags,
 	}, {
-		Number = React.createElement("TextLabel", {
+		NumberHint = React.createElement("TextLabel", {
 			Text = props.slotNumber or 0,
 		}),
 		TextureIcon = React.createElement("ImageLabel", {
