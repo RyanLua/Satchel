@@ -12,30 +12,37 @@ export type Props = {
 	unlocked: boolean?,
 }
 
-local function SlotTextLabel(props: Props): React.ReactElement<any> -- TODO: Update to use proper types when React Luau is on Wally.
-	local tags = "slot"
+-- TODO: Update to use proper types when React Luau is on Wally.
+local function SlotButton(props: Props): React.ReactElement<any>
+	local tags = "Slot"
 	if props.unlocked then
-		tags = tags .. " unlocked"
+		tags = tags .. " Unlocked"
 	end
 	if props.equipped then
-		tags = tags .. " equipped"
+		tags = tags .. " Equipped"
 	end
 
-	return React.createElement("TextLabel", {
-		Text = props.toolName or "",
+	local slotText = if props.toolImage == nil or "" then "" else props.toolName or ""
+
+	return React.createElement("TextButton", {
+		Text = slotText,
 		[React.Tag] = tags,
 	}, {
 		NumberHint = React.createElement("TextLabel", {
 			Text = props.slotNumber or 0,
+			[React.Tag] = "SlotNumber",
 		}),
 		TextureIcon = React.createElement("ImageLabel", {
 			Image = props.toolImage or "",
 		}),
 		ToolTip = React.createElement("TextLabel", {
 			Text = props.tooltipText or "",
-			[React.Tag] = "tooltip",
+			[React.Tag] = "ToolTip",
+		}),
+		StyleLink = React.createElement("StyleLink", {
+			StyleSheet = game.ReplicatedStorage.Design.SatchelStyleSheet,
 		}),
 	})
 end
 
-return SlotTextLabel
+return SlotButton

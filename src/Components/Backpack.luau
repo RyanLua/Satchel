@@ -4,9 +4,10 @@ local React = require("../../react")
 
 local Slot = require("../Components/Slot")
 
-local function BackpackFrame(): React.ReactElement<any> -- TODO: Update to use proper types when React Luau is on Wally.
+-- TODO: Update to use proper types when React Luau is on Wally.
+local function BackpackFrame(): React.ReactElement<any>
 	return React.createElement("Frame", {
-		[React.Tag] = "backpack",
+		[React.Tag] = "Backpack",
 	}, {
 		Slot = React.createElement(Slot, {
 			toolName = "Hello world!",
