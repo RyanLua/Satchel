@@ -12,7 +12,7 @@ export type Props = {
 	unlocked: boolean?,
 }
 
-local function SlotTextLabel(props: Props): React.ReactNode
+local function SlotTextLabel(props: Props): React.ReactElement<any> -- TODO: Update to use proper types when React Luau is on Wally.
 	local tags = "slot"
 	if props.unlocked then
 		tags = tags .. " unlocked"
