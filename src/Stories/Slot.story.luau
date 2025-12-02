@@ -26,9 +26,6 @@ return {
 			tooltipText = props.controls.tooltipText,
 			equipped = props.controls.equipped,
 			unlocked = props.controls.unlocked,
-			onActivated = function()
-				print("Slot activated")
-			end,
 		})
 	end,
 }
