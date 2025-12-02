@@ -12,8 +12,7 @@ export type Props = {
 	unlocked: boolean?,
 }
 
--- TODO: Update to use proper types when React Luau is on Wally.
-local function SlotButton(props: Props): React.ReactElement<any>
+local function SlotButton(props: Props)
 	local tags = "Slot"
 	if props.unlocked then
 		tags = tags .. " Unlocked"
