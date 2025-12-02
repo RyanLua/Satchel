@@ -37,7 +37,7 @@ local function SlotButton(props: Props): React.ReactElement<any>
 		}),
 		ToolTip = React.createElement("TextLabel", {
 			Text = props.tooltipText or "",
-			[React.Tag] = "ToolTip",
+			[React.Tag] = "Tooltip",
 		}),
 		StyleLink = React.createElement("StyleLink", {
 			StyleSheet = game.ReplicatedStorage.Design.SatchelStyleSheet,
