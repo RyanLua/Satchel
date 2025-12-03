@@ -1028,7 +1028,9 @@ local function OnChildRemoved(child: Instance): () -- From Character or Backpack
 		ActiveHopper = nil :: any
 	end
 
-	BackpackScript.BackpackItemRemoved:Fire(slot)
+	if slot then
+		BackpackScript.BackpackItemRemoved:Fire(slot)
+	end
 	if isInventoryEmpty() then
 		BackpackScript.BackpackEmpty:Fire()
 	end
