@@ -20,11 +20,11 @@ This documentation will allow you to install Satchel and learn about how to scri
   controls
   muted
   preload="metadata"
-  src="https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5"
-  poster="https://github.com/RyanLua/Satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669"
+  src="https://github.com/ryanlua/satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5"
+  poster="https://github.com/ryanlua/satchel/assets/80087248/e4c58793-05cc-4102-9d5e-a8b961915669"
   type="video/mp4">
   Sorry, your browser doesn't support embedded videos, but don't worry, you can
-  <a href="https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5">download it</a>
+  <a href="https://github.com/ryanlua/satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5">download it</a>
   and watch it with your favorite video player!
 </video> -->
 
@@ -45,7 +45,7 @@ This documentation will allow you to install Satchel and learn about how to scri
     [:material-arrow-right: Installation](installation.md)
 
   [Creator Store]: https://create.roblox.com/store/asset/13947506401
-  [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
+  [GitHub Releases]: https://github.com/ryanlua/satchel/releases
 
 - :material-devices:{ .lg .middle } __Full device support__
 
@@ -71,9 +71,9 @@ This documentation will allow you to install Satchel and learn about how to scri
 
     Open source for everyone to use and available on [GitHub]
 
-    [:material-arrow-right: License](https://github.com/RyanLua/Satchel#MPL-2.0-1-ov-file)
+    [:material-arrow-right: License](https://github.com/ryanlua/satchel#MPL-2.0-1-ov-file)
 
-  [GitHub]: https://github.com/RyanLua/Satchel
+  [GitHub]: https://github.com/ryanlua/satchel
 
 </div>
 
@@ -94,4 +94,4 @@ Special thanks for our sponsors for supporting Satchel and it's future developme
 
 [:material-heart: Sponsor Satchel][sponsor]{ .md-button .md-button--primary }
 
-  [sponsor]: https://github.com/sponsors/RyanLua "Become a sponsor"
+  [sponsor]: https://github.com/sponsors/ryanlua "Become a sponsor"

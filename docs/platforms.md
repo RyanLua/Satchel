@@ -4,7 +4,7 @@ We support all platforms that Roblox supports. Computers, phones, tablets, conso
 
     Do you see a bug specific to a platform? [Open a bug report] we'll look into it.
 
-      [Open a bug report]: https://github.com/RyanLua/Satchel/issues/new
+      [Open a bug report]: https://github.com/ryanlua/satchel/issues/new
 
 ## Current supported devices
 

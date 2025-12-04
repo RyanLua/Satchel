@@ -9,7 +9,7 @@ Satchel uses [RunContext] to run anywhere, so you do not need to move it from [W
   [RunContext]: https://devforum.roblox.com/t/1938784
   [Workspace]: https://create.roblox.com/docs/reference/engine/classes/Workspace
   [ReplicatedStorage]: https://create.roblox.com/docs/reference/engine/classes/ReplicatedStorage
-  [v1.4.0]: https://github.com/RyanLua/Satchel/releases/tag/v1.4.0
+  [v1.4.0]: https://github.com/ryanlua/satchel/releases/tag/v1.4.0
 
 ## Creator Store <small>recommended</small> { #creator-store data-toc-label="Creator Store" }
 
@@ -64,7 +64,7 @@ The Creator Store is the easiest way to install Satchel. It is a one-click insta
 
 1. Select the **Satchel** model file you downloaded from GitHub.
 
-  [GitHub Releases]: https://github.com/RyanLua/Satchel/releases
+  [GitHub Releases]: https://github.com/ryanlua/satchel/releases
 
 ## Wally
 

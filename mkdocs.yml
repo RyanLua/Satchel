@@ -1,7 +1,7 @@
 site_name: Satchel Documentation
 site_url: https://satchel.luau.page/
-repo_name: RyanLua/Satchel
-repo_url: https://github.com/RyanLua/Satchel
+repo_name: ryanlua/satchel
+repo_url: https://github.com/ryanlua/satchel
 
 copyright: Copyright &copy; Ryan Luu
 
@@ -38,7 +38,7 @@ extra:
     provider: mike
   social:
     - icon: simple/github
-      link: https://github.com/RyanLua/Satchel
+      link: https://github.com/ryanlua/satchel
       name: GitHub
     - icon: simple/roblox
       link: https://create.roblox.com/store/asset/13947506401
