@@ -2,9 +2,9 @@
 
 Thank you for investing your time in contributing to our project!
 
-Please read our [Code of Conduct](https://github.com/RyanLua/Satchel?tab=coc-ov-file) to keep our community approachable and respectable.
+Please read our [Code of Conduct](https://github.com/ryanlua/satchel?tab=coc-ov-file) to keep our community approachable and respectable.
 
-When you contribute, you become a project contributor and both are shown on [our repository](https://github.com/RyanLua/Satchel), [contributors graph](https://github.com/RyanLua/Satchel/graphs/contributors), and [your contribution activity](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/viewing-contributions-on-your-profile#contribution-activity).
+When you contribute, you become a project contributor and both are shown on [our repository](https://github.com/ryanlua/satchel), [contributors graph](https://github.com/ryanlua/satchel/graphs/contributors), and [your contribution activity](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/viewing-contributions-on-your-profile#contribution-activity).
 
 ## GitHub Codespaces
 

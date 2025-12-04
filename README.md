@@ -6,8 +6,8 @@
 
 <div align="center">
 
-  [![CI](https://github.com/RyanLua/Satchel/actions/workflows/ci.yml/badge.svg)](https://github.com/RyanLua/Satchel/actions/workflows/ci.yml)
-  [![GitHub Release](https://img.shields.io/github/v/release/RyanLua/Satchel)](https://github.com/RyanLua/Satchel/releases)
+  [![CI](https://github.com/ryanlua/satchel/actions/workflows/ci.yml/badge.svg)](https://github.com/ryanlua/satchel/actions/workflows/ci.yml)
+  [![GitHub Release](https://img.shields.io/github/v/release/ryanlua/satchel)](https://github.com/ryanlua/satchel/releases)
   [![Docs](https://img.shields.io/badge/docs-website-green)](https://satchel.luau.page/)
   [![Playground](https://img.shields.io/badge/playground-experience-blue)](https://www.roblox.com/games/13592168150)
   [![Discord](https://discord.com/api/guilds/1162303282002272359/widget.png)](https://discord.gg/N2KEnHzrsW)
@@ -15,20 +15,20 @@
 
 </div>
 
-> Want just the CoreGui backpack? Check out [Purse](https://github.com/RyanLua/Purse), a sub-project of Satchel.
+> Want just the CoreGui backpack? Check out [Purse](https://github.com/ryanlua/Purse), a sub-project of Satchel.
 
 Satchel is a modern open-source alternative to Roblox's default backpack. Satchel aims to be more customizable and easier to use than the default backpack while still having a "vanilla" feel. Installation of Satchel is as simple as dropping the module into your game and setting up a few properties if you like to customize it. It has a familiar feel and structure as to the default backpack for ease of use for both developers and players.
 
 <img alt="Satchel on computer" src="assets/computer-thumbnail.png" style="width: 49%;"> <img alt="Satchel on computer with inventory open" src="assets/computer-inventory-thumbnail.png" style="width: 49%;">
 <img alt="Satchel on mobile" src="assets/phone-thumbnail.png" style="width: 49%;"> <img alt="Satchel on mobile with inventory open" src="assets/phone-inventory-thumbnail.png" style="width: 49%;">
 
-<https://github.com/RyanLua/Satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5>
+<https://github.com/ryanlua/satchel/assets/80087248/2cd3f164-6bf3-4c3b-a682-67a386f576d5>
 
 ## Documentation
 
 See the [documentation site](https://satchel.luau.page) for more about Satchel. Find guides on how to get started, learn about the API, understand what Satchel is, and more.
 
-If you see anything wrong, open a new [documentation issue](https://github.com/RyanLua/Satchel/issues/new?template=documentation_issue.yml).
+If you see anything wrong, open a new [documentation issue](https://github.com/ryanlua/satchel/issues/new?template=documentation_issue.yml).
 
 ## Sponsors
 
@@ -48,7 +48,7 @@ Special thanks for our sponsors for supporting Satchel and it's future developme
 
 <br>
 
-[Become a sponsor](https://github.com/sponsors/RyanLua)
+[Become a sponsor](https://github.com/sponsors/ryanlua)
 
 ## Contributing
 

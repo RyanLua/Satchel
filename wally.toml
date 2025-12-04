@@ -7,7 +7,7 @@ authors = ["Ryan Luu <ryan.luu@ryanluu.dev>"]
 realm = "shared"
 registry = "https://github.com/UpliftGames/wally-index"
 homepage = "http://satchel.luau.page/"
-repository = "https://github.com/RyanLua/Satchel"
+repository = "https://github.com/ryanlua/satchel"
 exclude = ["**"]
 include = ["src", "src/**", "wally.toml", "wally.lock", "default.project.json", "LICENSE", "README.md"]
 

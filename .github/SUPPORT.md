@@ -18,7 +18,7 @@ If you would like to see support for another platform or report a platform-speci
 
 ### Reporting a Bug
 
-If you've discovered a bug, please [file a bug report](https://github.com/RyanLua/Satchel/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml). When creating the issue, please provide the following information:
+If you've discovered a bug, please [file a bug report](https://github.com/ryanlua/satchel/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml). When creating the issue, please provide the following information:
 
 - A clear and concise description of the bug.
 - Steps to reproduce the behavior.
@@ -28,7 +28,7 @@ If you've discovered a bug, please [file a bug report](https://github.com/RyanLu
 
 ### Requesting a Feature
 
-If you have a suggestion for a new feature or an improvement, please [open a feature request](https://github.com/RyanLua/Satchel/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml). When creating the issue, please provide the following information:
+If you have a suggestion for a new feature or an improvement, please [open a feature request](https://github.com/ryanlua/satchel/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml). When creating the issue, please provide the following information:
 
 - A clear and concise description of the feature.
 - Explanation of why this feature would be beneficial.
